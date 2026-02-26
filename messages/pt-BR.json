@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "title": "Auctify - Soluções Tecnológicas para a Indústria",
+    "description": "Transforme sua operação com inovações robustas e eficientes. Tablets industriais, telemetria avançada, dashboards personalizados e gestão de frota."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "Quem Somos",
+    "solutions": "Soluções",
+    "projects": "Projetos",
+    "contact": "Fale Conosco"
+  },
+  "home": {
+    "hero": {
+      "title": "Soluções Tecnológicas para a Indústria",
+      "subtitle": "Transforme sua operação com inovações robustas e eficientes",
+      "cta": "Saiba Mais"
+    },
+    "solutions": {
+      "title": "Nossas Soluções",
+      "items": [
+        {
+          "title": "Tablets Industriais",
+          "description": "Oferecemos tablets robustos e duráveis, especialmente projetados para atender as demandas rigorosas das aplicações industriais."
+        },
+        {
+          "title": "Telemetria Avançada",
+          "description": "Nosso serviço de telemetria é a espinha dorsal da gestão eficiente da sua frota."
+        },
+        {
+          "title": "Dashboards Personalizados",
+          "description": "Com nossos dashboards personalizados, você tem acesso a dados críticos e insights em tempo real."
+        },
+        {
+          "title": "Gestão Detalhada da Frota",
+          "description": "Transforme a maneira como você gerencia suas operações industriais."
+        }
+      ],
+      "cta": "Saiba Mais"
+    },
+    "projects": {
+      "title": "Projetos em Destaque"
+    },
+    "pillars": {
+      "sectionTitle": "Sobre nós",
+      "title": "Pilares da Auctify",
+      "items": [
+        {
+          "title": "Inovação Tecnológica",
+          "description": "Tablets avançados e sistemas de telemetria de última geração para operações industriais."
+        },
+        {
+          "title": "Expertise em Mineração",
+          "description": "Soluções especializadas desenvolvidas para as demandas exigentes das operações de mineração."
+        },
+        {
+          "title": "Segurança Operacional",
+          "description": "Monitoramento de superaquecimento de freios, detecção de deslocamento de caçamba alta, alertas de basculamento não autorizado."
+        },
+        {
+          "title": "Sustentabilidade",
+          "description": "Monitoramento de emissões de CO2, otimização de combustível, minimização de desperdício operacional."
+        },
+        {
+          "title": "Personalização e Flexibilidade",
+          "description": "Dashboards personalizados para métricas específicas da operação."
+        },
+        {
+          "title": "Suporte e Parceria",
+          "description": "Serviços contínuos de suporte e consultoria."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Entre em contato conosco"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "Quem Somos - Auctify",
+      "description": "Conheça a Auctify, empresa líder em soluções tecnológicas para a indústria."
+    },
+    "hero": {
+      "title": "A Auctify"
+    },
+    "description": {
+      "title": "Quem Somos",
+      "text": "A Auctify é uma empresa líder em soluções tecnológicas para a indústria, comprometida com a inovação, a eficiência e a sustentabilidade."
+    },
+    "mission": {
+      "title": "Missão",
+      "text": "Prover soluções tecnológicas que aumentem a eficiência e a sustentabilidade das operações industriais, promovendo um ambiente de trabalho seguro e produtivo."
+    },
+    "vision": {
+      "title": "Visão",
+      "text": "Ser reconhecida globalmente como a principal fornecedora de tecnologia industrial, liderando o mercado com inovação e excelência."
+    },
+    "values": {
+      "title": "Nossos Valores",
+      "items": [
+        {
+          "title": "Inovação",
+          "text": "Estar na vanguarda tecnológica, desenvolvendo soluções que transformam."
+        },
+        {
+          "title": "Excelência",
+          "text": "Compromisso com a qualidade e a melhoria contínua."
+        },
+        {
+          "title": "Segurança",
+          "text": "Garantir operações seguras para colaboradores e equipamentos."
+        },
+        {
+          "title": "Sustentabilidade",
+          "text": "Promover práticas que respeitem o meio ambiente e aumentem a eficiência."
+        },
+        {
+          "title": "Parceria",
+          "text": "Trabalhar junto aos nossos clientes para alcançar resultados extraordinários."
+        }
+      ]
+    },
+    "cta": {
+      "learnMore": "Saiba Mais",
+      "contactUs": "Fale Conosco"
+    }
+  },
+  "solutions": {
+    "metadata": {
+      "title": "Soluções - Auctify",
+      "description": "Conheça nossas soluções tecnológicas: tablets industriais, telemetria avançada, dashboards personalizados e gestão de frota."
+    },
+    "hero": {
+      "title": "Nossas Soluções"
+    },
+    "items": [
+      {
+        "title": "Tablets Industriais",
+        "description": "A Auctify oferece tablets robustos e duráveis, especialmente projetados para atender as demandas rigorosas das aplicações industriais.",
+        "features": [
+          "Resistentes a choques, poeira e água",
+          "Telas touchscreen de alta resolução",
+          "Processadores de última geração",
+          "Experiência de usuário fluida e eficiente",
+          "Integração com sistemas de gestão e controle operacional"
+        ],
+        "image": "/images/solutions/78.jpg"
+      },
+      {
+        "title": "Telemetria Avançada",
+        "description": "Nosso serviço de telemetria é a espinha dorsal da gestão eficiente da sua frota, utilizando sensores avançados e comunicação em tempo real.",
+        "safetyFeatures": [
+          "Monitoramento do ponto de superaquecimento dos freios",
+          "Identificação de gargalos (estreitamento de pista, acúmulo de borracha)",
+          "Monitoramento de pressão de óleo",
+          "Detecção de caçamba alta em deslocamento",
+          "Detecção de elevação da caçamba em operação",
+          "Alertas de basculamento em ponto de basculamento não autorizado"
+        ],
+        "operationalFeatures": [
+          "Controle de ciclo de carregamento e basculamento",
+          "Monitoramento de velocidade média",
+          "Monitoramento de rotação do motor",
+          "Consumo de diesel",
+          "Horímetro digital",
+          "Status e monitoramento do equipamento",
+          "Rastreamento e localização do equipamento"
+        ],
+        "image": "/images/solutions/2151307800-1.jpg"
+      },
+      {
+        "title": "Dashboards Personalizados",
+        "description": "Com nossos dashboards personalizados, você tem acesso a dados críticos e insights em tempo real, apresentados de forma clara e intuitiva. Configure e visualize métricas específicas de acordo com as necessidades operacionais para uma tomada de decisão rápida e informada.",
+        "image": "/images/solutions/9864-1.jpg"
+      },
+      {
+        "title": "Gestão Detalhada da Frota",
+        "description": "Solução completa que integra dados de telemetria e informações operacionais em uma única plataforma.",
+        "benefits": [
+          "Melhorar a eficiência operacional",
+          "Reduzir o tempo de inatividade e custos de manutenção",
+          "Aumentar a segurança dos operadores e equipamentos",
+          "Promover práticas sustentáveis e reduzir a pegada de carbono"
+        ],
+        "image": "/images/solutions/2151307759.jpg"
+      }
+    ],
+    "cta": {
+      "text": "Transforme a maneira como você gerencia suas operações industriais com as soluções tecnológicas avançadas da Auctify. Entre em contato conosco para saber mais sobre como podemos ajudar a impulsionar a eficiência e a sustentabilidade do seu negócio.",
+      "button": "Fale Conosco"
+    }
+  },
+  "projects": {
+    "metadata": {
+      "title": "Projetos - Auctify",
+      "description": "Conheça nossos projetos e cases de sucesso em mineração e indústria."
+    },
+    "hero": {
+      "title": "Nossos Projetos"
+    },
+    "vargemGrande": {
+      "title": "Projeto Vargem Grande: Revolucionando a Mineração com Tecnologia de Ponta",
+      "context": {
+        "title": "Contexto do Projeto",
+        "text": "Iniciativa liderada pela Vale focada na descaracterização de barragens para aumentar a segurança e minimizar impactos ambientais. A Auctify fornece telemetria integrada conectada ao sistema de Gerenciamento de Recursos Móveis (GRM) da Vale."
+      },
+      "telemetry": {
+        "title": "Telemetria Integrada ao GRM da Vale",
+        "text": "Monitoramento contínuo em tempo real com melhorias de segurança (superaquecimento de freios, pressão de óleo, deslocamento de caçamba, rastreamento de elevação), eficiência operacional (controle de ciclo de carregamento, consumo de combustível) e sustentabilidade (rastreamento de emissões de CO2)."
+      },
+      "monitoring": {
+        "title": "Monitoramento Contínuo e em Tempo Real",
+        "text": "Transmissão de dados precisa e atualizada permitindo resposta rápida a anomalias."
+      },
+      "safety": {
+        "title": "Segurança Aprimorada",
+        "text": "Identifica perigos críticos incluindo superaquecimento de freios e pressões de equipamentos."
+      },
+      "efficiency": {
+        "title": "Eficiência Operacional",
+        "text": "Otimiza ciclos de carregamento/descarregamento, rotação do motor e consumo de diesel."
+      },
+      "sustainability": {
+        "title": "Sustentabilidade",
+        "text": "Monitora emissões e eficiência de combustível alinhados com objetivos ambientais."
+      },
+      "impact": {
+        "title": "Impacto",
+        "items": [
+          "Maior controle e visibilidade operacional",
+          "Tomada de decisão baseada em dados via dashboards personalizados",
+          "Redução de riscos e segurança aprimorada dos trabalhadores"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Entre em contato conosco",
+      "text": "Para saber mais sobre nossas soluções e como podemos ajudar sua empresa.",
+      "button": "Fale Conosco"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contato - Auctify",
+      "description": "Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações."
+    },
+    "title": "Fale Conosco",
+    "intro": "Estamos aqui para ajudar! Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações industriais.",
+    "form": {
+      "name": "Nome",
+      "phone": "Telefone/WhatsApp",
+      "email": "E-mail",
+      "subject": "Assunto",
+      "message": "Mensagem",
+      "submit": "Enviar",
+      "sending": "Enviando...",
+      "success": "Mensagem enviada com sucesso! Entraremos em contato em breve.",
+      "error": "Erro ao enviar mensagem. Tente novamente."
+    },
+    "validation": {
+      "nameRequired": "Preencha esse campo",
+      "phoneRequired": "Preencha esse campo",
+      "emailRequired": "Preencha esse campo",
+      "emailInvalid": "Digite um endereço de e-mail válido",
+      "subjectRequired": "Preencha esse campo"
+    }
+  },
+  "footer": {
+    "copyright": "Direitos reservados © Auctify 2024. Transformando operações industriais com tecnologia avançada.",
+    "phone": "+55 31 99776-0165",
+    "email": "contact@auctify.com.br",
+    "social": {
+      "instagram": "https://www.instagram.com/_auctify_",
+      "linkedin": "https://www.linkedin.com/company/auctify/",
+      "whatsapp": "https://api.whatsapp.com/send?phone=5531997760165"
+    }
+  }
+}
