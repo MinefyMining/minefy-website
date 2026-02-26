@@ -50,18 +50,20 @@ export function Header() {
         scrolled ? "bg-background shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:py-7">
+      <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 ${scrolled ? "py-2" : "py-0"}`}>
         {/* Logo — shrinks on scroll */}
         <Link href="/">
           <Image
             src="/images/logo-transparente.png"
             alt="Logo"
-            width={120}
-            height={96}
+            width={709}
+            height={570}
             priority
-            className={`object-contain transition-all duration-300 ${
-              scrolled ? "h-10 w-auto" : "h-16 w-auto"
-            }`}
+            className="object-contain transition-all duration-300"
+            style={{
+              width: scrolled ? 256 : 709,
+              height: scrolled ? 206 : 570,
+            }}
           />
         </Link>
 
