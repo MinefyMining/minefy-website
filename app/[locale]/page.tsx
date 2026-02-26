@@ -61,7 +61,7 @@ export default async function HomePage({ params }: Props) {
                 ))}
               </div>
               {/* Product images below list */}
-              <div className="flex items-center justify-center gap-6 mt-10">
+              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mt-10">
                 {[
                   {
                     src: "/images/products/galileosky-01.webp",
@@ -85,7 +85,7 @@ export default async function HomePage({ params }: Props) {
                     alt="Galileosky Hub"
                     width={img.w}
                     height={img.h}
-                    className="object-contain"
+                    className="object-contain max-w-[80px] md:max-w-none h-auto"
                   />
                 ))}
               </div>

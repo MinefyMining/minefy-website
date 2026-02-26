@@ -30,7 +30,7 @@ export default async function SolutionsPage({ params }: Props) {
   }>;
 
   return (
-    <div style={{ backgroundColor: "#212121" }}>
+    <div className="bg-[#212121]">
       {/* Hero */}
       <HeroSection
         imageSrc="/images/backgrounds/15670.jpg"
@@ -40,10 +40,10 @@ export default async function SolutionsPage({ params }: Props) {
       />
 
       {/* Solutions */}
-      {items.map((item) => (
+      {items.map((item, i) => (
         <section
           key={item.title}
-          id={`solucao-${item.title.toLowerCase().replaceAll(/\s+/g, "-").replaceAll(/[^a-z0-9-]/g, "")}`}
+          id={`solucao-${i}`}
           className="py-16 px-4 md:px-8 scroll-mt-24"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">

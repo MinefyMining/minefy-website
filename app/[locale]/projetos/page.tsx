@@ -42,7 +42,7 @@ export default async function ProjectsPage({ params }: Props) {
   }>;
 
   return (
-    <div style={{ backgroundColor: "#212121" }}>
+    <div className="bg-[#212121]">
       {/* Hero */}
       <HeroSection
         imageSrc="/images/backgrounds/15670.jpg"

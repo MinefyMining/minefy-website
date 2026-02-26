@@ -113,8 +113,7 @@ export function Header() {
             <Link
               key={key}
               href={href}
-              style={{ fontSize: "1.2rem" }}
-              className={`font-medium transition-colors ${isActive(href)
+              className={`text-[1.2rem] font-medium transition-colors ${isActive(href)
                 ? "text-primary"
                 : "text-foreground/70 hover:text-foreground"
                 }`}

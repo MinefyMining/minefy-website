@@ -4,6 +4,15 @@ import { contactSchema } from "@/lib/contact-schema";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -12,14 +21,14 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: "Auctify Website <onboarding@resend.dev>",
       to: "contact@auctify.com.br",
-      subject: `[Website] ${data.subject}`,
+      subject: `[Website] ${escapeHtml(data.subject)}`,
       html: `
         <h2>Nova mensagem do site</h2>
-        <p><strong>Nome:</strong> ${data.name}</p>
-        <p><strong>Telefone:</strong> ${data.phone}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Assunto:</strong> ${data.subject}</p>
-        <p><strong>Mensagem:</strong> ${data.message || "N/A"}</p>
+        <p><strong>Nome:</strong> ${escapeHtml(data.name)}</p>
+        <p><strong>Telefone:</strong> ${escapeHtml(data.phone)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+        <p><strong>Assunto:</strong> ${escapeHtml(data.subject)}</p>
+        <p><strong>Mensagem:</strong> ${escapeHtml(data.message || "N/A")}</p>
       `,
     });
 
