@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Menu } from "lucide-react";
 import {
   Sheet,
@@ -22,6 +22,7 @@ const navLinks = [
 
 export function Header() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -38,21 +39,29 @@ export function Header() {
     };
   }, []);
 
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-background" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:py-7">
-        {/* Logo */}
+        {/* Logo — shrinks on scroll */}
         <Link href="/">
           <Image
             src="/images/logo-transparente.png"
             alt="Logo"
             width={120}
-            height={40}
+            height={96}
             priority
+            className={`object-contain transition-all duration-300 ${
+              scrolled ? "h-10 w-auto" : "h-16 w-auto"
+            }`}
           />
         </Link>
 
@@ -62,7 +71,11 @@ export function Header() {
             <Link
               key={key}
               href={href}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                isActive(href)
+                  ? "text-primary"
+                  : "text-foreground/70 hover:text-foreground"
+              }`}
             >
               {t(key)}
             </Link>
@@ -82,7 +95,11 @@ export function Header() {
                   key={key}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
+                  className={`text-lg font-medium transition-colors ${
+                    isActive(href)
+                      ? "text-primary"
+                      : "text-foreground/70 hover:text-foreground"
+                  }`}
                 >
                   {t(key)}
                 </Link>
