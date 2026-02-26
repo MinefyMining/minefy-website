@@ -122,7 +122,10 @@
     },
     "cta": {
       "learnMore": "Saiba Mais",
-      "contactUs": "Fale Conosco"
+      "discover": "Conheça",
+      "contactUs": "Fale Conosco",
+      "title": "Entre em contato conosco",
+      "text": "Para saber mais sobre nossas soluções e como podemos ajudar sua empresa."
     }
   },
   "solutions": {
@@ -185,8 +188,11 @@
         "image": "/images/solutions/2151307759.jpg"
       }
     ],
+    "safetyLabel": "Segurança",
+    "operationalLabel": "Funcionalidades de Telemetria",
     "cta": {
-      "text": "Transforme a maneira como você gerencia suas operações industriais com as soluções tecnológicas avançadas da Auctify. Entre em contato conosco para saber mais sobre como podemos ajudar a impulsionar a eficiência e a sustentabilidade do seu negócio.",
+      "title": "Entre em contato conosco",
+      "text": "Para saber mais sobre nossas soluções e como podemos ajudar sua empresa.",
       "button": "Fale Conosco"
     }
   },
@@ -202,35 +208,48 @@
       "title": "Projeto Vargem Grande: Revolucionando a Mineração com Tecnologia de Ponta",
       "context": {
         "title": "Contexto do Projeto",
-        "text": "Iniciativa liderada pela Vale focada na descaracterização de barragens para aumentar a segurança e minimizar impactos ambientais. A Auctify fornece telemetria integrada conectada ao sistema de Gerenciamento de Recursos Móveis (GRM) da Vale."
+        "text": "O Projeto Vargem Grande é uma iniciativa monumental liderada pela Vale, uma das maiores empresas de mineração do mundo, focada na descaracterização de barragens para aumentar a segurança e minimizar impactos ambientais. Neste contexto, a Auctify está desempenhando um papel crucial, fornecendo tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis (GRM) da Vale."
       },
       "telemetry": {
         "title": "Telemetria Integrada ao GRM da Vale",
-        "text": "Monitoramento contínuo em tempo real com melhorias de segurança (superaquecimento de freios, pressão de óleo, deslocamento de caçamba, rastreamento de elevação), eficiência operacional (controle de ciclo de carregamento, consumo de combustível) e sustentabilidade (rastreamento de emissões de CO2)."
+        "text": "Nossa solução de telemetria oferece um monitoramento detalhado e em tempo real de todas as operações envolvidas na descaracterização da barragem. Integrada ao GRM da Vale, nossa tecnologia permite:"
       },
       "monitoring": {
         "title": "Monitoramento Contínuo e em Tempo Real",
-        "text": "Transmissão de dados precisa e atualizada permitindo resposta rápida a anomalias."
+        "text": "Dados precisos e atualizados sobre a integridade dos equipamentos e processos são transmitidos continuamente, permitindo uma resposta rápida a qualquer anomalia ou risco identificado."
       },
       "safety": {
         "title": "Segurança Aprimorada",
-        "text": "Identifica perigos críticos incluindo superaquecimento de freios e pressões de equipamentos."
+        "text": "Nossa telemetria inclui funcionalidades específicas para identificar pontos de superaquecimento de freios, pressão do óleo, deslocamento de básculas e elevação durante movimentação. Isso garante que todas as operações sejam realizadas com o máximo de segurança, minimizando riscos para os trabalhadores e o meio ambiente."
       },
       "efficiency": {
         "title": "Eficiência Operacional",
-        "text": "Otimiza ciclos de carregamento/descarregamento, rotação do motor e consumo de diesel."
+        "text": "Através do controle de ciclos de carregamento e basculamento, monitoramento da velocidade média, rotação do motor e consumo de diesel, nossa solução ajuda a otimizar cada etapa do processo. Isso resulta em operações mais eficientes, redução de custos e aumento da produtividade."
       },
       "sustainability": {
         "title": "Sustentabilidade",
-        "text": "Monitora emissões e eficiência de combustível alinhados com objetivos ambientais."
+        "text": "Monitoramos as emissões de CO2 e a eficiência do consumo de combustível, ajudando a Vale a cumprir seus objetivos de sustentabilidade e a minimizar o impacto ambiental das operações de mineração."
       },
       "impact": {
-        "title": "Impacto",
+        "title": "Impacto na Operação de Descaracterização de Barragem",
         "items": [
-          "Maior controle e visibilidade operacional",
-          "Tomada de decisão baseada em dados via dashboards personalizados",
-          "Redução de riscos e segurança aprimorada dos trabalhadores"
+          {
+            "title": "Maior Controle e Visibilidade",
+            "text": "A integração da nossa telemetria ao GRM da Vale proporciona uma visão holística e detalhada das operações. Essa visibilidade permite uma gestão proativa e informada, essencial para a execução segura e eficiente das atividades de descaracterização."
+          },
+          {
+            "title": "Tomada de Decisão Informada",
+            "text": "Dashboards personalizados fornecem insights críticos e facilitam a tomada de decisões baseadas em dados reais. As equipes de gestão podem identificar tendências, antecipar problemas e implementar soluções rapidamente."
+          },
+          {
+            "title": "Redução de Riscos e Aumento da Segurança",
+            "text": "Com monitoramento constante e alertas em tempo real, a Vale pode identificar e mitigar riscos antes que se tornem problemas críticos. Isso aumenta significativamente a segurança das operações e protege os trabalhadores e o meio ambiente."
+          }
         ]
+      },
+      "conclusion": {
+        "title": "Conclusão",
+        "text": "A Auctify está orgulhosa de contribuir para o sucesso do Projeto Vargem Grande, fornecendo tecnologia de telemetria avançada que, integrada ao GRM da Vale, está fazendo uma diferença significativa na descaracterização de barragens. Nossa parceria com a Vale demonstra como a inovação tecnológica pode ser um aliado poderoso na busca por operações de mineração mais seguras, eficientes e sustentáveis.\n\nJunte-se a nós nesta jornada de transformação e descubra como a Auctify pode ajudar sua empresa a alcançar novos patamares de excelência operacional."
       }
     },
     "cta": {
@@ -244,8 +263,11 @@
       "title": "Contato - Auctify",
       "description": "Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações."
     },
+    "hero": {
+      "title": "Contato"
+    },
     "title": "Fale Conosco",
-    "intro": "Estamos aqui para ajudar! Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações industriais.",
+    "intro": "Estamos aqui para ajudar! Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações industriais. Nossa equipe está pronta para responder suas perguntas e fornecer o suporte necessário.",
     "form": {
       "name": "Nome",
       "phone": "Telefone/WhatsApp",

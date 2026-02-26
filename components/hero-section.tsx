@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { ParallaxBackground } from "@/components/parallax-background";
+import { ScrollDownArrow } from "@/components/scroll-down-arrow";
 
 interface HeroSectionProps {
   imageSrc: string;
@@ -8,6 +9,7 @@ interface HeroSectionProps {
   ctaText?: string;
   ctaHref?: string;
   align?: "left" | "center";
+  showArrow?: boolean;
 }
 
 export function HeroSection({
@@ -18,25 +20,19 @@ export function HeroSection({
   ctaText,
   ctaHref,
   align = "center",
+  showArrow = false,
 }: HeroSectionProps) {
   const isLeft = align === "left";
 
   return (
     <section className="relative flex min-h-[60vh] md:min-h-[80vh] items-center overflow-hidden">
-      <Image
-        src={imageSrc}
-        alt={imageAlt}
-        fill
-        className="object-cover"
-        priority
-      />
+      <ParallaxBackground src={imageSrc} alt={imageAlt} />
       <div className="absolute inset-0 bg-black/60" />
       <div
-        className={`relative z-10 px-6 md:px-12 lg:px-20 max-w-3xl ${
-          isLeft ? "text-left" : "text-center mx-auto"
-        }`}
+        className={`relative z-10 px-6 md:px-12 lg:px-20 max-w-3xl ${isLeft ? "text-left" : "text-center mx-auto"
+          }`}
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl lg:text-[5rem] font-bold text-white mb-6 leading-tight">
           {title}
         </h1>
         {subtitle && (
@@ -52,6 +48,7 @@ export function HeroSection({
             {ctaText}
           </a>
         )}
+        {showArrow && <ScrollDownArrow />}
       </div>
     </section>
   );

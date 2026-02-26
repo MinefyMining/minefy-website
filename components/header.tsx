@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, Instagram, Linkedin } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -47,15 +47,13 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background shadow-lg" : "bg-transparent"
+        }`}
     >
       {/* Top bar — email, phone, social links */}
       <div
-        className={`hidden md:block border-b border-border/30 transition-all duration-300 overflow-hidden ${
-          scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
-        }`}
+        className={`hidden md:block border-b border-border/30 transition-all duration-300 overflow-hidden ${scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+          }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-4 py-2 text-xs text-muted-foreground">
           <a
@@ -77,7 +75,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              <Instagram className="h-3.5 w-3.5" />
+              <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5Zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5Zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5Zm5.5-1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" /></svg>
             </a>
             <a
               href={tFooter("social.linkedin")}
@@ -85,7 +83,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              <Linkedin className="h-3.5 w-3.5" />
+              <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125ZM6.84 20.452H3.834V9H6.84v11.452Z" /></svg>
             </a>
           </div>
         </div>
@@ -93,21 +91,19 @@ export function Header() {
 
       {/* Main nav */}
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 ${
-          scrolled ? "py-2" : "py-0"
-        }`}
+        className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 ${scrolled ? "py-1" : "py-2"
+          }`}
       >
         {/* Logo — shrinks on scroll */}
         <Link href="/">
           <Image
             src="/images/logo-transparente.png"
             alt="Logo"
-            width={709}
+            width={800}
             height={570}
             priority
-            className={`object-contain transition-all duration-300 ${
-              scrolled ? "w-[75px]" : "w-[100px]"
-            } h-auto`}
+            className={`object-contain transition-all duration-300 ${scrolled ? "w-[75px]" : "w-[120px]"
+              } h-auto`}
           />
         </Link>
 
@@ -117,11 +113,11 @@ export function Header() {
             <Link
               key={key}
               href={href}
-              className={`text-sm font-medium transition-colors ${
-                isActive(href)
-                  ? "text-primary"
-                  : "text-foreground/70 hover:text-foreground"
-              }`}
+              style={{ fontSize: "1.2rem" }}
+              className={`font-medium transition-colors ${isActive(href)
+                ? "text-primary"
+                : "text-foreground/70 hover:text-foreground"
+                }`}
             >
               {t(key)}
             </Link>
@@ -141,11 +137,10 @@ export function Header() {
                   key={key}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={`text-lg font-medium transition-colors ${
-                    isActive(href)
-                      ? "text-primary"
-                      : "text-foreground/70 hover:text-foreground"
-                  }`}
+                  className={`text-lg font-medium transition-colors ${isActive(href)
+                    ? "text-primary"
+                    : "text-foreground/70 hover:text-foreground"
+                    }`}
                 >
                   {t(key)}
                 </Link>

@@ -69,7 +69,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
                   <FormControl>
                     <Input placeholder={t("form.name")} {...field} />
                   </FormControl>
-                  <FormMessage>{t("validation.nameRequired")}</FormMessage>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -82,7 +82,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
                   <FormControl>
                     <Input placeholder={t("form.phone")} {...field} />
                   </FormControl>
-                  <FormMessage>{t("validation.phoneRequired")}</FormMessage>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -97,7 +97,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
                   <FormControl>
                     <Input type="email" placeholder={t("form.email")} {...field} />
                   </FormControl>
-                  <FormMessage>{t("validation.emailInvalid")}</FormMessage>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -110,7 +110,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
                   <FormControl>
                     <Input placeholder={t("form.subject")} {...field} />
                   </FormControl>
-                  <FormMessage>{t("validation.subjectRequired")}</FormMessage>
+                  <FormMessage />
                 </FormItem>
               )}
             />
