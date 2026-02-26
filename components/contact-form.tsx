@@ -131,7 +131,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
           <Button
             type="submit"
             disabled={status === "sending"}
-            className="w-full md:w-auto rounded-[1.25rem] px-8"
+            className="w-full md:w-auto rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8"
           >
             {status === "sending" ? t("form.sending") : t("form.submit")}
           </Button>

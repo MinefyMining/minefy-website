@@ -29,18 +29,21 @@ export function ClientCarousel() {
           stopOnInteraction: false,
         }),
       ]}
-      className="w-full max-w-5xl mx-auto"
+      className="w-full max-w-6xl mx-auto"
     >
-      <CarouselContent className="-ml-4">
+      <CarouselContent className="-ml-2">
         {clients.map((client) => (
-          <CarouselItem key={client.name} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-            <div className="flex items-center justify-center p-4 h-24 md:h-32 rounded-[1.875rem] bg-white">
+          <CarouselItem
+            key={client.name}
+            className="pl-2 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
+          >
+            <div className="flex items-center justify-center p-4 h-20">
               <Image
                 src={client.logo}
                 alt={client.name}
-                width={180}
-                height={70}
-                className="object-contain max-h-16"
+                width={160}
+                height={60}
+                className="object-contain max-h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
               />
             </div>
           </CarouselItem>
