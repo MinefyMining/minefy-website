@@ -59,11 +59,9 @@ export function Header() {
             width={709}
             height={570}
             priority
-            className="object-contain transition-all duration-300"
-            style={{
-              width: scrolled ? 256 : 709,
-              height: scrolled ? 206 : 570,
-            }}
+            className={`object-contain transition-all duration-300 ${
+              scrolled ? "w-[75px]" : "w-[100px]"
+            } h-auto`}
           />
         </Link>
 
