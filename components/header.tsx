@@ -50,12 +50,16 @@ export function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background shadow-lg" : "bg-transparent"
         }`}
     >
-      {/* Top bar — email, phone, social links */}
+      {/* Main nav */}
       <div
-        className={`hidden md:block border-b border-border/30 transition-all duration-300 overflow-hidden ${scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+        className={`relative mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 ${scrolled ? "py-1" : "py-2"
           }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-4 py-2 text-xs text-muted-foreground">
+        {/* Top bar — email, phone, social links (absolute, no layout shift) */}
+        <div
+          className={`absolute top-0 left-0 right-0 hidden md:flex items-center justify-end gap-6 px-4 py-1 text-xs text-muted-foreground transition-all duration-300 ${scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+        >
           <a
             href={`mailto:${tFooter("email")}`}
             className="hover:text-foreground transition-colors"
@@ -87,22 +91,15 @@ export function Header() {
             </a>
           </div>
         </div>
-      </div>
-
-      {/* Main nav */}
-      <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 ${scrolled ? "py-1" : "py-2"
-          }`}
-      >
         {/* Logo — shrinks on scroll */}
-        <Link href="/">
+        <Link href="/" className={`transition-all duration-300 ${scrolled ? "" : "-mt-5"}`}>
           <Image
             src="/images/logo-transparente.png"
             alt="Logo"
             width={800}
             height={570}
             priority
-            className={`object-contain transition-all duration-300 ${scrolled ? "w-[75px]" : "w-[120px]"
+            className={`object-contain transition-all duration-300 ${scrolled ? "w-[90px]" : "w-[150px]"
               } h-auto`}
           />
         </Link>
