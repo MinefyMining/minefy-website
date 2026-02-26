@@ -94,7 +94,7 @@ export default async function AboutPage({ params }: Props) {
           <div className="relative rounded-3xl overflow-hidden min-h-[400px] lg:min-h-0">
             <Image
               src="/images/backgrounds/12879512-1.jpg"
-              alt="Pilares da Auctify"
+              alt="Pilares da Minefy"
               fill
               className="object-cover"
             />

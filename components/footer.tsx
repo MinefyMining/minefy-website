@@ -24,7 +24,7 @@ export function Footer() {
         <div className="flex flex-col gap-4">
           <Image
             src="/images/logo-transparente.png"
-            alt="Auctify Logo"
+            alt="Minefy Logo"
             width={100}
             height={33}
           />

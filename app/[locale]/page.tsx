@@ -114,7 +114,7 @@ export default async function HomePage({ params }: Props) {
               <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden">
                 <Image
                   src="/images/hero/2151307800-1.jpg"
-                  alt="Contato Auctify"
+                  alt="Contato Minefy"
                   fill
                   className="object-cover"
                 />

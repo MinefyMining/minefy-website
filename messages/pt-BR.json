@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Auctify - Soluções Tecnológicas para a Indústria",
+    "title": "Minefy - Soluções Tecnológicas para a Indústria",
     "description": "Transforme sua operação com inovações robustas e eficientes. Tablets industriais, telemetria avançada, dashboards personalizados e gestão de frota."
   },
   "nav": {
@@ -43,7 +43,7 @@
     },
     "pillars": {
       "sectionTitle": "Sobre nós",
-      "title": "Pilares da Auctify",
+      "title": "Pilares da Minefy",
       "items": [
         {
           "title": "Inovação Tecnológica",
@@ -77,15 +77,15 @@
   },
   "about": {
     "metadata": {
-      "title": "Quem Somos - Auctify",
-      "description": "Conheça a Auctify, empresa líder em soluções tecnológicas para a indústria."
+      "title": "Quem Somos - Minefy",
+      "description": "Conheça a Minefy, empresa líder em soluções tecnológicas para a indústria."
     },
     "hero": {
-      "title": "A Auctify"
+      "title": "A Minefy"
     },
     "description": {
       "title": "Quem Somos",
-      "text": "A Auctify é uma empresa líder em soluções tecnológicas para a indústria, comprometida com a inovação, a eficiência e a sustentabilidade."
+      "text": "A Minefy é uma empresa líder em soluções tecnológicas para a indústria, comprometida com a inovação, a eficiência e a sustentabilidade."
     },
     "mission": {
       "title": "Missão",
@@ -130,7 +130,7 @@
   },
   "solutions": {
     "metadata": {
-      "title": "Soluções - Auctify",
+      "title": "Soluções - Minefy",
       "description": "Conheça nossas soluções tecnológicas: tablets industriais, telemetria avançada, dashboards personalizados e gestão de frota."
     },
     "hero": {
@@ -139,7 +139,7 @@
     "items": [
       {
         "title": "Tablets Industriais",
-        "description": "A Auctify oferece tablets robustos e duráveis, especialmente projetados para atender as demandas rigorosas das aplicações industriais.",
+        "description": "A Minefy oferece tablets robustos e duráveis, especialmente projetados para atender as demandas rigorosas das aplicações industriais.",
         "features": [
           "Resistentes a choques, poeira e água",
           "Telas touchscreen de alta resolução",
@@ -198,7 +198,7 @@
   },
   "projects": {
     "metadata": {
-      "title": "Projetos - Auctify",
+      "title": "Projetos - Minefy",
       "description": "Conheça nossos projetos e cases de sucesso em mineração e indústria."
     },
     "hero": {
@@ -208,7 +208,7 @@
       "title": "Projeto Vargem Grande: Revolucionando a Mineração com Tecnologia de Ponta",
       "context": {
         "title": "Contexto do Projeto",
-        "text": "O Projeto Vargem Grande é uma iniciativa monumental liderada pela Vale, uma das maiores empresas de mineração do mundo, focada na descaracterização de barragens para aumentar a segurança e minimizar impactos ambientais. Neste contexto, a Auctify está desempenhando um papel crucial, fornecendo tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis (GRM) da Vale."
+        "text": "O Projeto Vargem Grande é uma iniciativa monumental liderada pela Vale, uma das maiores empresas de mineração do mundo, focada na descaracterização de barragens para aumentar a segurança e minimizar impactos ambientais. Neste contexto, a Minefy está desempenhando um papel crucial, fornecendo tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis (GRM) da Vale."
       },
       "telemetry": {
         "title": "Telemetria Integrada ao GRM da Vale",
@@ -249,7 +249,7 @@
       },
       "conclusion": {
         "title": "Conclusão",
-        "text": "A Auctify está orgulhosa de contribuir para o sucesso do Projeto Vargem Grande, fornecendo tecnologia de telemetria avançada que, integrada ao GRM da Vale, está fazendo uma diferença significativa na descaracterização de barragens. Nossa parceria com a Vale demonstra como a inovação tecnológica pode ser um aliado poderoso na busca por operações de mineração mais seguras, eficientes e sustentáveis.\n\nJunte-se a nós nesta jornada de transformação e descubra como a Auctify pode ajudar sua empresa a alcançar novos patamares de excelência operacional."
+        "text": "A Minefy está orgulhosa de contribuir para o sucesso do Projeto Vargem Grande, fornecendo tecnologia de telemetria avançada que, integrada ao GRM da Vale, está fazendo uma diferença significativa na descaracterização de barragens. Nossa parceria com a Vale demonstra como a inovação tecnológica pode ser um aliado poderoso na busca por operações de mineração mais seguras, eficientes e sustentáveis.\n\nJunte-se a nós nesta jornada de transformação e descubra como a Minefy pode ajudar sua empresa a alcançar novos patamares de excelência operacional."
       }
     },
     "cta": {
@@ -260,14 +260,14 @@
   },
   "contact": {
     "metadata": {
-      "title": "Contato - Auctify",
-      "description": "Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações."
+      "title": "Contato - Minefy",
+      "description": "Entre em contato com a Minefy e descubra como nossas soluções tecnológicas podem transformar suas operações."
     },
     "hero": {
       "title": "Contato"
     },
     "title": "Fale Conosco",
-    "intro": "Estamos aqui para ajudar! Entre em contato com a Auctify e descubra como nossas soluções tecnológicas podem transformar suas operações industriais. Nossa equipe está pronta para responder suas perguntas e fornecer o suporte necessário.",
+    "intro": "Estamos aqui para ajudar! Entre em contato com a Minefy e descubra como nossas soluções tecnológicas podem transformar suas operações industriais. Nossa equipe está pronta para responder suas perguntas e fornecer o suporte necessário.",
     "form": {
       "name": "Nome",
       "phone": "Telefone/WhatsApp",
@@ -288,12 +288,12 @@
     }
   },
   "footer": {
-    "copyright": "Direitos reservados © Auctify 2024. Transformando operações industriais com tecnologia avançada.",
+    "copyright": "Direitos reservados © Minefy 2024. Transformando operações industriais com tecnologia avançada.",
     "phone": "+55 31 99776-0165",
-    "email": "contact@auctify.com.br",
+    "email": "contact@minefymining.com",
     "social": {
-      "instagram": "https://www.instagram.com/_auctify_",
-      "linkedin": "https://www.linkedin.com/company/auctify/",
+      "instagram": "https://www.instagram.com/_minefy_",
+      "linkedin": "https://www.linkedin.com/company/minefy/",
       "whatsapp": "https://api.whatsapp.com/send?phone=5531997760165"
     }
   }
