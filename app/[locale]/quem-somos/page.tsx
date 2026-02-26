@@ -30,7 +30,7 @@ export default async function AboutPage({ params }: Props) {
       {/* Description */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">
             {t("description.title")}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
@@ -44,21 +44,21 @@ export default async function AboutPage({ params }: Props) {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Mission */}
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">{t("mission.title")}</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">{t("mission.title")}</h3>
             <p className="text-muted-foreground leading-relaxed">
               {t("mission.text")}
             </p>
           </div>
           {/* Vision */}
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">{t("vision.title")}</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">{t("vision.title")}</h3>
             <p className="text-muted-foreground leading-relaxed">
               {t("vision.text")}
             </p>
           </div>
           {/* Values */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-center">
+            <h3 className="text-2xl font-bold mb-4 text-center text-primary">
               {t("values.title")}
             </h3>
             <ul className="space-y-3">

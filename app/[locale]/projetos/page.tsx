@@ -39,7 +39,7 @@ export default async function ProjectsPage({ params }: Props) {
 
       {/* Case Study Title */}
       <section className="py-16 px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold max-w-4xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold max-w-4xl mx-auto text-primary">
           {t("vargemGrande.title")}
         </h2>
       </section>
@@ -64,7 +64,7 @@ export default async function ProjectsPage({ params }: Props) {
               </div>
             )}
             <div className={image ? "" : "max-w-3xl mx-auto text-center"}>
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-2xl font-bold mb-4 text-primary">
                 {t(`vargemGrande.${key}.title`)}
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -88,7 +88,7 @@ export default async function ProjectsPage({ params }: Props) {
       {/* Impact */}
       <section className="py-16 px-4 bg-muted">
         <div className="max-w-3xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-6">
+          <h3 className="text-2xl font-bold mb-6 text-primary">
             {t("vargemGrande.impact.title")}
           </h3>
           <ul className="space-y-3 text-left inline-block">
@@ -108,7 +108,7 @@ export default async function ProjectsPage({ params }: Props) {
 
       {/* CTA */}
       <section className="py-20 px-4 text-center">
-        <h3 className="text-2xl font-bold mb-4">{t("cta.title")}</h3>
+        <h3 className="text-2xl font-bold mb-4 text-primary">{t("cta.title")}</h3>
         <p className="text-muted-foreground mb-8">{t("cta.text")}</p>
         <Link
           href="/contato"
