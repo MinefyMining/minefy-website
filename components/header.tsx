@@ -92,14 +92,14 @@ export function Header() {
           </div>
         </div>
         {/* Logo — shrinks on scroll */}
-        <Link href="/" className={`transition-all duration-300 ${scrolled ? "" : "-mt-5"}`}>
+        <Link href="/" className={`transition-all duration-300 ${scrolled ? "" : "md:-mt-5"}`}>
           <Image
             src="/images/logo-transparente.png"
             alt="Logo"
             width={800}
             height={570}
             priority
-            className={`object-contain transition-all duration-300 ${scrolled ? "w-[90px]" : "w-[150px]"
+            className={`object-contain transition-all duration-300 ${scrolled ? "w-[60px] md:w-[90px]" : "w-[80px] md:w-[150px]"
               } h-auto`}
           />
         </Link>
