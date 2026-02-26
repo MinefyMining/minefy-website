@@ -150,15 +150,8 @@ export default async function HomePage({ params }: Props) {
         <div className="max-w-7xl mx-auto">
           <SectionHeading title={t("contact.title")} />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: logo + image */}
-            <div className="flex flex-col items-center gap-8">
-              <Image
-                src="/images/logo-transparente.png"
-                alt="Auctify"
-                width={150}
-                height={120}
-                className="object-contain"
-              />
+            {/* Left: image */}
+            <div>
               <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden">
                 <Image
                   src="/images/hero/2151307800-1.jpg"
