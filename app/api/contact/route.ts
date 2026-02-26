@@ -19,8 +19,8 @@ export async function POST(request: Request) {
     const data = contactSchema.parse(body);
 
     await resend.emails.send({
-      from: "Auctify Website <onboarding@resend.dev>",
-      to: "contact@auctify.com.br",
+      from: "Minefy Website <onboarding@resend.dev>",
+      to: "contact@minefymining.com",
       subject: `[Website] ${escapeHtml(data.subject)}`,
       html: `
         <h2>Nova mensagem do site</h2>
