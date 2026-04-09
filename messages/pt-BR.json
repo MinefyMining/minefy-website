@@ -20,7 +20,7 @@
     },
     "stats": {
       "items": [
-        { "value": "30+", "label": "Equipamentos monitorados" },
+        { "value": "280+", "label": "Tablets em campo" },
         { "value": "24/7", "label": "Monitoramento real-time" },
         { "value": "Zero", "label": "Incidentes críticos" },
         { "value": "#1", "label": "Validado na maior mineradora do Brasil" }
@@ -282,7 +282,7 @@
       "title": "Telemetria integrada na descaracterização de barragens",
       "intro": "Fornecimento de tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis da maior mineradora do país, com monitoramento 24/7 de equipamentos pesados em operação de descaracterização de barragens.",
       "metrics": [
-        { "value": "30+", "label": "Tablets em campo" },
+        { "value": "280+", "label": "Tablets em campo" },
         { "value": "24/7", "label": "Monitoramento" },
         { "value": "GRM", "label": "Integração despacho" },
         { "value": "Zero", "label": "Incidentes" }
