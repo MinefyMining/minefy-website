@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import { HeroSection } from "@/components/hero-section";
-import { PillarCard } from "@/components/pillar-card";
+import { ExternalLink } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -16,11 +16,10 @@ export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
-  const tHome = await getTranslations("home");
 
-  const pillarItems = tHome.raw("pillars.items") as Array<{
-    title: string;
-    description: string;
+  const numberItems = t.raw("numbers.items") as Array<{
+    value: string;
+    label: string;
   }>;
 
   const valueItems = t.raw("values.items") as Array<{
@@ -29,131 +28,133 @@ export default async function AboutPage({ params }: Props) {
   }>;
 
   return (
-    <>
-      {/* Hero */}
-      <HeroSection
-        imageSrc="/images/backgrounds/15670.jpg"
-        imageAlt={t("hero.title")}
-        title={t("hero.title")}
-        showArrow
-      />
+    <div className="min-h-screen bg-[#0A0A0A]">
 
-      {/* Quem Somos + Missão / Visão / Valores — stacked, left-aligned */}
-      <section className="py-16 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
-            {t("description.title")}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-10">
-            {t("description.text")}
-          </p>
-
-          {/* Missão */}
-          <div className="border-t border-primary/30 py-6">
-            <h3 className="text-lg font-semibold mb-2 text-primary">
-              {t("mission.title")}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed text-sm">
-              {t("mission.text")}
-            </p>
-          </div>
-
-          {/* Visão */}
-          <div className="border-t border-primary/30 py-6">
-            <h3 className="text-lg font-semibold mb-2 text-primary">
-              {t("vision.title")}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed text-sm">
-              {t("vision.text")}
-            </p>
-          </div>
-
-          {/* Valores */}
-          <div className="border-t border-primary/30 py-6">
-            <h3 className="text-lg font-semibold mb-3 text-primary">
-              {t("values.title")}
-            </h3>
-            <ul className="space-y-2">
-              {valueItems.map((item) => (
-                <li key={item.title} className="text-muted-foreground text-sm">
-                  <span className="font-semibold text-foreground">
-                    {item.title}:
-                  </span>{" "}
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* ── Hero ── */}
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-24">
+        <Image
+          src="/images/mining/mine-aerial-cava.jpg"
+          alt="Operação de mineração panorâmica"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#0A0A0A]/70" aria-hidden="true" />
+        <div className="relative z-10 px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">
+            {t("hero.title")}
+          </h1>
         </div>
       </section>
 
-      {/* Pilares — split layout: image+text left, cards right */}
-      <section className="py-12 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          {/* Left: image with text overlay */}
-          <div className="relative rounded-3xl overflow-hidden min-h-[400px] lg:min-h-0">
-            <Image
-              src="/images/backgrounds/12879512-1.jpg"
-              alt="Pilares da Minefy"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/50" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <p className="text-sm uppercase tracking-wider text-primary mb-2">
-                {tHome("pillars.sectionTitle")}
+      {/* ── Intro ── */}
+      <section className="py-20 px-6">
+        <ScrollReveal>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-lg text-[#888] leading-relaxed">
+              {t("intro.text")}
+            </p>
+            <div className="bg-[#111] p-6 rounded-xl border-l-4 border-[#D4A847] mt-8">
+              <p className="text-lg font-medium text-white italic">
+                {t("intro.highlight")}
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {tHome("pillars.title")}
-              </h2>
-              <Link
-                href="/solucoes"
-                className="inline-block rounded-[1.25rem] bg-primary text-primary-foreground px-6 py-2 text-sm font-medium hover:bg-primary/90 transition-colors"
-              >
-                {t("cta.discover")}
-              </Link>
             </div>
           </div>
-          {/* Right: pillar cards stacked */}
-          <div className="flex flex-col gap-3 justify-center">
-            {pillarItems.map((item, i) => (
-              <PillarCard
-                key={item.title}
-                title={item.title}
-                description={item.description}
-                index={i}
-              />
+        </ScrollReveal>
+      </section>
+
+      {/* ── Numbers ── */}
+      <section className="py-16 bg-[#111] border-y border-[#222] px-6">
+        <ScrollReveal>
+          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {numberItems.map((item, index) => (
+              <div key={index}>
+                <p className="text-4xl font-bold text-[#D4A847]">{item.value}</p>
+                <p className="text-sm text-[#888] mt-1">{item.label}</p>
+              </div>
             ))}
           </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── Mission / Vision / Values ── */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+
+          {/* Mission + Vision */}
+          <ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-[#111] p-8 rounded-xl border border-[#222]">
+                <h3 className="text-lg font-semibold text-[#D4A847] mb-3">
+                  {t("mission.title")}
+                </h3>
+                <p className="text-[#888] leading-relaxed">
+                  {t("mission.text")}
+                </p>
+              </div>
+              <div className="bg-[#111] p-8 rounded-xl border border-[#222]">
+                <h3 className="text-lg font-semibold text-[#D4A847] mb-3">
+                  {t("vision.title")}
+                </h3>
+                <p className="text-[#888] leading-relaxed">
+                  {t("vision.text")}
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Values */}
+          <ScrollReveal delay={100}>
+            <div className="bg-[#111] p-8 rounded-xl border border-[#222]">
+              <h3 className="text-lg font-semibold text-[#D4A847] mb-6">
+                {t("values.title")}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {valueItems.map((item) => (
+                  <div key={item.title} className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-[#D4A847] shrink-0 mt-2" />
+                    <div>
+                      <p className="font-semibold text-white text-sm mb-1">
+                        {item.title}
+                      </p>
+                      <p className="text-[#888] text-sm leading-relaxed">
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="relative py-16 px-4 md:px-8 overflow-hidden">
-        <Image
-          src="/images/backgrounds/7946.jpg"
-          alt=""
-          fill
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              {t("cta.title")}
-            </h3>
-            <p className="text-white/80 text-lg">
-              {t("cta.text")}
-            </p>
+      {/* ── CTA ── */}
+      <section className="py-20 px-6 text-center">
+        <ScrollReveal>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+            {t("cta.title")}
+          </h2>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/contato"
+              className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+            >
+              {t("cta.contactUs")}
+            </Link>
+            <a
+              href="https://app.minefymining.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-[#444] text-white px-8 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
+            >
+              {t("cta.platform")}
+              <ExternalLink className="h-4 w-4" />
+            </a>
           </div>
-          <Link
-            href="/contato"
-            className="shrink-0 inline-block rounded-lg bg-primary text-primary-foreground px-8 py-4 font-semibold text-lg hover:bg-primary/90 transition-colors"
-          >
-            {t("cta.contactUs")}
-          </Link>
-        </div>
+        </ScrollReveal>
       </section>
-    </>
+    </div>
   );
 }

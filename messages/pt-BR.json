@@ -1,296 +1,395 @@
 {
   "metadata": {
-    "title": "Minefy - Soluções Tecnológicas para a Indústria",
-    "description": "Transforme sua operação com inovações robustas e eficientes. Tablets industriais, telemetria avançada, dashboards personalizados e gestão de frota."
+    "title": "Minefy — Telemetria e Tecnologia para Mineração",
+    "description": "Telemetria avançada, tablets industriais e gestão inteligente para mineração a céu aberto. Monitoramento real-time de equipamentos de grande porte. Teste gratuitamente."
   },
   "nav": {
     "home": "Home",
     "about": "Quem Somos",
     "solutions": "Soluções",
     "projects": "Projetos",
-    "contact": "Fale Conosco"
+    "contact": "Contato",
+    "platform": "Acessar Plataforma"
   },
   "home": {
     "hero": {
-      "title": "Soluções Tecnológicas para a Indústria",
-      "subtitle": "Transforme sua operação com inovações robustas e eficientes",
-      "cta": "Saiba Mais"
+      "title": "Telemetria avançada para mineração de grande porte",
+      "subtitle": "Monitoramento em tempo real de equipamentos pesados. Controle de ciclos, segurança operacional e inteligência de dados para minas a céu aberto.",
+      "cta": "Solicitar Demonstração",
+      "ctaSecondary": "Acessar Plataforma"
     },
-    "solutions": {
+    "stats": {
+      "items": [
+        { "value": "30+", "label": "Equipamentos monitorados" },
+        { "value": "24/7", "label": "Monitoramento real-time" },
+        { "value": "Zero", "label": "Incidentes críticos" },
+        { "value": "#1", "label": "Validado na maior mineradora do Brasil" }
+      ]
+    },
+    "products": {
       "title": "Nossas Soluções",
+      "subtitle": "Tecnologia projetada para operações de mineração a céu aberto e equipamentos de grande porte.",
       "items": [
         {
+          "icon": "tablet",
           "title": "Tablets Industriais",
-          "description": "Oferecemos tablets robustos e duráveis, especialmente projetados para atender as demandas rigorosas das aplicações industriais."
+          "description": "Hardware IP68 para operação em minas a céu aberto. Telas de alta luminosidade, resistência a impacto e integração com sistemas de despacho.",
+          "badge": "HARDWARE"
         },
         {
-          "title": "Telemetria Avançada",
-          "description": "Nosso serviço de telemetria é a espinha dorsal da gestão eficiente da sua frota."
+          "icon": "satellite",
+          "title": "ActiSky Telemetria",
+          "description": "Módulos IoT com CAN J1939 para equipamentos pesados — RPM, consumo, temperatura, pressão, GPS. Dados na sua tela em milissegundos.",
+          "badge": "IoT"
         },
         {
-          "title": "Dashboards Personalizados",
-          "description": "Com nossos dashboards personalizados, você tem acesso a dados críticos e insights em tempo real."
+          "icon": "chart",
+          "title": "Minefy Analytics",
+          "description": "Dashboards operacionais em tempo real para minas. KPIs de produção, relatórios automáticos e análise de tendências para decisões data-driven.",
+          "badge": "SOFTWARE"
         },
         {
-          "title": "Gestão Detalhada da Frota",
-          "description": "Transforme a maneira como você gerencia suas operações industriais."
-        }
-      ],
-      "cta": "Saiba Mais"
-    },
-    "projects": {
-      "title": "Projetos em Destaque"
-    },
-    "pillars": {
-      "sectionTitle": "Sobre nós",
-      "title": "Pilares da Minefy",
-      "items": [
-        {
-          "title": "Inovação Tecnológica",
-          "description": "Tablets avançados e sistemas de telemetria de última geração para operações industriais."
+          "icon": "truck",
+          "title": "Fleet 360",
+          "description": "Gestão preditiva de frota pesada: caminhões fora de estrada, escavadeiras, carregadeiras. Manutenção antecipada e otimização de ciclos.",
+          "badge": "GESTÃO"
         },
         {
-          "title": "Expertise em Mineração",
-          "description": "Soluções especializadas desenvolvidas para as demandas exigentes das operações de mineração."
+          "icon": "shield",
+          "title": "Minefy Safety",
+          "description": "Segurança operacional para mineração: monitoramento de fadiga, proximidade entre equipamentos, zonas de risco e compliance NR-22.",
+          "badge": "SEGURANÇA"
         },
         {
-          "title": "Segurança Operacional",
-          "description": "Monitoramento de superaquecimento de freios, detecção de deslocamento de caçamba alta, alertas de basculamento não autorizado."
-        },
-        {
-          "title": "Sustentabilidade",
-          "description": "Monitoramento de emissões de CO2, otimização de combustível, minimização de desperdício operacional."
-        },
-        {
-          "title": "Personalização e Flexibilidade",
-          "description": "Dashboards personalizados para métricas específicas da operação."
-        },
-        {
-          "title": "Suporte e Parceria",
-          "description": "Serviços contínuos de suporte e consultoria."
+          "icon": "users",
+          "title": "Consultoria",
+          "description": "Profissionais com experiência em operações de mina. Implantação de telemetria, treinamento de operadores e otimização de processos.",
+          "badge": "SERVIÇO"
         }
       ]
     },
-    "contact": {
-      "title": "Entre em contato conosco"
+    "authority": {
+      "title": "Por que mineradoras escolhem a Minefy",
+      "items": [
+        {
+          "title": "Validado na maior mineradora do Brasil",
+          "description": "Nossa tecnologia opera em projetos de descaracterização de barragens na maior mineradora do país, monitorando equipamentos de grande porte 24/7."
+        },
+        {
+          "title": "Stack próprio end-to-end",
+          "description": "Do módulo ActiSky no equipamento ao dashboard da sala de despacho. Sem dependência de terceiros no core da solução."
+        },
+        {
+          "title": "Feito para mineração pesada",
+          "description": "Cada feature foi construída com feedback direto de operadores de escavadeiras, caminhões fora de estrada e gestores de mina."
+        },
+        {
+          "title": "Suporte em campo na mina",
+          "description": "Equipe técnica que vai até o pit. Instalação em equipamentos, treinamento de operadores e suporte onde a operação acontece."
+        }
+      ]
+    },
+    "testDrive": {
+      "title": "Veja a plataforma funcionando",
+      "subtitle": "Explore dashboards de telemetria, controle de frota e alertas de segurança com dados reais de operação de mina.",
+      "cta": "Acessar Plataforma",
+      "ctaSecondary": "Falar com Especialista"
+    },
+    "clients": {
+      "title": "Operações que confiam na Minefy"
+    },
+    "cta": {
+      "title": "Quer ver na prática?",
+      "subtitle": "Teste a plataforma com dados da sua operação. Demonstração gratuita, sem compromisso.",
+      "button": "Solicitar Demonstração Gratuita"
     }
   },
   "about": {
     "metadata": {
-      "title": "Quem Somos - Minefy",
-      "description": "Conheça a Minefy, empresa líder em soluções tecnológicas para a indústria."
+      "title": "Quem Somos — Minefy",
+      "description": "Empresa de Mining Tech com tecnologia validada na maior mineradora do Brasil. Telemetria, segurança e eficiência para operações de grande porte."
     },
     "hero": {
-      "title": "A Minefy"
+      "title": "Tecnologia nascida no chão de mina"
     },
-    "description": {
-      "title": "Quem Somos",
-      "text": "A Minefy é uma empresa líder em soluções tecnológicas para a indústria, comprometida com a inovação, a eficiência e a sustentabilidade."
+    "intro": {
+      "text": "A Minefy Mining nasceu da convicção de que a mineração brasileira merece tecnologia de classe mundial. Fundada por profissionais com experiência direta em operações de grande porte, combinamos hardware robusto para ambientes hostis, software de telemetria em tempo real e expertise de campo para entregar resultados mensuráveis.",
+      "highlight": "Nossa meta: ser a plataforma de referência para mineração no Brasil até 2027."
+    },
+    "numbers": {
+      "items": [
+        { "value": "2025", "label": "Fundação" },
+        { "value": "6", "label": "Produtos" },
+        { "value": "#1", "label": "Maior mineradora do BR" },
+        { "value": "24/7", "label": "Monitoramento" }
+      ]
     },
     "mission": {
       "title": "Missão",
-      "text": "Prover soluções tecnológicas que aumentem a eficiência e a sustentabilidade das operações industriais, promovendo um ambiente de trabalho seguro e produtivo."
+      "text": "Aumentar a eficiência, segurança e sustentabilidade de operações de mineração com tecnologia integrada de telemetria — do sensor no equipamento pesado ao dashboard da sala de despacho."
     },
     "vision": {
       "title": "Visão",
-      "text": "Ser reconhecida globalmente como a principal fornecedora de tecnologia industrial, liderando o mercado com inovação e excelência."
+      "text": "Ser a principal plataforma de Mining Tech do Brasil, referência em telemetria avançada e controle operacional para mineração a céu aberto."
     },
     "values": {
-      "title": "Nossos Valores",
+      "title": "Valores",
       "items": [
-        {
-          "title": "Inovação",
-          "text": "Estar na vanguarda tecnológica, desenvolvendo soluções que transformam."
-        },
-        {
-          "title": "Excelência",
-          "text": "Compromisso com a qualidade e a melhoria contínua."
-        },
-        {
-          "title": "Segurança",
-          "text": "Garantir operações seguras para colaboradores e equipamentos."
-        },
-        {
-          "title": "Sustentabilidade",
-          "text": "Promover práticas que respeitem o meio ambiente e aumentem a eficiência."
-        },
-        {
-          "title": "Parceria",
-          "text": "Trabalhar junto aos nossos clientes para alcançar resultados extraordinários."
-        }
+        { "title": "Segurança primeiro", "text": "Cada decisão de produto prioriza a vida do operador na mina." },
+        { "title": "Dados como verdade", "text": "Decisões baseadas em telemetria real dos equipamentos, não em intuição." },
+        { "title": "Feito para o campo", "text": "Tecnologia que funciona na poeira da mina, no calor e na chuva." },
+        { "title": "Parceria de longo prazo", "text": "Trabalhamos lado a lado com o cliente, do pit à sala de controle." }
       ]
     },
     "cta": {
-      "learnMore": "Saiba Mais",
-      "discover": "Conheça",
+      "title": "Conheça nossa tecnologia de perto",
+      "text": "Agende uma visita técnica na sua operação ou acesse a plataforma online.",
       "contactUs": "Fale Conosco",
-      "title": "Entre em contato conosco",
-      "text": "Para saber mais sobre nossas soluções e como podemos ajudar sua empresa."
+      "platform": "Acessar Plataforma"
     }
   },
   "solutions": {
     "metadata": {
-      "title": "Soluções - Minefy",
-      "description": "Conheça nossas soluções tecnológicas: tablets industriais, telemetria avançada, dashboards personalizados e gestão de frota."
+      "title": "Soluções — Minefy",
+      "description": "Tablets industriais, telemetria ActiSky, Analytics, Fleet 360, Safety e Consultoria para mineração a céu aberto e equipamentos de grande porte."
     },
     "hero": {
-      "title": "Nossas Soluções"
+      "title": "Soluções para mineração de grande porte"
     },
     "items": [
       {
+        "id": "tablets",
+        "badge": "HARDWARE",
         "title": "Tablets Industriais",
-        "description": "A Minefy oferece tablets robustos e duráveis, especialmente projetados para atender as demandas rigorosas das aplicações industriais.",
+        "description": "Hardware militar-grade para cabines de equipamentos pesados em mineração. Resistência IP68, telas legíveis sob sol direto e integração com sistemas de despacho e GRM.",
         "features": [
-          "Resistentes a choques, poeira e água",
-          "Telas touchscreen de alta resolução",
-          "Processadores de última geração",
-          "Experiência de usuário fluida e eficiente",
-          "Integração com sistemas de gestão e controle operacional"
+          "Proteção IP68 — poeira de mina e chuva",
+          "Telas de alta luminosidade para operação a céu aberto",
+          "Montagem em cabine de caminhões e escavadeiras",
+          "Integração com plataforma Minefy e sistemas de despacho",
+          "Gestão remota via MDM Knox",
+          "Bateria para turnos completos de 12h"
         ],
-        "image": "/images/solutions/78.jpg"
+        "image": "/images/solutions/78.jpg",
+        "metric": { "value": "IP68", "label": "Proteção" }
       },
       {
-        "title": "Telemetria Avançada",
-        "description": "Nosso serviço de telemetria é a espinha dorsal da gestão eficiente da sua frota, utilizando sensores avançados e comunicação em tempo real.",
+        "id": "actisky",
+        "badge": "IoT / TELEMETRIA",
+        "title": "ActiSky Telemetria",
+        "description": "Módulos IoT de telemetria avançada com protocolo CAN J1939 para equipamentos pesados de mineração. GPS de alta precisão e comunicação em tempo real.",
         "safetyFeatures": [
-          "Monitoramento do ponto de superaquecimento dos freios",
-          "Identificação de gargalos (estreitamento de pista, acúmulo de borracha)",
-          "Monitoramento de pressão de óleo",
-          "Detecção de caçamba alta em deslocamento",
-          "Detecção de elevação da caçamba em operação",
-          "Alertas de basculamento em ponto de basculamento não autorizado"
+          "Superaquecimento de freios",
+          "Caçamba alta em deslocamento",
+          "Basculamento não autorizado",
+          "Pressão de óleo",
+          "Detecção de zona de risco"
         ],
         "operationalFeatures": [
-          "Controle de ciclo de carregamento e basculamento",
-          "Monitoramento de velocidade média",
-          "Monitoramento de rotação do motor",
-          "Consumo de diesel",
+          "Ciclo de carga e basculamento",
+          "Velocidade e RPM do motor",
+          "Consumo de diesel em tempo real",
           "Horímetro digital",
-          "Status e monitoramento do equipamento",
-          "Rastreamento e localização do equipamento"
+          "GPS de alta precisão",
+          "Detecção de ociosidade (idle)"
         ],
-        "image": "/images/solutions/2151307800-1.jpg"
+        "image": "/images/products/galileosky-02.webp",
+        "metric": { "value": "J1939", "label": "Protocolo CAN" }
       },
       {
-        "title": "Dashboards Personalizados",
-        "description": "Com nossos dashboards personalizados, você tem acesso a dados críticos e insights em tempo real, apresentados de forma clara e intuitiva. Configure e visualize métricas específicas de acordo com as necessidades operacionais para uma tomada de decisão rápida e informada.",
-        "image": "/images/solutions/9864-1.jpg"
+        "id": "analytics",
+        "badge": "SOFTWARE",
+        "title": "Minefy Analytics",
+        "description": "Plataforma de Business Intelligence construída para operações de mineração. Dashboards de produção, despacho e segurança em tempo real.",
+        "features": [
+          "Dashboards real-time via WebSocket",
+          "KPIs de produção e ciclos de carga",
+          "Relatórios automáticos (diário/semanal/mensal)",
+          "Análise de tendências e anomalias",
+          "Multi-tenancy com isolamento de dados por operação",
+          "Exportação PDF, Excel e integração API"
+        ],
+        "image": "/images/solutions/9864-1.jpg",
+        "metric": { "value": "Real-time", "label": "Dashboards" }
       },
       {
-        "title": "Gestão Detalhada da Frota",
-        "description": "Solução completa que integra dados de telemetria e informações operacionais em uma única plataforma.",
-        "benefits": [
-          "Melhorar a eficiência operacional",
-          "Reduzir o tempo de inatividade e custos de manutenção",
-          "Aumentar a segurança dos operadores e equipamentos",
-          "Promover práticas sustentáveis e reduzir a pegada de carbono"
+        "id": "fleet360",
+        "badge": "GESTÃO PREDITIVA",
+        "title": "Fleet 360",
+        "description": "Gestão preditiva para frota pesada de mineração — caminhões fora de estrada, escavadeiras e carregadeiras. Manutenção antecipada e otimização de ciclos de carga.",
+        "features": [
+          "Manutenção preditiva por dados de telemetria",
+          "Otimização de ciclos de carga e transporte",
+          "Controle de consumo por equipamento pesado",
+          "Alertas de manutenção preventiva",
+          "Histórico completo de cada máquina",
+          "Integração com sistemas de despacho e ERP"
         ],
-        "image": "/images/solutions/2151307759.jpg"
+        "image": "/images/mining/haul-truck-road.jpg",
+        "metric": { "value": "-35%", "label": "Downtime" }
+      },
+      {
+        "id": "safety",
+        "badge": "SEGURANÇA",
+        "title": "Minefy Safety",
+        "description": "Sistema de segurança para operações de mineração. Monitoramento de fadiga de operadores, proximidade entre equipamentos pesados e controle de zonas de risco na mina.",
+        "features": [
+          "Monitoramento de fadiga de operadores",
+          "Detecção de proximidade entre equipamentos pesados",
+          "Geofencing e alertas de zona de risco na cava",
+          "Compliance NR-22 e normas ANM",
+          "Registro de incidentes e near-misses",
+          "Dashboard de segurança da operação"
+        ],
+        "image": "/images/mining/safety-excavator-sunset.jpg",
+        "metric": { "value": "NR-22", "label": "Compliance" }
+      },
+      {
+        "id": "consulting",
+        "badge": "SERVIÇO",
+        "title": "Consultoria Operacional",
+        "description": "Profissionais com experiência em operações de mina a céu aberto. Implantação de telemetria, integração com sistemas de despacho e treinamento de equipes.",
+        "features": [
+          "Diagnóstico operacional da mina",
+          "Implantação de telemetria em equipamentos pesados",
+          "Integração com sistemas de despacho de frota",
+          "Treinamento de operadores e despachantes",
+          "Suporte técnico 24/7 em campo",
+          "Relatórios de performance operacional"
+        ],
+        "image": "/images/mining/fleet-d11-operation.jpg",
+        "metric": { "value": "24/7", "label": "Suporte" }
       }
     ],
-    "safetyLabel": "Segurança",
-    "operationalLabel": "Funcionalidades de Telemetria",
+    "safetyLabel": "Monitoramento de Segurança",
+    "operationalLabel": "Telemetria Operacional",
     "cta": {
-      "title": "Entre em contato conosco",
-      "text": "Para saber mais sobre nossas soluções e como podemos ajudar sua empresa.",
-      "button": "Fale Conosco"
+      "title": "Qual solução é ideal para sua mina?",
+      "text": "Nossos especialistas analisam sua operação e propõem a melhor combinação de produtos.",
+      "button": "Solicitar Proposta"
     }
   },
   "projects": {
     "metadata": {
-      "title": "Projetos - Minefy",
-      "description": "Conheça nossos projetos e cases de sucesso em mineração e indústria."
+      "title": "Projetos — Minefy",
+      "description": "Case de sucesso: telemetria integrada a sistema de despacho na maior mineradora do Brasil. Monitoramento 24/7 de equipamentos pesados."
     },
     "hero": {
-      "title": "Nossos Projetos"
+      "title": "Resultados comprovados em campo"
     },
     "vargemGrande": {
-      "title": "Projeto Vargem Grande: Revolucionando a Mineração com Tecnologia de Ponta",
-      "context": {
-        "title": "Contexto do Projeto",
-        "text": "O Projeto Vargem Grande é uma iniciativa monumental liderada pela Vale, uma das maiores empresas de mineração do mundo, focada na descaracterização de barragens para aumentar a segurança e minimizar impactos ambientais. Neste contexto, a Minefy está desempenhando um papel crucial, fornecendo tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis (GRM) da Vale."
-      },
-      "telemetry": {
-        "title": "Telemetria Integrada ao GRM da Vale",
-        "text": "Nossa solução de telemetria oferece um monitoramento detalhado e em tempo real de todas as operações envolvidas na descaracterização da barragem. Integrada ao GRM da Vale, nossa tecnologia permite:"
-      },
-      "monitoring": {
-        "title": "Monitoramento Contínuo e em Tempo Real",
-        "text": "Dados precisos e atualizados sobre a integridade dos equipamentos e processos são transmitidos continuamente, permitindo uma resposta rápida a qualquer anomalia ou risco identificado."
-      },
-      "safety": {
-        "title": "Segurança Aprimorada",
-        "text": "Nossa telemetria inclui funcionalidades específicas para identificar pontos de superaquecimento de freios, pressão do óleo, deslocamento de básculas e elevação durante movimentação. Isso garante que todas as operações sejam realizadas com o máximo de segurança, minimizando riscos para os trabalhadores e o meio ambiente."
-      },
-      "efficiency": {
-        "title": "Eficiência Operacional",
-        "text": "Através do controle de ciclos de carregamento e basculamento, monitoramento da velocidade média, rotação do motor e consumo de diesel, nossa solução ajuda a otimizar cada etapa do processo. Isso resulta em operações mais eficientes, redução de custos e aumento da produtividade."
-      },
-      "sustainability": {
-        "title": "Sustentabilidade",
-        "text": "Monitoramos as emissões de CO2 e a eficiência do consumo de combustível, ajudando a Vale a cumprir seus objetivos de sustentabilidade e a minimizar o impacto ambiental das operações de mineração."
-      },
+      "badge": "MAIOR MINERADORA DO BRASIL — PROJETO DE DESCARACTERIZAÇÃO",
+      "title": "Telemetria integrada na descaracterização de barragens",
+      "intro": "Fornecimento de tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis da maior mineradora do país, com monitoramento 24/7 de equipamentos pesados em operação de descaracterização de barragens.",
+      "metrics": [
+        { "value": "30+", "label": "Tablets em campo" },
+        { "value": "24/7", "label": "Monitoramento" },
+        { "value": "GRM", "label": "Integração despacho" },
+        { "value": "Zero", "label": "Incidentes" }
+      ],
+      "sections": [
+        {
+          "title": "Contexto",
+          "text": "Projeto de descaracterização de barragens liderado pela maior mineradora do Brasil, com foco em segurança e minimização de impactos ambientais. A Minefy fornece tecnologia de telemetria integrada ao sistema de despacho de frota."
+        },
+        {
+          "title": "Telemetria Integrada",
+          "text": "Monitoramento detalhado em tempo real de todos os equipamentos pesados envolvidos na operação — caminhões fora de estrada, escavadeiras e carregadeiras, com dados integrados ao sistema de despacho."
+        },
+        {
+          "title": "Segurança Operacional",
+          "text": "Detecção de superaquecimento de freios, monitoramento de pressão de óleo, alertas de caçamba alta em deslocamento e controle de basculamento em zonas não autorizadas."
+        },
+        {
+          "title": "Eficiência de Frota",
+          "text": "Controle de ciclos de carregamento e basculamento, monitoramento de velocidade, RPM e consumo de diesel por equipamento. Resultado: operações mais eficientes e custos menores."
+        },
+        {
+          "title": "Sustentabilidade",
+          "text": "Monitoramento de emissões e eficiência de combustível dos equipamentos pesados, contribuindo para as metas ambientais da operação."
+        }
+      ],
       "impact": {
-        "title": "Impacto na Operação de Descaracterização de Barragem",
+        "title": "Impacto na Operação",
         "items": [
           {
-            "title": "Maior Controle e Visibilidade",
-            "text": "A integração da nossa telemetria ao GRM da Vale proporciona uma visão holística e detalhada das operações. Essa visibilidade permite uma gestão proativa e informada, essencial para a execução segura e eficiente das atividades de descaracterização."
+            "title": "Controle total da frota",
+            "text": "Visão em tempo real de todos os equipamentos na cava, com gestão proativa de manutenção e segurança."
           },
           {
-            "title": "Tomada de Decisão Informada",
-            "text": "Dashboards personalizados fornecem insights críticos e facilitam a tomada de decisões baseadas em dados reais. As equipes de gestão podem identificar tendências, antecipar problemas e implementar soluções rapidamente."
+            "title": "Decisões baseadas em dados",
+            "text": "Dashboards com KPIs de produção, consumo e ciclos — disponíveis na sala de despacho e em dispositivos móveis."
           },
           {
-            "title": "Redução de Riscos e Aumento da Segurança",
-            "text": "Com monitoramento constante e alertas em tempo real, a Vale pode identificar e mitigar riscos antes que se tornem problemas críticos. Isso aumenta significativamente a segurança das operações e protege os trabalhadores e o meio ambiente."
+            "title": "Redução de riscos",
+            "text": "Alertas antecipados que previnem incidentes com equipamentos pesados antes que aconteçam."
           }
         ]
       },
-      "conclusion": {
-        "title": "Conclusão",
-        "text": "A Minefy está orgulhosa de contribuir para o sucesso do Projeto Vargem Grande, fornecendo tecnologia de telemetria avançada que, integrada ao GRM da Vale, está fazendo uma diferença significativa na descaracterização de barragens. Nossa parceria com a Vale demonstra como a inovação tecnológica pode ser um aliado poderoso na busca por operações de mineração mais seguras, eficientes e sustentáveis.\n\nJunte-se a nós nesta jornada de transformação e descubra como a Minefy pode ajudar sua empresa a alcançar novos patamares de excelência operacional."
-      }
+      "conclusion": "Este projeto prova que nossa tecnologia funciona no ambiente mais exigente da mineração brasileira — monitorando equipamentos de grande porte 24 horas por dia."
     },
     "cta": {
-      "title": "Entre em contato conosco",
-      "text": "Para saber mais sobre nossas soluções e como podemos ajudar sua empresa.",
-      "button": "Fale Conosco"
+      "title": "Sua operação pode ser a próxima",
+      "text": "Agende uma visita técnica e veja os resultados na prática.",
+      "button": "Agendar Visita"
     }
   },
   "contact": {
     "metadata": {
-      "title": "Contato - Minefy",
-      "description": "Entre em contato com a Minefy e descubra como nossas soluções tecnológicas podem transformar suas operações."
+      "title": "Contato — Minefy",
+      "description": "Fale com nossos especialistas em telemetria para mineração. Demonstração gratuita."
     },
     "hero": {
-      "title": "Contato"
+      "title": "Fale com a Minefy"
     },
-    "title": "Fale Conosco",
-    "intro": "Estamos aqui para ajudar! Entre em contato com a Minefy e descubra como nossas soluções tecnológicas podem transformar suas operações industriais. Nossa equipe está pronta para responder suas perguntas e fornecer o suporte necessário.",
+    "title": "Entre em Contato",
+    "intro": "Nossos especialistas em telemetria para mineração estão prontos para entender sua operação. Demonstração gratuita, sem compromisso.",
+    "info": {
+      "items": [
+        { "icon": "mail", "label": "E-mail", "value": "louis.litt@minefymining.com", "href": "mailto:louis.litt@minefymining.com" },
+        { "icon": "phone", "label": "Telefone", "value": "+55 31 99670-9977", "href": "tel:+5531996709977" },
+        { "icon": "whatsapp", "label": "WhatsApp", "value": "Enviar mensagem", "href": "https://api.whatsapp.com/send?phone=5531996709977" },
+        { "icon": "location", "label": "Localização", "value": "Nova Lima, MG — Brasil", "href": "" }
+      ]
+    },
     "form": {
       "name": "Nome",
-      "phone": "Telefone/WhatsApp",
+      "phone": "Telefone",
       "email": "E-mail",
       "subject": "Assunto",
       "message": "Mensagem",
       "submit": "Enviar",
       "sending": "Enviando...",
-      "success": "Mensagem enviada com sucesso! Entraremos em contato em breve.",
-      "error": "Erro ao enviar mensagem. Tente novamente."
+      "success": "Mensagem enviada! Retornaremos em até 24h.",
+      "error": "Erro ao enviar. Tente pelo WhatsApp."
     },
     "validation": {
-      "nameRequired": "Preencha esse campo",
-      "phoneRequired": "Preencha esse campo",
-      "emailRequired": "Preencha esse campo",
-      "emailInvalid": "Digite um endereço de e-mail válido",
-      "subjectRequired": "Preencha esse campo"
+      "nameRequired": "Informe seu nome",
+      "phoneRequired": "Informe seu telefone",
+      "emailRequired": "Informe seu e-mail",
+      "emailInvalid": "E-mail inválido",
+      "subjectRequired": "Informe o assunto"
     }
   },
   "footer": {
-    "copyright": "Direitos reservados © Minefy 2024. Transformando operações industriais com tecnologia avançada.",
+    "tagline": "Telemetria avançada para mineração de grande porte.",
+    "copyright": "© 2025 Minefy Mining System. Todos os direitos reservados.",
     "phone": "+55 31 99670-9977",
-    "email": "contact@minefymining.com",
+    "email": "louis.litt@minefymining.com",
+    "platformUrl": "https://app.minefymining.com",
+    "columns": {
+      "solutions": "Soluções",
+      "company": "Empresa",
+      "contact": "Contato"
+    },
+    "solutionLinks": [
+      { "label": "Tablets Industriais", "href": "/solucoes#tablets" },
+      { "label": "ActiSky Telemetria", "href": "/solucoes#actisky" },
+      { "label": "Minefy Analytics", "href": "/solucoes#analytics" },
+      { "label": "Fleet 360", "href": "/solucoes#fleet360" },
+      { "label": "Minefy Safety", "href": "/solucoes#safety" },
+      { "label": "Consultoria", "href": "/solucoes#consulting" }
+    ],
     "social": {
       "instagram": "https://www.instagram.com/MinefyMiningSystem",
       "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
