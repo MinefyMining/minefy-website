@@ -89,13 +89,32 @@ export default async function SolutionsPage({ params }: Props) {
                           key={tier.name}
                           className="group flex flex-col rounded-2xl border border-[#222] bg-[#111] overflow-hidden transition-all duration-300 hover:border-[#D4A847]/50 hover:-translate-y-1"
                         >
-                          {/* Product image */}
-                          <div className="relative h-52 bg-gradient-to-b from-[#1A1A1A] to-[#0E0E0E] flex items-center justify-center p-6">
+                          {/* Product image — studio stage */}
+                          <div className="relative h-64 overflow-hidden flex items-center justify-center p-7 bg-gradient-to-b from-[#191919] to-[#0C0C0C]">
+                            {/* soft top light */}
                             <div
-                              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                              className="absolute inset-0"
                               style={{
                                 background:
-                                  "radial-gradient(circle at 50% 45%, rgba(212,168,71,0.16), transparent 65%)",
+                                  "radial-gradient(120% 80% at 50% 30%, rgba(255,255,255,0.06), transparent 60%)",
+                              }}
+                              aria-hidden="true"
+                            />
+                            {/* gold stage glow at base */}
+                            <div
+                              className="absolute inset-x-0 bottom-0 h-24"
+                              style={{
+                                background:
+                                  "radial-gradient(60% 100% at 50% 100%, rgba(212,168,71,0.12), transparent 70%)",
+                              }}
+                              aria-hidden="true"
+                            />
+                            {/* gold glow on hover */}
+                            <div
+                              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                              style={{
+                                background:
+                                  "radial-gradient(circle at 50% 45%, rgba(212,168,71,0.18), transparent 62%)",
                               }}
                               aria-hidden="true"
                             />
@@ -103,8 +122,12 @@ export default async function SolutionsPage({ params }: Props) {
                               src={tier.image}
                               alt={tier.name}
                               width={320}
-                              height={200}
-                              className="relative max-h-full w-auto object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
+                              height={240}
+                              className="relative z-10 max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-[1.06]"
+                              style={{
+                                filter:
+                                  "drop-shadow(0 18px 30px rgba(0,0,0,0.55))",
+                              }}
                             />
                           </div>
 
