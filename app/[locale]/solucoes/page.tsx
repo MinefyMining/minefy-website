@@ -23,6 +23,13 @@ export default async function SolutionsPage({ params }: Props) {
     title: string;
     description: string;
     features?: string[];
+    tiers?: {
+      name: string;
+      example: string;
+      image: string;
+      description: string;
+      specs: string[];
+    }[];
     safetyFeatures?: string[];
     operationalFeatures?: string[];
     image: string;
@@ -54,6 +61,90 @@ export default async function SolutionsPage({ params }: Props) {
       <div className="px-6">
         {items.map((item, index) => {
           const isEven = index % 2 === 0;
+
+          // ── Tablets: full-width 3-tier showcase ──
+          if (item.tiers) {
+            return (
+              <div key={item.id}>
+                <ScrollReveal>
+                  <section
+                    id={item.id}
+                    className="py-20 scroll-mt-24 max-w-6xl mx-auto"
+                  >
+                    <div className="text-center mb-12">
+                      <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                        {item.badge}
+                      </span>
+                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                        {item.title}
+                      </h2>
+                      <p className="text-[#888] leading-relaxed max-w-2xl mx-auto">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {item.tiers.map((tier) => (
+                        <div
+                          key={tier.name}
+                          className="group flex flex-col rounded-2xl border border-[#222] bg-[#111] overflow-hidden transition-all duration-300 hover:border-[#D4A847]/50 hover:-translate-y-1"
+                        >
+                          {/* Product image */}
+                          <div className="relative h-52 bg-gradient-to-b from-[#1A1A1A] to-[#0E0E0E] flex items-center justify-center p-6">
+                            <div
+                              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                              style={{
+                                background:
+                                  "radial-gradient(circle at 50% 45%, rgba(212,168,71,0.16), transparent 65%)",
+                              }}
+                              aria-hidden="true"
+                            />
+                            <Image
+                              src={tier.image}
+                              alt={tier.name}
+                              width={320}
+                              height={200}
+                              className="relative max-h-full w-auto object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </div>
+
+                          {/* Body */}
+                          <div className="flex flex-1 flex-col p-6">
+                            <p className="text-base font-bold text-[#D4A847]">
+                              {tier.name}
+                            </p>
+                            <p className="text-xs text-[#666] mt-1 mb-3">
+                              {tier.example}
+                            </p>
+                            <p className="text-sm text-[#aaa] leading-relaxed mb-5">
+                              {tier.description}
+                            </p>
+                            <div className="mt-auto flex flex-col gap-2.5 border-t border-[#1F1F1F] pt-4">
+                              {tier.specs.map((spec) => (
+                                <div
+                                  key={spec}
+                                  className="flex items-start gap-2.5"
+                                >
+                                  <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                  <span className="text-xs text-[#888]">
+                                    {spec}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                </ScrollReveal>
+
+                {index < items.length - 1 && (
+                  <div className="h-px bg-[#222] max-w-5xl mx-auto" />
+                )}
+              </div>
+            );
+          }
 
           return (
             <div key={item.id}>

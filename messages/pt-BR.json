@@ -32,8 +32,8 @@
       "items": [
         {
           "icon": "tablet",
-          "title": "Tablets Industriais",
-          "description": "Hardware IP68 para operação em minas a céu aberto. Telas de alta luminosidade, resistência a impacto e integração com sistemas de despacho.",
+          "title": "Tablets para Mineração",
+          "description": "Três linhas para cada operação: comercial (kit Roboflex), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida, sempre integrada à plataforma Minefy.",
           "badge": "HARDWARE"
         },
         {
@@ -160,18 +160,48 @@
       {
         "id": "tablets",
         "badge": "HARDWARE",
-        "title": "Tablets Industriais",
-        "description": "Hardware militar-grade para cabines de equipamentos pesados em mineração. Resistência IP68, telas legíveis sob sol direto e integração com sistemas de despacho e GRM.",
-        "features": [
-          "Proteção IP68 — poeira de mina e chuva",
-          "Telas de alta luminosidade para operação a céu aberto",
-          "Montagem em cabine de caminhões e escavadeiras",
-          "Integração com plataforma Minefy e sistemas de despacho",
-          "Gestão remota via MDM Knox",
-          "Bateria para turnos completos de 12h"
+        "title": "Tablets para Mineração",
+        "description": "Três linhas de tablets para cada nível de exigência da operação — do apoio em cabine ao computador veicular embarcado. Você escolhe o grau de robustez; a integração com a plataforma Minefy vem garantida em todas.",
+        "tiers": [
+          {
+            "name": "Comercial",
+            "example": "Ex.: Samsung Galaxy Tab A11 + kit Roboflex",
+            "image": "/images/products/tablet-comercial.png",
+            "description": "Tablet de mercado blindado pelo kit Roboflex: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
+            "specs": [
+              "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
+              "Kit Roboflex: case + suporte veicular (MIL-STD-810G)",
+              "Carregamento magnético no berço Roboflex",
+              "Plug-and-play com a plataforma Minefy"
+            ]
+          },
+          {
+            "name": "Semi-industrial",
+            "example": "Ex.: Samsung Galaxy Tab Active5",
+            "image": "/images/products/tablet-semi.png",
+            "description": "Robustez de fábrica para quem precisa de mobilidade em campo. Vedação IP68, certificação militar e tela que responde com luva — sem depender de case externo.",
+            "specs": [
+              "IP68 + MIL-STD-810H (água, poeira e queda)",
+              "Tela 8\" 1920×1200 · toque com luva",
+              "Bateria removível para turnos longos",
+              "Gestão remota via Samsung Knox / MDM"
+            ]
+          },
+          {
+            "name": "Industrial",
+            "example": "Ex.: Minefy T10 e T12",
+            "image": "/images/products/tablet-industrial.png",
+            "description": "Computadores veiculares de instalação fixa, alimentados pela rede do próprio equipamento. Integração direta CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine.",
+            "specs": [
+              "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto)",
+              "IP66 + MIL-STD-810G · processador automotivo",
+              "2×CAN, RS232/RS485 e até 4 câmeras",
+              "Alimentação 9–36 V · RTK opcional · Android/Linux"
+            ]
+          }
         ],
         "image": "/images/solutions/78.jpg",
-        "metric": { "value": "IP68", "label": "Proteção" }
+        "metric": { "value": "3", "label": "Linhas de robustez" }
       },
       {
         "id": "actisky",
