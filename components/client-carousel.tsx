@@ -14,6 +14,8 @@ const clients = [
   { name: "Vale", logo: "/images/clients/vale.jpg" },
   { name: "SG Bras", logo: "/images/clients/sgbras.jpg" },
   { name: "SCL", logo: "/images/clients/scl.jpg" },
+  { name: "Consórcio Mina.Fábrica", logo: "/images/clients/minafabrica.jpg" },
+  { name: "Engineering do Brasil", logo: "/images/clients/engineering.jpg" },
 ];
 
 export function ClientCarousel() {
