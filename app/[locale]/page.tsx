@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/product-card";
 import { ClientCarousel } from "@/components/client-carousel";
 import { HeroHome } from "@/components/hero-home";
 import { AuroraBackground } from "@/components/aurora-background";
+import { LogoIntro } from "@/components/logo-intro";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -41,6 +42,9 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
+      {/* Brand intro — logo generates in center then flies to the header */}
+      <LogoIntro />
+
       {/* ─────────────────────────────────────────────────────────────
           SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}
@@ -98,18 +102,18 @@ export default async function HomePage({ params }: Props) {
       ───────────────────────────────────────────────────────────── */}
       <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden">
         <Image
-          src="/images/mining/komatsu-mine.jpg"
-          alt="Caminhão de grande porte em operação na mineração a céu aberto"
+          src="/images/mining/safety-excavator-sunset.jpg"
+          alt="Escavadeira de grande porte ao entardecer em mina a céu aberto"
           fill
           className="object-cover"
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-[#0A0A0A]/50"
+          className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-[#0A0A0A]/60"
           aria-hidden="true"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-white/80 text-xl font-medium text-center max-w-2xl px-6">
+          <p className="max-w-2xl px-6 text-center text-xl font-medium text-white/90 md:text-2xl">
             Tecnologia para equipamentos de grande porte em mineração a céu aberto
           </p>
         </div>

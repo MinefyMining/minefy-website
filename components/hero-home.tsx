@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { AuroraBackground } from "@/components/aurora-background";
+import { DotGridBackground } from "@/components/dot-grid-background";
 import { MagneticButton } from "@/components/magnetic-button";
 
 interface HeroHomeProps {
@@ -55,7 +56,10 @@ export function HeroHome({
       />
 
       {/* Animated ambient layer (aurora + particles), masked so it reads as depth */}
-      <AuroraBackground grid className="opacity-70 mix-blend-screen" />
+      <AuroraBackground grid={false} className="opacity-70 mix-blend-screen" />
+
+      {/* Interactive dot grid — gold spotlight follows the cursor (21st.dev 2083) */}
+      <DotGridBackground className="opacity-80" />
 
       {/* Content — stagger entrance (motion auto-respects prefers-reduced-motion
           via <MotionConfig reducedMotion="user"> in the locale layout) */}

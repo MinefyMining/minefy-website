@@ -46,6 +46,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
+            id="site-logo"
             src="/images/logo-transparente.png"
             alt="Minefy"
             width={800}

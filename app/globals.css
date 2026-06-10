@@ -211,6 +211,36 @@ html {
   animation: aurora-3 26s ease-in-out infinite;
 }
 
+/* ──────────────────────────────────────────────────────────────
+   INTERACTIVE DOT GRID — cursor spotlight (21st.dev 2083 style)
+   ────────────────────────────────────────────────────────────── */
+.dotgrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.dotgrid-base,
+.dotgrid-glow {
+  position: absolute;
+  inset: 0;
+  background-size: 26px 26px;
+  background-position: center;
+}
+/* faint white dots, masked to fade at the edges */
+.dotgrid-base {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 30%, transparent 100%);
+}
+/* gold dots revealed only under the cursor spotlight */
+.dotgrid-glow {
+  background-image: radial-gradient(rgba(212, 168, 71, 0.9) 1px, transparent 1px);
+  mask-image: radial-gradient(200px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(200px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 65%);
+  transition: opacity 0.3s ease;
+}
+
 /* Static masked grid overlay */
 .bg-grid {
   position: absolute;
