@@ -5,6 +5,8 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
 import { ProductCard } from "@/components/product-card";
 import { ClientCarousel } from "@/components/client-carousel";
+import { HeroHome } from "@/components/hero-home";
+import { AuroraBackground } from "@/components/aurora-background";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -40,56 +42,15 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 1 — HERO
-          Full viewport, photo-driven with left overlay
+          SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
-        {/* Background photo */}
-        <Image
-          src="/images/mining/hero-cat-d11.jpg"
-          alt="CAT D11 operando em mina a céu aberto"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-
-        {/* Left gradient overlay for text readability */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent"
-          aria-hidden="true"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
-          <div className="max-w-xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              {t("hero.title")}
-            </h1>
-
-            <p className="text-base md:text-lg text-white/70 mt-4 leading-relaxed">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contato"
-                className="inline-flex items-center bg-[#D4A847] text-[#0A0A0A] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
-              >
-                {t("hero.cta")}
-              </Link>
-              <a
-                href="https://app.minefymining.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center border border-white/30 text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-white/10 transition-colors duration-200"
-              >
-                {t("hero.ctaSecondary")}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroHome
+        title={t("hero.title")}
+        subtitle={t("hero.subtitle")}
+        cta={t("hero.cta")}
+        ctaSecondary={t("hero.ctaSecondary")}
+        appUrl="https://app.minefymining.com"
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 2 — STATS
@@ -187,7 +148,9 @@ export default async function HomePage({ params }: Props) {
       <section className="py-20 px-6 bg-[#0A0A0A]">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
-            <div className="bg-[#111] rounded-2xl p-12 border border-[#222]">
+            <div className="glass-card relative overflow-hidden rounded-2xl p-12">
+              <AuroraBackground grid={false} className="opacity-50" />
+              <div className="relative z-10">
               <h2 className="text-3xl font-bold text-white">
                 {t("testDrive.title")}
               </h2>
@@ -209,6 +172,7 @@ export default async function HomePage({ params }: Props) {
                 >
                   {t("testDrive.ctaSecondary")}
                 </Link>
+              </div>
               </div>
             </div>
           </ScrollReveal>
@@ -234,8 +198,9 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 8 — FINAL CTA
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 text-center bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden py-20 px-6 text-center bg-[#0A0A0A]">
+        <AuroraBackground className="opacity-60" />
+        <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               {t("cta.title")}

@@ -121,6 +121,145 @@ html {
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
 
+/* ──────────────────────────────────────────────────────────────
+   GLASSMORPHISM — surfaces (cards, stats)
+   ────────────────────────────────────────────────────────────── */
+.glass-card {
+  position: relative;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-card-hover {
+  position: relative;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+.glass-card-hover::before {
+  /* spotlight following the cursor (--spot-x/--spot-y set inline by JS) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    420px circle at var(--spot-x, 50%) var(--spot-y, 0%),
+    rgba(212, 168, 71, 0.16),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 168, 71, 0.4);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(212, 168, 71, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.glass-card-hover:hover::before {
+  opacity: 1;
+}
+
+/* ── Gold glow orb (behind product icons) ── */
+.glow-orb-gold {
+  background: radial-gradient(circle, rgba(212, 168, 71, 0.35), transparent 70%);
+  filter: blur(6px);
+  animation: orb-pulse 4s ease-in-out infinite;
+}
+
+/* ── Stagger entrance for cards ── */
+.stagger-item {
+  animation: stagger-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   AURORA + GRID — animated background (21st.dev style)
+   GPU-friendly: only transform / opacity animated
+   ────────────────────────────────────────────────────────────── */
+.aurora-layer {
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+  filter: blur(64px);
+  opacity: 0.55;
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+.aurora-blob--gold {
+  background: radial-gradient(circle, rgba(212, 168, 71, 0.55), transparent 65%);
+  animation: aurora-1 18s ease-in-out infinite;
+}
+.aurora-blob--amber {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4), transparent 65%);
+  animation: aurora-2 22s ease-in-out infinite;
+}
+.aurora-blob--bronze {
+  background: radial-gradient(circle, rgba(120, 80, 30, 0.5), transparent 65%);
+  animation: aurora-3 26s ease-in-out infinite;
+}
+
+/* Animated grid overlay */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(212, 168, 71, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 168, 71, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Gradient / animated text accent */
+.text-shimmer {
+  background: linear-gradient(90deg, #D4A847 0%, #F5D98B 30%, #D4A847 60%, #F5D98B 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 6s linear infinite;
+}
+
+@keyframes aurora-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(8%, 12%, 0) scale(1.2); }
+  66% { transform: translate3d(-10%, 6%, 0) scale(0.9); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
+  50% { transform: translate3d(-12%, -8%, 0) scale(0.85); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  40% { transform: translate3d(14%, -10%, 0) scale(1.25); }
+  75% { transform: translate3d(6%, 10%, 0) scale(1); }
+}
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+@keyframes stagger-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes text-shine {
+  to { background-position: 200% center; }
+}
+
 /* ── Gold accent underline ── */
 .gold-line {
   display: inline-block;
@@ -162,4 +301,14 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
+  .aurora-blob--gold,
+  .aurora-blob--amber,
+  .aurora-blob--bronze,
+  .glow-orb-gold,
+  .text-shimmer,
+  .stagger-item {
+    animation: none !important;
+  }
+  .stagger-item { opacity: 1; transform: none; }
+  .glass-card-hover:hover { transform: none; }
 }

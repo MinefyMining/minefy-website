@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { AuroraBackground } from "@/components/aurora-background";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -46,6 +47,7 @@ export default async function ContactPage({ params }: Props) {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/50 to-transparent" />
+        <AuroraBackground grid={false} className="opacity-45" />
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 pb-12 pt-32">
           <h1 className="text-4xl md:text-5xl font-bold text-white">
             {t("hero.title")}

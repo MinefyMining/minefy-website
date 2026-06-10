@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { AuroraBackground } from "@/components/aurora-background";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -50,6 +51,7 @@ export default async function SolutionsPage({ params }: Props) {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#0A0A0A]/70" aria-hidden="true" />
+        <AuroraBackground className="opacity-50" />
         <div className="relative z-10 px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white">
             {t("hero.title")}
@@ -274,20 +276,23 @@ export default async function SolutionsPage({ params }: Props) {
       {/* ── CTA ── */}
       <section className="py-20 px-6 text-center">
         <ScrollReveal>
-          <div className="bg-[#111] rounded-2xl max-w-3xl mx-auto p-12 border border-[#222]">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t("cta.title")}
-            </h2>
-            <p className="text-[#888] mb-8 leading-relaxed">
-              {t("cta.text")}
-            </p>
-            <Link
-              href="/contato"
-              className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
-            >
-              {t("cta.button")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
+            <AuroraBackground grid={false} className="opacity-50" />
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                {t("cta.title")}
+              </h2>
+              <p className="text-[#888] mb-8 leading-relaxed">
+                {t("cta.text")}
+              </p>
+              <Link
+                href="/contato"
+                className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+              >
+                {t("cta.button")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
       </section>
