@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { AuroraBackground } from "@/components/aurora-background";
 import { MagneticButton } from "@/components/magnetic-button";
 
 interface HeroHomeProps {
+  badge: string;
   title: string;
   subtitle: string;
   cta: string;
@@ -28,14 +29,13 @@ const item = {
 };
 
 export function HeroHome({
+  badge,
   title,
   subtitle,
   cta,
   ctaSecondary,
   appUrl,
 }: HeroHomeProps) {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
       {/* Background photo */}
@@ -57,42 +57,40 @@ export function HeroHome({
       {/* Animated ambient layer (aurora + particles), masked so it reads as depth */}
       <AuroraBackground grid className="opacity-70 mix-blend-screen" />
 
-      {/* Content */}
+      {/* Content — stagger entrance (motion auto-respects prefers-reduced-motion
+          via <MotionConfig reducedMotion="user"> in the locale layout) */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <motion.div
           className="max-w-xl"
-          variants={reduce ? undefined : container}
-          initial={reduce ? false : "hidden"}
-          animate={reduce ? undefined : "show"}
+          variants={container}
+          initial="hidden"
+          animate="show"
         >
-          <motion.div variants={reduce ? undefined : item}>
+          <motion.div variants={item}>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#D4A847]/30 bg-[#D4A847]/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#D4A847]">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D4A847] opacity-75" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4A847] opacity-75 motion-safe:animate-ping" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D4A847]" />
               </span>
-              Mineração inteligente
+              {badge}
             </span>
           </motion.div>
 
           <motion.h1
-            variants={reduce ? undefined : item}
+            variants={item}
             className="mt-5 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
           >
             {title}
           </motion.h1>
 
           <motion.p
-            variants={reduce ? undefined : item}
+            variants={item}
             className="mt-4 text-base leading-relaxed text-white/70 md:text-lg"
           >
             {subtitle}
           </motion.p>
 
-          <motion.div
-            variants={reduce ? undefined : item}
-            className="mt-8 flex flex-wrap gap-3"
-          >
+          <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
             <MagneticButton>
               <Link
                 href="/contato"
@@ -116,23 +114,21 @@ export function HeroHome({
       </div>
 
       {/* Scroll hint */}
-      {!reduce && (
+      <motion.div
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        aria-hidden="true"
+      >
         <motion.div
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          aria-hidden="true"
+          className="flex h-9 w-5 justify-center rounded-full border border-white/30 pt-1.5"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <motion.div
-            className="flex h-9 w-5 justify-center rounded-full border border-white/30 pt-1.5"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span className="h-1.5 w-1 rounded-full bg-[#D4A847]" />
-          </motion.div>
+          <span className="h-1.5 w-1 rounded-full bg-[#D4A847]" />
         </motion.div>
-      )}
+      </motion.div>
     </section>
   );
 }

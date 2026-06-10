@@ -189,7 +189,7 @@ html {
   position: absolute;
   inset: -25%;
   pointer-events: none;
-  filter: blur(64px);
+  filter: blur(44px);
   opacity: 0.55;
 }
 .aurora-blob {
@@ -211,7 +211,7 @@ html {
   animation: aurora-3 26s ease-in-out infinite;
 }
 
-/* Animated grid overlay */
+/* Static masked grid overlay */
 .bg-grid {
   position: absolute;
   inset: 0;
@@ -311,4 +311,5 @@ html {
   }
   .stagger-item { opacity: 1; transform: none; }
   .glass-card-hover:hover { transform: none; }
+  .particles-layer { display: none; }
 }

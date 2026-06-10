@@ -277,7 +277,7 @@ export default async function SolutionsPage({ params }: Props) {
       <section className="py-20 px-6 text-center">
         <ScrollReveal>
           <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
-            <AuroraBackground grid={false} className="opacity-50" />
+            <AuroraBackground grid={false} particles={false} className="opacity-50" />
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 {t("cta.title")}

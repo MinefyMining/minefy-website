@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 // Deterministic particle set (no Math.random → no hydration mismatch).
 const PARTICLES = [
@@ -18,14 +18,13 @@ const PARTICLES = [
 
 /**
  * Fluid floating gold particles. GPU-friendly (transform/opacity only).
- * Renders nothing animated under `prefers-reduced-motion`.
+ * Markup is identical on server and client (no reduced-motion branch →
+ * no hydration mismatch); the whole layer is hidden under
+ * `prefers-reduced-motion` via the `.particles-layer` CSS rule in globals.css.
  */
 export function FloatingParticles() {
-  const reduce = useReducedMotion();
-  if (reduce) return null;
-
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="particles-layer absolute inset-0 overflow-hidden" aria-hidden="true">
       {PARTICLES.map((p, i) => (
         <motion.span
           key={i}

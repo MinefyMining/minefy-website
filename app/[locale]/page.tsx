@@ -45,6 +45,7 @@ export default async function HomePage({ params }: Props) {
           SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}
       <HeroHome
+        badge={t("hero.badge")}
         title={t("hero.title")}
         subtitle={t("hero.subtitle")}
         cta={t("hero.cta")}
@@ -149,7 +150,7 @@ export default async function HomePage({ params }: Props) {
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
             <div className="glass-card relative overflow-hidden rounded-2xl p-12">
-              <AuroraBackground grid={false} className="opacity-50" />
+              <AuroraBackground grid={false} particles={false} className="opacity-50" />
               <div className="relative z-10">
               <h2 className="text-3xl font-bold text-white">
                 {t("testDrive.title")}
@@ -199,7 +200,7 @@ export default async function HomePage({ params }: Props) {
           SECTION 8 — FINAL CTA
       ───────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden py-20 px-6 text-center bg-[#0A0A0A]">
-        <AuroraBackground className="opacity-60" />
+        <AuroraBackground particles={false} className="opacity-60" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-white">

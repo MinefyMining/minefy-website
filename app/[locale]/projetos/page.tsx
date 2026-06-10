@@ -148,7 +148,7 @@ export default async function ProjectsPage({ params }: Props) {
 
       {/* ── CTA ── */}
       <section className="relative overflow-hidden py-20 px-6 text-center">
-        <AuroraBackground className="opacity-50" />
+        <AuroraBackground particles={false} className="opacity-50" />
         <div className="relative z-10">
           <ScrollReveal>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">

@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { MotionConfig } from "motion/react";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -37,11 +38,13 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <Header />
-      <main className="min-h-screen">
-        {children}
-      </main>
-      <Footer />
+      <MotionConfig reducedMotion="user">
+        <Header />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
+      </MotionConfig>
     </NextIntlClientProvider>
   );
 }
