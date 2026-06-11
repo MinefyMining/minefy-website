@@ -136,20 +136,35 @@ function Device() {
     group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, 0.08 - py * 0.3, 0.06);
   });
 
+  // rugged corner bumpers
+  const bumpers: [number, number][] = [
+    [-1.16, 1.66],
+    [1.16, 1.66],
+    [-1.16, -1.66],
+    [1.16, -1.66],
+  ];
+
   return (
-    <Float speed={1.6} rotationIntensity={0.35} floatIntensity={0.7}>
+    <Float speed={1.6} rotationIntensity={0.32} floatIntensity={0.6}>
       <group ref={group} rotation={[0.08, -0.35, 0]}>
         {/* gold rim plate behind the body */}
-        <RoundedBox args={[2.62, 3.62, 0.12]} radius={0.16} smoothness={6} position={[0, 0, -0.04]}>
-          <meshStandardMaterial color="#D4A847" metalness={1} roughness={0.32} />
+        <RoundedBox args={[2.66, 3.66, 0.1]} radius={0.2} smoothness={6} position={[0, 0, -0.06]}>
+          <meshStandardMaterial color="#D4A847" metalness={1} roughness={0.34} />
         </RoundedBox>
-        {/* dark rugged body */}
-        <RoundedBox args={[2.5, 3.5, 0.18]} radius={0.14} smoothness={6}>
-          <meshStandardMaterial color="#161310" metalness={0.85} roughness={0.45} />
+
+        {/* dark rugged body — thicker, more device-like */}
+        <RoundedBox args={[2.55, 3.55, 0.26]} radius={0.18} smoothness={8}>
+          <meshStandardMaterial color="#171411" metalness={0.85} roughness={0.5} />
         </RoundedBox>
-        {/* screen */}
-        <mesh position={[0, 0.05, 0.1]}>
-          <planeGeometry args={[2.18, 3.05]} />
+
+        {/* raised bezel frame around the screen (thick, rugged) */}
+        <RoundedBox args={[2.28, 3.28, 0.06]} radius={0.1} smoothness={6} position={[0, 0.02, 0.13]}>
+          <meshStandardMaterial color="#0E0C0A" metalness={0.6} roughness={0.6} />
+        </RoundedBox>
+
+        {/* screen — inset, leaving a clear bezel */}
+        <mesh position={[0, 0.05, 0.17]}>
+          <planeGeometry args={[1.95, 2.78]} />
           <meshStandardMaterial
             map={screen}
             emissiveMap={screen}
@@ -160,10 +175,34 @@ function Device() {
             metalness={0}
           />
         </mesh>
-        {/* camera dot */}
-        <mesh position={[0, 1.62, 0.1]}>
-          <circleGeometry args={[0.035, 24]} />
+
+        {/* rugged corner bumpers */}
+        {bumpers.map(([bx, by], i) => (
+          <RoundedBox key={i} args={[0.42, 0.42, 0.34]} radius={0.12} smoothness={5} position={[bx, by, 0]}>
+            <meshStandardMaterial color="#0C0A08" metalness={0.7} roughness={0.55} />
+          </RoundedBox>
+        ))}
+
+        {/* front camera dot on the top bezel */}
+        <mesh position={[0, 1.52, 0.17]}>
+          <circleGeometry args={[0.03, 24]} />
           <meshStandardMaterial color="#D4A847" emissive="#D4A847" emissiveIntensity={0.8} toneMapped={false} />
+        </mesh>
+
+        {/* ActiSky brand bar on the bottom bezel */}
+        <mesh position={[0, -1.5, 0.17]}>
+          <planeGeometry args={[0.5, 0.05]} />
+          <meshStandardMaterial color="#D4A847" emissive="#D4A847" emissiveIntensity={0.7} toneMapped={false} />
+        </mesh>
+
+        {/* side buttons (right edge) */}
+        <mesh position={[1.3, 0.5, 0]}>
+          <boxGeometry args={[0.06, 0.4, 0.12]} />
+          <meshStandardMaterial color="#D4A847" metalness={0.9} roughness={0.4} />
+        </mesh>
+        <mesh position={[1.3, -0.1, 0]}>
+          <boxGeometry args={[0.06, 0.22, 0.12]} />
+          <meshStandardMaterial color="#2a2520" metalness={0.7} roughness={0.5} />
         </mesh>
       </group>
     </Float>

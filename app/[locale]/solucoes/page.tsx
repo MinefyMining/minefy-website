@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
+import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -41,7 +42,7 @@ export default async function SolutionsPage({ params }: Props) {
     <div className="min-h-screen bg-[#0A0A0A]">
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-24">
+      <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">
         <Image
           src="/images/mining/komatsu-pc2000.jpg"
           alt="Vista aérea de mina a céu aberto"
@@ -50,12 +51,19 @@ export default async function SolutionsPage({ params }: Props) {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[#0A0A0A]/70" aria-hidden="true" />
-        <AuroraBackground className="opacity-50" />
-        <div className="relative z-10 px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+        <div className="absolute inset-0 bg-[#0A0A0A]/80" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-[#0A0A0A]/40"
+          aria-hidden="true"
+        />
+        <AuroraBackground grid={false} particles={false} className="opacity-50" />
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.3fr_1fr]">
+          <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl">
             {t("hero.title")}
           </h1>
+          <div className="hidden lg:block">
+            <TelemetryCard className="ml-auto max-w-sm" />
+          </div>
         </div>
       </section>
 

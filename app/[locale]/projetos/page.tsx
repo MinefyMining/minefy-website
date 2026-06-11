@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
+import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -82,20 +83,23 @@ export default async function ProjectsPage({ params }: Props) {
             </p>
           </ScrollReveal>
 
-          {/* Metrics */}
+          {/* Metrics + live telemetry card */}
           <ScrollReveal delay={160}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {metrics.map((metric) => (
-                <div
-                  key={metric.label}
-                  className="bg-[#111] rounded-xl p-6 border border-[#222]"
-                >
-                  <p className="text-2xl font-bold text-[#D4A847]">{metric.value}</p>
-                  <p className="text-xs text-[#888] uppercase tracking-wider mt-1">
-                    {metric.label}
-                  </p>
-                </div>
-              ))}
+            <div className="grid items-start gap-6 lg:grid-cols-[1.6fr_1fr]">
+              <div className="grid grid-cols-2 gap-4">
+                {metrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="rounded-xl border border-[#222] bg-[#111] p-6"
+                  >
+                    <p className="text-2xl font-bold text-[#D4A847]">{metric.value}</p>
+                    <p className="mt-1 text-xs uppercase tracking-wider text-[#888]">
+                      {metric.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <TelemetryCard title="Brucutu · ActiSky" />
             </div>
           </ScrollReveal>
 
