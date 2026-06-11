@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
-import { ProductCard } from "@/components/product-card";
+import { BentoSolutions } from "@/components/bento-solutions";
 import { ClientCarousel } from "@/components/client-carousel";
 import { HeroHome } from "@/components/hero-home";
 import { AuroraBackground } from "@/components/aurora-background";
@@ -82,20 +82,9 @@ export default async function HomePage({ params }: Props) {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {productItems.map((item, index) => (
-              <ScrollReveal key={index} delay={index * 80}>
-                <ProductCard
-                  icon={item.icon}
-                  title={item.title}
-                  description={item.description}
-                  badge={item.badge}
-                  href={`/solucoes#${SOLUTION_IDS[index] ?? ""}`}
-                  index={index}
-                />
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScrollReveal className="mt-12">
+            <BentoSolutions items={productItems} ids={SOLUTION_IDS} />
+          </ScrollReveal>
         </div>
       </section>
 

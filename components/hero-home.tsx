@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { AuroraBackground } from "@/components/aurora-background";
+import { ParticleField } from "@/components/particle-field";
 import { DotGridBackground } from "@/components/dot-grid-background";
 import { MagneticButton } from "@/components/magnetic-button";
 
@@ -46,29 +46,35 @@ export function HeroHome({
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
-      {/* Background photo */}
+      {/* Background photo — kept as a faint, cinematic texture under the tech layers */}
       <Image
         src="/images/mining/hero-cat-d11.jpg"
         alt="CAT D11 operando em mina a céu aberto"
         fill
         priority
-        className="object-cover"
+        className="scale-105 object-cover"
         sizes="100vw"
       />
 
-      {/* Cinematic overlays — darken left for text, vignette top/bottom */}
+      {/* Heavy dark wash so the photo reads as texture and the constellation pops */}
+      <div className="absolute inset-0 bg-[#0A0A0A]/82" aria-hidden="true" />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/75 to-[#0A0A0A]/10"
+        className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/85 to-[#0A0A0A]/55"
         aria-hidden="true"
       />
+      {/* radial vignette + warm core glow */}
       <div
-        className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/40"
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(70% 60% at 30% 45%, rgba(212,168,71,0.10), transparent 60%), radial-gradient(120% 100% at 50% 50%, transparent 40%, #0A0A0A 100%)",
+        }}
         aria-hidden="true"
       />
 
-      {/* Animated ambient layers */}
-      <AuroraBackground grid={false} particles={false} className="opacity-60 mix-blend-screen" />
-      <DotGridBackground className="opacity-80" />
+      {/* Animated ambient layers — particle constellation + cursor dot-grid */}
+      <ParticleField className="opacity-90" />
+      <DotGridBackground className="opacity-60" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">

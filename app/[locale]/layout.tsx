@@ -5,6 +5,8 @@ import { MotionConfig } from "motion/react";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { CursorGlow } from "@/components/cursor-glow";
 import type { Metadata } from "next";
 
 type Props = {
@@ -39,6 +41,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <MotionConfig reducedMotion="user">
+        <ScrollProgress />
+        <CursorGlow />
         <Header />
         <main className="min-h-screen">
           {children}
