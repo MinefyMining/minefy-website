@@ -71,7 +71,7 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 3 — SOLUTIONS GRID
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-[#0A0A0A]">
+      <section id="solucoes" className="py-20 px-6 bg-[#0A0A0A] scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-center text-white">

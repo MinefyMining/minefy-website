@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, type ComponentType } from "react";
+import dynamic from "next/dynamic";
 import {
   Tablet,
   Satellite,
@@ -12,6 +13,17 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { ProductCard } from "@/components/product-card";
+import { Safe3D } from "@/components/safe-3d";
+
+// WebGL scene — client-only (no SSR).
+const Tablet3D = dynamic(() => import("@/components/tablet-3d"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="h-40 w-28 animate-pulse rounded-xl border border-primary/20 bg-primary/5" />
+    </div>
+  ),
+});
 
 type IconKey = "tablet" | "satellite" | "chart" | "truck" | "shield" | "users";
 const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
@@ -53,34 +65,45 @@ function FeaturedTile({ item, href }: { item: SolutionItem; href: string }) {
       ref={ref}
       href={href}
       onPointerMove={handleMove}
-      className="glass-card-hover gradient-border group relative flex flex-col justify-between overflow-hidden rounded-2xl p-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:col-span-2 md:row-span-2"
+      className="glass-card-hover gradient-border group relative grid overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:col-span-2 md:row-span-2 md:grid-cols-[1.05fr_0.95fr]"
     >
       {/* ambient glow */}
       <div
-        className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-70"
-        style={{ background: "radial-gradient(circle, rgba(212,168,71,0.18), transparent 70%)" }}
+        className="pointer-events-none absolute -right-10 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full opacity-80"
+        style={{ background: "radial-gradient(circle, rgba(212,168,71,0.22), transparent 70%)" }}
         aria-hidden="true"
       />
-      <div className="relative">
-        <span className="inline-block rounded-full border border-primary/30 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
-          {item.badge}
-        </span>
-        <div className="relative mt-6 flex h-16 w-16 items-center justify-center">
-          <span className="glow-orb-gold absolute inset-0 rounded-full" aria-hidden="true" />
-          <Icon className="relative h-12 w-12 text-primary transition-transform duration-300 group-hover:scale-110" />
+
+      {/* Copy */}
+      <div className="relative z-10 flex flex-col justify-between p-8">
+        <div>
+          <span className="inline-block rounded-full border border-primary/30 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
+            {item.badge}
+          </span>
+          <div className="relative mt-6 flex h-14 w-14 items-center justify-center">
+            <span className="glow-orb-gold absolute inset-0 rounded-full" aria-hidden="true" />
+            <Icon className="relative h-11 w-11 text-primary transition-transform duration-300 group-hover:scale-110" />
+          </div>
+        </div>
+        <div className="mt-8">
+          <h3 className="text-2xl font-bold leading-tight text-white md:text-3xl">
+            {item.title}
+          </h3>
+          <p className="mt-3 max-w-sm leading-relaxed text-muted-foreground">
+            {item.description}
+          </p>
+          <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+            Conhecer
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </span>
         </div>
       </div>
-      <div className="relative mt-8">
-        <h3 className="text-2xl font-bold leading-tight text-white md:text-3xl">
-          {item.title}
-        </h3>
-        <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
-          {item.description}
-        </p>
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-          Conhecer
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </span>
+
+      {/* 3D device */}
+      <div className="relative z-10 h-60 min-h-[240px] w-full md:h-auto">
+        <Safe3D>
+          <Tablet3D />
+        </Safe3D>
       </div>
     </Link>
   );
