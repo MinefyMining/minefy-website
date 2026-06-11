@@ -8,6 +8,7 @@ import { ClientCarousel } from "@/components/client-carousel";
 import { HeroHome } from "@/components/hero-home";
 import { AuroraBackground } from "@/components/aurora-background";
 import { LogoIntro } from "@/components/logo-intro";
+import { TechTelemetry } from "@/components/tech-telemetry";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -52,6 +53,7 @@ export default async function HomePage({ params }: Props) {
         badge={t("hero.badge")}
         title={t("hero.title")}
         subtitle={t("hero.subtitle")}
+        trust={t("hero.trust")}
         cta={t("hero.cta")}
         ctaSecondary={t("hero.ctaSecondary")}
         appUrl="https://app.minefymining.com"
@@ -96,6 +98,11 @@ export default async function HomePage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3.5 — TECH / REAL-TIME TELEMETRY
+      ───────────────────────────────────────────────────────────── */}
+      <TechTelemetry />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 4 — FULL-WIDTH PHOTO BREAK

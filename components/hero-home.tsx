@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { AuroraBackground } from "@/components/aurora-background";
 import { DotGridBackground } from "@/components/dot-grid-background";
@@ -11,6 +12,7 @@ interface HeroHomeProps {
   badge: string;
   title: string;
   subtitle: string;
+  trust: string;
   cta: string;
   ctaSecondary: string;
   appUrl: string;
@@ -18,10 +20,10 @@ interface HeroHomeProps {
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
 };
 const item = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 26 },
   show: {
     opacity: 1,
     y: 0,
@@ -33,10 +35,15 @@ export function HeroHome({
   badge,
   title,
   subtitle,
+  trust,
   cta,
   ctaSecondary,
   appUrl,
 }: HeroHomeProps) {
+  // Highlight the first word with the animated gold gradient.
+  const [firstWord, ...rest] = title.split(" ");
+  const restTitle = rest.join(" ");
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
       {/* Background photo */}
@@ -49,23 +56,24 @@ export function HeroHome({
         sizes="100vw"
       />
 
-      {/* Left gradient overlay for readability */}
+      {/* Cinematic overlays — darken left for text, vignette top/bottom */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/75 to-[#0A0A0A]/10"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/40"
         aria-hidden="true"
       />
 
-      {/* Animated ambient layer (aurora + particles), masked so it reads as depth */}
-      <AuroraBackground grid={false} className="opacity-70 mix-blend-screen" />
-
-      {/* Interactive dot grid — gold spotlight follows the cursor (21st.dev 2083) */}
+      {/* Animated ambient layers */}
+      <AuroraBackground grid={false} particles={false} className="opacity-60 mix-blend-screen" />
       <DotGridBackground className="opacity-80" />
 
-      {/* Content — stagger entrance (motion auto-respects prefers-reduced-motion
-          via <MotionConfig reducedMotion="user"> in the locale layout) */}
+      {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <motion.div
-          className="max-w-xl"
+          className="max-w-2xl"
           variants={container}
           initial="hidden"
           animate="show"
@@ -82,14 +90,15 @@ export function HeroHome({
 
           <motion.h1
             variants={item}
-            className="mt-5 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-[2.6rem] font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-7xl"
           >
-            {title}
+            <span className="text-gold-flow">{firstWord}</span>{" "}
+            {restTitle}
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="mt-4 text-base leading-relaxed text-white/70 md:text-lg"
+            className="mt-5 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
           >
             {subtitle}
           </motion.p>
@@ -98,7 +107,7 @@ export function HeroHome({
             <MagneticButton>
               <Link
                 href="/contato"
-                className="inline-flex items-center rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] shadow-[0_8px_30px_rgba(212,168,71,0.25)] transition-colors duration-200 hover:bg-[#C49B3F]"
+                className="btn-sheen inline-flex items-center rounded-lg bg-[#D4A847] px-7 py-3.5 text-sm font-semibold text-[#0A0A0A] shadow-[0_8px_30px_rgba(212,168,71,0.3)] transition-colors duration-200 hover:bg-[#C49B3F]"
               >
                 {cta}
               </Link>
@@ -108,12 +117,20 @@ export function HeroHome({
                 href={appUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-lg border border-white/30 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/10"
+                className="inline-flex items-center rounded-lg border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-colors duration-200 hover:border-white/40 hover:bg-white/10"
               >
                 {ctaSecondary}
               </a>
             </MagneticButton>
           </motion.div>
+
+          <motion.p
+            variants={item}
+            className="mt-7 inline-flex items-center gap-2 text-sm text-white/55"
+          >
+            <Check className="h-4 w-4 shrink-0 text-[#D4A847]" />
+            {trust}
+          </motion.p>
         </motion.div>
       </div>
 

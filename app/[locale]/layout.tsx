@@ -44,6 +44,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           {children}
         </main>
         <Footer />
+        <div className="grain" aria-hidden="true" />
       </MotionConfig>
     </NextIntlClientProvider>
   );
