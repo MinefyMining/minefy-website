@@ -1,16 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 
 const clients = [
-  { name: "Vale", logo: "/images/clients/vale.jpg" },
-  { name: "Engineering do Brasil", logo: "/images/clients/engineering.jpg" },
-  { name: "Aterpa", logo: "/images/clients/aterpa.jpg" },
-  { name: "Coedra", logo: "/images/clients/coedra.jpg" },
-  { name: "SG Bras", logo: "/images/clients/sgbras.jpg" },
-  { name: "SCL Salum Construções", logo: "/images/clients/scl.jpg" },
-  { name: "Consórcio Mina Fábrica", logo: "/images/clients/minafabrica.jpg" },
+  { name: "Vale", logo: "/images/clients/vale.png" },
+  { name: "Engineering do Brasil", logo: "/images/clients/engineering.png" },
+  { name: "Aterpa", logo: "/images/clients/aterpa.png" },
+  { name: "Coedra", logo: "/images/clients/coedra.png" },
+  { name: "SG Bras", logo: "/images/clients/sgbras.png" },
+  { name: "SCL Salum Construções", logo: "/images/clients/scl.png" },
+  { name: "Consórcio Mina Fábrica", logo: "/images/clients/minafabrica.png" },
 ];
 
 const container = {
@@ -21,6 +22,30 @@ const item = {
   hidden: { opacity: 0, y: 18 },
   show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 120, damping: 18 } },
 };
+
+/** Logo with a text fallback — guarantees the client is never lost if the image fails. */
+function ClientLogo({ name, logo }: { name: string; logo: string }) {
+  const [errored, setErrored] = useState(false);
+
+  if (errored) {
+    return (
+      <span className="relative text-center text-base font-bold uppercase tracking-wide text-[#0A0A0A]">
+        {name}
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={logo}
+      alt={name}
+      width={220}
+      height={90}
+      onError={() => setErrored(true)}
+      className="relative max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+    />
+  );
+}
 
 export function ClientCarousel() {
   return (
@@ -47,13 +72,7 @@ export function ClientCarousel() {
             className="pointer-events-none absolute inset-0 -translate-x-full skew-x-[-20deg] bg-gradient-to-r from-transparent via-[#D4A847]/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
             aria-hidden="true"
           />
-          <Image
-            src={client.logo}
-            alt={client.name}
-            width={220}
-            height={90}
-            className="relative max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-          />
+          <ClientLogo name={client.name} logo={client.logo} />
         </motion.div>
       ))}
     </motion.div>
