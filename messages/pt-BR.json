@@ -250,13 +250,13 @@
         "tiers": [
           {
             "name": "Comercial",
-            "example": "Ex.: Samsung Galaxy Tab A11 + kit Roboflex",
+            "example": "Ex.: Samsung Galaxy Tab A11 + kit veicular robusto",
             "image": "/images/products/tablet-comercial.png",
-            "description": "Tablet de mercado blindado pelo kit Roboflex: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
+            "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
             "specs": [
               "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
-              "Kit Roboflex: case + suporte veicular (MIL-STD-810G)",
-              "Carregamento magnético no berço Roboflex",
+              "Kit veicular robusto: case + suporte veicular (MIL-STD-810G)",
+              "Carregamento magnético no berço veicular robusto",
               "Plug-and-play com a plataforma Minefy"
             ]
           },
