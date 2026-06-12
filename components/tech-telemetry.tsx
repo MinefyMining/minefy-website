@@ -42,7 +42,7 @@ export function TechTelemetry() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="mt-3 text-3xl font-bold leading-tight text-white md:text-4xl"
+            className="mt-3 text-3xl font-bold leading-tight text-foreground md:text-4xl"
           >
             Telemetria em tempo real,{" "}
             <span className="text-gold-flow">do equipamento à decisão</span>

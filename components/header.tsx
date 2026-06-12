@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, ExternalLink } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sheet,
   SheetTrigger,
@@ -39,7 +40,7 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled ? "bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#222]" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -63,7 +64,11 @@ export function Header() {
               key={key}
               href={href}
               className={`text-[13px] font-medium tracking-wide transition-colors ${
-                isActive(href) ? "text-white" : "text-[#888] hover:text-white"
+                isActive(href)
+                  ? scrolled ? "text-foreground" : "text-white"
+                  : scrolled
+                    ? "text-muted-foreground hover:text-foreground"
+                    : "text-white/70 hover:text-white"
               }`}
             >
               {t(key)}
@@ -71,8 +76,9 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right side — Platform button + Mobile menu */}
+        {/* Right side — theme toggle + Platform button + Mobile menu */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           {/* Platform access — THE KEY BUTTON */}
           <a
             href="https://app.minefymining.com"
@@ -87,7 +93,7 @@ export function Header() {
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger className="lg:hidden" aria-label="Menu">
-              <Menu className="h-6 w-6 text-white" />
+              <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-white"}`} />
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-[#111] border-l border-[#222] flex flex-col">
               <SheetTitle className="sr-only">Menu</SheetTitle>
@@ -101,7 +107,7 @@ export function Header() {
                     href={href}
                     onClick={() => setOpen(false)}
                     className={`px-3 py-3 text-sm font-medium transition-colors rounded-lg ${
-                      isActive(href) ? "text-white bg-[#1A1A1A]" : "text-[#888] hover:text-white"
+                      isActive(href) ? "text-foreground bg-secondary" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {t(key)}

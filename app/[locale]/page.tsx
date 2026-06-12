@@ -74,7 +74,7 @@ export default async function HomePage({ params }: Props) {
       <section id="solucoes" className="py-20 px-6 bg-[#0A0A0A] scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
               {t("products.title")}
             </h2>
             <p className="text-[#888] text-center mt-3 max-w-2xl mx-auto">
@@ -121,7 +121,7 @@ export default async function HomePage({ params }: Props) {
       <section className="py-20 px-6 bg-[#111]">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl font-bold text-white mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-12">
               {t("authority.title")}
             </h2>
           </ScrollReveal>
@@ -130,7 +130,7 @@ export default async function HomePage({ params }: Props) {
             {authorityItems.map((item, index) => (
               <ScrollReveal key={index} delay={index * 100}>
                 <div className="bg-[#0A0A0A] rounded-xl p-8 border border-[#222] transition-colors duration-200 hover:border-[#333]">
-                  <h3 className="text-lg font-semibold text-white mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
                   <p className="text-sm text-[#888] leading-relaxed">
@@ -152,7 +152,7 @@ export default async function HomePage({ params }: Props) {
             <div className="glass-card relative overflow-hidden rounded-2xl p-12">
               <AuroraBackground grid={false} particles={false} className="opacity-50" />
               <div className="relative z-10">
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-foreground">
                 {t("testDrive.title")}
               </h2>
               <p className="text-[#888] mt-3 max-w-xl mx-auto">
@@ -169,7 +169,7 @@ export default async function HomePage({ params }: Props) {
                 </a>
                 <Link
                   href="/contato"
-                  className="inline-flex items-center border border-[#444] text-white px-6 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
+                  className="inline-flex items-center border border-[#444] text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
                 >
                   {t("testDrive.ctaSecondary")}
                 </Link>
@@ -189,7 +189,7 @@ export default async function HomePage({ params }: Props) {
             <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
               Confiança
             </p>
-            <h2 className="mt-3 text-center text-3xl font-bold text-white md:text-4xl">
+            <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
               {t("clients.title")}
             </h2>
             <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent" />
@@ -207,7 +207,7 @@ export default async function HomePage({ params }: Props) {
         <AuroraBackground particles={false} className="opacity-60" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
               {t("cta.title")}
             </h2>
             <p className="text-[#888] mt-3">

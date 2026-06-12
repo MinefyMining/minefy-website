@@ -86,7 +86,7 @@ function FeaturedTile({ item, href }: { item: SolutionItem; href: string }) {
           </div>
         </div>
         <div className="mt-8">
-          <h3 className="text-2xl font-bold leading-tight text-white md:text-3xl">
+          <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
             {item.title}
           </h3>
           <p className="mt-3 max-w-sm leading-relaxed text-muted-foreground">

@@ -60,7 +60,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
       {/* header */}
       <div className="flex items-center justify-between">
         <div>
-          <p className="font-mono text-sm font-semibold text-white">{title}</p>
+          <p className="font-mono text-sm font-semibold text-foreground">{title}</p>
           <p className="font-mono text-[10px] uppercase tracking-widest text-[#777]">
             live · can j1939
           </p>
@@ -73,7 +73,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
 
       {/* primary metric */}
       <div className="mt-5 flex items-end gap-2">
-        <span className="font-mono text-4xl font-bold tabular-nums text-white">
+        <span className="font-mono text-4xl font-bold tabular-nums text-foreground">
           {cycles.toFixed(1)}
         </span>
         <span className="mb-1 font-mono text-xs text-[#D4A847]">ciclos / h</span>
