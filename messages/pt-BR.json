@@ -28,6 +28,31 @@
         { "value": "#1", "label": "Validado na maior mineradora do Brasil" }
       ]
     },
+    "howItWorks": {
+      "kicker": "Como funciona",
+      "title": "Do equipamento à decisão em três passos",
+      "subtitle": "Telemetria de mineração descomplicada: do barramento do equipamento à tela da sala de despacho.",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "Conectar",
+          "text": "O módulo ActiSky é embarcado no equipamento e lê o barramento CAN J1939 — RPM, combustível, temperatura, pressão e posição GPS."
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "Transmitir",
+          "text": "A telemetria sobe em tempo real para a plataforma Minefy, com resiliência mesmo em áreas de sinal instável: nada se perde."
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "Decidir",
+          "text": "Dashboards, ciclos e alertas chegam à sala de despacho — a operação age antes do problema acontecer, com decisão baseada em dado."
+        }
+      ]
+    },
     "products": {
       "title": "Nossas Soluções",
       "subtitle": "Tecnologia projetada para operações de mineração a céu aberto e equipamentos de grande porte.",

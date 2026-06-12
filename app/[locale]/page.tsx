@@ -10,6 +10,7 @@ import { AuroraBackground } from "@/components/aurora-background";
 import { LogoIntro } from "@/components/logo-intro";
 import { TechTelemetry } from "@/components/tech-telemetry";
 import { FaqSection } from "@/components/faq-section";
+import { HowItWorks } from "@/components/how-it-works";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -44,6 +45,13 @@ export default async function HomePage({ params }: Props) {
 
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
+  const howSteps = t.raw("howItWorks.steps") as Array<{
+    icon: string;
+    step: string;
+    title: string;
+    text: string;
+  }>;
+
   return (
     <>
       {/* Brand intro — logo generates in center then flies to the header */}
@@ -70,6 +78,16 @@ export default async function HomePage({ params }: Props) {
           <StatsBar />
         </div>
       </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 2.5 — HOW IT WORKS
+      ───────────────────────────────────────────────────────────── */}
+      <HowItWorks
+        kicker={t("howItWorks.kicker")}
+        title={t("howItWorks.title")}
+        subtitle={t("howItWorks.subtitle")}
+        steps={howSteps}
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 3 — SOLUTIONS GRID
