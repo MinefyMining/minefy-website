@@ -71,7 +71,7 @@ export default async function ProjectsPage({ params }: Props) {
 
           {/* Title */}
           <ScrollReveal delay={80}>
-            <h2 className="text-3xl font-bold text-white mt-6 mb-4">
+            <h2 className="text-3xl font-bold text-foreground mt-6 mb-4">
               {t("vargemGrande.title")}
             </h2>
           </ScrollReveal>
@@ -118,7 +118,7 @@ export default async function ProjectsPage({ params }: Props) {
           {sections.map((section, index) => (
             <ScrollReveal key={index} delay={index * 60}>
               <div className="mb-8">
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-xl font-semibold text-foreground mb-2">
                   {section.title}
                 </h3>
                 <p className="text-[#888] leading-relaxed">{section.text}</p>
@@ -134,7 +134,7 @@ export default async function ProjectsPage({ params }: Props) {
                   key={index}
                   className="bg-[#111] rounded-xl p-6 border border-[#222]"
                 >
-                  <h4 className="font-semibold text-white mb-2">{item.title}</h4>
+                  <h4 className="font-semibold text-foreground mb-2">{item.title}</h4>
                   <p className="text-sm text-[#888] leading-relaxed">{item.text}</p>
                 </div>
               ))}
@@ -155,7 +155,7 @@ export default async function ProjectsPage({ params }: Props) {
         <AuroraBackground particles={false} className="opacity-50" />
         <div className="relative z-10">
           <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               {t("cta.title")}
             </h2>
             <p className="text-[#888] mb-8">{t("cta.text")}</p>

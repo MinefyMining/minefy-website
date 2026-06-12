@@ -58,7 +58,7 @@ export default async function AboutPage({ params }: Props) {
               {t("intro.text")}
             </p>
             <div className="bg-[#111] p-6 rounded-xl border-l-4 border-[#D4A847] mt-8">
-              <p className="text-lg font-medium text-white italic">
+              <p className="text-lg font-medium text-foreground italic">
                 {t("intro.highlight")}
               </p>
             </div>
@@ -117,7 +117,7 @@ export default async function AboutPage({ params }: Props) {
                   <div key={item.title} className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-[#D4A847] shrink-0 mt-2" />
                     <div>
-                      <p className="font-semibold text-white text-sm mb-1">
+                      <p className="font-semibold text-foreground text-sm mb-1">
                         {item.title}
                       </p>
                       <p className="text-[#888] text-sm leading-relaxed">
@@ -136,7 +136,7 @@ export default async function AboutPage({ params }: Props) {
       <section className="relative overflow-hidden py-20 px-6 text-center">
         <AuroraBackground particles={false} className="opacity-50" />
         <ScrollReveal className="relative z-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
             {t("cta.title")}
           </h2>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -150,7 +150,7 @@ export default async function AboutPage({ params }: Props) {
               href="https://app.minefymining.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-[#444] text-white px-8 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
+              className="inline-flex items-center gap-2 border border-[#444] text-foreground px-8 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
             >
               {t("cta.platform")}
               <ExternalLink className="h-4 w-4" />

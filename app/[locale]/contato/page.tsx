@@ -62,7 +62,7 @@ export default async function ContactPage({ params }: Props) {
           {/* Left: info */}
           <div>
             <ScrollReveal>
-              <h2 className="text-2xl font-bold text-white mb-3">
+              <h2 className="text-2xl font-bold text-foreground mb-3">
                 {t("title")}
               </h2>
             </ScrollReveal>
@@ -86,7 +86,7 @@ export default async function ContactPage({ params }: Props) {
                       <p className="text-xs text-[#888] uppercase tracking-wider mb-0.5">
                         {item.label}
                       </p>
-                      <p className="text-sm font-medium text-white">
+                      <p className="text-sm font-medium text-foreground">
                         {item.value}
                       </p>
                     </div>

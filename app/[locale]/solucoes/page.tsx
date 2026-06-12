@@ -85,7 +85,7 @@ export default async function SolutionsPage({ params }: Props) {
                       <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                         {item.title}
                       </h2>
                       <p className="text-[#888] leading-relaxed max-w-2xl mx-auto">
@@ -215,7 +215,7 @@ export default async function SolutionsPage({ params }: Props) {
                       <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                         {item.title}
                       </h2>
                       <p className="text-[#888] mb-6 leading-relaxed">
@@ -287,7 +287,7 @@ export default async function SolutionsPage({ params }: Props) {
           <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
             <AuroraBackground grid={false} particles={false} className="opacity-50" />
             <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 {t("cta.title")}
               </h2>
               <p className="text-[#888] mb-8 leading-relaxed">
