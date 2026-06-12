@@ -5,13 +5,13 @@ import Image from "next/image";
 import { motion } from "motion/react";
 
 const clients = [
-  { name: "Vale", logo: "/images/clients/vale.png" },
-  { name: "Engineering do Brasil", logo: "/images/clients/engineering.png" },
-  { name: "Aterpa", logo: "/images/clients/aterpa.png" },
-  { name: "Coedra", logo: "/images/clients/coedra.png" },
-  { name: "SG Bras", logo: "/images/clients/sgbras.png" },
-  { name: "SCL Salum Construções", logo: "/images/clients/scl.png" },
-  { name: "Consórcio Mina Fábrica", logo: "/images/clients/minafabrica.png" },
+  { name: "Vale", logo: "/images/clients/vale-mono.png" },
+  { name: "Engineering do Brasil", logo: "/images/clients/engineering-mono.png" },
+  { name: "Aterpa", logo: "/images/clients/aterpa-mono.png" },
+  { name: "Coedra", logo: "/images/clients/coedra-mono.png" },
+  { name: "SG Bras", logo: "/images/clients/sgbras-mono.png" },
+  { name: "SCL Salum Construções", logo: "/images/clients/scl-mono.png" },
+  { name: "Consórcio Mina Fábrica", logo: "/images/clients/minafabrica-mono.png" },
 ];
 
 const container = {
@@ -23,13 +23,13 @@ const item = {
   show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 120, damping: 18 } },
 };
 
-/** Logo with a text fallback — guarantees the client is never lost if the image fails. */
+/** Monochrome logo with a text fallback — the client is never lost if the image fails. */
 function ClientLogo({ name, logo }: { name: string; logo: string }) {
   const [errored, setErrored] = useState(false);
 
   if (errored) {
     return (
-      <span className="relative text-center text-base font-bold uppercase tracking-wide text-[#0A0A0A]">
+      <span className="relative text-center text-sm font-semibold uppercase tracking-wide text-white/70 transition-colors duration-300 group-hover:text-white">
         {name}
       </span>
     );
@@ -40,9 +40,9 @@ function ClientLogo({ name, logo }: { name: string; logo: string }) {
       src={logo}
       alt={name}
       width={220}
-      height={90}
+      height={84}
       onError={() => setErrored(true)}
-      className="relative max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+      className="relative max-h-12 w-auto object-contain opacity-55 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100"
     />
   );
 }
@@ -60,16 +60,12 @@ export function ClientCarousel() {
         <motion.div
           key={client.name}
           variants={item}
-          className="group relative flex h-28 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(0,0,0,0.5)]"
+          className="group relative flex h-28 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#D4A847]/40 hover:bg-white/[0.04]"
         >
-          {/* gold ring on hover */}
+          {/* gold spotlight that fades in on hover */}
           <span
-            className="pointer-events-none absolute inset-0 rounded-2xl ring-2 ring-[#D4A847]/0 transition-all duration-300 group-hover:ring-[#D4A847]/60"
-            aria-hidden="true"
-          />
-          {/* gold sheen sweep */}
-          <span
-            className="pointer-events-none absolute inset-0 -translate-x-full skew-x-[-20deg] bg-gradient-to-r from-transparent via-[#D4A847]/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ background: "radial-gradient(120% 120% at 50% 0%, rgba(212,168,71,0.10), transparent 70%)" }}
             aria-hidden="true"
           />
           <ClientLogo name={client.name} logo={client.logo} />
