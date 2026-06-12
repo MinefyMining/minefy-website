@@ -183,14 +183,18 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 7 — CLIENTS
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-[#0A0A0A]">
+      <section className="py-20 px-6 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-xl font-semibold text-center text-[#888] mb-8">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+              Confiança
+            </p>
+            <h2 className="mt-3 text-center text-3xl font-bold text-white md:text-4xl">
               {t("clients.title")}
             </h2>
+            <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent" />
           </ScrollReveal>
-          <ScrollReveal delay={100}>
+          <ScrollReveal delay={100} className="mt-12">
             <ClientCarousel />
           </ScrollReveal>
         </div>

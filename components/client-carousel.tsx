@@ -1,56 +1,61 @@
 "use client";
 
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import { motion } from "motion/react";
 
 const clients = [
+  { name: "Vale", logo: "/images/clients/vale.jpg" },
+  { name: "Engineering do Brasil", logo: "/images/clients/engineering.jpg" },
   { name: "Aterpa", logo: "/images/clients/aterpa.jpg" },
   { name: "Coedra", logo: "/images/clients/coedra.jpg" },
-  { name: "Vale", logo: "/images/clients/vale.jpg" },
   { name: "SG Bras", logo: "/images/clients/sgbras.jpg" },
-  { name: "SCL", logo: "/images/clients/scl.jpg" },
-  { name: "Consórcio Mina.Fábrica", logo: "/images/clients/minafabrica.jpg" },
-  { name: "Engineering do Brasil", logo: "/images/clients/engineering.jpg" },
+  { name: "SCL Salum Construções", logo: "/images/clients/scl.jpg" },
+  { name: "Consórcio Mina Fábrica", logo: "/images/clients/minafabrica.jpg" },
 ];
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 120, damping: 18 } },
+};
 
 export function ClientCarousel() {
   return (
-    <Carousel
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-      plugins={[
-        Autoplay({
-          delay: 3000,
-          stopOnInteraction: false,
-        }),
-      ]}
-      className="w-full max-w-6xl mx-auto"
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
     >
-      <CarouselContent className="-ml-2">
-        {clients.map((client) => (
-          <CarouselItem
-            key={client.name}
-            className="pl-2 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
-          >
-            <div className="flex items-center justify-center p-4 h-20">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                width={160}
-                height={60}
-                className="object-contain max-h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
-              />
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+      {clients.map((client) => (
+        <motion.div
+          key={client.name}
+          variants={item}
+          className="group relative flex h-28 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(0,0,0,0.5)]"
+        >
+          {/* gold ring on hover */}
+          <span
+            className="pointer-events-none absolute inset-0 rounded-2xl ring-2 ring-[#D4A847]/0 transition-all duration-300 group-hover:ring-[#D4A847]/60"
+            aria-hidden="true"
+          />
+          {/* gold sheen sweep */}
+          <span
+            className="pointer-events-none absolute inset-0 -translate-x-full skew-x-[-20deg] bg-gradient-to-r from-transparent via-[#D4A847]/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+            aria-hidden="true"
+          />
+          <Image
+            src={client.logo}
+            alt={client.name}
+            width={220}
+            height={90}
+            className="relative max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </motion.div>
+      ))}
+    </motion.div>
   );
 }
