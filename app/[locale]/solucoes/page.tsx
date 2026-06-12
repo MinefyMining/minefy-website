@@ -2,6 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { AuroraBackground } from "@/components/aurora-background";
+import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -40,7 +42,7 @@ export default async function SolutionsPage({ params }: Props) {
     <div className="min-h-screen bg-[#0A0A0A]">
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-24">
+      <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">
         <Image
           src="/images/mining/komatsu-pc2000.jpg"
           alt="Vista aérea de mina a céu aberto"
@@ -49,11 +51,19 @@ export default async function SolutionsPage({ params }: Props) {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[#0A0A0A]/70" aria-hidden="true" />
-        <div className="relative z-10 px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+        <div className="absolute inset-0 bg-[#0A0A0A]/80" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-[#0A0A0A]/40"
+          aria-hidden="true"
+        />
+        <AuroraBackground grid={false} particles={false} className="opacity-50" />
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.3fr_1fr]">
+          <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl">
             {t("hero.title")}
           </h1>
+          <div className="hidden lg:block">
+            <TelemetryCard className="ml-auto max-w-sm" />
+          </div>
         </div>
       </section>
 
@@ -75,7 +85,7 @@ export default async function SolutionsPage({ params }: Props) {
                       <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                         {item.title}
                       </h2>
                       <p className="text-[#888] leading-relaxed max-w-2xl mx-auto">
@@ -205,7 +215,7 @@ export default async function SolutionsPage({ params }: Props) {
                       <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                         {item.title}
                       </h2>
                       <p className="text-[#888] mb-6 leading-relaxed">
@@ -274,20 +284,23 @@ export default async function SolutionsPage({ params }: Props) {
       {/* ── CTA ── */}
       <section className="py-20 px-6 text-center">
         <ScrollReveal>
-          <div className="bg-[#111] rounded-2xl max-w-3xl mx-auto p-12 border border-[#222]">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t("cta.title")}
-            </h2>
-            <p className="text-[#888] mb-8 leading-relaxed">
-              {t("cta.text")}
-            </p>
-            <Link
-              href="/contato"
-              className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
-            >
-              {t("cta.button")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
+            <AuroraBackground grid={false} particles={false} className="opacity-50" />
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                {t("cta.title")}
+              </h2>
+              <p className="text-[#888] mb-8 leading-relaxed">
+                {t("cta.text")}
+              </p>
+              <Link
+                href="/contato"
+                className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+              >
+                {t("cta.button")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
       </section>

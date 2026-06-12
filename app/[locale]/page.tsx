@@ -3,8 +3,15 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
-import { ProductCard } from "@/components/product-card";
+import { BentoSolutions } from "@/components/bento-solutions";
 import { ClientCarousel } from "@/components/client-carousel";
+import { HeroHome } from "@/components/hero-home";
+import { AuroraBackground } from "@/components/aurora-background";
+import { LogoIntro } from "@/components/logo-intro";
+import { TechTelemetry } from "@/components/tech-telemetry";
+import { FaqSection } from "@/components/faq-section";
+import { HowItWorks } from "@/components/how-it-works";
+import { OutcomesSection } from "@/components/outcomes-section";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -37,59 +44,38 @@ export default async function HomePage({ params }: Props) {
     description: string;
   }>;
 
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
+
+  const howSteps = t.raw("howItWorks.steps") as Array<{
+    icon: string;
+    step: string;
+    title: string;
+    text: string;
+  }>;
+
+  const outcomeItems = t.raw("outcomes.items") as Array<{
+    icon: string;
+    title: string;
+    text: string;
+  }>;
+
   return (
     <>
+      {/* Brand intro — logo generates in center then flies to the header */}
+      <LogoIntro />
+
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 1 — HERO
-          Full viewport, photo-driven with left overlay
+          SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
-        {/* Background photo */}
-        <Image
-          src="/images/mining/hero-cat-d11.jpg"
-          alt="CAT D11 operando em mina a céu aberto"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-
-        {/* Left gradient overlay for text readability */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent"
-          aria-hidden="true"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
-          <div className="max-w-xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              {t("hero.title")}
-            </h1>
-
-            <p className="text-base md:text-lg text-white/70 mt-4 leading-relaxed">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contato"
-                className="inline-flex items-center bg-[#D4A847] text-[#0A0A0A] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
-              >
-                {t("hero.cta")}
-              </Link>
-              <a
-                href="https://app.minefymining.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center border border-white/30 text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-white/10 transition-colors duration-200"
-              >
-                {t("hero.ctaSecondary")}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroHome
+        badge={t("hero.badge")}
+        title={t("hero.title")}
+        subtitle={t("hero.subtitle")}
+        trust={t("hero.trust")}
+        cta={t("hero.cta")}
+        ctaSecondary={t("hero.ctaSecondary")}
+        appUrl="https://app.minefymining.com"
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 2 — STATS
@@ -101,12 +87,22 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
+          SECTION 2.5 — HOW IT WORKS
+      ───────────────────────────────────────────────────────────── */}
+      <HowItWorks
+        kicker={t("howItWorks.kicker")}
+        title={t("howItWorks.title")}
+        subtitle={t("howItWorks.subtitle")}
+        steps={howSteps}
+      />
+
+      {/* ─────────────────────────────────────────────────────────────
           SECTION 3 — SOLUTIONS GRID
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-[#0A0A0A]">
+      <section id="solucoes" className="py-20 px-6 bg-[#0A0A0A] scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
               {t("products.title")}
             </h2>
             <p className="text-[#888] text-center mt-3 max-w-2xl mx-auto">
@@ -114,40 +110,44 @@ export default async function HomePage({ params }: Props) {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {productItems.map((item, index) => (
-              <ScrollReveal key={index} delay={index * 80}>
-                <ProductCard
-                  icon={item.icon}
-                  title={item.title}
-                  description={item.description}
-                  badge={item.badge}
-                  href={`/solucoes#${SOLUTION_IDS[index] ?? ""}`}
-                  index={index}
-                />
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScrollReveal className="mt-12">
+            <BentoSolutions items={productItems} ids={SOLUTION_IDS} />
+          </ScrollReveal>
         </div>
       </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3.5 — TECH / REAL-TIME TELEMETRY
+      ───────────────────────────────────────────────────────────── */}
+      <TechTelemetry />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3.6 — OUTCOMES (what changes in your operation)
+      ───────────────────────────────────────────────────────────── */}
+      <OutcomesSection
+        kicker={t("outcomes.kicker")}
+        title={t("outcomes.title")}
+        subtitle={t("outcomes.subtitle")}
+        items={outcomeItems}
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 4 — FULL-WIDTH PHOTO BREAK
       ───────────────────────────────────────────────────────────── */}
       <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden">
         <Image
-          src="/images/mining/komatsu-mine.jpg"
-          alt="Caminhão de grande porte em operação na mineração a céu aberto"
+          src="/images/mining/safety-excavator-sunset.jpg"
+          alt="Escavadeira de grande porte ao entardecer em mina a céu aberto"
           fill
           className="object-cover"
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-[#0A0A0A]/50"
+          className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-[#0A0A0A]/60"
           aria-hidden="true"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-white/80 text-xl font-medium text-center max-w-2xl px-6">
+          <p className="max-w-2xl px-6 text-center text-xl font-medium text-white/90 md:text-2xl">
             Tecnologia para equipamentos de grande porte em mineração a céu aberto
           </p>
         </div>
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: Props) {
       <section className="py-20 px-6 bg-[#111]">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl font-bold text-white mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-12">
               {t("authority.title")}
             </h2>
           </ScrollReveal>
@@ -168,7 +168,7 @@ export default async function HomePage({ params }: Props) {
             {authorityItems.map((item, index) => (
               <ScrollReveal key={index} delay={index * 100}>
                 <div className="bg-[#0A0A0A] rounded-xl p-8 border border-[#222] transition-colors duration-200 hover:border-[#333]">
-                  <h3 className="text-lg font-semibold text-white mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
                   <p className="text-sm text-[#888] leading-relaxed">
@@ -187,8 +187,10 @@ export default async function HomePage({ params }: Props) {
       <section className="py-20 px-6 bg-[#0A0A0A]">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
-            <div className="bg-[#111] rounded-2xl p-12 border border-[#222]">
-              <h2 className="text-3xl font-bold text-white">
+            <div className="glass-card relative overflow-hidden rounded-2xl p-12">
+              <AuroraBackground grid={false} particles={false} className="opacity-50" />
+              <div className="relative z-10">
+              <h2 className="text-3xl font-bold text-foreground">
                 {t("testDrive.title")}
               </h2>
               <p className="text-[#888] mt-3 max-w-xl mx-auto">
@@ -205,10 +207,11 @@ export default async function HomePage({ params }: Props) {
                 </a>
                 <Link
                   href="/contato"
-                  className="inline-flex items-center border border-[#444] text-white px-6 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
+                  className="inline-flex items-center border border-[#444] text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
                 >
                   {t("testDrive.ctaSecondary")}
                 </Link>
+              </div>
               </div>
             </div>
           </ScrollReveal>
@@ -218,26 +221,43 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 7 — CLIENTS
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-[#0A0A0A]">
+      <section className="py-20 px-6 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-xl font-semibold text-center text-[#888] mb-8">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+              Confiança
+            </p>
+            <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
               {t("clients.title")}
             </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
+              {t("clients.subtitle")}
+            </p>
+            <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent" />
           </ScrollReveal>
-          <ScrollReveal delay={100}>
+          <ScrollReveal delay={100} className="mt-12">
             <ClientCarousel />
           </ScrollReveal>
         </div>
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
+          SECTION 7.5 — FAQ
+      ───────────────────────────────────────────────────────────── */}
+      <FaqSection
+        title={t("faq.title")}
+        subtitle={t("faq.subtitle")}
+        items={faqItems}
+      />
+
+      {/* ─────────────────────────────────────────────────────────────
           SECTION 8 — FINAL CTA
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 text-center bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden py-20 px-6 text-center bg-[#0A0A0A]">
+        <AuroraBackground particles={false} className="opacity-60" />
+        <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
               {t("cta.title")}
             </h2>
             <p className="text-[#888] mt-3">

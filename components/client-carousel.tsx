@@ -1,56 +1,119 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import { motion } from "motion/react";
+
+type Variant = "dark" | "light";
 
 const clients = [
-  { name: "Aterpa", logo: "/images/clients/aterpa.jpg" },
-  { name: "Coedra", logo: "/images/clients/coedra.jpg" },
-  { name: "Vale", logo: "/images/clients/vale.jpg" },
-  { name: "SG Bras", logo: "/images/clients/sgbras.jpg" },
-  { name: "SCL", logo: "/images/clients/scl.jpg" },
-  { name: "Consórcio Mina.Fábrica", logo: "/images/clients/minafabrica.jpg" },
-  { name: "Engineering do Brasil", logo: "/images/clients/engineering.jpg" },
+  { name: "Vale", base: "vale" },
+  { name: "Engineering do Brasil", base: "engineering" },
+  { name: "Aterpa", base: "aterpa" },
+  { name: "Coedra", base: "coedra" },
+  { name: "SG Bras", base: "sgbras" },
+  { name: "SCL Salum Construções", base: "scl" },
+  { name: "Consórcio Mina Fábrica", base: "minafabrica" },
 ];
 
-export function ClientCarousel() {
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 120, damping: 18 } },
+};
+
+/** Tracks the active theme by watching `html.light`. */
+function useTheme(): Variant {
+  const [variant, setVariant] = useState<Variant>("dark");
+  useEffect(() => {
+    const read = () =>
+      setVariant(document.documentElement.classList.contains("light") ? "light" : "dark");
+    read();
+    const obs = new MutationObserver(read);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+  return variant;
+}
+
+/** Logo with a text fallback — the client is never lost if the image fails. */
+function ClientLogo({ name, src, variant }: { name: string; src: string; variant: Variant }) {
+  const [errored, setErrored] = useState(false);
+
+  if (errored) {
+    return (
+      <span
+        className={`relative text-center text-sm font-semibold uppercase tracking-wide ${
+          variant === "light" ? "text-[#0A0A0A]" : "text-white/70 group-hover:text-white"
+        }`}
+      >
+        {name}
+      </span>
+    );
+  }
+
   return (
-    <Carousel
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-      plugins={[
-        Autoplay({
-          delay: 3000,
-          stopOnInteraction: false,
-        }),
-      ]}
-      className="w-full max-w-6xl mx-auto"
+    <Image
+      src={src}
+      alt={name}
+      width={220}
+      height={84}
+      onError={() => setErrored(true)}
+      className={
+        variant === "light"
+          ? "relative max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          : "relative max-h-12 w-auto object-contain opacity-55 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100"
+      }
+    />
+  );
+}
+
+export function ClientCarousel() {
+  const variant = useTheme();
+
+  return (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
     >
-      <CarouselContent className="-ml-2">
-        {clients.map((client) => (
-          <CarouselItem
+      {clients.map((client) => {
+        const src =
+          variant === "light"
+            ? `/images/clients/${client.base}.png`
+            : `/images/clients/${client.base}-mono.png`;
+
+        return (
+          <motion.div
             key={client.name}
-            className="pl-2 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
+            variants={item}
+            className={
+              variant === "light"
+                ? "group relative flex h-28 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(0,0,0,0.5)]"
+                : "group relative flex h-28 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#D4A847]/40 hover:bg-white/[0.04]"
+            }
           >
-            <div className="flex items-center justify-center p-4 h-20">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                width={160}
-                height={60}
-                className="object-contain max-h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+            {variant === "light" ? (
+              <span
+                className="pointer-events-none absolute inset-0 rounded-2xl ring-2 ring-[#D4A847]/0 transition-all duration-300 group-hover:ring-[#D4A847]/60"
+                aria-hidden="true"
               />
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+            ) : (
+              <span
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: "radial-gradient(120% 120% at 50% 0%, rgba(212,168,71,0.10), transparent 70%)" }}
+                aria-hidden="true"
+              />
+            )}
+            <ClientLogo name={client.name} src={src} variant={variant} />
+          </motion.div>
+        );
+      })}
+    </motion.div>
   );
 }

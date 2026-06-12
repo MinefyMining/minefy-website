@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 /minefy
+
+# Skills CLI tooling (ui-ux-pro-max etc.)
+.agents/
+skills-lock.json

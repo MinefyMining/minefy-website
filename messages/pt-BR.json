@@ -13,8 +13,10 @@
   },
   "home": {
     "hero": {
+      "badge": "Mineração inteligente",
       "title": "Telemetria avançada para mineração de grande porte",
-      "subtitle": "Monitoramento em tempo real de equipamentos pesados. Controle de ciclos, segurança operacional e inteligência de dados para minas a céu aberto.",
+      "subtitle": "Telemetria em tempo real de equipamentos de grande porte: ciclos, combustível e segurança na tela da sua sala de despacho. Tecnologia própria, validada na maior mineradora do Brasil.",
+      "trust": "Tecnologia validada em operação real de mineração de grande porte",
       "cta": "Solicitar Demonstração",
       "ctaSecondary": "Acessar Plataforma"
     },
@@ -26,6 +28,31 @@
         { "value": "#1", "label": "Validado na maior mineradora do Brasil" }
       ]
     },
+    "howItWorks": {
+      "kicker": "Como funciona",
+      "title": "Do equipamento à decisão em três passos",
+      "subtitle": "Telemetria de mineração descomplicada: do barramento do equipamento à tela da sala de despacho.",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "Conectar",
+          "text": "O módulo ActiSky é embarcado no equipamento e lê o barramento CAN J1939 — RPM, combustível, temperatura, pressão e posição GPS."
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "Transmitir",
+          "text": "A telemetria sobe em tempo real para a plataforma Minefy, com resiliência mesmo em áreas de sinal instável: nada se perde."
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "Decidir",
+          "text": "Dashboards, ciclos e alertas chegam à sala de despacho — a operação age antes do problema acontecer, com decisão baseada em dado."
+        }
+      ]
+    },
     "products": {
       "title": "Nossas Soluções",
       "subtitle": "Tecnologia projetada para operações de mineração a céu aberto e equipamentos de grande porte.",
@@ -33,7 +60,7 @@
         {
           "icon": "tablet",
           "title": "Tablets para Mineração",
-          "description": "Três linhas para cada operação: comercial (kit Roboflex), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida, sempre integrada à plataforma Minefy.",
+          "description": "Três linhas para cada operação: comercial (kit robusto de campo), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida, sempre integrada à plataforma Minefy.",
           "badge": "HARDWARE"
         },
         {
@@ -68,6 +95,33 @@
         }
       ]
     },
+    "outcomes": {
+      "kicker": "Resultados",
+      "title": "O que muda na sua operação",
+      "subtitle": "Telemetria não é dado pelo dado — é decisão que aparece no ciclo, na manutenção e na segurança.",
+      "items": [
+        {
+          "icon": "timer",
+          "title": "Mais ciclos por hora",
+          "text": "Controle de ciclos de carregamento e basculamento em tempo real expõe gargalos e ajuda a tirar mais de cada equipamento da frota."
+        },
+        {
+          "icon": "wrench",
+          "title": "Menos parada não planejada",
+          "text": "Temperatura, pressão e RPM monitorados antecipam a falha: a manutenção preditiva do Fleet 360 evita a quebra no meio do pit."
+        },
+        {
+          "icon": "shield",
+          "title": "Segurança que age antes",
+          "text": "Alertas de superaquecimento de freios, fadiga, proximidade e zonas de risco — alinhados à NR-22 — antes do incidente acontecer."
+        },
+        {
+          "icon": "chart",
+          "title": "Decisão por dado, não por planilha",
+          "text": "Dashboards na sala de despacho substituem o relatório manual: KPIs de produção e tendências de frota em tempo real."
+        }
+      ]
+    },
     "authority": {
       "title": "Por que mineradoras escolhem a Minefy",
       "items": [
@@ -96,7 +150,38 @@
       "ctaSecondary": "Falar com Especialista"
     },
     "clients": {
-      "title": "Operações que confiam na Minefy"
+      "title": "Operações que confiam na Minefy",
+      "subtitle": "Tecnologia validada nas operações mais exigentes da mineração e da construção pesada brasileira."
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "O que gestores de mina e equipes de operação perguntam antes de começar.",
+      "items": [
+        {
+          "q": "O que é a telemetria ActiSky?",
+          "a": "São módulos IoT embarcados no equipamento que leem o barramento CAN J1939 e transmitem em tempo real — RPM, combustível, temperatura, pressão e GPS — direto para a plataforma Minefy, onde viram dashboards, ciclos e alertas."
+        },
+        {
+          "q": "Como é a instalação na minha frota?",
+          "a": "Nossa equipe técnica vai até o pit. A instalação nos equipamentos é planejada para não interferir na operação, com configuração dos módulos e treinamento dos operadores no local. Suporte onde a mina acontece, não só por telefone."
+        },
+        {
+          "q": "A plataforma integra com o meu sistema de despacho?",
+          "a": "Sim. A telemetria Minefy já opera integrada a sistema de gerenciamento e despacho de mina na maior mineradora do Brasil, alimentando a sala de controle com dados de equipamentos de grande porte."
+        },
+        {
+          "q": "Meus dados ficam seguros e isolados?",
+          "a": "A plataforma é multi-tenant com isolamento por cliente: cada operação enxerga apenas os seus dados. Arquitetura e processos alinhados à LGPD, com controle de acesso por perfil."
+        },
+        {
+          "q": "Funciona em áreas com sinal instável?",
+          "a": "Sim. Os dados de telemetria são tratados de forma resiliente: em áreas de conectividade intermitente, o envio é reorganizado e nada se perde quando o sinal volta."
+        },
+        {
+          "q": "Qual é o modelo comercial?",
+          "a": "Locação dos tablets industriais + assinatura da plataforma (SaaS), escalando por equipamento e por site. Sem grande investimento inicial: você cresce o uso conforme a operação avança."
+        }
+      ]
     },
     "cta": {
       "title": "Quer ver na prática?",
@@ -165,13 +250,13 @@
         "tiers": [
           {
             "name": "Comercial",
-            "example": "Ex.: Samsung Galaxy Tab A11 + kit Roboflex",
+            "example": "Ex.: Samsung Galaxy Tab A11 + kit veicular robusto",
             "image": "/images/products/tablet-comercial.png",
-            "description": "Tablet de mercado blindado pelo kit Roboflex: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
+            "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
             "specs": [
               "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
-              "Kit Roboflex: case + suporte veicular (MIL-STD-810G)",
-              "Carregamento magnético no berço Roboflex",
+              "Kit veicular robusto: case + suporte veicular (MIL-STD-810G)",
+              "Carregamento magnético no berço veicular robusto",
               "Plug-and-play com a plataforma Minefy"
             ]
           },
@@ -223,7 +308,7 @@
           "GPS de alta precisão",
           "Detecção de ociosidade (idle)"
         ],
-        "image": "/images/products/galileosky-02.webp",
+        "image": "/images/mining/komatsu-closeup.jpg",
         "metric": { "value": "J1939", "label": "Protocolo CAN" }
       },
       {
