@@ -11,6 +11,7 @@ import { LogoIntro } from "@/components/logo-intro";
 import { TechTelemetry } from "@/components/tech-telemetry";
 import { FaqSection } from "@/components/faq-section";
 import { HowItWorks } from "@/components/how-it-works";
+import { OutcomesSection } from "@/components/outcomes-section";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -48,6 +49,12 @@ export default async function HomePage({ params }: Props) {
   const howSteps = t.raw("howItWorks.steps") as Array<{
     icon: string;
     step: string;
+    title: string;
+    text: string;
+  }>;
+
+  const outcomeItems = t.raw("outcomes.items") as Array<{
+    icon: string;
     title: string;
     text: string;
   }>;
@@ -113,6 +120,16 @@ export default async function HomePage({ params }: Props) {
           SECTION 3.5 — TECH / REAL-TIME TELEMETRY
       ───────────────────────────────────────────────────────────── */}
       <TechTelemetry />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3.6 — OUTCOMES (what changes in your operation)
+      ───────────────────────────────────────────────────────────── */}
+      <OutcomesSection
+        kicker={t("outcomes.kicker")}
+        title={t("outcomes.title")}
+        subtitle={t("outcomes.subtitle")}
+        items={outcomeItems}
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 4 — FULL-WIDTH PHOTO BREAK
