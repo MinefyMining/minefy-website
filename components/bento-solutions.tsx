@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ComponentType } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import dynamic from "next/dynamic";
 import {
   Tablet,
@@ -13,9 +13,10 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { ProductCard } from "@/components/product-card";
-import { Safe3D } from "@/components/safe-3d";
+import { Safe3D, TabletFallback } from "@/components/safe-3d";
 
-// WebGL scene — client-only (no SSR).
+// WebGL scene — client-only (no SSR). The chunk (R3F + three) is only fetched
+// when this component first renders, which is gated by `useNearViewport` below.
 const Tablet3D = dynamic(() => import("@/components/tablet-3d"), {
   ssr: false,
   loading: () => (
@@ -24,6 +25,42 @@ const Tablet3D = dynamic(() => import("@/components/tablet-3d"), {
     </div>
   ),
 });
+
+/**
+ * `true` once the observed element gets near the viewport (one-shot — never
+ * flips back, so the 3D scene isn't unmounted on scroll-away). Generous
+ * `rootMargin` prefetches the chunk slightly before the tile is visible.
+ * Falls back to `true` when IntersectionObserver is unavailable.
+ */
+function useNearViewport<T extends Element>(rootMargin = "200px") {
+  const ref = useRef<T | null>(null);
+  const [near, setNear] = useState(false);
+
+  useEffect(() => {
+    if (near) return;
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      // No IntersectionObserver support: skip gating entirely. Deferred to a
+      // timeout so setState isn't called synchronously inside the effect.
+      const id = window.setTimeout(() => setNear(true), 0);
+      return () => window.clearTimeout(id);
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [near, rootMargin]);
+
+  return { ref, near };
+}
 
 type IconKey = "tablet" | "satellite" | "chart" | "truck" | "shield" | "users";
 const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
@@ -51,6 +88,7 @@ interface BentoSolutionsProps {
 function FeaturedTile({ item, href }: { item: SolutionItem; href: string }) {
   const Icon = iconMap[item.icon as IconKey] ?? Tablet;
   const ref = useRef<HTMLAnchorElement>(null);
+  const { ref: sceneRef, near } = useNearViewport<HTMLDivElement>("200px");
 
   function handleMove(e: React.PointerEvent<HTMLAnchorElement>) {
     const el = ref.current;
@@ -99,11 +137,15 @@ function FeaturedTile({ item, href }: { item: SolutionItem; href: string }) {
         </div>
       </div>
 
-      {/* 3D device */}
-      <div className="relative z-10 h-60 min-h-[240px] w-full md:h-auto">
-        <Safe3D>
-          <Tablet3D />
-        </Safe3D>
+      {/* 3D device — WebGL chunk only loads when the tile nears the viewport */}
+      <div ref={sceneRef} className="relative z-10 h-60 min-h-[240px] w-full md:h-auto">
+        {near ? (
+          <Safe3D>
+            <Tablet3D />
+          </Safe3D>
+        ) : (
+          <TabletFallback />
+        )}
       </div>
     </Link>
   );
