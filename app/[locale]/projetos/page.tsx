@@ -1,10 +1,12 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileText, Radio, ShieldCheck, Gauge, Leaf, type LucideIcon } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
+
+const SECTION_ICONS: LucideIcon[] = [FileText, Radio, ShieldCheck, Gauge, Leaf];
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -114,37 +116,50 @@ export default async function ProjectsPage({ params }: Props) {
             />
           </div>
 
-          {/* Content sections */}
-          {sections.map((section, index) => (
-            <ScrollReveal key={index} delay={index * 60}>
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {section.title}
-                </h3>
-                <p className="text-[#888] leading-relaxed">{section.text}</p>
-              </div>
-            </ScrollReveal>
-          ))}
+          {/* Content sections — visual cards with icon + gold accent */}
+          <div className="grid gap-5 md:grid-cols-2">
+            {sections.map((section, index) => {
+              const Icon = SECTION_ICONS[index] ?? FileText;
+              return (
+                <ScrollReveal key={index} delay={index * 60}>
+                  <div className="glass-card group h-full rounded-2xl p-7 transition-colors duration-300 hover:border-[#D4A847]/30">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#D4A847]/25 bg-[#D4A847]/10">
+                        <Icon className="h-5 w-5 text-[#D4A847]" />
+                      </span>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {section.title}
+                      </h3>
+                    </div>
+                    <p className="mt-4 leading-relaxed text-muted-foreground">{section.text}</p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
 
           {/* Impact cards */}
           <ScrollReveal delay={100}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               {impactItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-[#111] rounded-xl p-6 border border-[#222]"
-                >
-                  <h4 className="font-semibold text-foreground mb-2">{item.title}</h4>
-                  <p className="text-sm text-[#888] leading-relaxed">{item.text}</p>
+                <div key={index} className="glass-card rounded-2xl p-6">
+                  <h4 className="mb-2 font-semibold text-foreground">{item.title}</h4>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
                 </div>
               ))}
             </div>
           </ScrollReveal>
 
-          {/* Conclusion */}
+          {/* Conclusion — highlighted quote */}
           <ScrollReveal delay={100}>
-            <div className="bg-[#111] rounded-xl p-8 border border-[#222] text-center mt-12">
-              <p className="text-[#888] leading-relaxed">{conclusion}</p>
+            <div className="glass-card gradient-border relative mt-12 overflow-hidden rounded-2xl p-10 text-center">
+              <span
+                className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-px w-32 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent"
+                aria-hidden="true"
+              />
+              <p className="mx-auto max-w-2xl text-lg font-medium leading-relaxed text-foreground">
+                {conclusion}
+              </p>
             </div>
           </ScrollReveal>
         </div>
