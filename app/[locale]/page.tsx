@@ -9,6 +9,7 @@ import { HeroHome } from "@/components/hero-home";
 import { AuroraBackground } from "@/components/aurora-background";
 import { LogoIntro } from "@/components/logo-intro";
 import { TechTelemetry } from "@/components/tech-telemetry";
+import { FaqSection } from "@/components/faq-section";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -40,6 +41,8 @@ export default async function HomePage({ params }: Props) {
     title: string;
     description: string;
   }>;
+
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
     <>
@@ -199,6 +202,15 @@ export default async function HomePage({ params }: Props) {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 7.5 — FAQ
+      ───────────────────────────────────────────────────────────── */}
+      <FaqSection
+        title={t("faq.title")}
+        subtitle={t("faq.subtitle")}
+        items={faqItems}
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 8 — FINAL CTA
