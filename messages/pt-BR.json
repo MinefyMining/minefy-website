@@ -308,7 +308,7 @@
           "GPS de alta precisão",
           "Detecção de ociosidade (idle)"
         ],
-        "image": "/images/products/galileosky-02.webp",
+        "image": "/images/mining/komatsu-closeup.jpg",
         "metric": { "value": "J1939", "label": "Protocolo CAN" }
       },
       {
