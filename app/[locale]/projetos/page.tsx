@@ -99,7 +99,7 @@ export default async function ProjectsPage({ params }: Props) {
                   </div>
                 ))}
               </div>
-              <TelemetryCard title="Brucutu · ActiSky" />
+              <TelemetryCard title="Operação real · ActiSky" />
             </div>
           </ScrollReveal>
 

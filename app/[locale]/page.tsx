@@ -213,6 +213,9 @@ export default async function HomePage({ params }: Props) {
             <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
               {t("clients.title")}
             </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
+              {t("clients.subtitle")}
+            </p>
             <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent" />
           </ScrollReveal>
           <ScrollReveal delay={100} className="mt-12">

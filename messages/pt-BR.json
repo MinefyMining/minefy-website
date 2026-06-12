@@ -123,7 +123,16 @@
       "ctaSecondary": "Falar com Especialista"
     },
     "clients": {
-      "title": "Operações que confiam na Minefy"
+      "title": "Onde a Minefy já opera",
+      "subtitle": "Tecnologia validada nas operações mais exigentes da mineração e da construção pesada brasileira.",
+      "references": [
+        { "icon": "mountain", "label": "Maior mineradora do Brasil" },
+        { "icon": "network", "label": "Consórcios de mineração" },
+        { "icon": "building", "label": "Construção pesada e infraestrutura" },
+        { "icon": "waves", "label": "Descaracterização de barragens" },
+        { "icon": "truck", "label": "Frotas de equipamentos de grande porte" },
+        { "icon": "clock", "label": "Operações a céu aberto 24/7" }
+      ]
     },
     "faq": {
       "title": "Perguntas frequentes",
