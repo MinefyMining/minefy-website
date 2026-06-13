@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 interface StatItem {
@@ -7,31 +7,50 @@ interface StatItem {
   label: string;
 }
 
+/** Parsed target: either a pure decoration string or an animatable number. */
+type ParsedTarget =
+  | { animatable: false }
+  | {
+      animatable: true;
+      prefix: string;
+      suffix: string;
+      numericValue: number;
+      isDecimal: boolean;
+      decimalPlaces: number;
+    };
+
+function parseTarget(target: string): ParsedTarget {
+  // Extract numeric portion and surrounding decoration (prefix/suffix)
+  const match = target.match(/^([^0-9-]*)(-?[\d,.]+)(.*)$/);
+  if (!match) return { animatable: false };
+
+  const rawNumber = match[2].replace(",", ".");
+  const numericValue = parseFloat(rawNumber);
+  if (isNaN(numericValue)) return { animatable: false };
+
+  const isDecimal = rawNumber.includes(".");
+  return {
+    animatable: true,
+    prefix: match[1],
+    suffix: match[3],
+    numericValue,
+    isDecimal,
+    decimalPlaces: isDecimal ? (rawNumber.split(".")[1]?.length ?? 1) : 0,
+  };
+}
+
 function useCountUp(target: string, isVisible: boolean) {
-  const [display, setDisplay] = useState("0");
+  const parsed = useMemo(() => parseTarget(target), [target]);
+  // Non-animatable targets render verbatim from the first paint (derived state,
+  // no effect needed). Animatable ones count up from "0" once visible.
+  const [display, setDisplay] = useState(() =>
+    parsed.animatable ? "0" : target
+  );
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || !parsed.animatable) return;
 
-    // Extract numeric portion and surrounding decoration (prefix/suffix)
-    const match = target.match(/^([^0-9-]*)(-?[\d,.]+)(.*)$/);
-    if (!match) {
-      setDisplay(target);
-      return;
-    }
-
-    const prefix = match[1];
-    const rawNumber = match[2].replace(",", ".");
-    const suffix = match[3];
-    const numericValue = parseFloat(rawNumber);
-
-    if (isNaN(numericValue)) {
-      setDisplay(target);
-      return;
-    }
-
-    const isDecimal = rawNumber.includes(".");
-    const decimalPlaces = isDecimal ? (rawNumber.split(".")[1]?.length ?? 1) : 0;
+    const { prefix, suffix, numericValue, isDecimal, decimalPlaces } = parsed;
     const duration = 1800;
     const startTime = performance.now();
 
@@ -53,10 +72,11 @@ function useCountUp(target: string, isVisible: boolean) {
       }
     };
 
-    requestAnimationFrame(tick);
-  }, [isVisible, target]);
+    const raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isVisible, parsed]);
 
-  return display;
+  return parsed.animatable ? display : target;
 }
 
 function StatCounter({ value, label }: StatItem) {

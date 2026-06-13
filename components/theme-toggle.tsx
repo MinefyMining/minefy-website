@@ -1,17 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
+import { useIsLight, useMounted } from "@/lib/use-theme-store";
 
 /** Dark/light theme toggle — flips `html.light` and persists in localStorage. */
 export function ThemeToggle({ className = "" }: { className?: string }) {
-  const [light, setLight] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setLight(document.documentElement.classList.contains("light"));
-  }, []);
+  const light = useIsLight();
+  const mounted = useMounted();
 
   function toggle() {
     const next = !document.documentElement.classList.contains("light");
@@ -21,7 +16,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     } catch {
       // ignore
     }
-    setLight(next);
+    // `light` updates automatically via the MutationObserver in useIsLight.
   }
 
   return (
