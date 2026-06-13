@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useIsLight } from "@/lib/use-theme-store";
 
 type Variant = "dark" | "light";
 
@@ -24,20 +25,6 @@ const item = {
   hidden: { opacity: 0, y: 18 },
   show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 120, damping: 18 } },
 };
-
-/** Tracks the active theme by watching `html.light`. */
-function useTheme(): Variant {
-  const [variant, setVariant] = useState<Variant>("dark");
-  useEffect(() => {
-    const read = () =>
-      setVariant(document.documentElement.classList.contains("light") ? "light" : "dark");
-    read();
-    const obs = new MutationObserver(read);
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => obs.disconnect();
-  }, []);
-  return variant;
-}
 
 /** Logo with a text fallback — the client is never lost if the image fails. */
 function ClientLogo({ name, src, variant }: { name: string; src: string; variant: Variant }) {
@@ -72,7 +59,7 @@ function ClientLogo({ name, src, variant }: { name: string; src: string; variant
 }
 
 export function ClientCarousel() {
-  const variant = useTheme();
+  const variant: Variant = useIsLight() ? "light" : "dark";
 
   return (
     <motion.div

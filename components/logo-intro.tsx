@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import { useMounted } from "@/lib/use-theme-store";
 
 const INTRO_W = 240; // px — rendered width of the intro logo
 
@@ -18,16 +19,26 @@ type Fly = { x: number; y: number; scale: number };
  */
 export function LogoIntro() {
   const reduce = useReducedMotion();
-  // Start in "gen" so the overlay is present on first paint (no page flash,
-  // and SSR === first client render → no hydration mismatch).
+  const mounted = useMounted();
+  // Start in "gen" so the overlay can play once mounted on the client. The
+  // opaque overlay is only rendered after mount (see the `mounted` gate below):
+  // without JS — and during SSR / the first hydration render — nothing is
+  // painted, so no-JS visitors see the real page instead of a black screen.
+  // `useMounted` is hydration-safe (SSR and first client render both `false`).
   const [phase, setPhase] = useState<Phase>("gen");
   const [fly, setFly] = useState<Fly | null>(null);
 
+  // Whether the intro should play at all: skipped under reduced-motion or when
+  // it already played this session. Evaluated only after mount (client-only),
+  // so SSR/no-JS render nothing and there is no hydration mismatch.
+  const skip =
+    mounted &&
+    (reduce === true ||
+      (typeof window !== "undefined" &&
+        sessionStorage.getItem("minefy-intro") !== null));
+
   useEffect(() => {
-    if (reduce || sessionStorage.getItem("minefy-intro")) {
-      setPhase("done");
-      return;
-    }
+    if (!mounted || skip) return;
     document.body.style.overflow = "hidden";
     const t = setTimeout(() => {
       const el = document.getElementById("site-logo");
@@ -47,9 +58,12 @@ export function LogoIntro() {
       clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [reduce]);
+  }, [mounted, skip]);
 
-  if (phase === "done") return null;
+  // Don't render the opaque overlay during SSR / before mount or without JS
+  // (no-JS visitors would otherwise be stuck on a black screen), nor when the
+  // intro is skipped or already finished.
+  if (!mounted || skip || phase === "done") return null;
 
   const finish = () => {
     sessionStorage.setItem("minefy-intro", "1");
