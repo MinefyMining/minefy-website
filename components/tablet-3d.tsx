@@ -64,7 +64,8 @@ function useScreenTexture() {
     pts.forEach((p, i) => {
       const px = 36 + (i * (c.width - 72)) / (pts.length - 1);
       const py = 300 + p * 150;
-      i === 0 ? x.moveTo(px, py) : x.lineTo(px, py);
+      if (i === 0) x.moveTo(px, py);
+      else x.lineTo(px, py);
     });
     x.stroke();
     // area glow under sparkline
