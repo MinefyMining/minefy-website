@@ -3,8 +3,11 @@
 import { Component, type ReactNode } from "react";
 import { Tablet } from "lucide-react";
 
-/** Static fallback shown when WebGL is unavailable or the 3D scene errors. */
-function TabletFallback() {
+/**
+ * Static fallback shown when WebGL is unavailable, the 3D scene errors, or the
+ * scene hasn't been requested yet (viewport-gated lazy load).
+ */
+export function TabletFallback() {
   return (
     <div className="flex h-full w-full items-center justify-center p-6">
       <div className="gradient-border relative flex aspect-[3/4] w-40 items-center justify-center rounded-2xl border border-primary/20 bg-gradient-to-b from-[#161310] to-[#0A0A0A]">

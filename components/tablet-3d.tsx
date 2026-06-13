@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, RoundedBox } from "@react-three/drei";
+import { useReducedMotion } from "motion/react";
 
 /** Draw a branded telemetry dashboard onto a canvas → used as the screen texture. */
 function useScreenTexture() {
@@ -124,12 +125,13 @@ function roundRect(
   ctx.closePath();
 }
 
-function Device() {
+function Device({ reducedMotion }: { reducedMotion: boolean }) {
   const group = useRef<THREE.Group>(null);
   const screen = useScreenTexture();
 
+  // Cursor parallax — disabled under `prefers-reduced-motion`.
   useFrame((state) => {
-    if (!group.current) return;
+    if (reducedMotion || !group.current) return;
     const px = state.pointer.x;
     const py = state.pointer.y;
     group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, -0.35 + px * 0.4, 0.06);
@@ -145,7 +147,14 @@ function Device() {
   ];
 
   return (
-    <Float speed={1.6} rotationIntensity={0.32} floatIntensity={0.6}>
+    // `enabled={false}` freezes the idle float under reduced motion — the
+    // tablet stays rendered, just static.
+    <Float
+      speed={1.6}
+      rotationIntensity={0.32}
+      floatIntensity={0.6}
+      enabled={!reducedMotion}
+    >
       <group ref={group} rotation={[0.08, -0.35, 0]}>
         {/* gold rim plate behind the body */}
         <RoundedBox args={[2.66, 3.66, 0.1]} radius={0.2} smoothness={6} position={[0, 0, -0.06]}>
@@ -209,20 +218,27 @@ function Device() {
   );
 }
 
-/** Interactive 3D industrial tablet (ActiSky) — floats, follows the cursor. */
+/**
+ * Interactive 3D industrial tablet (ActiSky) — floats and follows the cursor.
+ * Under `prefers-reduced-motion: reduce` the device renders fully static
+ * (no float, no parallax) and the render loop runs on demand only.
+ */
 export default function Tablet3D() {
+  const reducedMotion = useReducedMotion() ?? false;
+
   return (
     <Canvas
       camera={{ position: [0, 0, 6.2], fov: 34 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
+      frameloop={reducedMotion ? "demand" : "always"}
       style={{ background: "transparent" }}
     >
       <ambientLight intensity={0.5} />
       <directionalLight position={[4, 6, 5]} intensity={1.4} />
       <pointLight position={[-5, 2, 4]} color="#D4A847" intensity={45} distance={20} />
       <pointLight position={[5, -3, 3]} color="#F5D98B" intensity={22} distance={18} />
-      <Device />
+      <Device reducedMotion={reducedMotion} />
     </Canvas>
   );
 }
