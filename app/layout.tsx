@@ -1,4 +1,21 @@
 import "./globals.css";
+import { Inter, JetBrains_Mono } from "next/font/google";
+
+// Self-hosted via next/font — eliminates the render-blocking Google Fonts
+// @import and the extra network round-trip. Same families and weights as before.
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -6,7 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Apply saved theme before paint to avoid a flash */}
         <script
