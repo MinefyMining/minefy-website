@@ -95,9 +95,9 @@ export function Header() {
             <SheetTrigger className="lg:hidden" aria-label="Menu">
               <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-white"}`} />
             </SheetTrigger>
-            <SheetContent side="right" className="w-72 bg-[#111] border-l border-[#222] flex flex-col">
+            <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
               <SheetTitle className="sr-only">Menu</SheetTitle>
-              <div className="pb-6 border-b border-[#222]">
+              <div className="pb-6 border-b border-border">
                 <Image src="/images/logo-transparente.png" alt="Minefy" width={800} height={570} className="w-[70px] h-auto" />
               </div>
               <nav className="mt-6 flex flex-col gap-1 flex-1">
@@ -114,7 +114,7 @@ export function Header() {
                   </Link>
                 ))}
               </nav>
-              <div className="mt-auto pt-6 border-t border-[#222] space-y-3">
+              <div className="mt-auto pt-6 border-t border-border space-y-3">
                 <a
                   href="https://app.minefymining.com"
                   target="_blank"
@@ -124,7 +124,7 @@ export function Header() {
                   {t("platform")}
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
-                <p className="text-xs text-[#666] text-center">{tFooter("email")}</p>
+                <p className="text-xs text-muted-foreground text-center">{tFooter("email")}</p>
               </div>
             </SheetContent>
           </Sheet>
