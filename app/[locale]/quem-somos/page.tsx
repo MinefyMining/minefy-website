@@ -150,7 +150,7 @@ export default async function AboutPage({ params }: Props) {
               href="https://app.minefymining.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-[#444] text-foreground px-8 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
+              className="inline-flex items-center gap-2 border border-foreground/20 text-foreground px-8 py-3 rounded-lg font-medium text-sm hover:border-foreground/40 hover:bg-foreground/5 transition-colors duration-200"
             >
               {t("cta.platform")}
               <ExternalLink className="h-4 w-4" />

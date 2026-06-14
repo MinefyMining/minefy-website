@@ -142,7 +142,6 @@
    from-[#0A0A0A]) — different classes, intentionally dark in both themes. */
 .light .bg-\[\#0D0D0D\] { background-color: #F4F2EC; }
 .light .border-\[\#333\] { border-color: #DCD7CC; }
-.light .border-\[\#444\] { border-color: #CFC9BC; }
 
 html {
   scroll-behavior: smooth;
