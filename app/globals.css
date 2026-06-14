@@ -134,25 +134,15 @@
   background: #d8d2c4;
 }
 
-/* Remap the hardcoded dark utility classes used by content sections.
+/* Light-theme remap for the few hardcoded utilities that DON'T have a semantic
+   token (intermediate greys). Content surfaces now use semantic tokens
+   (bg-background/bg-card/bg-secondary/border-border/text-muted-foreground), so
+   they theme automatically and no longer need an override here.
    Hero/photo-breaks use opacity/gradient variants (e.g. bg-[#0A0A0A]/82,
-   from-[#0A0A0A]) which are different classes and intentionally stay dark. */
-.light .bg-\[\#0A0A0A\] { background-color: #FAFAF7; }
-.light .bg-\[\#111\],
-.light .bg-\[\#111111\] { background-color: #FFFFFF; }
+   from-[#0A0A0A]) — different classes, intentionally dark in both themes. */
 .light .bg-\[\#0D0D0D\] { background-color: #F4F2EC; }
-.light .bg-\[\#1A1A1A\] { background-color: #F2F0EA; }
-.light .border-\[\#222\],
-.light .border-\[\#222222\] { border-color: #E7E3DA; }
 .light .border-\[\#333\] { border-color: #DCD7CC; }
 .light .border-\[\#444\] { border-color: #CFC9BC; }
-.light .text-\[\#888\],
-.light .text-\[\#888888\],
-.light .text-\[\#666\],
-.light .text-\[\#777\],
-.light .text-\[\#999\],
-.light .text-\[\#aaa\] { color: #6A6258; }
-.light .border-y { border-color: #E7E3DA; }
 
 html {
   scroll-behavior: smooth;
