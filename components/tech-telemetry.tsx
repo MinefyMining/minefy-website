@@ -13,7 +13,7 @@ const FEATURES = [
 
 export function TechTelemetry() {
   return (
-    <section id="tecnologia" className="relative overflow-hidden bg-[#0A0A0A] py-24 px-6 scroll-mt-24">
+    <section id="tecnologia" className="relative overflow-hidden bg-background py-24 px-6 scroll-mt-24">
       {/* faint background glow */}
       <div
         className="pointer-events-none absolute inset-0"

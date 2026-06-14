@@ -39,7 +39,7 @@ export default async function SolutionsPage({ params }: Props) {
   }>;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
       <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">
@@ -82,13 +82,13 @@ export default async function SolutionsPage({ params }: Props) {
                     className="py-20 scroll-mt-24 max-w-6xl mx-auto"
                   >
                     <div className="text-center mb-12">
-                      <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
                       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                         {item.title}
                       </h2>
-                      <p className="text-[#888] leading-relaxed max-w-2xl mx-auto">
+                      <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                         {item.description}
                       </p>
                     </div>
@@ -97,7 +97,7 @@ export default async function SolutionsPage({ params }: Props) {
                       {item.tiers.map((tier) => (
                         <div
                           key={tier.name}
-                          className="group flex flex-col rounded-2xl border border-[#222] bg-[#111] overflow-hidden transition-all duration-300 hover:border-[#D4A847]/50 hover:-translate-y-1"
+                          className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-[#D4A847]/50 hover:-translate-y-1"
                         >
                           {/* Product image — studio stage */}
                           <div className="relative h-64 overflow-hidden flex items-center justify-center p-7 bg-gradient-to-b from-[#191919] to-[#0C0C0C]">
@@ -146,10 +146,10 @@ export default async function SolutionsPage({ params }: Props) {
                             <p className="text-base font-bold text-[#D4A847]">
                               {tier.name}
                             </p>
-                            <p className="text-xs text-[#666] mt-1 mb-3">
+                            <p className="text-xs text-muted-foreground mt-1 mb-3">
                               {tier.example}
                             </p>
-                            <p className="text-sm text-[#aaa] leading-relaxed mb-5">
+                            <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                               {tier.description}
                             </p>
                             <div className="mt-auto flex flex-col gap-2.5 border-t border-[#1F1F1F] pt-4">
@@ -159,7 +159,7 @@ export default async function SolutionsPage({ params }: Props) {
                                   className="flex items-start gap-2.5"
                                 >
                                   <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
-                                  <span className="text-xs text-[#888]">
+                                  <span className="text-xs text-muted-foreground">
                                     {spec}
                                   </span>
                                 </div>
@@ -173,7 +173,7 @@ export default async function SolutionsPage({ params }: Props) {
                 </ScrollReveal>
 
                 {index < items.length - 1 && (
-                  <div className="h-px bg-[#222] max-w-5xl mx-auto" />
+                  <div className="h-px bg-border max-w-5xl mx-auto" />
                 )}
               </div>
             );
@@ -204,7 +204,7 @@ export default async function SolutionsPage({ params }: Props) {
                         <p className="font-bold text-[#D4A847] text-xl leading-none">
                           {item.metric.value}
                         </p>
-                        <p className="text-xs text-[#888] mt-0.5">
+                        <p className="text-xs text-muted-foreground mt-0.5">
                           {item.metric.label}
                         </p>
                       </div>
@@ -212,13 +212,13 @@ export default async function SolutionsPage({ params }: Props) {
 
                     {/* Content */}
                     <div className="w-full md:w-1/2">
-                      <span className="text-xs uppercase tracking-wider bg-[#1A1A1A] text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
                       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                         {item.title}
                       </h2>
-                      <p className="text-[#888] mb-6 leading-relaxed">
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
                         {item.description}
                       </p>
 
@@ -228,7 +228,7 @@ export default async function SolutionsPage({ params }: Props) {
                           {item.features.map((feature) => (
                             <div key={feature} className="flex items-start gap-3">
                               <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
-                              <span className="text-sm text-[#888]">{feature}</span>
+                              <span className="text-sm text-muted-foreground">{feature}</span>
                             </div>
                           ))}
                         </div>
@@ -244,7 +244,7 @@ export default async function SolutionsPage({ params }: Props) {
                             {item.safetyFeatures.map((feature) => (
                               <div key={feature} className="flex items-start gap-3">
                                 <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
-                                <span className="text-sm text-[#888]">{feature}</span>
+                                <span className="text-sm text-muted-foreground">{feature}</span>
                               </div>
                             ))}
                           </div>
@@ -261,7 +261,7 @@ export default async function SolutionsPage({ params }: Props) {
                             {item.operationalFeatures.map((feature) => (
                               <div key={feature} className="flex items-start gap-3">
                                 <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
-                                <span className="text-sm text-[#888]">{feature}</span>
+                                <span className="text-sm text-muted-foreground">{feature}</span>
                               </div>
                             ))}
                           </div>
@@ -274,7 +274,7 @@ export default async function SolutionsPage({ params }: Props) {
 
               {/* Divider */}
               {index < items.length - 1 && (
-                <div className="h-px bg-[#222] max-w-5xl mx-auto" />
+                <div className="h-px bg-border max-w-5xl mx-auto" />
               )}
             </div>
           );
@@ -290,7 +290,7 @@ export default async function SolutionsPage({ params }: Props) {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 {t("cta.title")}
               </h2>
-              <p className="text-[#888] mb-8 leading-relaxed">
+              <p className="text-muted-foreground mb-8 leading-relaxed">
                 {t("cta.text")}
               </p>
               <Link

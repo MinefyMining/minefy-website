@@ -29,7 +29,7 @@ export default async function AboutPage({ params }: Props) {
   }>;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-24">
@@ -54,10 +54,10 @@ export default async function AboutPage({ params }: Props) {
       <section className="py-20 px-6">
         <ScrollReveal>
           <div className="max-w-3xl mx-auto">
-            <p className="text-lg text-[#888] leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               {t("intro.text")}
             </p>
-            <div className="bg-[#111] p-6 rounded-xl border-l-4 border-[#D4A847] mt-8">
+            <div className="bg-card p-6 rounded-xl border-l-4 border-[#D4A847] mt-8">
               <p className="text-lg font-medium text-foreground italic">
                 {t("intro.highlight")}
               </p>
@@ -67,13 +67,13 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* ── Numbers ── */}
-      <section className="py-16 bg-[#111] border-y border-[#222] px-6">
+      <section className="py-16 bg-card border-y border-border px-6">
         <ScrollReveal>
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {numberItems.map((item, index) => (
               <div key={index}>
                 <p className="text-4xl font-bold text-[#D4A847]">{item.value}</p>
-                <p className="text-sm text-[#888] mt-1">{item.label}</p>
+                <p className="text-sm text-muted-foreground mt-1">{item.label}</p>
               </div>
             ))}
           </div>
@@ -87,19 +87,19 @@ export default async function AboutPage({ params }: Props) {
           {/* Mission + Vision */}
           <ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-[#111] p-8 rounded-xl border border-[#222]">
+              <div className="bg-card p-8 rounded-xl border border-border">
                 <h3 className="text-lg font-semibold text-[#D4A847] mb-3">
                   {t("mission.title")}
                 </h3>
-                <p className="text-[#888] leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {t("mission.text")}
                 </p>
               </div>
-              <div className="bg-[#111] p-8 rounded-xl border border-[#222]">
+              <div className="bg-card p-8 rounded-xl border border-border">
                 <h3 className="text-lg font-semibold text-[#D4A847] mb-3">
                   {t("vision.title")}
                 </h3>
-                <p className="text-[#888] leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {t("vision.text")}
                 </p>
               </div>
@@ -108,7 +108,7 @@ export default async function AboutPage({ params }: Props) {
 
           {/* Values */}
           <ScrollReveal delay={100}>
-            <div className="bg-[#111] p-8 rounded-xl border border-[#222]">
+            <div className="bg-card p-8 rounded-xl border border-border">
               <h3 className="text-lg font-semibold text-[#D4A847] mb-6">
                 {t("values.title")}
               </h3>
@@ -120,7 +120,7 @@ export default async function AboutPage({ params }: Props) {
                       <p className="font-semibold text-foreground text-sm mb-1">
                         {item.title}
                       </p>
-                      <p className="text-[#888] text-sm leading-relaxed">
+                      <p className="text-muted-foreground text-sm leading-relaxed">
                         {item.text}
                       </p>
                     </div>

@@ -61,7 +61,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
       <div className="flex items-center justify-between">
         <div>
           <p className="font-mono text-sm font-semibold text-foreground">{title}</p>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-[#777]">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
             live · can j1939
           </p>
         </div>
@@ -99,11 +99,11 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
           { l: "temp", v: `${temp}°` },
           { l: "seg", v: "ok" },
         ].map((c) => (
-          <div key={c.l} className="rounded-lg border border-[#222] bg-[#0D0D0D] px-2 py-2 text-center">
+          <div key={c.l} className="rounded-lg border border-border bg-[#0D0D0D] px-2 py-2 text-center">
             <p className="font-mono text-sm font-semibold uppercase tabular-nums text-[#D4A847]">
               {c.v}
             </p>
-            <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-[#777]">{c.l}</p>
+            <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">{c.l}</p>
           </div>
         ))}
       </div>

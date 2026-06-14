@@ -75,7 +75,7 @@ export function LogoIntro() {
     <div className="fixed inset-0 z-[120] grid place-items-center" style={{ pointerEvents: "none" }}>
       {/* Background — fades out as the logo flies into place */}
       <motion.div
-        className="absolute inset-0 bg-[#0A0A0A]"
+        className="absolute inset-0 bg-background"
         animate={{ opacity: phase === "fly" ? 0 : 1 }}
         transition={{ duration: 0.7, ease: "easeInOut" }}
       />

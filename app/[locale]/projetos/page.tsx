@@ -39,7 +39,7 @@ export default async function ProjectsPage({ params }: Props) {
   const conclusion = t("vargemGrande.conclusion") as string;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-24">
@@ -66,7 +66,7 @@ export default async function ProjectsPage({ params }: Props) {
 
           {/* Badge */}
           <ScrollReveal>
-            <span className="inline-block bg-[#1A1A1A] text-[#D4A847] px-4 py-2 rounded-lg text-xs uppercase tracking-wider">
+            <span className="inline-block bg-secondary text-[#D4A847] px-4 py-2 rounded-lg text-xs uppercase tracking-wider">
               {t("vargemGrande.badge")}
             </span>
           </ScrollReveal>
@@ -80,7 +80,7 @@ export default async function ProjectsPage({ params }: Props) {
 
           {/* Intro */}
           <ScrollReveal delay={120}>
-            <p className="text-lg text-[#888] mb-12 leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
               {t("vargemGrande.intro")}
             </p>
           </ScrollReveal>
@@ -92,10 +92,10 @@ export default async function ProjectsPage({ params }: Props) {
                 {metrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="rounded-xl border border-[#222] bg-[#111] p-6"
+                    className="rounded-xl border border-border bg-card p-6"
                   >
                     <p className="text-2xl font-bold text-[#D4A847]">{metric.value}</p>
-                    <p className="mt-1 text-xs uppercase tracking-wider text-[#888]">
+                    <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
                       {metric.label}
                     </p>
                   </div>
@@ -173,7 +173,7 @@ export default async function ProjectsPage({ params }: Props) {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               {t("cta.title")}
             </h2>
-            <p className="text-[#888] mb-8">{t("cta.text")}</p>
+            <p className="text-muted-foreground mb-8">{t("cta.text")}</p>
             <Link
               href="/contato"
               className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"

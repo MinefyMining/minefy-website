@@ -34,7 +34,7 @@ export default async function ContactPage({ params }: Props) {
   }>;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-background">
 
       {/* ── Hero with mine photo ── */}
       <section className="relative min-h-[45vh] flex items-end overflow-hidden">
@@ -68,7 +68,7 @@ export default async function ContactPage({ params }: Props) {
             </ScrollReveal>
 
             <ScrollReveal delay={80}>
-              <p className="text-[#888] mb-8 leading-relaxed">
+              <p className="text-muted-foreground mb-8 leading-relaxed">
                 {t("intro")}
               </p>
             </ScrollReveal>
@@ -78,12 +78,12 @@ export default async function ContactPage({ params }: Props) {
                 const Icon = iconMap[item.icon] ?? Mail;
 
                 const card = (
-                  <div className="bg-[#111] p-4 rounded-lg border border-[#222] flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#1A1A1A] flex items-center justify-center shrink-0">
+                  <div className="bg-card p-4 rounded-lg border border-border flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
                       <Icon className="w-4 h-4 text-[#D4A847]" />
                     </div>
                     <div>
-                      <p className="text-xs text-[#888] uppercase tracking-wider mb-0.5">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
                         {item.label}
                       </p>
                       <p className="text-sm font-medium text-foreground">
@@ -115,7 +115,7 @@ export default async function ContactPage({ params }: Props) {
 
           {/* Right: form */}
           <ScrollReveal delay={150}>
-            <div className="bg-[#111] rounded-xl p-8 border border-[#222]">
+            <div className="bg-card rounded-xl p-8 border border-border">
               <ContactForm variant="full" />
             </div>
           </ScrollReveal>

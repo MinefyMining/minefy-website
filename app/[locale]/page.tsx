@@ -80,7 +80,7 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 2 — STATS
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 bg-[#0A0A0A] border-y border-[#222]">
+      <section className="py-16 bg-background border-y border-border">
         <div className="max-w-7xl mx-auto px-6">
           <StatsBar />
         </div>
@@ -99,13 +99,13 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 3 — SOLUTIONS GRID
       ───────────────────────────────────────────────────────────── */}
-      <section id="solucoes" className="py-20 px-6 bg-[#0A0A0A] scroll-mt-24">
+      <section id="solucoes" className="py-20 px-6 bg-background scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
               {t("products.title")}
             </h2>
-            <p className="text-[#888] text-center mt-3 max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-center mt-3 max-w-2xl mx-auto">
               {t("products.subtitle")}
             </p>
           </ScrollReveal>
@@ -156,7 +156,7 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 5 — AUTHORITY — Why choose Minefy
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-[#111]">
+      <section className="py-20 px-6 bg-card">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl font-bold text-foreground mb-12">
@@ -167,11 +167,11 @@ export default async function HomePage({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {authorityItems.map((item, index) => (
               <ScrollReveal key={index} delay={index * 100}>
-                <div className="bg-[#0A0A0A] rounded-xl p-8 border border-[#222] transition-colors duration-200 hover:border-[#333]">
+                <div className="bg-background rounded-xl p-8 border border-border transition-colors duration-200 hover:border-[#333]">
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-[#888] leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -184,7 +184,7 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 6 — TEST DRIVE CTA
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-[#0A0A0A]">
+      <section className="py-20 px-6 bg-background">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
             <div className="glass-card relative overflow-hidden rounded-2xl p-12">
@@ -193,7 +193,7 @@ export default async function HomePage({ params }: Props) {
               <h2 className="text-3xl font-bold text-foreground">
                 {t("testDrive.title")}
               </h2>
-              <p className="text-[#888] mt-3 max-w-xl mx-auto">
+              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
                 {t("testDrive.subtitle")}
               </p>
               <div className="mt-8 flex flex-wrap gap-3 justify-center">
@@ -221,7 +221,7 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 7 — CLIENTS
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-[#0A0A0A]">
+      <section className="py-20 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
@@ -253,14 +253,14 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 8 — FINAL CTA
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden py-20 px-6 text-center bg-[#0A0A0A]">
+      <section className="relative overflow-hidden py-20 px-6 text-center bg-background">
         <AuroraBackground particles={false} className="opacity-60" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
               {t("cta.title")}
             </h2>
-            <p className="text-[#888] mt-3">
+            <p className="text-muted-foreground mt-3">
               {t("cta.subtitle")}
             </p>
             <div className="mt-8">
