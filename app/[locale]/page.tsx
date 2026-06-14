@@ -207,7 +207,7 @@ export default async function HomePage({ params }: Props) {
                 </a>
                 <Link
                   href="/contato"
-                  className="inline-flex items-center border border-[#444] text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-[#666] hover:bg-white/5 transition-colors duration-200"
+                  className="inline-flex items-center border border-foreground/20 text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-foreground/40 hover:bg-foreground/5 transition-colors duration-200"
                 >
                   {t("testDrive.ctaSecondary")}
                 </Link>
