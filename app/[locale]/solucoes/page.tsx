@@ -198,7 +198,7 @@ export default async function SolutionsPage({ params }: Props) {
                     {/* Image — studio-stage cutout (transparent PNG) or full-bleed photo */}
                     <div className="relative aspect-video w-full md:w-1/2 shrink-0 rounded-xl overflow-hidden">
                       {item.studioImage ? (
-                        <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-[#191919] to-[#0C0C0C] p-6">
+                        <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-[#191919] to-[#0C0C0C] p-3">
                           <div
                             className="absolute inset-0"
                             style={{
@@ -219,7 +219,7 @@ export default async function SolutionsPage({ params }: Props) {
                             src={item.image}
                             alt={item.title}
                             fill
-                            className="relative z-10 object-contain p-6"
+                            className="relative z-10 object-contain"
                             style={{ filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.55))" }}
                             sizes="(max-width: 768px) 100vw, 50vw"
                           />

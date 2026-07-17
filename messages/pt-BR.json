@@ -262,7 +262,7 @@
         "tiers": [
           {
             "name": "Comercial",
-            "example": "Ex.: Samsung Galaxy Tab A11 + kit veicular robusto",
+            "example": "Ex.: tablet de última geração + kit veicular robusto",
             "image": "/images/products/tablet-comercial.png",
             "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
             "specs": [
@@ -274,14 +274,14 @@
           },
           {
             "name": "Semi-industrial",
-            "example": "Ex.: Samsung Galaxy Tab Active5",
+            "example": "Ex.: tablet semi-industrial de última geração",
             "image": "/images/products/tablet-semi.png",
             "description": "Robustez de fábrica para quem precisa de mobilidade em campo. Vedação IP68, certificação militar e tela que responde com luva — sem depender de case externo.",
             "specs": [
               "IP68 + MIL-STD-810H (água, poeira e queda)",
               "Tela 8\" 1920×1200 · toque com luva",
               "Bateria removível para turnos longos",
-              "Gestão remota via Samsung Knox / MDM"
+              "Gestão remota via MDM corporativo"
             ]
           },
           {
