@@ -1,10 +1,10 @@
 "use client";
 
-import { Tablet, Satellite, BarChart3, Truck, ShieldCheck, Users, ArrowUpRight } from "lucide-react";
+import { Tablet, Satellite, BarChart3, Truck, ShieldCheck, Users, Car, Wind, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useRef, type ComponentType } from "react";
 
-type IconKey = "tablet" | "satellite" | "chart" | "truck" | "shield" | "users";
+type IconKey = "tablet" | "satellite" | "chart" | "truck" | "shield" | "users" | "car" | "wind";
 
 const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
   tablet: Tablet,
@@ -13,6 +13,8 @@ const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
   truck: Truck,
   shield: ShieldCheck,
   users: Users,
+  car: Car,
+  wind: Wind,
 };
 
 interface ProductCardProps {
