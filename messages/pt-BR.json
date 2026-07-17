@@ -96,7 +96,7 @@
         {
           "icon": "car",
           "title": "Caminhonetes Operacionais",
-          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e manutenção incluída, sem imobilizar capital em frota própria.",
+          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e frota sempre em plena condição, sem imobilizar capital em frota própria.",
           "badge": "LOCAÇÃO"
         },
         {
@@ -391,12 +391,12 @@
         "id": "caminhonetes",
         "badge": "LOCAÇÃO",
         "title": "Caminhonetes Operacionais",
-        "description": "Frota de caminhonetes 4x4 equipadas para operação de campo em mineração — sinalização veicular, giroflex e prontas para o dia a dia da mina. Contrato de locação flexível, com manutenção incluída, sem imobilizar capital em frota própria.",
+        "description": "Frota de caminhonetes 4x4 equipadas para operação de campo em mineração — sinalização veicular, giroflex e prontas para o dia a dia da mina. Contrato de locação flexível, com pacotes sob medida, sem imobilizar capital em frota própria.",
         "features": [
           "Veículos 4x4 de última geração equipados para operação de campo",
           "Giroflex, sinalização e kit de segurança conforme normas da operação",
-          "Manutenção preventiva e corretiva incluída na locação",
-          "Substituição rápida em caso de pane — frota reserva",
+          "Frota zero-quilômetro ou de baixa rodagem, sempre em plena condição de operação",
+          "Pacotes sob medida para sua demanda — quilometragem livre ou planos que cabem no seu orçamento",
           "Contrato flexível, sem imobilizar capital em frota própria",
           "Rastreamento e telemetria ActiSky integráveis sob demanda"
         ],
