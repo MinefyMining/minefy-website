@@ -35,6 +35,10 @@ export default async function SolutionsPage({ params }: Props) {
     safetyFeatures?: string[];
     operationalFeatures?: string[];
     image: string;
+    /** When true, renders `image` on a dark "studio stage" (like the tablet
+     * tiers) instead of a full-bleed cover photo — for product cutouts with
+     * a transparent background rather than on-site photography. */
+    studioImage?: boolean;
     metric: { value: string; label: string };
   }>;
 
@@ -191,15 +195,44 @@ export default async function SolutionsPage({ params }: Props) {
                       isEven ? "md:flex-row" : "md:flex-row-reverse"
                     }`}
                   >
-                    {/* Image */}
+                    {/* Image — studio-stage cutout (transparent PNG) or full-bleed photo */}
                     <div className="relative aspect-video w-full md:w-1/2 shrink-0 rounded-xl overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                      {item.studioImage ? (
+                        <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-[#191919] to-[#0C0C0C] p-3">
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              background:
+                                "radial-gradient(120% 80% at 50% 30%, rgba(255,255,255,0.06), transparent 60%)",
+                            }}
+                            aria-hidden="true"
+                          />
+                          <div
+                            className="absolute inset-x-0 bottom-0 h-28"
+                            style={{
+                              background:
+                                "radial-gradient(60% 100% at 50% 100%, rgba(212,168,71,0.16), transparent 70%)",
+                            }}
+                            aria-hidden="true"
+                          />
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="relative z-10 object-contain"
+                            style={{ filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.55))" }}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
+                      ) : (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      )}
                       <div className="absolute bottom-4 left-4 bg-[#0A0A0A]/80 px-4 py-2 rounded-lg">
                         <p className="font-bold text-[#D4A847] text-xl leading-none">
                           {item.metric.value}

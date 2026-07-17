@@ -92,6 +92,18 @@
           "title": "Consultoria",
           "description": "Profissionais com experiência em operações de mina. Implantação de telemetria, treinamento de operadores e otimização de processos.",
           "badge": "SERVIÇO"
+        },
+        {
+          "icon": "car",
+          "title": "Caminhonetes Operacionais",
+          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e frota sempre em plena condição, sem imobilizar capital em frota própria.",
+          "badge": "LOCAÇÃO"
+        },
+        {
+          "icon": "wind",
+          "title": "Compressores de Ar",
+          "description": "Locação de compressores de ar portáteis Atlas Copco, linha XAS 47-97, para perfuração, jateamento e ferramentas pneumáticas na mina.",
+          "badge": "EQUIPAMENTO"
         }
       ]
     },
@@ -236,7 +248,7 @@
   "solutions": {
     "metadata": {
       "title": "Soluções — Minefy",
-      "description": "Tablets industriais, telemetria ActiSky, Analytics, Fleet 360, Safety e Consultoria para mineração a céu aberto e equipamentos de grande porte."
+      "description": "Tablets industriais, telemetria ActiSky, Analytics, Fleet 360, Safety, Consultoria, locação de caminhonetes operacionais e compressores de ar para mineração a céu aberto e equipamentos de grande porte."
     },
     "hero": {
       "title": "Soluções para mineração de grande porte"
@@ -250,7 +262,7 @@
         "tiers": [
           {
             "name": "Comercial",
-            "example": "Ex.: Samsung Galaxy Tab A11 + kit veicular robusto",
+            "example": "Ex.: tablet de última geração + kit veicular robusto",
             "image": "/images/products/tablet-comercial.png",
             "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
             "specs": [
@@ -262,14 +274,14 @@
           },
           {
             "name": "Semi-industrial",
-            "example": "Ex.: Samsung Galaxy Tab Active5",
+            "example": "Ex.: tablet semi-industrial de última geração",
             "image": "/images/products/tablet-semi.png",
             "description": "Robustez de fábrica para quem precisa de mobilidade em campo. Vedação IP68, certificação militar e tela que responde com luva — sem depender de case externo.",
             "specs": [
               "IP68 + MIL-STD-810H (água, poeira e queda)",
               "Tela 8\" 1920×1200 · toque com luva",
               "Bateria removível para turnos longos",
-              "Gestão remota via Samsung Knox / MDM"
+              "Gestão remota via MDM corporativo"
             ]
           },
           {
@@ -374,6 +386,39 @@
         ],
         "image": "/images/mining/fleet-d11-operation.jpg",
         "metric": { "value": "24/7", "label": "Suporte" }
+      },
+      {
+        "id": "caminhonetes",
+        "badge": "LOCAÇÃO",
+        "title": "Caminhonetes Operacionais",
+        "description": "Frota de caminhonetes 4x4 equipadas para operação de campo em mineração — sinalização veicular, giroflex e prontas para o dia a dia da mina. Contrato de locação flexível, com pacotes sob medida, sem imobilizar capital em frota própria.",
+        "features": [
+          "Veículos 4x4 de última geração equipados para operação de campo",
+          "Giroflex, sinalização e kit de segurança conforme normas da operação",
+          "Frota zero-quilômetro ou de baixa rodagem, sempre em plena condição de operação",
+          "Pacotes sob medida para sua demanda — quilometragem livre ou planos que cabem no seu orçamento",
+          "Contrato flexível, sem imobilizar capital em frota própria",
+          "Rastreamento e telemetria ActiSky integráveis sob demanda"
+        ],
+        "image": "/images/products/caminhonete-operacional-cutout.png",
+        "studioImage": true,
+        "metric": { "value": "4x4", "label": "Equipadas p/ campo" }
+      },
+      {
+        "id": "compressores",
+        "badge": "EQUIPAMENTO",
+        "title": "Compressores de Ar Atlas Copco",
+        "description": "Locação de compressores de ar portáteis Atlas Copco, linha XAS 47-97, com carenagem HardHat™ resistente a impacto — para perfuração, jateamento e ferramentas pneumáticas na operação de mina. Fabricação nacional, com suporte técnico e peças no Brasil.",
+        "features": [
+          "4 modelos — XAS 47, 77, 87 e 97, de 89 a 189 pcm de vazão de ar (FAD)",
+          "Pressão de trabalho de 7 bar em toda a linha",
+          "Carenagem HardHat™ resistente a impacto — até 15% mais disponibilidade",
+          "Motores Kubota / MWM robustos para operação contínua",
+          "Baixo nível de ruído — 70 a 74 dB(A) a 7 metros",
+          "Fabricação nacional, com suporte técnico e peças no Brasil"
+        ],
+        "image": "/images/solutions/compressor-atlas-copco-xas.jpg",
+        "metric": { "value": "189 pcm", "label": "Vazão máx. (XAS 97)" }
       }
     ],
     "safetyLabel": "Monitoramento de Segurança",

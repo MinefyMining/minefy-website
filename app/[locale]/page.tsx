@@ -24,6 +24,8 @@ const SOLUTION_IDS = [
   "fleet360",
   "safety",
   "consulting",
+  "caminhonetes",
+  "compressores",
 ] as const;
 
 export default async function HomePage({ params }: Props) {

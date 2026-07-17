@@ -9,6 +9,8 @@ import {
   Truck,
   ShieldCheck,
   Users,
+  Car,
+  Wind,
   ArrowUpRight,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -62,7 +64,7 @@ function useNearViewport<T extends Element>(rootMargin = "200px") {
   return { ref, near };
 }
 
-type IconKey = "tablet" | "satellite" | "chart" | "truck" | "shield" | "users";
+type IconKey = "tablet" | "satellite" | "chart" | "truck" | "shield" | "users" | "car" | "wind";
 const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
   tablet: Tablet,
   satellite: Satellite,
@@ -70,6 +72,8 @@ const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
   truck: Truck,
   shield: ShieldCheck,
   users: Users,
+  car: Car,
+  wind: Wind,
 };
 
 export interface SolutionItem {

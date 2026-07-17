@@ -15,6 +15,7 @@ const clients = [
   { name: "SG Bras", base: "sgbras" },
   { name: "SCL Salum Construções", base: "scl" },
   { name: "Consórcio Mina Fábrica", base: "minafabrica" },
+  { name: "Trust", base: "trust" },
 ];
 
 const container = {
