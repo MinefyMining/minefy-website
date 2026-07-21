@@ -138,8 +138,8 @@ export default async function AgrofyPilotPage({ params }: Props) {
           {/* Full-width photo break */}
           <div className="relative aspect-video rounded-xl overflow-hidden my-16">
             <Image
-              src="/images/agro/aerea-talhoes-lavoura.jpg"
-              alt="Vista aérea de talhões de lavoura"
+              src="/images/agro/hero-colheitadeira-soja-poente.jpg"
+              alt="Colheitadeira de grande porte em operação numa lavoura de soja ao entardecer"
               fill
               className="object-cover"
               sizes="100vw"
