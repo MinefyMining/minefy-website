@@ -2,8 +2,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import {
   ArrowRight,
-  Check,
-  Sprout,
   Radio,
   Activity,
   Gauge,
@@ -12,6 +10,7 @@ import {
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { AgroTelemetryCard } from "@/components/agro-telemetry-card";
+import { AgroBentoSolutions } from "@/components/agro-bento-solutions";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -21,6 +20,17 @@ const STEP_ICONS: Record<string, LucideIcon> = {
   activity: Activity,
   gauge: Gauge,
 };
+
+// Anchors on the dedicated `/agrofy/solucoes` page, in the same order as
+// `agrofySolutions.items` in messages/pt-BR.json.
+const AGRO_SOLUTION_IDS = [
+  "tablets",
+  "actisky",
+  "analytics",
+  "fleet360",
+  "safety",
+  "consulting",
+] as const;
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
@@ -42,30 +52,12 @@ export default async function AgrofyPage({ params }: Props) {
     metric: { value: string; label: string };
   }>;
 
-  const offeringItems = t.raw("offerings.items") as Array<{
-    id: string;
-    badge: string;
+  const solutionItems = t.raw("solutionsTeaser.items") as Array<{
+    icon: string;
     title: string;
     description: string;
-    features?: string[];
-    tiers?: {
-      name: string;
-      example: string;
-      image: string;
-      description: string;
-      specs: string[];
-    }[];
-    safetyFeatures?: string[];
-    operationalFeatures?: string[];
-    image: string;
-    metric: { value: string; label: string };
+    badge: string;
   }>;
-
-  const offeringRoadmap = t.raw("offerings.roadmap") as {
-    badge: string;
-    title: string;
-    description: string;
-  };
 
   const steps = t.raw("howItWorks.steps") as Array<{
     icon: string;
@@ -214,237 +206,20 @@ export default async function AgrofyPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Offerings — catálogo de produtos, roupagem agro ── */}
+      {/* ── Solutions teaser — enxuta, bento; catálogo completo mora em /agrofy/solucoes ── */}
       <section id="ofertas" className="scroll-mt-24 bg-card px-6 py-20">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+        <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4ADE80]">
-              {t("offerings.kicker")}
-            </p>
-            <h2 className="mt-3 text-2xl md:text-3xl font-bold text-foreground">
-              {t("offerings.title")}
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
+              {t("solutionsTeaser.title")}
             </h2>
-            <p className="mt-3 leading-relaxed text-muted-foreground">
-              {t("offerings.subtitle")}
+            <p className="text-muted-foreground text-center mt-3 max-w-2xl mx-auto">
+              {t("solutionsTeaser.subtitle")}
             </p>
           </ScrollReveal>
-        </div>
 
-        <div className="px-0">
-          {offeringItems.map((item, index) => {
-            const isEven = index % 2 === 0;
-
-            // ── Tablets: full-width 3-tier showcase ──
-            if (item.tiers) {
-              return (
-                <div key={item.id}>
-                  <ScrollReveal>
-                    <div id={item.id} className="py-8 scroll-mt-24 max-w-6xl mx-auto">
-                      <div className="text-center mb-12">
-                        <span className="text-xs uppercase tracking-wider bg-secondary text-[#4ADE80] px-3 py-1 rounded-md inline-block mb-4">
-                          {item.badge}
-                        </span>
-                        <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                          {item.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {item.tiers.map((tier) => (
-                          <div
-                            key={tier.name}
-                            className="group flex flex-col rounded-2xl border border-border bg-background overflow-hidden transition-all duration-300 hover:border-[#16A34A]/50 hover:-translate-y-1"
-                          >
-                            {/* Product image — studio stage */}
-                            <div className="relative h-64 overflow-hidden flex items-center justify-center p-7 bg-gradient-to-b from-[#191919] to-[#0C0C0C]">
-                              <div
-                                className="absolute inset-0"
-                                style={{
-                                  background:
-                                    "radial-gradient(120% 80% at 50% 30%, rgba(255,255,255,0.06), transparent 60%)",
-                                }}
-                                aria-hidden="true"
-                              />
-                              <div
-                                className="absolute inset-x-0 bottom-0 h-24"
-                                style={{
-                                  background:
-                                    "radial-gradient(60% 100% at 50% 100%, rgba(74,222,128,0.14), transparent 70%)",
-                                }}
-                                aria-hidden="true"
-                              />
-                              <div
-                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                style={{
-                                  background:
-                                    "radial-gradient(circle at 50% 45%, rgba(74,222,128,0.2), transparent 62%)",
-                                }}
-                                aria-hidden="true"
-                              />
-                              <Image
-                                src={tier.image}
-                                alt={tier.name}
-                                width={320}
-                                height={240}
-                                className="relative z-10 max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-[1.06]"
-                                style={{
-                                  filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.55))",
-                                }}
-                              />
-                            </div>
-
-                            {/* Body */}
-                            <div className="flex flex-1 flex-col p-6">
-                              <p className="text-base font-bold text-[#4ADE80]">
-                                {tier.name}
-                              </p>
-                              <p className="text-xs text-muted-foreground mt-1 mb-3">
-                                {tier.example}
-                              </p>
-                              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                                {tier.description}
-                              </p>
-                              <div className="mt-auto flex flex-col gap-2.5 border-t border-border pt-4">
-                                {tier.specs.map((spec) => (
-                                  <div key={spec} className="flex items-start gap-2.5">
-                                    <Check className="h-4 w-4 text-[#4ADE80] shrink-0 mt-0.5" />
-                                    <span className="text-xs text-muted-foreground">
-                                      {spec}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                  <div className="h-px bg-border max-w-5xl mx-auto" />
-                </div>
-              );
-            }
-
-            return (
-              <div key={item.id}>
-                <ScrollReveal>
-                  <div id={item.id} className="py-14 scroll-mt-24 max-w-6xl mx-auto">
-                    <div
-                      className={`flex flex-col gap-12 items-center ${
-                        isEven ? "md:flex-row" : "md:flex-row-reverse"
-                      }`}
-                    >
-                      {/* Image — full-bleed photo */}
-                      <div className="relative aspect-video w-full md:w-1/2 shrink-0 rounded-xl overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div
-                          className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent"
-                          aria-hidden="true"
-                        />
-                        <div className="absolute bottom-4 left-4 bg-[#0A0A0A]/80 px-4 py-2 rounded-lg">
-                          <p className="font-bold text-[#4ADE80] text-xl leading-none">
-                            {item.metric.value}
-                          </p>
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            {item.metric.label}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="w-full md:w-1/2">
-                        <span className="text-xs uppercase tracking-wider bg-secondary text-[#4ADE80] px-3 py-1 rounded-md inline-block mb-4">
-                          {item.badge}
-                        </span>
-                        <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                          {item.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-6 leading-relaxed">
-                          {item.description}
-                        </p>
-
-                        {/* Generic features */}
-                        {item.features && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {item.features.map((feature) => (
-                              <div key={feature} className="flex items-start gap-3">
-                                <Check className="h-4 w-4 text-[#4ADE80] shrink-0 mt-0.5" />
-                                <span className="text-sm text-muted-foreground">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Safety features */}
-                        {item.safetyFeatures && (
-                          <div className="mb-5">
-                            <p className="text-xs font-semibold uppercase tracking-wider text-[#4ADE80] mb-3">
-                              {t("safetyLabel")}
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {item.safetyFeatures.map((feature) => (
-                                <div key={feature} className="flex items-start gap-3">
-                                  <Check className="h-4 w-4 text-[#4ADE80] shrink-0 mt-0.5" />
-                                  <span className="text-sm text-muted-foreground">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Operational features */}
-                        {item.operationalFeatures && (
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-wider text-[#4ADE80] mb-3">
-                              {t("operationalLabel")}
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {item.operationalFeatures.map((feature) => (
-                                <div key={feature} className="flex items-start gap-3">
-                                  <Check className="h-4 w-4 text-[#4ADE80] shrink-0 mt-0.5" />
-                                  <span className="text-sm text-muted-foreground">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-                <div className="h-px bg-border max-w-5xl mx-auto" />
-              </div>
-            );
-          })}
-
-          {/* Roadmap teaser — não é produto entregue, tratamento visual distinto */}
-          <ScrollReveal>
-            <div className="max-w-4xl mx-auto pt-14 pb-2 text-center">
-              <div className="agro-glass-card-hover group inline-flex flex-col items-center gap-4 rounded-2xl border border-dashed border-[#16A34A]/40 px-8 py-10 max-w-2xl mx-auto">
-                <div className="relative flex h-12 w-12 items-center justify-center">
-                  <span className="agro-glow-orb absolute inset-0 rounded-full" aria-hidden="true" />
-                  <Sprout className="relative h-8 w-8 text-[#4ADE80]" />
-                </div>
-                <span className="inline-block rounded-full border border-[#16A34A]/30 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#4ADE80]">
-                  {offeringRoadmap.badge}
-                </span>
-                <h3 className="text-xl font-bold text-foreground">
-                  {offeringRoadmap.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {offeringRoadmap.description}
-                </p>
-              </div>
-            </div>
+          <ScrollReveal className="mt-12">
+            <AgroBentoSolutions items={solutionItems} ids={AGRO_SOLUTION_IDS} />
           </ScrollReveal>
         </div>
       </section>

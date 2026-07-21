@@ -36,7 +36,7 @@ export function AgroHeader() {
 
   const navLinks = [
     { key: "home", href: "/agrofy" },
-    { key: "solutions", href: "/agrofy#ofertas" },
+    { key: "solutions", href: "/agrofy/solucoes" },
     { key: "howItWorks", href: "/agrofy#como-funciona" },
     { key: "contact", href: "/agrofy/contato" },
   ] as const;
