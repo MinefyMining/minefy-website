@@ -587,42 +587,168 @@
     },
     "offerings": {
       "kicker": "O QUE A AGROFY ENTREGA",
-      "title": "Um portfólio que evolui com a mesma disciplina da mineração",
-      "subtitle": "Módulos que já funcionam hoje — e a extensão de agricultura de precisão que está no roadmap, com o mesmo rigor técnico.",
+      "title": "O mesmo catálogo Minefy, com roupagem de campo",
+      "subtitle": "Hardware, telemetria, software e serviço — a mesma disciplina técnica já validada em frota pesada de mineração, hoje aplicada a tratores, colheitadeiras e pulverizadores.",
       "items": [
         {
-          "icon": "satellite",
-          "badge": "CORE",
-          "title": "Telemetria de frota multimarca",
-          "description": "Mapa em tempo real, GPS de alta precisão e status de cada máquina — tratores, colheitadeiras, pulverizadores — não importa o fabricante. Tudo lido direto do barramento CAN J1939, no mesmo painel Minefy."
+          "id": "tablets",
+          "badge": "HARDWARE",
+          "title": "Tablets para o Campo",
+          "description": "Três linhas de tablets para cada nível de exigência da lavoura — do apoio na cabine ao computador embarcado da colheitadeira. Você escolhe o grau de robustez; a integração com a plataforma Agrofy vem garantida em todas.",
+          "tiers": [
+            {
+              "name": "Comercial",
+              "example": "Ex.: tablet de última geração + kit veicular robusto",
+              "image": "/images/products/tablet-comercial.png",
+              "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte de cabine e película de proteção. Custo-benefício para pulverizadores e operações de apoio, onde a robustez vem da proteção externa.",
+              "specs": [
+                "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
+                "Kit veicular robusto: case + suporte de cabine (MIL-STD-810G)",
+                "Carregamento magnético no berço veicular robusto",
+                "Plug-and-play com a plataforma Agrofy"
+              ]
+            },
+            {
+              "name": "Semi-industrial",
+              "example": "Ex.: tablet semi-industrial de última geração",
+              "image": "/images/products/tablet-semi.png",
+              "description": "Robustez de fábrica para quem enfrenta poeira, vibração e sol direto na cabine. Vedação IP68, certificação militar e tela que responde com luva de trabalho — sem depender de case externo.",
+              "specs": [
+                "IP68 + MIL-STD-810H (água, poeira e queda)",
+                "Tela 8\" 1920×1200 · toque com luva",
+                "Bateria removível para jornadas longas de safra",
+                "Gestão remota via MDM corporativo"
+              ]
+            },
+            {
+              "name": "Industrial",
+              "example": "Ex.: Minefy T10 e T12",
+              "image": "/images/products/tablet-industrial.png",
+              "description": "Computadores veiculares de instalação fixa, alimentados pela rede elétrica da própria máquina. Integração direta CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine do trator ou da colheitadeira.",
+              "specs": [
+                "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto do campo)",
+                "IP66 + MIL-STD-810G · processador automotivo",
+                "2×CAN, RS232/RS485 e até 4 câmeras",
+                "Alimentação 9–36 V · RTK opcional · Android/Linux"
+              ]
+            }
+          ],
+          "image": "/images/agro/cabine-trator-interior.jpg",
+          "metric": {
+            "value": "3",
+            "label": "Linhas de robustez"
+          }
         },
         {
-          "icon": "fuel",
-          "badge": "COMBUSTÍVEL",
-          "title": "Gestão de combustível",
-          "description": "Consumo em litros por hora e por hectare, conciliação entre abastecimento registrado e consumo real, ranking de eficiência por operador e por máquina."
+          "id": "actisky",
+          "badge": "IoT / TELEMETRIA",
+          "title": "ActiSky Telemetria",
+          "description": "Módulo IoT de telemetria avançada com protocolo CAN J1939 para tratores, colheitadeiras e pulverizadores — qualquer fabricante. GPS de alta precisão e comunicação em tempo real, resiliente ao sinal instável do campo.",
+          "safetyFeatures": [
+            "Geofencing e alerta de saída do talhão/fazenda",
+            "Detecção de desvio de rota (furto de máquina)",
+            "Superaquecimento do motor",
+            "Pressão de óleo fora da faixa"
+          ],
+          "operationalFeatures": [
+            "Consumo de diesel em tempo real (L/h e L/ha)",
+            "Horímetro digital",
+            "Detecção de ociosidade (idle)",
+            "Velocidade e RPM do motor",
+            "GPS de alta precisão",
+            "Ciclo de operação — semeadura, colheita, pulverização"
+          ],
+          "image": "/images/agro/aerea-talhoes-lavoura.jpg",
+          "metric": {
+            "value": "J1939",
+            "label": "Protocolo CAN"
+          }
         },
         {
-          "icon": "gauge",
-          "badge": "EFICIÊNCIA",
-          "title": "Eficiência operacional",
-          "description": "Hora-máquina, ociosidade, hectares trabalhados por dia e percentual da janela de safra efetivamente aproveitado — com relatórios automáticos por talhão e por turno."
+          "id": "analytics",
+          "badge": "SOFTWARE",
+          "title": "Agrofy Analytics",
+          "description": "Plataforma de Business Intelligence construída para operações agrícolas de grande porte. Dashboards de produtividade, consumo e janela de safra em tempo real.",
+          "features": [
+            "Dashboards real-time via WebSocket",
+            "KPIs de hectares/dia, L/ha e horímetro por talhão",
+            "Relatórios automáticos (diário/semanal/por safra)",
+            "Análise de tendências e anomalias de consumo",
+            "Multi-tenancy com isolamento de dados por fazenda/unidade",
+            "Exportação PDF, Excel e integração API"
+          ],
+          "image": "/images/agro/analytics-tablet-lavoura.jpg",
+          "metric": {
+            "value": "Real-time",
+            "label": "Dashboards"
+          }
         },
         {
-          "icon": "wrench",
+          "id": "fleet360",
           "badge": "GESTÃO PREDITIVA",
-          "title": "Manutenção preditiva (Fleet 360)",
-          "description": "Horímetro, temperatura, pressão, RPM e códigos de falha do motor (DTCs) alimentam alertas antes da quebra — a mesma lógica de gestão preditiva já validada em frota pesada de mineração."
+          "title": "Fleet 360",
+          "description": "Gestão preditiva para frota agrícola pesada — tratores, colheitadeiras e pulverizadores autopropelidos. Manutenção antecipada para não perder um dia de janela de safra.",
+          "features": [
+            "Manutenção preditiva por horímetro, temperatura, pressão e RPM",
+            "Leitura de códigos de falha do motor (DTCs)",
+            "Alertas de manutenção preventiva antes da quebra em plena colheita",
+            "Histórico completo de cada máquina da frota",
+            "Otimização de janela de uso por talhão e por turno",
+            "Integração com sistemas de gestão agrícola e ERP"
+          ],
+          "image": "/images/agro/fleet360-manutencao-colheitadeira.jpg",
+          "metric": {
+            "value": "DTC",
+            "label": "Alerta antes da quebra"
+          }
         },
         {
-          "icon": "sprout",
-          "badge": "ROADMAP",
-          "title": "Agricultura de precisão / ISOBUS",
-          "description": "Taxa variável e telemetria de implemento (pulverizador, plantadeira) via ISOBUS — a extensão agrícola do mesmo protocolo CAN J1939 que já lemos hoje. Em evolução dentro do roadmap da Agrofy.",
-          "roadmap": true
+          "id": "safety",
+          "badge": "SEGURANÇA",
+          "title": "Agrofy Safety",
+          "description": "Sistema de segurança para operações agrícolas de grande porte. Monitoramento de fadiga de operadores, proximidade entre máquinas pesadas e controle de zonas de risco no talhão.",
+          "features": [
+            "Monitoramento de fadiga de operadores em jornadas longas de safra",
+            "Detecção de proximidade entre tratores, colheitadeiras e implementos",
+            "Geofencing e alertas de zona de risco (barrancos, várzea, estradas internas)",
+            "Compliance NR-31 (segurança e saúde no trabalho rural)",
+            "Registro de incidentes e near-misses",
+            "Dashboard de segurança da operação"
+          ],
+          "image": "/images/agro/safety-colheitadeiras-proximidade.jpg",
+          "metric": {
+            "value": "NR-31",
+            "label": "Compliance"
+          }
+        },
+        {
+          "id": "consulting",
+          "badge": "SERVIÇO",
+          "title": "Consultoria Operacional",
+          "description": "Profissionais com experiência em operação agrícola de grande porte. Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+          "features": [
+            "Diagnóstico operacional da frota e da fazenda",
+            "Implantação de telemetria em tratores, colheitadeiras e pulverizadores",
+            "Integração com sistemas de gestão agrícola já em uso",
+            "Treinamento de operadores e equipe de campo",
+            "Suporte técnico dedicado dentro do ciclo de safra",
+            "Relatórios de performance operacional por talhão"
+          ],
+          "image": "/images/agro/consultoria-agronomo-campo.jpg",
+          "metric": {
+            "value": "1 safra",
+            "label": "Piloto medido"
+          }
         }
-      ]
+      ],
+      "roadmap": {
+        "badge": "ROADMAP",
+        "title": "Agricultura de Precisão / ISOBUS",
+        "description": "Taxa variável e telemetria de implemento (pulverizador, plantadeira) via ISOBUS — a extensão agrícola do mesmo protocolo CAN J1939 que já lemos hoje. Ainda não entregue: em evolução dentro do roadmap da Agrofy, com o mesmo rigor técnico do restante do catálogo."
+      }
     },
+    "safetyLabel": "Monitoramento de Segurança",
+    "operationalLabel": "Telemetria Operacional",
     "howItWorks": {
       "kicker": "COMO FUNCIONA",
       "title": "Do barramento da máquina ao painel, em 3 passos",
