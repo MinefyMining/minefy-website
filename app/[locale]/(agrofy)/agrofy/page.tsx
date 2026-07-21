@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { AgroHeroHome } from "@/components/agro-hero-home";
-import { AgroStatsBar } from "@/components/agro-stats-bar";
 import { AgroHowItWorks } from "@/components/agro-how-it-works";
 import { AgroBentoSolutions } from "@/components/agro-bento-solutions";
 import { AgroTechTelemetry } from "@/components/agro-tech-telemetry";
@@ -96,19 +95,9 @@ export default async function AgrofyPage({ params }: Props) {
       />
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 2 — STATS (market facts, not Agrofy traction — see note)
-      ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 bg-background border-y border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <AgroStatsBar />
-          <p className="mt-4 text-center text-xs italic leading-relaxed text-muted-foreground">
-            {t("stats.note")}
-          </p>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 2.5 — HOW IT WORKS
+          SECTION — HOW IT WORKS
+          (Stats/numbers section intentionally omitted — Agrofy has no
+          traction numbers to show yet, per CEO.)
       ───────────────────────────────────────────────────────────── */}
       <AgroHowItWorks
         kicker={t("howItWorks.kicker")}

@@ -554,7 +554,7 @@
     "credibility": {
       "kicker": "CREDIBILIDADE",
       "title": "Tecnologia validada em operação real de mineração pesada",
-      "text": "A base da Agrofy é a mesma telemetria ActiSky que já opera 24/7 em frota pesada de mineração — incluindo 2 sites da Vale. Protocolo CAN J1939: a mesma leitura de barramento que hoje sustenta caminhões fora-de-estrada e escavadeiras, agora adaptada para tratores, colheitadeiras e pulverizadores.",
+      "text": "A base da Agrofy é a mesma telemetria ActiSky que já opera 24/7 em frota pesada de mineração. Protocolo CAN J1939: a mesma leitura de barramento que hoje sustenta caminhões fora-de-estrada e escavadeiras, agora adaptada para tratores, colheitadeiras e pulverizadores.",
       "badge": "ActiSky · CAN J1939"
     },
     "outcomes": {
@@ -610,7 +610,7 @@
       ]
     },
     "authority": {
-      "title": "Por que operações agrícolas escolhem a Agrofy",
+      "title": "Por que escolher a Agrofy",
       "items": [
         {
           "title": "Mesma engenharia, ambiente ainda mais exigente",
