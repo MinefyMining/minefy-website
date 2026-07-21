@@ -33,13 +33,16 @@ export async function POST(request: Request) {
       );
     }
 
+    const divisionLabel = data.division === "agrofy" ? "Agrofy" : "Mineração";
+
     const { data: sendResult, error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: data.email,
-      subject: `[Website] ${escapeHtml(data.subject)}`,
+      subject: `[Website · ${divisionLabel}] ${escapeHtml(data.subject)}`,
       html: `
-        <h2>Nova mensagem do site</h2>
+        <h2>Nova mensagem do site — ${divisionLabel}</h2>
+        <p><strong>Divisão:</strong> ${divisionLabel}</p>
         <p><strong>Nome:</strong> ${escapeHtml(data.name)}</p>
         <p><strong>Telefone:</strong> ${escapeHtml(data.phone)}</p>
         <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>

@@ -13,7 +13,14 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-export function Header() {
+/**
+ * Header for the MINEFY MINING ecosystem only (gold branding). Rendered by
+ * `app/[locale]/(mineracao)/layout.tsx`. Every link here stays inside the
+ * mining sector — there is deliberately no "Agrofy" item and no link back to
+ * `/` (the sector-chooser splash). See `agro-header.tsx` for the Agrofy
+ * counterpart; the two never share nav items.
+ */
+export function MiningHeader() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const pathname = usePathname();
@@ -27,17 +34,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // "Home" and the logo always point back to the sector the visitor is in —
-  // never to `/` (the sector-chooser splash). Only reloading `/` gets you
-  // back to the chooser.
-  const isAgro = pathname.startsWith("/agrofy");
-  const homeHref = isAgro ? "/agrofy" : "/mineracao";
+  const homeHref = "/mineracao";
 
   const navLinks = [
     { key: "home", href: homeHref },
     { key: "about", href: "/quem-somos" },
     { key: "solutions", href: "/solucoes" },
-    { key: "agrofy", href: "/agrofy" },
     { key: "projects", href: "/projetos" },
     { key: "contact", href: "/contato" },
   ] as const;
@@ -72,23 +74,12 @@ export function Header() {
               href={href}
               className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors ${
                 isActive(href)
-                  ? key === "agrofy" ? "text-[#4ADE80]" : scrolled ? "text-foreground" : "text-white"
-                  : key === "agrofy"
-                    ? "text-[#4ADE80]/80 hover:text-[#4ADE80]"
-                    : scrolled
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/70 hover:text-white"
+                  ? scrolled ? "text-foreground" : "text-white"
+                  : scrolled
+                    ? "text-muted-foreground hover:text-foreground"
+                    : "text-white/70 hover:text-white"
               }`}
             >
-              {key === "agrofy" && (
-                <Image
-                  src="/images/agro/agrofy-logo.png"
-                  alt=""
-                  width={64}
-                  height={64}
-                  className="h-4 w-4 shrink-0"
-                />
-              )}
               {t(key)}
             </Link>
           ))}
@@ -126,19 +117,10 @@ export function Header() {
                     onClick={() => setOpen(false)}
                     className={`flex items-center gap-2 px-3 py-3 text-sm font-medium transition-colors rounded-lg ${
                       isActive(href)
-                        ? key === "agrofy" ? "text-[#4ADE80] bg-[#16A34A]/10" : "text-foreground bg-secondary"
-                        : key === "agrofy" ? "text-[#4ADE80]/80 hover:text-[#4ADE80]" : "text-muted-foreground hover:text-foreground"
+                        ? "text-foreground bg-secondary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {key === "agrofy" && (
-                      <Image
-                        src="/images/agro/agrofy-logo.png"
-                        alt=""
-                        width={64}
-                        height={64}
-                        className="h-4 w-4 shrink-0"
-                      />
-                    )}
                     {t(key)}
                   </Link>
                 ))}

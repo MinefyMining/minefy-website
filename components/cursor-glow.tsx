@@ -42,8 +42,19 @@ function useGlowEnabled(): boolean {
   );
 }
 
-export function CursorGlow() {
+const GLOW_COLOR = {
+  gold: "rgba(212,168,71,",
+  green: "rgba(22,163,74,",
+} as const;
+
+/**
+ * Soft glow trailing the cursor. Defaults to the mineração gold tint; the
+ * Agrofy layout passes `variant="green"` so this ambient effect never leaks
+ * the other sector's color.
+ */
+export function CursorGlow({ variant = "gold" }: { variant?: keyof typeof GLOW_COLOR }) {
   const enabled = useGlowEnabled();
+  const color = GLOW_COLOR[variant];
   const x = useMotionValue(-500);
   const y = useMotionValue(-500);
   const sx = useSpring(x, { stiffness: 180, damping: 26, mass: 0.5 });
@@ -73,8 +84,7 @@ export function CursorGlow() {
         width: 460,
         height: 460,
         borderRadius: "9999px",
-        background:
-          "radial-gradient(circle, rgba(212,168,71,0.10), rgba(212,168,71,0.04) 35%, transparent 70%)",
+        background: `radial-gradient(circle, ${color}0.10), ${color}0.04) 35%, transparent 70%)`,
         mixBlendMode: "screen",
       }}
     />

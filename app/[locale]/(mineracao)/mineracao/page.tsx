@@ -11,7 +11,6 @@ import { TechTelemetry } from "@/components/tech-telemetry";
 import { FaqSection } from "@/components/faq-section";
 import { HowItWorks } from "@/components/how-it-works";
 import { OutcomesSection } from "@/components/outcomes-section";
-import { AgroTeaser } from "@/components/agro-teaser";
 import type { Metadata } from "next";
 
 type Props = {
@@ -124,16 +123,6 @@ export default async function HomePage({ params }: Props) {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 3.4 — AGROFY DIVISION TEASER
-      ───────────────────────────────────────────────────────────── */}
-      <AgroTeaser
-        kicker={t("agroTeaser.kicker")}
-        title={t("agroTeaser.title")}
-        text={t("agroTeaser.text")}
-        cta={t("agroTeaser.cta")}
-      />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 3.5 — TECH / REAL-TIME TELEMETRY

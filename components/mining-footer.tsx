@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { ExternalLink } from "lucide-react";
 
 const companyLinks = [
@@ -11,14 +11,18 @@ const companyLinks = [
   { key: "contact", href: "/contato" },
 ] as const;
 
-export function Footer() {
+/**
+ * Footer for the MINEFY MINING ecosystem only (gold branding). Rendered by
+ * `app/[locale]/(mineracao)/layout.tsx`. No link here ever crosses into the
+ * Agrofy sector — see `agro-footer.tsx` for that counterpart.
+ */
+export function MiningFooter() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
-  const pathname = usePathname();
 
-  // Same rule as the header: the brand logo never links to `/` (the
-  // sector-chooser splash) — it goes back to the sector currently in view.
-  const homeHref = pathname.startsWith("/agrofy") ? "/agrofy" : "/mineracao";
+  // Same rule as the header: the brand logo always points back to
+  // `/mineracao`, never to `/` (the sector-chooser splash).
+  const homeHref = "/mineracao";
 
   const solutionLinks = t.raw("solutionLinks") as Array<{ label: string; href: string }>;
 
@@ -43,15 +47,6 @@ export function Footer() {
               Acessar Plataforma
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
-
-            {/* Agrofy division link */}
-            <Link
-              href="/agrofy"
-              className="flex items-center gap-2 text-sm text-[#16A34A] hover:text-[#15803D] font-medium transition-colors"
-            >
-              <Image src="/images/agro/agrofy-logo.png" alt="" width={64} height={64} className="h-4 w-4 shrink-0" />
-              {t("agrofyLink")}
-            </Link>
 
             {/* Social */}
             <div className="flex items-center gap-4 pt-2">

@@ -29,8 +29,14 @@
     "solutions": "Soluções",
     "projects": "Projetos",
     "contact": "Contato",
-    "platform": "Acessar Plataforma",
-    "agrofy": "Agrofy"
+    "platform": "Acessar Plataforma"
+  },
+  "agroNav": {
+    "home": "Início",
+    "solutions": "Soluções",
+    "howItWorks": "Como Funciona",
+    "contact": "Contato",
+    "platform": "Acessar Plataforma"
   },
   "home": {
     "hero": {
@@ -139,12 +145,6 @@
           "badge": "EQUIPAMENTO"
         }
       ]
-    },
-    "agroTeaser": {
-      "kicker": "Agrofy — uma divisão Minefy",
-      "title": "Levamos a telemetria ActiSky ao agro",
-      "text": "A mesma tecnologia que já opera em frota pesada de mineração, agora adaptada para tratores, colheitadeiras e pulverizadores via CAN J1939.",
-      "cta": "Conheça a Agrofy"
     },
     "outcomes": {
       "kicker": "Resultados",
@@ -671,6 +671,17 @@
       "title": "Estruture um piloto pago com a Agrofy",
       "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
       "button": "Agendar piloto Agrofy"
+    },
+    "contactPage": {
+      "metadata": {
+        "title": "Contato Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+        "description": "Fale com a equipe Agrofy sobre telemetria de frota agrícola via ActiSky/CAN J1939. Estruture um piloto pago medido dentro do seu ciclo de safra."
+      },
+      "hero": {
+        "title": "Fale com a Agrofy"
+      },
+      "title": "Estruture seu piloto Agrofy",
+      "intro": "Nossa equipe de telemetria agrícola está pronta para entender sua frota — tratores, colheitadeiras, pulverizadores — e desenhar um piloto pago com ROI medido dentro do seu ciclo de safra."
     }
   },
   "projects": {
@@ -848,7 +859,35 @@
       "instagram": "https://www.instagram.com/MinefyMiningSystem",
       "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
       "whatsapp": "https://api.whatsapp.com/send?phone=5531996709977"
+    }
+  },
+  "agroFooter": {
+    "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
+    "copyright": "© 2025 Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
+    "phone": "+55 31 99670-9977",
+    "email": "louis.litt@minefymining.com",
+    "platform": "Acessar Plataforma",
+    "columns": {
+      "links": "Agrofy",
+      "contact": "Contato"
     },
-    "agrofyLink": "Conheça a Agrofy"
+    "quickLinks": [
+      {
+        "label": "Início",
+        "href": "/agrofy"
+      },
+      {
+        "label": "Soluções",
+        "href": "/agrofy#ofertas"
+      },
+      {
+        "label": "Como Funciona",
+        "href": "/agrofy#como-funciona"
+      },
+      {
+        "label": "Contato",
+        "href": "/agrofy/contato"
+      }
+    ]
   }
 }

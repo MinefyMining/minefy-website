@@ -109,7 +109,7 @@ export default async function AgrofyPage({ params }: Props) {
             </p>
             <div className="mt-8">
               <Link
-                href="/contato"
+                href="/agrofy/contato"
                 className="inline-flex items-center gap-2 bg-[#16A34A] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
               >
                 {t("hero.cta")}
@@ -216,7 +216,7 @@ export default async function AgrofyPage({ params }: Props) {
       </section>
 
       {/* ── Offerings ── */}
-      <section className="bg-card px-6 py-20">
+      <section id="ofertas" className="scroll-mt-24 bg-card px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="mx-auto max-w-2xl text-center mb-14">
@@ -282,7 +282,7 @@ export default async function AgrofyPage({ params }: Props) {
       </section>
 
       {/* ── How it works ── */}
-      <section className="relative overflow-hidden bg-background px-6 py-24">
+      <section id="como-funciona" className="scroll-mt-24 relative overflow-hidden bg-background px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="text-center">
@@ -375,7 +375,7 @@ export default async function AgrofyPage({ params }: Props) {
                 {t("cta.text")}
               </p>
               <Link
-                href="/contato"
+                href="/agrofy/contato"
                 className="inline-flex items-center gap-2 bg-[#16A34A] text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
               >
                 {t("cta.button")}
