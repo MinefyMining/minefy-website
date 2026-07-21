@@ -8,20 +8,31 @@ interface ParticleFieldProps {
   density?: number;
   /** connection distance in px. Default 130 */
   linkDistance?: number;
+  /** node/link color as an "r,g,b" triplet. Default gold "212,168,71". */
+  colorRgb?: string;
+  /** cursor-proximity highlight color as an "r,g,b" triplet. Default "245,217,139". */
+  highlightRgb?: string;
 }
 
 type P = { x: number; y: number; vx: number; vy: number };
 
 /**
- * Interactive particle constellation rendered on a 2D canvas: gold nodes drift
+ * Interactive particle constellation rendered on a 2D canvas: nodes drift
  * and link to nearby nodes; the cursor pulls nearby nodes and lights their
  * links. DPR-aware, pauses when offscreen/hidden, and renders a single static
  * frame under `prefers-reduced-motion`. Pointer-transparent.
+ *
+ * Color is parametrized (`colorRgb`/`highlightRgb`) rather than hardcoded so
+ * the Agrofy division can reuse this exact engine in green (`AgroHeroHome`)
+ * without a duplicate canvas implementation — defaults reproduce the
+ * original gold mining look byte-for-byte.
  */
 export function ParticleField({
   className = "",
   density = 16000,
   linkDistance = 130,
+  colorRgb = "212,168,71",
+  highlightRgb = "245,217,139",
 }: ParticleFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -93,7 +104,7 @@ export function ParticleField({
           const d2 = dx * dx + dy * dy;
           if (d2 < linkDistance * linkDistance) {
             const o = (1 - Math.sqrt(d2) / linkDistance) * 0.5;
-            ctx.strokeStyle = `rgba(212,168,71,${o})`;
+            ctx.strokeStyle = `rgba(${colorRgb},${o})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -106,7 +117,7 @@ export function ParticleField({
       // nodes
       for (const p of particles) {
         const near = Math.hypot(mouse.x - p.x, mouse.y - p.y) < 150;
-        ctx.fillStyle = near ? "rgba(245,217,139,0.95)" : "rgba(212,168,71,0.7)";
+        ctx.fillStyle = near ? `rgba(${highlightRgb},0.95)` : `rgba(${colorRgb},0.7)`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, near ? 2.4 : 1.6, 0, Math.PI * 2);
         ctx.fill();
@@ -158,7 +169,7 @@ export function ParticleField({
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerout", onLeave);
     };
-  }, [density, linkDistance]);
+  }, [density, linkDistance, colorRgb, highlightRgb]);
 
   return (
     <canvas
