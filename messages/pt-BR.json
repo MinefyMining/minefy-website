@@ -33,8 +33,9 @@
   },
   "agroNav": {
     "home": "Início",
+    "about": "Quem Somos",
     "solutions": "Soluções",
-    "howItWorks": "Como Funciona",
+    "pilot": "Piloto",
     "contact": "Contato",
     "platform": "Acessar Plataforma"
   },
@@ -1209,25 +1210,34 @@
     "email": "louis.litt@minefymining.com",
     "platform": "Acessar Plataforma",
     "columns": {
-      "links": "Agrofy",
+      "solutions": "Soluções",
+      "company": "Empresa",
       "contact": "Contato"
     },
-    "quickLinks": [
+    "solutionLinks": [
       {
-        "label": "Início",
-        "href": "/agrofy"
+        "label": "Tablets para o Campo",
+        "href": "/agrofy/solucoes#tablets"
       },
       {
-        "label": "Soluções",
-        "href": "/agrofy/solucoes"
+        "label": "ActiSky Telemetria",
+        "href": "/agrofy/solucoes#actisky"
       },
       {
-        "label": "Como Funciona",
-        "href": "/agrofy#como-funciona"
+        "label": "Agrofy Analytics",
+        "href": "/agrofy/solucoes#analytics"
       },
       {
-        "label": "Contato",
-        "href": "/agrofy/contato"
+        "label": "Fleet 360",
+        "href": "/agrofy/solucoes#fleet360"
+      },
+      {
+        "label": "Agrofy Safety",
+        "href": "/agrofy/solucoes#safety"
+      },
+      {
+        "label": "Consultoria Operacional",
+        "href": "/agrofy/solucoes#consulting"
       }
     ]
   }

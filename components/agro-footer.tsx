@@ -5,23 +5,32 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ExternalLink } from "lucide-react";
 
+const companyLinks = [
+  { key: "about", href: "/agrofy/quem-somos" },
+  { key: "pilot", href: "/agrofy/piloto" },
+  { key: "contact", href: "/agrofy/contato" },
+] as const;
+
 /**
  * Footer for the AGROFY ecosystem only (green branding). Rendered by
  * `app/[locale]/(agrofy)/layout.tsx`. No link here ever crosses into the
  * mineração sector — see `mining-footer.tsx` for that counterpart.
  * Contact channels (email/phone/social) are the same institutional ones used
  * sitewide; only the internal navigation links differ per sector.
+ *
+ * Column layout mirrors mining 1:1: Brand / Soluções / Empresa / Contato.
  */
 export function AgroFooter() {
   const t = useTranslations("agroFooter");
   const tFooter = useTranslations("footer");
+  const tNav = useTranslations("agroNav");
 
-  const quickLinks = t.raw("quickLinks") as Array<{ label: string; href: string }>;
+  const solutionLinks = t.raw("solutionLinks") as Array<{ label: string; href: string }>;
 
   return (
     <footer className="agro-theme bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="space-y-4">
             <Link href="/agrofy" className="flex items-center gap-2">
@@ -53,15 +62,32 @@ export function AgroFooter() {
             </div>
           </div>
 
-          {/* Agrofy links */}
+          {/* Solutions */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#16A34A] mb-4">{t("columns.links")}</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#16A34A] mb-4">{t("columns.solutions")}</h3>
             <ul className="space-y-2.5">
-              {quickLinks.map(({ label, href }) => (
+              {solutionLinks.map(({ label, href }) => (
                 <li key={href}>
                   <Link href={href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{label}</Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#16A34A] mb-4">{t("columns.company")}</h3>
+            <ul className="space-y-2.5">
+              {companyLinks.map(({ key, href }) => (
+                <li key={key}>
+                  <Link href={href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{tNav(key)}</Link>
+                </li>
+              ))}
+              <li>
+                <a href="https://app.minefymining.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Plataforma
+                </a>
+              </li>
             </ul>
           </div>
 

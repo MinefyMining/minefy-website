@@ -20,6 +20,10 @@ import {
  * `/solucoes`, `/projetos` or `/quem-somos`, and no link to `/` (the
  * sector-chooser splash). See `mining-header.tsx` for the mineração
  * counterpart; the two never share nav items.
+ *
+ * Nav shape mirrors mining 1:1 (Início/Quem Somos/Soluções/Piloto/Contato) —
+ * "Como Funciona" was removed from here because it's a home-page section
+ * anchor, not a top-level nav item (mining doesn't have one either).
  */
 export function AgroHeader() {
   const t = useTranslations("agroNav");
@@ -36,12 +40,19 @@ export function AgroHeader() {
 
   const navLinks = [
     { key: "home", href: "/agrofy" },
+    { key: "about", href: "/agrofy/quem-somos" },
     { key: "solutions", href: "/agrofy/solucoes" },
-    { key: "howItWorks", href: "/agrofy#como-funciona" },
+    { key: "pilot", href: "/agrofy/piloto" },
     { key: "contact", href: "/agrofy/contato" },
   ] as const;
 
-  const isActive = (href: string) => pathname === href.split("#")[0];
+  // Unlike mining (where "/mineracao" and "/quem-somos" etc. are disjoint
+  // top-level paths), Agrofy's sub-pages nest under "/agrofy" itself — so a
+  // plain `startsWith("/agrofy")` would keep "Início" highlighted on every
+  // Agrofy page. Exact-match only the home href; startsWith is safe for the
+  // rest since none of them prefix one another.
+  const isActive = (href: string) =>
+    href === "/agrofy" ? pathname === href : pathname.startsWith(href);
 
   return (
     <header
