@@ -34,12 +34,21 @@ export default async function AgrofyContactPage({ params }: Props) {
   const t = await getTranslations("agrofy.contactPage");
   const tContact = await getTranslations("contact");
 
-  const infoItems = tContact.raw("info.items") as Array<{
-    icon: string;
-    label: string;
-    value: string;
-    href: string;
-  }>;
+  // Agro leads go to the GM Agrofy (Katrina Bennett), not the shared mining
+  // contact — override only the email item; phone/whatsapp/location reused as-is.
+  const AGRO_EMAIL = "katrina.bennett@minefymining.com";
+  const infoItems = (
+    tContact.raw("info.items") as Array<{
+      icon: string;
+      label: string;
+      value: string;
+      href: string;
+    }>
+  ).map((item) =>
+    item.href.startsWith("mailto:")
+      ? { ...item, value: AGRO_EMAIL, href: `mailto:${AGRO_EMAIL}` }
+      : item
+  );
 
   return (
     <div className="agro-theme min-h-screen bg-background">
