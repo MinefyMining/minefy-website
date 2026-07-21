@@ -80,27 +80,56 @@ const SECTORS: Array<{
     ring: "ring-[#D4A847]/35",
     // Excavator + haul truck sit in the left third of the source frame;
     // biasing the crop there (rather than dead-center) keeps the machinery
-    // and the "MINERAÇÃO" corner label in view on a narrow, tall card.
+    // in view on a narrow, tall card. The "MINERAÇÃO" label itself is the
+    // HTML `SectorLabel` below — it doesn't depend on this crop.
     mobileObjectPosition: "18% 38%",
   },
   {
     key: "agro",
     href: "/agrofy",
     ring: "ring-[#4ADE80]/35",
-    // Sprayer + "AGRONEGÓCIO" label sit in the right half of the source
-    // frame — mirror bias for the same reason as above.
+    // Sprayer sits in the right half of the source frame — mirror bias for
+    // the same reason as above.
     mobileObjectPosition: "80% 42%",
   },
 ];
 
 // The CEO-authored composite: mining (gold) fusing into agro (green) around
-// a central "Minefy / GROUP" ring emblem, with the sector labels + menu
-// glyphs already burned into the image. This is the ONLY background — it
-// never changes. Per the CEO's 2026-07-21 correction, the previous
-// cross-fade into hover-mineracao.png / hover-agro.png (full-screen image
-// swap) is gone; those two files stay on disk but are no longer referenced
-// anywhere in this component, desktop or mobile.
+// a central "Minefy / GROUP" ring emblem, with the menu glyphs burned into
+// the image. This is the ONLY background — it never changes. Per the CEO's
+// 2026-07-21 correction, the previous cross-fade into hover-mineracao.png /
+// hover-agro.png (full-screen image swap) is gone; those two files stay on
+// disk but are no longer referenced anywhere in this component, desktop or
+// mobile.
+//
+// The "MINERAÇÃO" / "AGRONEGÓCIO" corner labels that used to be burned into
+// this artwork were removed (content-aware fill, 2026-07-21) because they
+// rendered with uneven margins — MINERAÇÃO hugged the left edge tighter
+// than AGRONEGÓCIO sat from the right. They're re-rendered below as real
+// HTML (`SectorLabel`) with byte-identical left/right insets, so the two
+// sides are guaranteed symmetric regardless of word length, and the text is
+// sharp, translatable and accessible instead of baked into a raster.
 const DEFAULT_IMAGE = "/images/chooser/split-default.png";
+
+/** The corner sector label ("MINERAÇÃO" / "AGRONEGÓCIO") — replaces the text
+ *  that used to be burned into `split-default.png`. `side` controls which
+ *  edge it hugs; both sides use the exact same inset tokens (`top-*`,
+ *  `left-*`/`right-*`) so the margins are pixel-identical, not just visually
+ *  close. Purely decorative (the full sector name + description is already
+ *  announced via the sibling `sr-only` span), hence `aria-hidden`. */
+function SectorLabel({ sectorKey, side }: { sectorKey: SectorKey; side: "left" | "right" }) {
+  const t = useTranslations(`chooser.${sectorKey}`);
+  return (
+    <span
+      aria-hidden="true"
+      className={`pointer-events-none absolute top-8 lg:top-10 select-none whitespace-nowrap text-sm font-medium uppercase tracking-[0.3em] text-white/95 [text-shadow:0_2px_12px_rgba(0,0,0,0.65)] lg:text-base xl:text-lg ${
+        side === "left" ? "left-10 lg:left-14 xl:left-16" : "right-10 lg:right-14 xl:right-16"
+      }`}
+    >
+      {t("label")}
+    </span>
+  );
+}
 
 /** Small "Entrar →" affordance that fades in only while its half is active
  *  (hover on desktop, focus via keyboard). The composite images already
@@ -132,9 +161,11 @@ function HoverCta({ sectorKey, active, reduce }: { sectorKey: SectorKey; active:
  *
  * Visual design is the CEO's own composite artwork (`public/images/chooser/
  * split-default.png`): a cinematic gold↔green split with a central "Minefy
- * Group" ring emblem and the sector labels burned into the image. That
- * background is single and static — it never changes. Hovering (or
- * focusing) a half darkens the OPPOSITE half with a soft black film over
+ * Group" ring emblem. The sector labels are rendered as HTML (`SectorLabel`)
+ * with symmetric insets, not burned into the artwork — see that component's
+ * docstring. That background is single and static — it never changes.
+ *
+ * Hovering (or focusing) a half darkens the OPPOSITE half with a soft black film over
  * that same static image; the half under the pointer, and the central ring,
  * stay clear. Choosing a side navigates to `/mineracao` or `/agrofy`; from
  * there the user stays inside that sector — nothing links back to `/`.
@@ -259,6 +290,7 @@ export function SectorChooser() {
             <span className="sr-only">
               {t(`${s.key}.label`)} — {t(`${s.key}.text`)}
             </span>
+            <SectorLabel sectorKey={s.key} side={i === 0 ? "left" : "right"} />
             <HoverCta sectorKey={s.key} active={hover === s.key} reduce={!!reduce} />
             <div className="pointer-events-none absolute inset-6 rounded-[2rem] outline outline-2 outline-offset-0 outline-white/0 transition-colors group-focus-visible:outline-white/70" />
           </Link>
@@ -267,7 +299,7 @@ export function SectorChooser() {
 
       {/* ── Mobile — stacked cards, tap to enter ── */}
       <div className="absolute inset-0 flex flex-col md:hidden">
-        {SECTORS.map((s) => (
+        {SECTORS.map((s, i) => (
           <Link
             key={s.key}
             href={s.href}
@@ -297,6 +329,7 @@ export function SectorChooser() {
             <span className="sr-only">
               {t(`${s.key}.label`)} — {t(`${s.key}.text`)}
             </span>
+            <SectorLabel sectorKey={s.key} side={i === 0 ? "left" : "right"} />
             <div className="absolute inset-x-0 bottom-6 flex justify-center">
               <span
                 className={`inline-flex items-center gap-2 rounded-full bg-black/45 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-white ring-1 backdrop-blur-sm ${
