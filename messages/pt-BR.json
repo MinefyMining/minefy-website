@@ -898,6 +898,133 @@
       "button": "Agendar piloto Agrofy"
     }
   },
+  "agrofyAbout": {
+    "metadata": {
+      "title": "Quem Somos — Agrofy",
+      "description": "Agrofy é a divisão de agronegócio do Grupo Minefy — a mesma telemetria industrial ActiSky validada em mineração pesada, aplicada ao campo."
+    },
+    "hero": {
+      "title": "Tecnologia de mineração pesada, agora no campo"
+    },
+    "intro": {
+      "text": "A Agrofy é a divisão de agronegócio do Grupo Minefy. Nascemos de uma constatação simples: a telemetria industrial que já protege e otimiza frotas de mineração — leitura de barramento CAN J1939, consumo, ociosidade, saúde do motor em tempo real — resolve exatamente os mesmos problemas em um trator, uma colheitadeira ou um pulverizador autopropelido. Em vez de reinventar a tecnologia para o agro, adaptamos o que já é validado em operação pesada.",
+      "highlight": "Nossa missão: levar ao campo a mesma disciplina de dado real que a mineração já exige."
+    },
+    "mission": {
+      "title": "Missão",
+      "text": "Aumentar a eficiência, a previsibilidade e a segurança das operações agrícolas com telemetria ActiSky embarcada — do barramento CAN J1939 da máquina ao dashboard do gestor da frente."
+    },
+    "vision": {
+      "title": "Visão",
+      "text": "Ser a referência em telemetria industrial aplicada ao agronegócio brasileiro, levando ao campo o mesmo rigor técnico validado em operações de mineração de grande porte."
+    },
+    "values": {
+      "title": "Valores",
+      "items": [
+        {
+          "title": "Dado real, não estimativa",
+          "text": "Decisões baseadas em telemetria de barramento da própria máquina, não em planilha de horímetro faturado."
+        },
+        {
+          "title": "Tecnologia agnóstica de marca",
+          "text": "Leitura via CAN J1939 funciona independente do fabricante da máquina agrícola."
+        },
+        {
+          "title": "Validado em operação pesada",
+          "text": "A mesma stack ActiSky que já opera 24/7 em mineração, adaptada ao ritmo da safra."
+        },
+        {
+          "title": "Piloto antes de escala",
+          "text": "Começamos com uma frente medida, nunca com promessa — a decisão de escalar vem do dado do próprio piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Conheça a tecnologia Agrofy de perto",
+      "text": "Fale com um especialista Agrofy ou acesse a plataforma online.",
+      "contactUs": "Fale Conosco",
+      "platform": "Acessar Plataforma"
+    }
+  },
+  "agrofyPilot": {
+    "metadata": {
+      "title": "Piloto Agrofy — Minefy",
+      "description": "Como funciona o piloto pago Agrofy: metodologia, KPIs medidos em campo e o que você recebe — telemetria ActiSky para sua operação agrícola."
+    },
+    "hero": {
+      "title": "Piloto Agrofy",
+      "subtitle": "Comece com um piloto pago e focado"
+    },
+    "intro": {
+      "badge": "METODOLOGIA",
+      "title": "Um piloto focado, não uma promessa",
+      "text": "Antes de qualquer conversa sobre escala, medimos. O piloto Agrofy instala telemetria ActiSky embarcada em uma frente ou unidade da sua operação e mede o resultado real dentro de um ciclo de safra — sem depender de estimativa, de horímetro faturado ou de case de terceiro."
+    },
+    "steps": {
+      "title": "Como funciona",
+      "items": [
+        {
+          "title": "Discovery",
+          "text": "Entendemos a frente ou operação, o maquinário envolvido e as dores específicas — ociosidade, consumo fora da curva, manutenção reativa, horímetro sem controle."
+        },
+        {
+          "title": "Piloto pago focado",
+          "text": "Uma frente ou unidade recebe telemetria ActiSky embarcada, lendo o barramento CAN J1939 da máquina em tempo real — sem integração longa, sem trocar de fornecedor de maquinário."
+        },
+        {
+          "title": "Medição de ROI no ciclo de safra",
+          "text": "Acompanhamos ociosidade, consumo, hora-máquina e sinais de manutenção preditiva ao longo de um ciclo de safra completo — o prazo mínimo pra um número ser confiável."
+        },
+        {
+          "title": "Decisão de escala com dado real",
+          "text": "Ao final do piloto, a decisão de expandir para o restante da frota é sua — baseada no número medido na sua própria operação, não em projeção."
+        }
+      ]
+    },
+    "measured": {
+      "title": "O que é medido no piloto",
+      "items": [
+        {
+          "title": "Hectares por dia",
+          "text": "Produtividade real de campo por máquina e por operador, direto da telemetria."
+        },
+        {
+          "title": "L/h e L/ha",
+          "text": "Consumo de combustível por hora de operação e por hectare trabalhado."
+        },
+        {
+          "title": "Horímetro real vs. faturado",
+          "text": "Confronto entre o horímetro lido do barramento da máquina e o horímetro usado em locação/faturamento."
+        },
+        {
+          "title": "DTCs e manutenção preditiva",
+          "text": "Códigos de falha (DTC) do motor e sinais de desgaste antes da parada não planejada."
+        }
+      ]
+    },
+    "deliverables": {
+      "title": "O que você recebe",
+      "items": [
+        {
+          "title": "Dashboard em tempo real",
+          "text": "Painel com a telemetria da frente piloto, acessível durante toda a duração do ciclo."
+        },
+        {
+          "title": "Relatórios do ciclo",
+          "text": "Consolidado de ociosidade, consumo e hora-máquina ao final do piloto, pronto para a decisão de escala."
+        },
+        {
+          "title": "Suporte de campo",
+          "text": "Instalação e suporte técnico da telemetria embarcada durante o piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Agende seu piloto Agrofy",
+      "text": "Fale com um especialista Agrofy e defina a frente ideal para começar a medir.",
+      "button": "Falar com um especialista"
+    }
+  },
   "projects": {
     "metadata": {
       "title": "Projetos — Minefy",
