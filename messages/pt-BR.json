@@ -805,7 +805,7 @@
           "GPS de alta precisão",
           "Ciclo de operação — semeadura, colheita, pulverização"
         ],
-        "image": "/images/agro/aerea-talhoes-lavoura.jpg",
+        "image": "/images/agro/aerea-colheitadeira-linhas-precisao.jpg",
         "metric": {
           "value": "J1939",
           "label": "Protocolo CAN"
