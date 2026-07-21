@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import { Check, ArrowRight, Sprout } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { AgroTelemetryCard } from "@/components/agro-telemetry-card";
@@ -44,12 +44,6 @@ export default async function AgrofySolutionsPage({ params }: Props) {
     image: string;
     metric: { value: string; label: string };
   }>;
-
-  const roadmap = t.raw("roadmap") as {
-    badge: string;
-    title: string;
-    description: string;
-  };
 
   return (
     <div className="agro-theme min-h-screen bg-background">
@@ -292,27 +286,6 @@ export default async function AgrofySolutionsPage({ params }: Props) {
             </div>
           );
         })}
-
-        {/* Roadmap teaser — não é produto entregue, tratamento visual distinto */}
-        <ScrollReveal>
-          <div className="max-w-4xl mx-auto pt-6 pb-16 text-center">
-            <div className="agro-glass-card-hover group inline-flex flex-col items-center gap-4 rounded-2xl border border-dashed border-[#16A34A]/40 px-8 py-10 max-w-2xl mx-auto">
-              <div className="relative flex h-12 w-12 items-center justify-center">
-                <span className="agro-glow-orb absolute inset-0 rounded-full" aria-hidden="true" />
-                <Sprout className="relative h-8 w-8 text-[#4ADE80]" />
-              </div>
-              <span className="inline-block rounded-full border border-[#16A34A]/30 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#4ADE80]">
-                {roadmap.badge}
-              </span>
-              <h3 className="text-xl font-bold text-foreground">
-                {roadmap.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {roadmap.description}
-              </p>
-            </div>
-          </div>
-        </ScrollReveal>
       </div>
 
       {/* ── CTA ── */}
