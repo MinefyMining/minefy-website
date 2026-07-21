@@ -523,9 +523,33 @@
     },
     "seal": "Agrofy — uma divisão Minefy",
     "hero": {
+      "badge": "Agrofy — uma divisão Minefy",
       "title": "A mesma tecnologia que lê o barramento de uma frota de mineração, agora no seu trator.",
       "subtitle": "A Agrofy leva a telemetria ActiSky — validada em operação pesada de mineração — para tratores, colheitadeiras e pulverizadores. Consumo, ociosidade e saúde do motor em tempo real, direto do barramento CAN J1939, qualquer que seja a marca da máquina.",
-      "cta": "Falar com um especialista Agrofy"
+      "trust": "Tecnologia validada em operação real de mineração pesada — agora no agro",
+      "cta": "Falar com um especialista Agrofy",
+      "ctaSecondary": "Acessar Plataforma"
+    },
+    "stats": {
+      "items": [
+        {
+          "value": "R$ 2,72 tri",
+          "label": "PIB do agronegócio brasileiro"
+        },
+        {
+          "value": "23%",
+          "label": "participação do agro no PIB nacional"
+        },
+        {
+          "value": "+37,5%",
+          "label": "alta no roubo de máquinas agrícolas em 2025"
+        },
+        {
+          "value": "14-16m",
+          "label": "retorno típico com telemetria agrícola bem implementada"
+        }
+      ],
+      "note": "Fontes: estimativas de mercado do agronegócio brasileiro e estudos do setor sobre telemetria agrícola — não são números de tração da Agrofy."
     },
     "credibility": {
       "kicker": "CREDIBILIDADE",
@@ -533,57 +557,32 @@
       "text": "A base da Agrofy é a mesma telemetria ActiSky que já opera 24/7 em frota pesada de mineração — incluindo 2 sites da Vale. Protocolo CAN J1939: a mesma leitura de barramento que hoje sustenta caminhões fora-de-estrada e escavadeiras, agora adaptada para tratores, colheitadeiras e pulverizadores.",
       "badge": "ActiSky · CAN J1939"
     },
-    "pains": {
-      "kicker": "O QUE TRAVA O RESULTADO NO CAMPO",
-      "title": "Dores reais da operação agrícola — resolvidas com telemetria",
-      "subtitle": "Quatro problemas que toda frota agrícola de porte enfrenta, e como a Agrofy responde a cada um com dado real do barramento da máquina.",
+    "outcomes": {
+      "kicker": "RESULTADOS",
+      "title": "O que muda na sua operação",
+      "subtitle": "Telemetria não é dado pelo dado — é decisão que aparece no consumo, na manutenção e na janela de safra.",
       "items": [
         {
-          "id": "diesel",
-          "badge": "COMBUSTÍVEL",
-          "title": "Diesel controlado no papel é furto quase certo",
-          "description": "Planilha de abastecimento não flagra desvio em tempo real. A Agrofy lê o consumo direto do motor via CAN J1939 — litros por hora e por hectare, hora a hora — e sinaliza quando o abastecimento registrado destoa do consumo real da máquina.",
-          "image": "/images/agro/pulverizador-autopropelido.jpg",
-          "metric": {
-            "value": "L/h",
-            "label": "Consumo automático"
-          }
+          "icon": "chart",
+          "title": "Consumo sob controle, furto sob vigilância",
+          "text": "Consumo de diesel lido direto do motor via CAN J1939, hora a hora e por hectare — sinalizando quando o abastecimento registrado destoa do consumo real da máquina."
         },
         {
-          "id": "multimarca",
-          "badge": "TELEMETRIA",
-          "title": "Cada fabricante, seu portal — sua frota, fragmentada",
-          "description": "JDLink, AFS Connect, PLM, Valtra Connect: cada marca de trator ou colheitadeira fala com o próprio painel. A Agrofy lê direto do barramento CAN J1939 e unifica toda a frota — de qualquer fabricante — num único painel, sem depender do portal de cada montadora.",
-          "image": "/images/agro/aerea-colheita-milho.jpg",
-          "metric": {
-            "value": "1 painel",
-            "label": "Qualquer marca"
-          }
+          "icon": "timer",
+          "title": "Mais hectares por dia",
+          "text": "Separar horas de motor de horas efetivamente trabalhadas mostra quanto da janela de safra sua frota realmente aproveita — com rastreamento e geofencing contra desvio de rota e furto de máquina."
         },
         {
-          "id": "manutencao",
-          "badge": "MANUTENÇÃO",
-          "title": "Colheitadeira parada em plena safra custa caro",
-          "description": "A janela de colheita não espera conserto. Manutenção preditiva por horímetro e leitura de códigos de falha do motor (DTCs) antecipa o problema antes da quebra — a mesma lógica que já reduz downtime de frota pesada de mineração.",
-          "image": "/images/agro/cabine-trator-interior.jpg",
-          "metric": {
-            "value": "DTC",
-            "label": "Saúde do motor"
-          }
+          "icon": "wrench",
+          "title": "Menos máquina parada na safra",
+          "text": "Manutenção preditiva por horímetro e leitura de códigos de falha do motor (DTCs) antecipa o problema antes da quebra — a mesma lógica que já reduz downtime em frota pesada de mineração."
         },
         {
-          "id": "ociosidade",
-          "badge": "EFICIÊNCIA",
-          "title": "Hora-máquina mal medida esconde ociosidade",
-          "description": "Nem toda hora ligada é hora produtiva. A Agrofy separa horas de motor de horas efetivamente trabalhadas, mede hectares por dia (ha/dia) e mostra quanto da janela de safra sua frota realmente aproveitou — com rastreamento e geofencing incluídos contra desvio de rota e furto de máquina.",
-          "image": "/images/agro/trator-semeadura-golden-hour.jpg",
-          "metric": {
-            "value": "ha/dia",
-            "label": "Área trabalhada"
-          }
+          "icon": "shield",
+          "title": "Decisão por dado, não por planilha",
+          "text": "Dashboards por talhão substituem a planilha de abastecimento manual: consumo, ociosidade e hectares trabalhados em tempo real, de qualquer marca de máquina."
         }
-      ],
-      "footnote": "Estudos do setor apontam economia de diesel entre 15% e 23% com monitoramento de consumo por telemetria — o ganho real depende da operação, da frota e da disciplina de uso."
+      ]
     },
     "howItWorks": {
       "kicker": "COMO FUNCIONA",
@@ -610,29 +609,67 @@
         }
       ]
     },
-    "market": {
-      "kicker": "POR QUE AGORA",
-      "title": "O agro brasileiro está digitalizando a porteira pra dentro",
-      "text": "Frotas maiores, safras mais apertadas e roubo de máquina em alta tornam telemetria uma decisão operacional — não mais um diferencial.",
-      "stats": [
+    "authority": {
+      "title": "Por que operações agrícolas escolhem a Agrofy",
+      "items": [
         {
-          "value": "R$ 2,72 tri",
-          "label": "PIB do agronegócio brasileiro"
+          "title": "Mesma engenharia, ambiente ainda mais exigente",
+          "description": "Se a telemetria ActiSky aguenta caminhão fora-de-estrada e escavadeira 24/7 numa mina a céu aberto, aguenta o ritmo e a poeira de uma safra."
         },
         {
-          "value": "23%",
-          "label": "do PIB nacional"
+          "title": "Stack próprio ponta a ponta",
+          "description": "Do módulo ActiSky embarcado na máquina ao dashboard da fazenda. Sem dependência de terceiros no core da solução."
         },
         {
-          "value": "+37,5%",
-          "label": "roubo de máquinas agrícolas em 2025"
+          "title": "Multimarca por design",
+          "description": "Leitura direta do barramento CAN J1939 — a mesma telemetria funciona em máquinas de qualquer fabricante, sem depender do portal de cada montadora. Suporte nativo ao barramento ISOBUS está no roadmap."
+        },
+        {
+          "title": "Implantação e suporte técnico no campo",
+          "description": "Equipe técnica que vai até a fazenda: instalação nos equipamentos, treinamento de operadores e suporte onde a safra acontece."
         }
       ]
+    },
+    "testDrive": {
+      "title": "Veja a telemetria funcionando",
+      "subtitle": "Explore dashboards de consumo, ociosidade e alertas de manutenção com dados reais de operação agrícola.",
+      "cta": "Acessar Plataforma",
+      "ctaSecondary": "Falar com Especialista"
     },
     "cta": {
       "title": "Estruture um piloto pago com a Agrofy",
       "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
       "button": "Agendar piloto Agrofy"
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "O que produtores e gestores de frota agrícola perguntam antes de começar.",
+      "items": [
+        {
+          "q": "O que é a telemetria ActiSky aplicada ao agro?",
+          "a": "São módulos IoT embarcados na máquina que leem o barramento CAN J1939 — RPM, consumo de combustível, temperatura do motor, pressão e GPS — direto para a plataforma Agrofy, onde viram dashboards, alertas e relatórios por talhão."
+        },
+        {
+          "q": "Como é a instalação na minha frota?",
+          "a": "Nossa equipe técnica vai até a fazenda. A instalação é planejada para não atrapalhar a janela de safra, com configuração dos módulos e treinamento dos operadores no local — suporte onde a operação agrícola acontece, não só por telefone."
+        },
+        {
+          "q": "A Agrofy funciona com qualquer marca de máquina?",
+          "a": "Sim. A leitura é direta do barramento CAN J1939 da máquina — não depende do portal de nenhum fabricante específico. Isso unifica tratores, colheitadeiras e pulverizadores de marcas diferentes num único painel. Suporte nativo ao barramento ISOBUS (agricultura de precisão) está no nosso roadmap."
+        },
+        {
+          "q": "Meus dados ficam seguros e isolados?",
+          "a": "A plataforma é multi-tenant com isolamento por cliente: cada operação enxerga apenas os seus próprios dados. Arquitetura e processos alinhados à LGPD, com controle de acesso por perfil."
+        },
+        {
+          "q": "Funciona em áreas de sinal instável no campo?",
+          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — o envio é reorganizado e nada se perde quando o sinal volta."
+        },
+        {
+          "q": "Qual é o modelo comercial?",
+          "a": "Começamos com um piloto pago — uma frente ou unidade — com ROI medido dentro de um ciclo de safra. A partir daí, o modelo escala por equipamento e por site, com locação de tablets e assinatura da plataforma (SaaS)."
+        }
+      ]
     },
     "contactPage": {
       "metadata": {

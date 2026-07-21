@@ -1,25 +1,18 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import {
-  ArrowRight,
-  Radio,
-  Activity,
-  Gauge,
-  type LucideIcon,
-} from "lucide-react";
+import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
-import { AgroTelemetryCard } from "@/components/agro-telemetry-card";
+import { AgroHeroHome } from "@/components/agro-hero-home";
+import { AgroStatsBar } from "@/components/agro-stats-bar";
+import { AgroHowItWorks } from "@/components/agro-how-it-works";
 import { AgroBentoSolutions } from "@/components/agro-bento-solutions";
+import { AgroTechTelemetry } from "@/components/agro-tech-telemetry";
+import { AgroOutcomesSection } from "@/components/agro-outcomes-section";
+import { AgroFaqSection } from "@/components/agro-faq-section";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string }> };
-
-const STEP_ICONS: Record<string, LucideIcon> = {
-  radio: Radio,
-  activity: Activity,
-  gauge: Gauge,
-};
 
 // Anchors on the dedicated `/agrofy/solucoes` page, in the same order as
 // `agrofySolutions.items` in messages/pt-BR.json.
@@ -32,25 +25,33 @@ const AGRO_SOLUTION_IDS = [
   "consulting",
 ] as const;
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofy.metadata" });
   return { title: t("title"), description: t("description") };
 }
 
+/**
+ * Agrofy home — rebuilt to mirror the mineração home's exact section flow
+ * (`(mineracao)/mineracao/page.tsx`): Hero → Stats → HowItWorks →
+ * Solutions bento → TechTelemetry → Outcomes → photo-break → Authority →
+ * TestDrive CTA → Credibility (in place of Clients — Agrofy has no named
+ * client yet) → FAQ → Final CTA. Every section below uses a dedicated
+ * `agro-*` green component; nothing here imports a mineração component.
+ *
+ * The former ad-hoc "Pains" (4 alternating image/text blocks) and "Market"
+ * (why-now stats) sections from the previous iteration of this page are
+ * retired in favor of this mirrored structure — their strongest content
+ * lives on now, reframed: the pains became `outcomes` items, the market
+ * facts became the `stats` bar (with an explicit hedge note, since these are
+ * external market figures, never invented Agrofy traction numbers). The
+ * original copy is still in git history (commit `dcc919d` and earlier) if
+ * Frente 2 (Quem Somos / Projetos) wants to reuse it.
+ */
 export default async function AgrofyPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("agrofy");
-
-  const painItems = t.raw("pains.items") as Array<{
-    id: string;
-    badge: string;
-    title: string;
-    description: string;
-    image: string;
-    metric: { value: string; label: string };
-  }>;
 
   const solutionItems = t.raw("solutionsTeaser.items") as Array<{
     icon: string;
@@ -59,63 +60,191 @@ export default async function AgrofyPage({ params }: Props) {
     badge: string;
   }>;
 
-  const steps = t.raw("howItWorks.steps") as Array<{
+  const howSteps = t.raw("howItWorks.steps") as Array<{
     icon: string;
     step: string;
     title: string;
     text: string;
   }>;
 
-  const marketStats = t.raw("market.stats") as Array<{ value: string; label: string }>;
+  const outcomeItems = t.raw("outcomes.items") as Array<{
+    icon: string;
+    title: string;
+    text: string;
+  }>;
+
+  const authorityItems = t.raw("authority.items") as Array<{
+    title: string;
+    description: string;
+  }>;
+
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
     <div className="agro-theme min-h-screen bg-background">
-      {/* ── Hero ── */}
-      <section className="relative flex min-h-[70vh] items-center overflow-hidden pt-24">
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 1 — HERO (animated: aurora + particles + stagger)
+      ───────────────────────────────────────────────────────────── */}
+      <AgroHeroHome
+        badge={t("hero.badge")}
+        title={t("hero.title")}
+        subtitle={t("hero.subtitle")}
+        trust={t("hero.trust")}
+        cta={t("hero.cta")}
+        ctaSecondary={t("hero.ctaSecondary")}
+        appUrl="https://app.minefymining.com"
+      />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 2 — STATS (market facts, not Agrofy traction — see note)
+      ───────────────────────────────────────────────────────────── */}
+      <section className="py-16 bg-background border-y border-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <AgroStatsBar />
+          <p className="mt-4 text-center text-xs italic leading-relaxed text-muted-foreground">
+            {t("stats.note")}
+          </p>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 2.5 — HOW IT WORKS
+      ───────────────────────────────────────────────────────────── */}
+      <AgroHowItWorks
+        kicker={t("howItWorks.kicker")}
+        title={t("howItWorks.title")}
+        subtitle={t("howItWorks.subtitle")}
+        steps={howSteps}
+      />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3 — SOLUTIONS BENTO (teaser — full catalog lives on
+          the dedicated `/agrofy/solucoes` page)
+      ───────────────────────────────────────────────────────────── */}
+      <section id="ofertas" className="scroll-mt-24 py-20 px-6 bg-card">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
+              {t("solutionsTeaser.title")}
+            </h2>
+            <p className="text-muted-foreground text-center mt-3 max-w-2xl mx-auto">
+              {t("solutionsTeaser.subtitle")}
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal className="mt-12">
+            <AgroBentoSolutions items={solutionItems} ids={AGRO_SOLUTION_IDS} />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3.5 — TECH / REAL-TIME TELEMETRY
+      ───────────────────────────────────────────────────────────── */}
+      <AgroTechTelemetry />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 3.6 — OUTCOMES (what changes in your operation)
+      ───────────────────────────────────────────────────────────── */}
+      <AgroOutcomesSection
+        kicker={t("outcomes.kicker")}
+        title={t("outcomes.title")}
+        subtitle={t("outcomes.subtitle")}
+        items={outcomeItems}
+      />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 4 — FULL-WIDTH PHOTO BREAK
+      ───────────────────────────────────────────────────────────── */}
+      <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden">
         <Image
-          src="/images/agro/hero-colheitadeira-soja-poente.jpg"
-          alt="Colheitadeira em operação numa lavoura de soja ao entardecer"
+          src="/images/agro/pulverizador-autopropelido.jpg"
+          alt="Pulverizador autopropelido em operação em lavoura de grande porte"
           fill
-          priority
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[#0A0A0A]/45" aria-hidden="true" />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/95 via-[#0A0A0A]/60 to-[#0A0A0A]/10"
+          className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-[#0A0A0A]/60"
           aria-hidden="true"
         />
-        <AuroraBackground grid={false} particles={false} className="opacity-50" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="max-w-2xl px-6 text-center text-xl font-medium text-white/90 md:text-2xl">
+            Tecnologia para frotas agrícolas multimarca, do plantio à colheita
+          </p>
+        </div>
+      </div>
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-[1.3fr_1fr]">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#16A34A]/40 bg-[#16A34A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#4ADE80]">
-              {t("seal")}
-            </span>
-            <h1 className="mt-6 text-4xl font-bold leading-tight text-white md:text-5xl">
-              {t("hero.title")}
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-              {t("hero.subtitle")}
-            </p>
-            <div className="mt-8">
-              <Link
-                href="/agrofy/contato"
-                className="inline-flex items-center gap-2 bg-[#16A34A] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
-              >
-                {t("hero.cta")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-          <div className="hidden lg:block">
-            <AgroTelemetryCard className="ml-auto max-w-sm" />
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 5 — AUTHORITY — Why choose Agrofy
+      ───────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-card">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <h2 className="text-3xl font-bold text-foreground mb-12">
+              {t("authority.title")}
+            </h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {authorityItems.map((item, index) => (
+              <ScrollReveal key={index} delay={index * 100}>
+                <div className="bg-background rounded-xl p-8 border border-border transition-colors duration-200 hover:border-[#16A34A]/40">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Credibility strip ── */}
-      <section className="border-y border-border bg-card px-6 py-14">
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 6 — TEST DRIVE CTA
+      ───────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-background">
+        <div className="max-w-4xl mx-auto text-center">
+          <ScrollReveal>
+            <div className="glass-card relative overflow-hidden rounded-2xl p-12">
+              <AuroraBackground grid={false} particles={false} className="opacity-50" />
+              <div className="relative z-10">
+              <h2 className="text-3xl font-bold text-foreground">
+                {t("testDrive.title")}
+              </h2>
+              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+                {t("testDrive.subtitle")}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3 justify-center">
+                <a
+                  href="https://app.minefymining.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-[#16A34A] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
+                >
+                  {t("testDrive.cta")}
+                </a>
+                <Link
+                  href="/agrofy/contato"
+                  className="inline-flex items-center border border-foreground/20 text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-foreground/40 hover:bg-foreground/5 transition-colors duration-200"
+                >
+                  {t("testDrive.ctaSecondary")}
+                </Link>
+              </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 7 — CREDIBILITY (in place of Clients — no named agro
+          client yet; reuses the real mining-validated proof point)
+      ───────────────────────────────────────────────────────────── */}
+      <section className="border-y border-border bg-card px-6 py-20">
         <ScrollReveal>
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4ADE80]">
@@ -134,199 +263,38 @@ export default async function AgrofyPage({ params }: Props) {
         </ScrollReveal>
       </section>
 
-      {/* ── Pains → Solution ── */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-6xl">
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 7.5 — FAQ
+      ───────────────────────────────────────────────────────────── */}
+      <AgroFaqSection
+        title={t("faq.title")}
+        subtitle={t("faq.subtitle")}
+        items={faqItems}
+      />
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 8 — FINAL CTA
+      ───────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden py-20 px-6 text-center bg-background">
+        <AuroraBackground particles={false} className="opacity-60" />
+        <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
-            <div className="mx-auto max-w-2xl text-center mb-16">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4ADE80]">
-                {t("pains.kicker")}
-              </p>
-              <h2 className="mt-3 text-2xl md:text-3xl font-bold text-foreground">
-                {t("pains.title")}
-              </h2>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
-                {t("pains.subtitle")}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {painItems.map((item, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <div key={item.id}>
-                <ScrollReveal>
-                  <div
-                    className={`flex flex-col gap-12 items-center py-12 ${
-                      isEven ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
-                  >
-                    <div className="relative aspect-video w-full md:w-1/2 shrink-0 rounded-xl overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent" aria-hidden="true" />
-                      <div className="absolute bottom-4 left-4 bg-[#0A0A0A]/80 px-4 py-2 rounded-lg">
-                        <p className="font-bold text-[#4ADE80] text-xl leading-none">
-                          {item.metric.value}
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          {item.metric.label}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="w-full md:w-1/2">
-                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#4ADE80] px-3 py-1 rounded-md inline-block mb-4">
-                        {item.badge}
-                      </span>
-                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-                        {item.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-                {index < painItems.length - 1 && (
-                  <div className="h-px bg-border max-w-5xl mx-auto" />
-                )}
-              </div>
-            );
-          })}
-
-          <p className="mt-10 text-center text-xs italic leading-relaxed text-muted-foreground">
-            {t("pains.footnote")}
-          </p>
-        </div>
-      </section>
-
-      {/* ── Solutions teaser — enxuta, bento; catálogo completo mora em /agrofy/solucoes ── */}
-      <section id="ofertas" className="scroll-mt-24 bg-card px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
-              {t("solutionsTeaser.title")}
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              {t("cta.title")}
             </h2>
-            <p className="text-muted-foreground text-center mt-3 max-w-2xl mx-auto">
-              {t("solutionsTeaser.subtitle")}
+            <p className="text-muted-foreground mt-3">
+              {t("cta.text")}
             </p>
-          </ScrollReveal>
-
-          <ScrollReveal className="mt-12">
-            <AgroBentoSolutions items={solutionItems} ids={AGRO_SOLUTION_IDS} />
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ── How it works ── */}
-      <section id="como-funciona" className="scroll-mt-24 relative overflow-hidden bg-background px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <ScrollReveal>
-            <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4ADE80]">
-                {t("howItWorks.kicker")}
-              </p>
-              <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
-                {t("howItWorks.title")}
-              </h2>
-              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-                {t("howItWorks.subtitle")}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="relative mt-16 grid gap-8 md:grid-cols-3">
-            <div
-              className="pointer-events-none absolute left-0 right-0 top-7 hidden md:block"
-              aria-hidden="true"
-            >
-              <div className="mx-auto h-px max-w-5xl bg-gradient-to-r from-transparent via-[#16A34A]/40 to-transparent" />
-            </div>
-
-            {steps.map((s, i) => {
-              const Icon = STEP_ICONS[s.icon] ?? Activity;
-              return (
-                <ScrollReveal key={s.step} delay={i * 120}>
-                  <div className="relative text-center">
-                    <div className="relative mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-[#16A34A]/40 bg-background">
-                      <div
-                        className="absolute inset-0 rounded-full"
-                        style={{ background: "radial-gradient(circle, rgba(34,197,94,0.18), transparent 70%)" }}
-                        aria-hidden="true"
-                      />
-                      <Icon className="relative h-6 w-6 text-[#4ADE80]" />
-                    </div>
-                    <div className="mb-2 font-mono text-xs font-semibold tracking-widest text-[#4ADE80]/70">
-                      {s.step}
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground">{s.title}</h3>
-                    <p className="mx-auto mt-3 max-w-xs leading-relaxed text-muted-foreground">
-                      {s.text}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Market / why now ── */}
-      <section className="bg-card px-6 py-20">
-        <ScrollReveal>
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4ADE80]">
-              {t("market.kicker")}
-            </p>
-            <h2 className="mt-3 text-2xl md:text-3xl font-bold text-foreground">
-              {t("market.title")}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-              {t("market.text")}
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={100} className="mt-12">
-          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
-            {marketStats.map((stat) => (
-              <div key={stat.label} className="rounded-xl border border-border bg-background p-6 text-center">
-                <p className="text-2xl font-bold text-[#4ADE80] md:text-3xl">{stat.value}</p>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="py-20 px-6 text-center">
-        <ScrollReveal>
-          <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
-            <AuroraBackground grid={false} particles={false} className="opacity-50" />
-            <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {t("cta.title")}
-              </h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                {t("cta.text")}
-              </p>
+            <div className="mt-8">
               <Link
                 href="/agrofy/contato"
-                className="inline-flex items-center gap-2 bg-[#16A34A] text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
+                className="inline-flex items-center bg-[#16A34A] text-white px-8 py-4 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
               >
                 {t("cta.button")}
-                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </section>
     </div>
   );
