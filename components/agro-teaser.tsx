@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Sprout, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -38,7 +38,7 @@ export function AgroTeaser({ kicker, title, text, cta }: AgroTeaserProps) {
 
             <div className="relative flex flex-1 flex-col gap-3 bg-card p-8 md:p-10">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#16A34A]/40 bg-[#16A34A]/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#4ADE80]">
-                <Sprout className="h-3.5 w-3.5" />
+                <Image src="/images/agro/agrofy-logo.png" alt="" width={64} height={64} className="h-4 w-4 shrink-0" />
                 {kicker}
               </span>
               <h3 className="text-xl font-bold text-foreground md:text-2xl">{title}</h3>

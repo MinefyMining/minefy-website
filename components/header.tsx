@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, ExternalLink, Sprout } from "lucide-react";
+import { Menu, ExternalLink } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sheet,
@@ -80,7 +80,15 @@ export function Header() {
                       : "text-white/70 hover:text-white"
               }`}
             >
-              {key === "agrofy" && <Sprout className="h-3.5 w-3.5" />}
+              {key === "agrofy" && (
+                <Image
+                  src="/images/agro/agrofy-logo.png"
+                  alt=""
+                  width={64}
+                  height={64}
+                  className="h-4 w-4 shrink-0"
+                />
+              )}
               {t(key)}
             </Link>
           ))}
@@ -122,7 +130,15 @@ export function Header() {
                         : key === "agrofy" ? "text-[#4ADE80]/80 hover:text-[#4ADE80]" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {key === "agrofy" && <Sprout className="h-4 w-4" />}
+                    {key === "agrofy" && (
+                      <Image
+                        src="/images/agro/agrofy-logo.png"
+                        alt=""
+                        width={64}
+                        height={64}
+                        className="h-4 w-4 shrink-0"
+                      />
+                    )}
                     {t(key)}
                   </Link>
                 ))}

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { ExternalLink, Sprout } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const companyLinks = [
   { key: "about", href: "/quem-somos" },
@@ -49,7 +49,7 @@ export function Footer() {
               href="/agrofy"
               className="flex items-center gap-2 text-sm text-[#16A34A] hover:text-[#15803D] font-medium transition-colors"
             >
-              <Sprout className="h-3.5 w-3.5" />
+              <Image src="/images/agro/agrofy-logo.png" alt="" width={64} height={64} className="h-4 w-4 shrink-0" />
               {t("agrofyLink")}
             </Link>
 

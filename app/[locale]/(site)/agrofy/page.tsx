@@ -90,8 +90,15 @@ export default async function AgrofyPage({ params }: Props) {
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-[1.3fr_1fr]">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#16A34A]/40 bg-[#16A34A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#4ADE80]">
-              <Sprout className="h-3.5 w-3.5" />
+            <Image
+              src="/images/agro/agrofy-logo.png"
+              alt="Agrofy — divisão de agronegócio da Minefy"
+              width={200}
+              height={200}
+              priority
+              className="h-16 w-16 drop-shadow-[0_6px_24px_rgba(0,0,0,0.55)] sm:h-20 sm:w-20"
+            />
+            <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#16A34A]/40 bg-[#16A34A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#4ADE80]">
               {t("seal")}
             </span>
             <h1 className="mt-6 text-4xl font-bold leading-tight text-white md:text-5xl">
