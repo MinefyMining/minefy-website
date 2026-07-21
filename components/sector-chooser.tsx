@@ -61,17 +61,22 @@ function resolveZone(
   return x < cx ? "mining" : "agro";
 }
 
+/** Sector opposite of a given zone — the side whose film darkens while the
+ *  other half is being hovered. */
+const OPPOSITE_SECTOR: Record<SectorKey, SectorKey> = {
+  mining: "agro",
+  agro: "mining",
+};
+
 const SECTORS: Array<{
   key: SectorKey;
   href: "/mineracao" | "/agrofy";
-  hoverImage: string;
   ring: string;
   mobileObjectPosition: string;
 }> = [
   {
     key: "mining",
     href: "/mineracao",
-    hoverImage: "/images/chooser/hover-mineracao.png",
     ring: "ring-[#D4A847]/35",
     // Excavator + haul truck sit in the left third of the source frame;
     // biasing the crop there (rather than dead-center) keeps the machinery
@@ -81,7 +86,6 @@ const SECTORS: Array<{
   {
     key: "agro",
     href: "/agrofy",
-    hoverImage: "/images/chooser/hover-agro.png",
     ring: "ring-[#4ADE80]/35",
     // Sprayer + "AGRONEGÓCIO" label sit in the right half of the source
     // frame — mirror bias for the same reason as above.
@@ -91,7 +95,11 @@ const SECTORS: Array<{
 
 // The CEO-authored composite: mining (gold) fusing into agro (green) around
 // a central "Minefy / GROUP" ring emblem, with the sector labels + menu
-// glyphs already burned into the image. This is the default/idle state.
+// glyphs already burned into the image. This is the ONLY background — it
+// never changes. Per the CEO's 2026-07-21 correction, the previous
+// cross-fade into hover-mineracao.png / hover-agro.png (full-screen image
+// swap) is gone; those two files stay on disk but are no longer referenced
+// anywhere in this component, desktop or mobile.
 const DEFAULT_IMAGE = "/images/chooser/split-default.png";
 
 /** Small "Entrar →" affordance that fades in only while its half is active
@@ -122,13 +130,15 @@ function HoverCta({ sectorKey, active, reduce }: { sectorKey: SectorKey; active:
  * the old logo preloader, and before that the torn-paper v1). Deliberately
  * outside the `(site)` route group, so it renders with no Header/Footer.
  *
- * Visual design is the CEO's own composite artwork (`public/images/chooser/`):
- * a cinematic gold↔green split with a central "Minefy Group" ring emblem and
- * the sector labels burned into the image. Hovering (or focusing) a half
- * cross-fades the background from the neutral split into that side's
- * dominant hover state. Choosing a side navigates to `/mineracao` or
- * `/agrofy`; from there the user stays inside that sector — nothing links
- * back to `/`. Reloading `/` always shows this screen again.
+ * Visual design is the CEO's own composite artwork (`public/images/chooser/
+ * split-default.png`): a cinematic gold↔green split with a central "Minefy
+ * Group" ring emblem and the sector labels burned into the image. That
+ * background is single and static — it never changes. Hovering (or
+ * focusing) a half darkens the OPPOSITE half with a soft black film over
+ * that same static image; the half under the pointer, and the central ring,
+ * stay clear. Choosing a side navigates to `/mineracao` or `/agrofy`; from
+ * there the user stays inside that sector — nothing links back to `/`.
+ * Reloading `/` always shows this screen again.
  */
 export function SectorChooser() {
   const t = useTranslations("chooser");
@@ -180,7 +190,7 @@ export function SectorChooser() {
     <div className="relative h-dvh w-full overflow-hidden bg-[#050505]">
       <h1 className="sr-only">{t("metadata.title")}</h1>
 
-      {/* ── Desktop / tablet — cinematic split, cross-fading on hover ──
+      {/* ── Desktop / tablet — static composite, opposite-half film on hover ──
           The whole stage is one pointer surface: onMouseMove/onClick resolve
           the 3-zone geometry (left half / right half / central ring) from
           raw coordinates via `resolveZone`, so the neutral circle can cut
@@ -192,14 +202,12 @@ export function SectorChooser() {
         onClick={handleClick}
         className={`absolute inset-0 hidden md:block ${hover === null ? "cursor-default" : "cursor-pointer"}`}
       >
-        {/* Background stack: idle composite + each sector's hover state,
-            layered and cross-faded purely via opacity — never more than one
-            fully opaque at a time, so no clip-path/hit-test games needed. */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{ opacity: hover === null ? 1 : 0, scale: hover === null ? 1 : 1.02 }}
-          transition={{ duration: reduce ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
-        >
+        {/* Background: the single static composite. Rendered as a plain
+            <Image>, opacity fixed at 1 by nothing but the browser's own
+            paint — never gated behind a motion/JS state — so it can never
+            be caught mid-animation (or stuck invisible) behind the entry
+            curtain. It never swaps, never cross-fades, never scales. */}
+        <div className="absolute inset-0">
           <Image
             src={DEFAULT_IMAGE}
             alt=""
@@ -208,33 +216,18 @@ export function SectorChooser() {
             className="object-cover"
             sizes="100vw"
           />
-        </motion.div>
+        </div>
 
-        {SECTORS.map((s) => (
-          <motion.div
-            key={s.key}
-            className="absolute inset-0"
-            animate={{
-              opacity: hover === s.key ? 1 : 0,
-              scale: hover === s.key && !reduce ? 1.045 : 1,
-            }}
-            transition={{ duration: reduce ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Image src={s.hoverImage} alt="" fill className="object-cover" sizes="100vw" />
-          </motion.div>
-        ))}
-
-        {/* Reinforcement overlay: the hover-* composites already recede/dim
-            the opposite side, but a soft black fade over that half guarantees
-            the darkening always reads clearly, whatever the source photo's
-            own contrast happens to be. Neutral (ring) zone: both clear. */}
+        {/* Sole hover effect: a dark film over the half OPPOSITE the mouse,
+            over the same static image — never the half being pointed at,
+            and never while inside the central ring (hover === null). */}
         {SECTORS.map((s, i) => (
           <motion.div
-            key={`${s.key}-overlay`}
+            key={`${s.key}-film`}
             aria-hidden="true"
             className={`pointer-events-none absolute inset-y-0 ${i === 0 ? "left-0 w-1/2" : "right-0 w-1/2"}`}
-            animate={{ opacity: hover !== null && hover !== s.key ? 1 : 0 }}
-            transition={{ duration: reduce ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ opacity: hover === OPPOSITE_SECTOR[s.key] ? 1 : 0 }}
+            transition={{ duration: reduce ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{
               background:
                 i === 0
@@ -288,7 +281,7 @@ export function SectorChooser() {
               transition={{ duration: reduce ? 0 : 1.1, ease: [0.22, 1, 0.36, 1] }}
             >
               <Image
-                src={s.hoverImage}
+                src={DEFAULT_IMAGE}
                 alt=""
                 fill
                 priority
