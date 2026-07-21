@@ -3,10 +3,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { MotionConfig } from "motion/react";
 import { routing } from "@/i18n/routing";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { ScrollProgress } from "@/components/scroll-progress";
-import { CursorGlow } from "@/components/cursor-glow";
 import type { Metadata } from "next";
 
 type Props = {
@@ -14,9 +10,11 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+// Sitewide fallback only — every route below (chooser, /mineracao, /agrofy,
+// institutional pages) defines its own generateMetadata that overrides this.
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const t = await getTranslations({ locale, namespace: "chooser.metadata" });
   return {
     title: t("title"),
     description: t("description"),
@@ -40,16 +38,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <MotionConfig reducedMotion="user">
-        <ScrollProgress />
-        <CursorGlow />
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
-        <div className="grain" aria-hidden="true" />
-      </MotionConfig>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </NextIntlClientProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { ExternalLink, Sprout } from "lucide-react";
 
 const companyLinks = [
@@ -14,6 +14,11 @@ const companyLinks = [
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
+  const pathname = usePathname();
+
+  // Same rule as the header: the brand logo never links to `/` (the
+  // sector-chooser splash) — it goes back to the sector currently in view.
+  const homeHref = pathname.startsWith("/agrofy") ? "/agrofy" : "/mineracao";
 
   const solutionLinks = t.raw("solutionLinks") as Array<{ label: string; href: string }>;
 
@@ -23,7 +28,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/">
+            <Link href={homeHref}>
               <Image src="/images/logo-transparente.png" alt="Minefy" width={800} height={570} className="w-[100px] h-auto" />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">{t("tagline")}</p>

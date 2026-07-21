@@ -13,15 +13,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-const navLinks = [
-  { key: "home", href: "/" },
-  { key: "about", href: "/quem-somos" },
-  { key: "solutions", href: "/solucoes" },
-  { key: "agrofy", href: "/agrofy" },
-  { key: "projects", href: "/projetos" },
-  { key: "contact", href: "/contato" },
-] as const;
-
 export function Header() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
@@ -36,7 +27,22 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+  // "Home" and the logo always point back to the sector the visitor is in —
+  // never to `/` (the sector-chooser splash). Only reloading `/` gets you
+  // back to the chooser.
+  const isAgro = pathname.startsWith("/agrofy");
+  const homeHref = isAgro ? "/agrofy" : "/mineracao";
+
+  const navLinks = [
+    { key: "home", href: homeHref },
+    { key: "about", href: "/quem-somos" },
+    { key: "solutions", href: "/solucoes" },
+    { key: "agrofy", href: "/agrofy" },
+    { key: "projects", href: "/projetos" },
+    { key: "contact", href: "/contato" },
+  ] as const;
+
+  const isActive = (href: string) => pathname.startsWith(href);
 
   return (
     <header
@@ -46,7 +52,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="shrink-0">
+        <Link href={homeHref} className="shrink-0">
           <Image
             id="site-logo"
             src="/images/logo-transparente.png"
