@@ -111,25 +111,11 @@ const SECTORS: Array<{
 // sharp, translatable and accessible instead of baked into a raster.
 const DEFAULT_IMAGE = "/images/chooser/split-default.png";
 
-/** The corner sector label ("MINERAÇÃO" / "AGRONEGÓCIO") — replaces the text
- *  that used to be burned into `split-default.png`. `side` controls which
- *  edge it hugs; both sides use the exact same inset tokens (`top-*`,
- *  `left-*`/`right-*`) so the margins are pixel-identical, not just visually
- *  close. Purely decorative (the full sector name + description is already
- *  announced via the sibling `sr-only` span), hence `aria-hidden`. */
-function SectorLabel({ sectorKey, side }: { sectorKey: SectorKey; side: "left" | "right" }) {
-  const t = useTranslations(`chooser.${sectorKey}`);
-  return (
-    <span
-      aria-hidden="true"
-      className={`pointer-events-none absolute top-8 lg:top-10 select-none whitespace-nowrap text-sm font-medium uppercase tracking-[0.3em] text-white/95 [text-shadow:0_2px_12px_rgba(0,0,0,0.65)] lg:text-base xl:text-lg ${
-        side === "left" ? "left-10 lg:left-14 xl:left-16" : "right-10 lg:right-14 xl:right-16"
-      }`}
-    >
-      {t("label")}
-    </span>
-  );
-}
+// The corner sector labels ("MINERAÇÃO" / "AGRONEGÓCIO") come baked into the
+// artwork (`split-default.png`) — already positioned by the CEO with equal
+// margins on both sides — so there is no HTML text drawn over the photo. The
+// sector name + description are still announced to screen readers / SEO via
+// the `sr-only` spans in each half.
 
 /** Small "Entrar →" affordance that fades in only while its half is active
  *  (hover on desktop, focus via keyboard). The composite images already
@@ -290,7 +276,6 @@ export function SectorChooser() {
             <span className="sr-only">
               {t(`${s.key}.label`)} — {t(`${s.key}.text`)}
             </span>
-            <SectorLabel sectorKey={s.key} side={i === 0 ? "left" : "right"} />
             <HoverCta sectorKey={s.key} active={hover === s.key} reduce={!!reduce} />
             <div className="pointer-events-none absolute inset-6 rounded-[2rem] outline outline-2 outline-offset-0 outline-white/0 transition-colors group-focus-visible:outline-white/70" />
           </Link>
@@ -299,7 +284,7 @@ export function SectorChooser() {
 
       {/* ── Mobile — stacked cards, tap to enter ── */}
       <div className="absolute inset-0 flex flex-col md:hidden">
-        {SECTORS.map((s, i) => (
+        {SECTORS.map((s) => (
           <Link
             key={s.key}
             href={s.href}
@@ -329,7 +314,6 @@ export function SectorChooser() {
             <span className="sr-only">
               {t(`${s.key}.label`)} — {t(`${s.key}.text`)}
             </span>
-            <SectorLabel sectorKey={s.key} side={i === 0 ? "left" : "right"} />
             <div className="absolute inset-x-0 bottom-6 flex justify-center">
               <span
                 className={`inline-flex items-center gap-2 rounded-full bg-black/45 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-white ring-1 backdrop-blur-sm ${
