@@ -1,13 +1,65 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 type SectorKey = "mining" | "agro";
+type Zone = SectorKey | null;
+
+/**
+ * The "Minefy Group" ring emblem burned into `split-default.png`, measured
+ * directly in that file's native pixel space (1849×851). The emblem is
+ * centered and near-circular in the source art, so a single {cx, cy, r}
+ * triple — found by overlaying test circles on the composite until they
+ * traced the glow — describes it well enough for hit-testing.
+ *
+ * Because the background is rendered with `object-fit: cover` at 50%/50%
+ * (the default, untouched object-position), a uniform scale factor —
+ * `max(containerW / imageW, containerH / imageH)` — maps this image-space
+ * circle onto screen space for ANY viewport size/aspect ratio. That keeps
+ * the invisible hit-test circle pixel-accurate to the visible ring instead
+ * of a hand-tuned percentage that only happens to work at one resolution.
+ */
+const RING_IMAGE_SPACE = { cx: 928, cy: 396, r: 272 };
+const RING_IMAGE_SIZE = { w: 1849, h: 851 };
+
+/** Maps a pointer position (relative to the background container) to the
+ *  {cx, cy, r} circle as actually rendered on screen right now. */
+function projectRing(containerW: number, containerH: number) {
+  const scale = Math.max(
+    containerW / RING_IMAGE_SIZE.w,
+    containerH / RING_IMAGE_SIZE.h,
+  );
+  const displayedW = RING_IMAGE_SIZE.w * scale;
+  const displayedH = RING_IMAGE_SIZE.h * scale;
+  const offsetX = (containerW - displayedW) / 2;
+  const offsetY = (containerH - displayedH) / 2;
+  return {
+    cx: offsetX + RING_IMAGE_SPACE.cx * scale,
+    cy: offsetY + RING_IMAGE_SPACE.cy * scale,
+    r: RING_IMAGE_SPACE.r * scale,
+  };
+}
+
+/** Zone resolution for a pointer at (x, y) within a container of the given
+ *  size: inside the projected ring radius is always neutral — regardless of
+ *  which half x falls on — otherwise left/right of the ring's own center. */
+function resolveZone(
+  x: number,
+  y: number,
+  containerW: number,
+  containerH: number,
+): Zone {
+  const { cx, cy, r } = projectRing(containerW, containerH);
+  const dx = x - cx;
+  const dy = y - cy;
+  if (dx * dx + dy * dy <= r * r) return null;
+  return x < cx ? "mining" : "agro";
+}
 
 const SECTORS: Array<{
   key: SectorKey;
@@ -80,9 +132,11 @@ function HoverCta({ sectorKey, active, reduce }: { sectorKey: SectorKey; active:
  */
 export function SectorChooser() {
   const t = useTranslations("chooser");
+  const router = useRouter();
   const reduce = useReducedMotion();
-  const [hover, setHover] = useState<SectorKey | null>(null);
+  const [hover, setHover] = useState<Zone>(null);
   const [revealed, setRevealed] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -96,12 +150,48 @@ export function SectorChooser() {
     };
   }, []);
 
+  /** The stage (background + click-catcher) resolves its own zone from raw
+   *  pointer coordinates on every move — no hover state is trusted from
+   *  individual elements, since the ring's neutral zone cuts across both
+   *  halves and no DOM element boundary maps to a circle. */
+  const handlePointerMove = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
+    const rect = stageRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setHover(resolveZone(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height));
+  }, []);
+
+  const handlePointerLeave = useCallback(() => setHover(null), []);
+
+  const handleClick = useCallback(
+    (e: ReactMouseEvent<HTMLDivElement>) => {
+      const rect = stageRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const zone = resolveZone(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height);
+      // Inside the ring: neutral zone, just the Minefy Group brand mark —
+      // clicking it is deliberately a no-op, never a navigation.
+      if (zone === null) return;
+      const sector = SECTORS.find((s) => s.key === zone);
+      if (sector) router.push(sector.href);
+    },
+    [router],
+  );
+
   return (
     <div className="relative h-dvh w-full overflow-hidden bg-[#050505]">
       <h1 className="sr-only">{t("metadata.title")}</h1>
 
-      {/* ── Desktop / tablet — cinematic split, cross-fading on hover ── */}
-      <div className="absolute inset-0 hidden md:block">
+      {/* ── Desktop / tablet — cinematic split, cross-fading on hover ──
+          The whole stage is one pointer surface: onMouseMove/onClick resolve
+          the 3-zone geometry (left half / right half / central ring) from
+          raw coordinates via `resolveZone`, so the neutral circle can cut
+          across both halves without fighting DOM element boundaries. */}
+      <div
+        ref={stageRef}
+        onMouseMove={handlePointerMove}
+        onMouseLeave={handlePointerLeave}
+        onClick={handleClick}
+        className={`absolute inset-0 hidden md:block ${hover === null ? "cursor-default" : "cursor-pointer"}`}
+      >
         {/* Background stack: idle composite + each sector's hover state,
             layered and cross-faded purely via opacity — never more than one
             fully opaque at a time, so no clip-path/hit-test games needed. */}
@@ -134,21 +224,39 @@ export function SectorChooser() {
           </motion.div>
         ))}
 
-        {/* Clickable halves — plain, non-overlapping rectangles (each is
-            exactly its own 50% of the viewport), so there is no shared
-            element for a click meant for one side to be swallowed by the
-            other — the failure mode the v1 clip-path seam had to work
-            around. Focus/hover on either half drives the cross-fade above. */}
+        {/* Reinforcement overlay: the hover-* composites already recede/dim
+            the opposite side, but a soft black fade over that half guarantees
+            the darkening always reads clearly, whatever the source photo's
+            own contrast happens to be. Neutral (ring) zone: both clear. */}
+        {SECTORS.map((s, i) => (
+          <motion.div
+            key={`${s.key}-overlay`}
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-y-0 ${i === 0 ? "left-0 w-1/2" : "right-0 w-1/2"}`}
+            animate={{ opacity: hover !== null && hover !== s.key ? 1 : 0 }}
+            transition={{ duration: reduce ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              background:
+                i === 0
+                  ? "linear-gradient(to left, transparent, rgba(0,0,0,0.55) 60%)"
+                  : "linear-gradient(to right, transparent, rgba(0,0,0,0.55) 60%)",
+            }}
+          />
+        ))}
+
+        {/* Real, focusable links — kept for a11y/SEO and keyboard navigation.
+            Pointer clicks are handled entirely by the stage above (so the
+            circle's neutral zone is respected); these stay `pointer-events-
+            none` for the mouse but remain tabbable, and Enter/Space still
+            navigates natively since keyboard activation isn't hit-tested. */}
         {SECTORS.map((s, i) => (
           <Link
             key={s.key}
             href={s.href}
             aria-label={t(`${s.key}.aria`)}
-            onMouseEnter={() => setHover(s.key)}
-            onMouseLeave={() => setHover(null)}
             onFocus={() => setHover(s.key)}
             onBlur={() => setHover(null)}
-            className={`group absolute inset-y-0 block cursor-pointer focus-visible:outline-none ${
+            className={`group pointer-events-none absolute inset-y-0 block focus-visible:outline-none ${
               i === 0 ? "left-0 w-1/2" : "right-0 w-1/2"
             }`}
           >
