@@ -53,6 +53,7 @@ export function AgroHeader() {
         {/* Logo — Agrofy */}
         <Link href="/agrofy" className="flex shrink-0 items-center gap-2">
           <Image
+            id="site-logo"
             src="/images/agro/agrofy-logo.png"
             alt="Agrofy — divisão de agronegócio da Minefy"
             width={200}
