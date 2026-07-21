@@ -38,6 +38,14 @@ type LogoIntroProps = {
   /** sessionStorage key gating the "once per session" behavior — keep distinct
    * per ecosystem so visiting one world doesn't skip the intro on the other. */
   sessionKey?: string;
+  /** Landing-scale correction for when `logoSrc` is a different asset than the
+   * header's `#site-logo` image. The fly scale maps the intro box onto the
+   * header img's rendered width assuming both assets have the same
+   * content-to-canvas fill; when they differ, pass
+   * `headerFill / introFill` (visible-content width ÷ canvas width of each
+   * asset) so the VISIBLE artwork lands at exactly the header's visible size.
+   * Defaults to 1 (same asset in intro and header, e.g. the Minefy gold logo). */
+  fillCompensation?: number;
 };
 
 /**
@@ -60,6 +68,7 @@ export function LogoIntro({
   logoHeight = 570,
   targetId = "site-logo",
   sessionKey = "minefy-intro",
+  fillCompensation = 1,
 }: LogoIntroProps = {}) {
   const theme = THEME[variant];
   const reduce = useReducedMotion();
@@ -91,10 +100,14 @@ export function LogoIntro({
         setFly({
           x: r.left + r.width / 2 - window.innerWidth / 2,
           y: r.top + r.height / 2 - window.innerHeight / 2,
-          scale: r.width / INTRO_W,
+          scale: (r.width / INTRO_W) * fillCompensation,
         });
       } else {
-        setFly({ x: -window.innerWidth / 2 + 120, y: -window.innerHeight / 2 + 60, scale: 0.34 });
+        setFly({
+          x: -window.innerWidth / 2 + 120,
+          y: -window.innerHeight / 2 + 60,
+          scale: 0.34 * fillCompensation,
+        });
       }
       setPhase("fly");
     }, 1650);
@@ -102,7 +115,7 @@ export function LogoIntro({
       clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [mounted, skip, targetId]);
+  }, [mounted, skip, targetId, fillCompensation]);
 
   // Don't render the opaque overlay during SSR / before mount or without JS
   // (no-JS visitors would otherwise be stuck on a black screen), nor when the

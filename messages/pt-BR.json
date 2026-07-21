@@ -576,7 +576,7 @@
           "badge": "EFICIÊNCIA",
           "title": "Hora-máquina mal medida esconde ociosidade",
           "description": "Nem toda hora ligada é hora produtiva. A Agrofy separa horas de motor de horas efetivamente trabalhadas, mede hectares por dia (ha/dia) e mostra quanto da janela de safra sua frota realmente aproveitou — com rastreamento e geofencing incluídos contra desvio de rota e furto de máquina.",
-          "image": "/images/agro/aerea-talhoes-lavoura.jpg",
+          "image": "/images/agro/trator-semeadura-golden-hour.jpg",
           "metric": {
             "value": "ha/dia",
             "label": "Área trabalhada"

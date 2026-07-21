@@ -23,13 +23,21 @@ import { LogoIntro } from "@/components/logo-intro";
 export default function AgrofyLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {/* Intro-only asset: `agrofy-logo-intro.png` re-pads the shared
+          `agrofy-logo.png` to the SAME content-to-canvas fill as the Minefy
+          gold logo (61.3%), so both intros are born with identical visible
+          artwork size (~147px in the 240px box) and the same breathing room
+          inside the generative ring. `fillCompensation` = headerFill/introFill
+          (0.9112/0.6133) keeps the fly-into-header landing pixel-continuous
+          with the header's uncropped `agrofy-logo.png`. */}
       <LogoIntro
         variant="green"
-        logoSrc="/images/agro/agrofy-logo.png"
+        logoSrc="/images/agro/agrofy-logo-intro.png"
         alt="Agrofy"
-        logoWidth={200}
-        logoHeight={200}
+        logoWidth={1024}
+        logoHeight={1024}
         sessionKey="agrofy-intro"
+        fillCompensation={1.486}
       />
       <ScrollProgress variant="green" />
       <CursorGlow variant="green" />
