@@ -229,19 +229,9 @@ export default async function AgrofyPage({ params }: Props) {
               const Icon = OFFERING_ICONS[item.icon] ?? Sprout;
               return (
                 <ScrollReveal key={item.title} delay={index * 80}>
-                  <div
-                    className={`agro-glass-card-hover group flex h-full flex-col gap-4 rounded-xl p-6 ${
-                      item.roadmap ? "border-dashed opacity-90" : ""
-                    }`}
-                  >
+                  <div className="agro-glass-card-hover group flex h-full flex-col gap-4 rounded-xl p-6">
                     <div className="flex items-start justify-between">
-                      <span
-                        className={`inline-block rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-widest ${
-                          item.roadmap
-                            ? "border-muted-foreground/30 text-muted-foreground"
-                            : "border-[#16A34A]/30 text-[#4ADE80]"
-                        }`}
-                      >
+                      <span className="inline-block rounded-full border border-[#16A34A]/30 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#4ADE80]">
                         {item.badge}
                       </span>
                     </div>

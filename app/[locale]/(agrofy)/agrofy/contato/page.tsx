@@ -46,8 +46,8 @@ export default async function AgrofyContactPage({ params }: Props) {
       {/* ── Hero with agro photo ── */}
       <section className="relative min-h-[45vh] flex items-end overflow-hidden">
         <Image
-          src="/images/agro/aerea-talhoes-lavoura.jpg"
-          alt="Vista aérea de lavoura — divisão Agrofy"
+          src="/images/agro/pulverizador-autopropelido.jpg"
+          alt="Pulverizador autopropelido de grande porte em operação — divisão Agrofy"
           fill
           priority
           className="object-cover"
