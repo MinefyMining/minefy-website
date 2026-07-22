@@ -594,7 +594,7 @@
           "icon": "radio",
           "step": "01",
           "title": "Conectar",
-          "text": "O módulo ActiSky embarcado lê o barramento CAN J1939 — e, na extensão ISOBUS, o barramento agrícola — direto da central eletrônica da máquina, sem depender do portal do fabricante."
+          "text": "O módulo ActiSky embarcado lê o barramento CAN J1939 direto da central eletrônica da máquina, sem depender do portal do fabricante."
         },
         {
           "icon": "activity",
