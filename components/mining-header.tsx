@@ -13,18 +13,20 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-const navLinks = [
-  { key: "home", href: "/" },
-  { key: "about", href: "/quem-somos" },
-  { key: "solutions", href: "/solucoes" },
-  { key: "projects", href: "/projetos" },
-  { key: "contact", href: "/contato" },
-] as const;
-
-export function Header() {
+/**
+ * Header for the MINEFY MINING ecosystem only (gold branding). Rendered by
+ * `app/[locale]/(mineracao)/layout.tsx`. Every link here stays inside the
+ * mining sector — there is deliberately no "Agrofy" item. Since the
+ * sector-chooser splash was retired in favor of domain-based routing
+ * (`proxy.ts` — `minefymining.com` serves this world at its root), the logo
+ * and "Home" link point at `/`, not `/mineracao`.
+ * See `agro-header.tsx` for the Agrofy counterpart; the two never share nav
+ * items.
+ */
+export function MiningHeader() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
-  const pathname = usePathname();
+  const rawPathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -35,7 +37,25 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const homeHref = "/";
+
+  const navLinks = [
+    { key: "home", href: homeHref },
+    { key: "about", href: "/quem-somos" },
+    { key: "solutions", href: "/solucoes" },
+    { key: "projects", href: "/projetos" },
+    { key: "contact", href: "/contato" },
+  ] as const;
+
+  // `usePathname()` reports the INTERNAL route that actually rendered the
+  // page (Next.js resolves it post-rewrite — see `proxy.ts`), which for the
+  // home page is still the literal `/mineracao` file route even though `/`
+  // is what shows in the address bar. Normalize that one case so "Home"
+  // highlights correctly; every other mineração route is already both the
+  // internal and the external path (no rewrite touches them).
+  const pathname = rawPathname === "/mineracao" ? "/" : rawPathname;
+
+  const isActive = (href: string) => (href === "/" ? pathname === href : pathname.startsWith(href));
 
   return (
     <header
@@ -45,7 +65,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="shrink-0">
+        <Link href={homeHref} className="shrink-0">
           <Image
             id="site-logo"
             src="/images/logo-transparente.png"
@@ -63,7 +83,7 @@ export function Header() {
             <Link
               key={key}
               href={href}
-              className={`text-[13px] font-medium tracking-wide transition-colors ${
+              className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors ${
                 isActive(href)
                   ? scrolled ? "text-foreground" : "text-white"
                   : scrolled
@@ -106,8 +126,10 @@ export function Header() {
                     key={key}
                     href={href}
                     onClick={() => setOpen(false)}
-                    className={`px-3 py-3 text-sm font-medium transition-colors rounded-lg ${
-                      isActive(href) ? "text-foreground bg-secondary" : "text-muted-foreground hover:text-foreground"
+                    className={`flex items-center gap-2 px-3 py-3 text-sm font-medium transition-colors rounded-lg ${
+                      isActive(href)
+                        ? "text-foreground bg-secondary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {t(key)}

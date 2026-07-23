@@ -16,25 +16,40 @@ const PARTICLES = [
   { left: "48%", top: "12%", size: 4, dur: 13, delay: 1.8, drift: -22 },
 ];
 
+interface FloatingParticlesProps {
+  /** Particle fill color. Default gold "#D4A847". */
+  color?: string;
+  /** Glow shadow color as an "r,g,b" triplet. Default gold "212,168,71". */
+  glowRgb?: string;
+}
+
 /**
- * Fluid floating gold particles. GPU-friendly (transform/opacity only).
+ * Fluid floating particles. GPU-friendly (transform/opacity only).
  * Markup is identical on server and client (no reduced-motion branch →
  * no hydration mismatch); the whole layer is hidden under
  * `prefers-reduced-motion` via the `.particles-layer` CSS rule in globals.css.
+ *
+ * Color is driven by inline style (not a Tailwind arbitrary class) so it can
+ * be parametrized at runtime — `AgroHeroHome` reuses this exact component in
+ * green. Defaults reproduce the original gold mining look byte-for-byte.
  */
-export function FloatingParticles() {
+export function FloatingParticles({
+  color = "#D4A847",
+  glowRgb = "212,168,71",
+}: FloatingParticlesProps = {}) {
   return (
     <div className="particles-layer absolute inset-0 overflow-hidden" aria-hidden="true">
       {PARTICLES.map((p, i) => (
         <motion.span
           key={i}
-          className="absolute rounded-full bg-[#D4A847]"
+          className="absolute rounded-full"
           style={{
             left: p.left,
             top: p.top,
             width: p.size,
             height: p.size,
-            boxShadow: "0 0 12px 2px rgba(212,168,71,0.55)",
+            backgroundColor: color,
+            boxShadow: `0 0 12px 2px rgba(${glowRgb},0.55)`,
           }}
           animate={{
             y: [0, p.drift, 0],

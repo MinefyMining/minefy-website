@@ -19,11 +19,16 @@ import {
 
 interface ContactFormProps {
   variant?: "compact" | "full";
+  /** Which ecosystem this form instance lives in — tags the submission so
+   * the notification email can be labeled/routed by origin. Defaults to
+   * "mineracao"; the Agrofy contact page passes "agrofy". */
+  division?: "mineracao" | "agrofy";
 }
 
-export function ContactForm({ variant = "full" }: ContactFormProps) {
+export function ContactForm({ variant = "full", division = "mineracao" }: ContactFormProps) {
   const t = useTranslations("contact");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const isAgro = division === "agrofy";
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -33,6 +38,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
       email: "",
       subject: "",
       message: "",
+      division,
     },
   });
 
@@ -42,7 +48,7 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, division }),
       });
       if (response.ok) {
         setStatus("success");
@@ -131,7 +137,11 @@ export function ContactForm({ variant = "full" }: ContactFormProps) {
           <Button
             type="submit"
             disabled={status === "sending"}
-            className="w-full md:w-auto rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+            className={
+              isAgro
+                ? "w-full md:w-auto rounded-full bg-[#16A34A] text-white hover:bg-[#15803D] px-8"
+                : "w-full md:w-auto rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+            }
           >
             {status === "sending" ? t("form.sending") : t("form.submit")}
           </Button>

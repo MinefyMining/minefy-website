@@ -11,6 +11,14 @@
     "contact": "Contato",
     "platform": "Acessar Plataforma"
   },
+  "agroNav": {
+    "home": "Início",
+    "about": "Quem Somos",
+    "solutions": "Soluções",
+    "pilot": "Piloto",
+    "contact": "Contato",
+    "platform": "Acessar Plataforma"
+  },
   "home": {
     "hero": {
       "badge": "Mineração inteligente",
@@ -22,10 +30,22 @@
     },
     "stats": {
       "items": [
-        { "value": "280+", "label": "Tablets em campo" },
-        { "value": "24/7", "label": "Monitoramento real-time" },
-        { "value": "Zero", "label": "Incidentes críticos" },
-        { "value": "#1", "label": "Validado na maior mineradora do Brasil" }
+        {
+          "value": "280+",
+          "label": "Tablets em campo"
+        },
+        {
+          "value": "24/7",
+          "label": "Monitoramento real-time"
+        },
+        {
+          "value": "Zero",
+          "label": "Incidentes críticos"
+        },
+        {
+          "value": "#1",
+          "label": "Validado na maior mineradora do Brasil"
+        }
       ]
     },
     "howItWorks": {
@@ -215,10 +235,22 @@
     },
     "numbers": {
       "items": [
-        { "value": "2025", "label": "Fundação" },
-        { "value": "6", "label": "Produtos" },
-        { "value": "#1", "label": "Maior mineradora do BR" },
-        { "value": "24/7", "label": "Monitoramento" }
+        {
+          "value": "2025",
+          "label": "Fundação"
+        },
+        {
+          "value": "6",
+          "label": "Produtos"
+        },
+        {
+          "value": "#1",
+          "label": "Maior mineradora do BR"
+        },
+        {
+          "value": "24/7",
+          "label": "Monitoramento"
+        }
       ]
     },
     "mission": {
@@ -232,10 +264,22 @@
     "values": {
       "title": "Valores",
       "items": [
-        { "title": "Segurança primeiro", "text": "Cada decisão de produto prioriza a vida do operador na mina." },
-        { "title": "Dados como verdade", "text": "Decisões baseadas em telemetria real dos equipamentos, não em intuição." },
-        { "title": "Feito para o campo", "text": "Tecnologia que funciona na poeira da mina, no calor e na chuva." },
-        { "title": "Parceria de longo prazo", "text": "Trabalhamos lado a lado com o cliente, do pit à sala de controle." }
+        {
+          "title": "Segurança primeiro",
+          "text": "Cada decisão de produto prioriza a vida do operador na mina."
+        },
+        {
+          "title": "Dados como verdade",
+          "text": "Decisões baseadas em telemetria real dos equipamentos, não em intuição."
+        },
+        {
+          "title": "Feito para o campo",
+          "text": "Tecnologia que funciona na poeira da mina, no calor e na chuva."
+        },
+        {
+          "title": "Parceria de longo prazo",
+          "text": "Trabalhamos lado a lado com o cliente, do pit à sala de controle."
+        }
       ]
     },
     "cta": {
@@ -298,7 +342,10 @@
           }
         ],
         "image": "/images/solutions/78.jpg",
-        "metric": { "value": "3", "label": "Linhas de robustez" }
+        "metric": {
+          "value": "3",
+          "label": "Linhas de robustez"
+        }
       },
       {
         "id": "actisky",
@@ -321,7 +368,10 @@
           "Detecção de ociosidade (idle)"
         ],
         "image": "/images/mining/komatsu-closeup.jpg",
-        "metric": { "value": "J1939", "label": "Protocolo CAN" }
+        "metric": {
+          "value": "J1939",
+          "label": "Protocolo CAN"
+        }
       },
       {
         "id": "analytics",
@@ -337,7 +387,10 @@
           "Exportação PDF, Excel e integração API"
         ],
         "image": "/images/solutions/9864-1.jpg",
-        "metric": { "value": "Real-time", "label": "Dashboards" }
+        "metric": {
+          "value": "Real-time",
+          "label": "Dashboards"
+        }
       },
       {
         "id": "fleet360",
@@ -353,7 +406,10 @@
           "Integração com sistemas de despacho e ERP"
         ],
         "image": "/images/mining/haul-truck-road.jpg",
-        "metric": { "value": "-35%", "label": "Downtime" }
+        "metric": {
+          "value": "-35%",
+          "label": "Downtime"
+        }
       },
       {
         "id": "safety",
@@ -369,7 +425,10 @@
           "Dashboard de segurança da operação"
         ],
         "image": "/images/mining/safety-excavator-sunset.jpg",
-        "metric": { "value": "NR-22", "label": "Compliance" }
+        "metric": {
+          "value": "NR-22",
+          "label": "Compliance"
+        }
       },
       {
         "id": "consulting",
@@ -385,7 +444,10 @@
           "Relatórios de performance operacional"
         ],
         "image": "/images/mining/fleet-d11-operation.jpg",
-        "metric": { "value": "24/7", "label": "Suporte" }
+        "metric": {
+          "value": "24/7",
+          "label": "Suporte"
+        }
       },
       {
         "id": "caminhonetes",
@@ -402,7 +464,10 @@
         ],
         "image": "/images/products/caminhonete-operacional-cutout.png",
         "studioImage": true,
-        "metric": { "value": "4x4", "label": "Equipadas p/ campo" }
+        "metric": {
+          "value": "4x4",
+          "label": "Equipadas p/ campo"
+        }
       },
       {
         "id": "compressores",
@@ -418,7 +483,10 @@
           "Fabricação nacional, com suporte técnico e peças no Brasil"
         ],
         "image": "/images/solutions/compressor-atlas-copco-xas.jpg",
-        "metric": { "value": "189 pcm", "label": "Vazão máx. (XAS 97)" }
+        "metric": {
+          "value": "189 pcm",
+          "label": "Vazão máx. (XAS 97)"
+        }
       }
     ],
     "safetyLabel": "Monitoramento de Segurança",
@@ -427,6 +495,515 @@
       "title": "Qual solução é ideal para sua mina?",
       "text": "Nossos especialistas analisam sua operação e propõem a melhor combinação de produtos.",
       "button": "Solicitar Proposta"
+    }
+  },
+  "agrofy": {
+    "metadata": {
+      "title": "Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+      "description": "Agrofy, a divisão de agronegócio da Minefy: telemetria de frota multimarca via CAN J1939, gestão de combustível, eficiência operacional e manutenção preditiva para tratores, colheitadeiras e pulverizadores."
+    },
+    "seal": "Agrofy — uma divisão Minefy",
+    "hero": {
+      "badge": "Agrofy — uma divisão Minefy",
+      "title": "A mesma tecnologia que lê o barramento de uma frota de mineração, agora no seu trator.",
+      "subtitle": "A Agrofy leva a telemetria ActiSky — validada em operação pesada de mineração — para tratores, colheitadeiras e pulverizadores. Consumo, ociosidade e saúde do motor em tempo real, direto do barramento CAN J1939, qualquer que seja a marca da máquina.",
+      "trust": "Tecnologia validada em operação real de mineração pesada — agora no agro",
+      "cta": "Falar com um especialista Agrofy",
+      "ctaSecondary": "Acessar Plataforma"
+    },
+    "stats": {
+      "items": [
+        {
+          "value": "R$ 2,72 tri",
+          "label": "PIB do agronegócio brasileiro"
+        },
+        {
+          "value": "23%",
+          "label": "participação do agro no PIB nacional"
+        },
+        {
+          "value": "+37,5%",
+          "label": "alta no roubo de máquinas agrícolas em 2025"
+        },
+        {
+          "value": "14-16m",
+          "label": "retorno típico com telemetria agrícola bem implementada"
+        }
+      ],
+      "note": "Fontes: estimativas de mercado do agronegócio brasileiro e estudos do setor sobre telemetria agrícola — não são números de tração da Agrofy."
+    },
+    "credibility": {
+      "kicker": "CREDIBILIDADE",
+      "title": "Tecnologia validada em operação real de mineração pesada",
+      "text": "A base da Agrofy é a mesma telemetria ActiSky que já opera 24/7 em frota pesada de mineração. Protocolo CAN J1939: a mesma leitura de barramento que hoje sustenta caminhões fora-de-estrada e escavadeiras, agora adaptada para tratores, colheitadeiras e pulverizadores.",
+      "badge": "ActiSky · CAN J1939"
+    },
+    "outcomes": {
+      "kicker": "RESULTADOS",
+      "title": "O que muda na sua operação",
+      "subtitle": "Telemetria não é dado pelo dado — é decisão que aparece no consumo, na manutenção e na janela de safra.",
+      "items": [
+        {
+          "icon": "chart",
+          "title": "Consumo sob controle, furto sob vigilância",
+          "text": "Consumo de diesel lido direto do motor via CAN J1939, hora a hora e por hectare — sinalizando quando o abastecimento registrado destoa do consumo real da máquina."
+        },
+        {
+          "icon": "timer",
+          "title": "Mais hectares por dia",
+          "text": "Separar horas de motor de horas efetivamente trabalhadas mostra quanto da janela de safra sua frota realmente aproveita — com rastreamento e geofencing contra desvio de rota e furto de máquina."
+        },
+        {
+          "icon": "wrench",
+          "title": "Menos máquina parada na safra",
+          "text": "Manutenção preditiva por horímetro e leitura de códigos de falha do motor (DTCs) antecipa o problema antes da quebra — a mesma lógica que já reduz downtime em frota pesada de mineração."
+        },
+        {
+          "icon": "shield",
+          "title": "Decisão por dado, não por planilha",
+          "text": "Dashboards por talhão substituem a planilha de abastecimento manual: consumo, ociosidade e hectares trabalhados em tempo real, de qualquer marca de máquina."
+        }
+      ]
+    },
+    "howItWorks": {
+      "kicker": "COMO FUNCIONA",
+      "title": "Do barramento da máquina ao painel, em 3 passos",
+      "subtitle": "A mesma arquitetura ActiSky que já roda em frota pesada de mineração — adaptada ao ritmo e às condições do campo.",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "Conectar",
+          "text": "O módulo ActiSky embarcado lê o barramento CAN J1939 direto da central eletrônica da máquina, sem depender do portal do fabricante."
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "Transmitir",
+          "text": "Telemetria em tempo real, resiliente a sinal instável no campo — sincroniza assim que a conexão volta, sem perder dado de safra."
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "Decidir",
+          "text": "Dashboard único: consumo, ociosidade, hectares trabalhados e alertas de manutenção — para decidir na hora, não no fim do mês."
+        }
+      ]
+    },
+    "authority": {
+      "title": "Por que escolher a Agrofy",
+      "items": [
+        {
+          "title": "Mesma engenharia, ambiente ainda mais exigente",
+          "description": "Se a telemetria ActiSky aguenta caminhão fora-de-estrada e escavadeira 24/7 numa mina a céu aberto, aguenta o ritmo e a poeira de uma safra."
+        },
+        {
+          "title": "Stack próprio ponta a ponta",
+          "description": "Do módulo ActiSky embarcado na máquina ao dashboard da fazenda. Sem dependência de terceiros no core da solução."
+        },
+        {
+          "title": "Multimarca por design",
+          "description": "Leitura direta do barramento CAN J1939 — a mesma telemetria funciona em máquinas de qualquer fabricante, sem depender do portal de cada montadora. Suporte nativo ao barramento ISOBUS está no roadmap."
+        },
+        {
+          "title": "Implantação e suporte técnico no campo",
+          "description": "Equipe técnica que vai até a fazenda: instalação nos equipamentos, treinamento de operadores e suporte onde a safra acontece."
+        }
+      ]
+    },
+    "testDrive": {
+      "title": "Veja a telemetria funcionando",
+      "subtitle": "Explore dashboards de consumo, ociosidade e alertas de manutenção com dados reais de operação agrícola.",
+      "cta": "Acessar Plataforma",
+      "ctaSecondary": "Falar com Especialista"
+    },
+    "cta": {
+      "title": "Estruture um piloto pago com a Agrofy",
+      "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
+      "button": "Agendar piloto Agrofy"
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "O que produtores e gestores de frota agrícola perguntam antes de começar.",
+      "items": [
+        {
+          "q": "O que é a telemetria ActiSky aplicada ao agro?",
+          "a": "São módulos IoT embarcados na máquina que leem o barramento CAN J1939 — RPM, consumo de combustível, temperatura do motor, pressão e GPS — direto para a plataforma Agrofy, onde viram dashboards, alertas e relatórios por talhão."
+        },
+        {
+          "q": "Como é a instalação na minha frota?",
+          "a": "Nossa equipe técnica vai até a fazenda. A instalação é planejada para não atrapalhar a janela de safra, com configuração dos módulos e treinamento dos operadores no local — suporte onde a operação agrícola acontece, não só por telefone."
+        },
+        {
+          "q": "A Agrofy funciona com qualquer marca de máquina?",
+          "a": "Sim. A leitura é direta do barramento CAN J1939 da máquina — não depende do portal de nenhum fabricante específico. Isso unifica tratores, colheitadeiras e pulverizadores de marcas diferentes num único painel. Suporte nativo ao barramento ISOBUS (agricultura de precisão) está no nosso roadmap."
+        },
+        {
+          "q": "Meus dados ficam seguros e isolados?",
+          "a": "A plataforma é multi-tenant com isolamento por cliente: cada operação enxerga apenas os seus próprios dados. Arquitetura e processos alinhados à LGPD, com controle de acesso por perfil."
+        },
+        {
+          "q": "Funciona em áreas de sinal instável no campo?",
+          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — o envio é reorganizado e nada se perde quando o sinal volta."
+        },
+        {
+          "q": "Qual é o modelo comercial?",
+          "a": "Começamos com um piloto pago — uma frente ou unidade — com ROI medido dentro de um ciclo de safra. A partir daí, o modelo escala por equipamento e por site, com locação de tablets e assinatura da plataforma (SaaS)."
+        }
+      ]
+    },
+    "contactPage": {
+      "metadata": {
+        "title": "Contato Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+        "description": "Fale com a equipe Agrofy sobre telemetria de frota agrícola via ActiSky/CAN J1939. Estruture um piloto pago medido dentro do seu ciclo de safra."
+      },
+      "hero": {
+        "title": "Fale com a Agrofy"
+      },
+      "title": "Estruture seu piloto Agrofy",
+      "intro": "Nossa equipe de telemetria agrícola está pronta para entender sua frota — tratores, colheitadeiras, pulverizadores — e desenhar um piloto pago com ROI medido dentro do seu ciclo de safra."
+    },
+    "solutionsTeaser": {
+      "title": "Nossas Soluções",
+      "subtitle": "Hardware, telemetria, software e serviço — a mesma disciplina técnica já validada em frota pesada de mineração, hoje aplicada a tratores, colheitadeiras e pulverizadores.",
+      "items": [
+        {
+          "icon": "tablet",
+          "title": "Tablets para o Campo",
+          "description": "Três linhas de robustez — do kit veicular comercial ao computador embarcado industrial — sempre integradas à plataforma Agrofy.",
+          "badge": "HARDWARE"
+        },
+        {
+          "icon": "satellite",
+          "title": "ActiSky Telemetria",
+          "description": "Módulo IoT com CAN J1939 para tratores, colheitadeiras e pulverizadores de qualquer fabricante — GPS de alta precisão e dados em tempo real.",
+          "badge": "IoT / TELEMETRIA"
+        },
+        {
+          "icon": "chart",
+          "title": "Agrofy Analytics",
+          "description": "Dashboards de produtividade, consumo e janela de safra em tempo real, com relatórios automáticos por talhão.",
+          "badge": "SOFTWARE"
+        },
+        {
+          "icon": "truck",
+          "title": "Fleet 360",
+          "description": "Gestão preditiva da frota agrícola pesada — manutenção antecipada para não perder um dia de janela de safra.",
+          "badge": "GESTÃO PREDITIVA"
+        },
+        {
+          "icon": "shield",
+          "title": "Agrofy Safety",
+          "description": "Monitoramento de fadiga, proximidade entre máquinas e zonas de risco no talhão — compliance NR-31.",
+          "badge": "SEGURANÇA"
+        },
+        {
+          "icon": "users",
+          "title": "Consultoria Operacional",
+          "description": "Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+          "badge": "SERVIÇO"
+        }
+      ]
+    }
+  },
+  "agrofySolutions": {
+    "metadata": {
+      "title": "Soluções — Agrofy | Minefy",
+      "description": "Tablets para o campo, telemetria ActiSky, Agrofy Analytics, Fleet 360, Agrofy Safety (NR-31) e consultoria operacional para tratores, colheitadeiras e pulverizadores de grande porte."
+    },
+    "hero": {
+      "title": "Soluções Agrofy para operações agrícolas de grande porte"
+    },
+    "safetyLabel": "Monitoramento de Segurança",
+    "operationalLabel": "Telemetria Operacional",
+    "items": [
+      {
+        "id": "tablets",
+        "badge": "HARDWARE",
+        "title": "Tablets para o Campo",
+        "description": "Três linhas de tablets para cada nível de exigência da lavoura — do apoio na cabine ao computador embarcado da colheitadeira. Você escolhe o grau de robustez; a integração com a plataforma Agrofy vem garantida em todas.",
+        "tiers": [
+          {
+            "name": "Comercial",
+            "example": "Ex.: tablet de última geração + kit veicular robusto",
+            "image": "/images/products/tablet-comercial.png",
+            "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte de cabine e película de proteção. Custo-benefício para pulverizadores e operações de apoio, onde a robustez vem da proteção externa.",
+            "specs": [
+              "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
+              "Kit veicular robusto: case + suporte de cabine (MIL-STD-810G)",
+              "Carregamento magnético no berço veicular robusto",
+              "Plug-and-play com a plataforma Agrofy"
+            ]
+          },
+          {
+            "name": "Semi-industrial",
+            "example": "Ex.: tablet semi-industrial de última geração",
+            "image": "/images/products/tablet-semi.png",
+            "description": "Robustez de fábrica para quem enfrenta poeira, vibração e sol direto na cabine. Vedação IP68, certificação militar e tela que responde com luva de trabalho — sem depender de case externo.",
+            "specs": [
+              "IP68 + MIL-STD-810H (água, poeira e queda)",
+              "Tela 8\" 1920×1200 · toque com luva",
+              "Bateria removível para jornadas longas de safra",
+              "Gestão remota via MDM corporativo"
+            ]
+          },
+          {
+            "name": "Industrial",
+            "example": "Ex.: Minefy T10 e T12",
+            "image": "/images/products/tablet-industrial.png",
+            "description": "Computadores veiculares de instalação fixa, alimentados pela rede elétrica da própria máquina. Integração direta CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine do trator ou da colheitadeira.",
+            "specs": [
+              "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto do campo)",
+              "IP66 + MIL-STD-810G · processador automotivo",
+              "2×CAN, RS232/RS485 e até 4 câmeras",
+              "Alimentação 9–36 V · RTK opcional · Android/Linux"
+            ]
+          }
+        ],
+        "image": "/images/agro/cabine-trator-interior.jpg",
+        "metric": {
+          "value": "3",
+          "label": "Linhas de robustez"
+        }
+      },
+      {
+        "id": "actisky",
+        "badge": "IoT / TELEMETRIA",
+        "title": "ActiSky Telemetria",
+        "description": "Módulo IoT de telemetria avançada com protocolo CAN J1939 para tratores, colheitadeiras e pulverizadores — qualquer fabricante. GPS de alta precisão e comunicação em tempo real, resiliente ao sinal instável do campo.",
+        "safetyFeatures": [
+          "Geofencing e alerta de saída do talhão/fazenda",
+          "Detecção de desvio de rota (furto de máquina)",
+          "Superaquecimento do motor",
+          "Pressão de óleo fora da faixa"
+        ],
+        "operationalFeatures": [
+          "Consumo de diesel em tempo real (L/h e L/ha)",
+          "Horímetro digital",
+          "Detecção de ociosidade (idle)",
+          "Velocidade e RPM do motor",
+          "GPS de alta precisão",
+          "Ciclo de operação — semeadura, colheita, pulverização"
+        ],
+        "image": "/images/agro/aerea-colheitadeira-linhas-precisao.jpg",
+        "metric": {
+          "value": "J1939",
+          "label": "Protocolo CAN"
+        }
+      },
+      {
+        "id": "analytics",
+        "badge": "SOFTWARE",
+        "title": "Agrofy Analytics",
+        "description": "Plataforma de Business Intelligence construída para operações agrícolas de grande porte. Dashboards de produtividade, consumo e janela de safra em tempo real.",
+        "features": [
+          "Dashboards real-time via WebSocket",
+          "KPIs de hectares/dia, L/ha e horímetro por talhão",
+          "Relatórios automáticos (diário/semanal/por safra)",
+          "Análise de tendências e anomalias de consumo",
+          "Multi-tenancy com isolamento de dados por fazenda/unidade",
+          "Exportação PDF, Excel e integração API"
+        ],
+        "image": "/images/agro/analytics-tablet-lavoura.jpg",
+        "metric": {
+          "value": "Real-time",
+          "label": "Dashboards"
+        }
+      },
+      {
+        "id": "fleet360",
+        "badge": "GESTÃO PREDITIVA",
+        "title": "Fleet 360",
+        "description": "Gestão preditiva para frota agrícola pesada — tratores, colheitadeiras e pulverizadores autopropelidos. Manutenção antecipada para não perder um dia de janela de safra.",
+        "features": [
+          "Manutenção preditiva por horímetro, temperatura, pressão e RPM",
+          "Leitura de códigos de falha do motor (DTCs)",
+          "Alertas de manutenção preventiva antes da quebra em plena colheita",
+          "Histórico completo de cada máquina da frota",
+          "Otimização de janela de uso por talhão e por turno",
+          "Integração com sistemas de gestão agrícola e ERP"
+        ],
+        "image": "/images/agro/fleet360-manutencao-colheitadeira.jpg",
+        "metric": {
+          "value": "DTC",
+          "label": "Alerta antes da quebra"
+        }
+      },
+      {
+        "id": "safety",
+        "badge": "SEGURANÇA",
+        "title": "Agrofy Safety",
+        "description": "Sistema de segurança para operações agrícolas de grande porte. Monitoramento de fadiga de operadores, proximidade entre máquinas pesadas e controle de zonas de risco no talhão.",
+        "features": [
+          "Monitoramento de fadiga de operadores em jornadas longas de safra",
+          "Detecção de proximidade entre tratores, colheitadeiras e implementos",
+          "Geofencing e alertas de zona de risco (barrancos, várzea, estradas internas)",
+          "Compliance NR-31 (segurança e saúde no trabalho rural)",
+          "Registro de incidentes e near-misses",
+          "Dashboard de segurança da operação"
+        ],
+        "image": "/images/agro/safety-colheitadeiras-proximidade.jpg",
+        "metric": {
+          "value": "NR-31",
+          "label": "Compliance"
+        }
+      },
+      {
+        "id": "consulting",
+        "badge": "SERVIÇO",
+        "title": "Consultoria Operacional",
+        "description": "Profissionais com experiência em operação agrícola de grande porte. Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+        "features": [
+          "Diagnóstico operacional da frota e da fazenda",
+          "Implantação de telemetria em tratores, colheitadeiras e pulverizadores",
+          "Integração com sistemas de gestão agrícola já em uso",
+          "Treinamento de operadores e equipe de campo",
+          "Suporte técnico dedicado dentro do ciclo de safra",
+          "Relatórios de performance operacional por talhão"
+        ],
+        "image": "/images/agro/consultoria-agronomo-campo.jpg",
+        "metric": {
+          "value": "1 safra",
+          "label": "Piloto medido"
+        }
+      }
+    ],
+    "roadmap": {
+      "badge": "ROADMAP",
+      "title": "Agricultura de Precisão / ISOBUS",
+      "description": "Taxa variável e telemetria de implemento (pulverizador, plantadeira) via ISOBUS — a extensão agrícola do mesmo protocolo CAN J1939 que já lemos hoje. Ainda não entregue: em evolução dentro do roadmap da Agrofy, com o mesmo rigor técnico do restante do catálogo."
+    },
+    "cta": {
+      "title": "Qual solução é ideal para sua operação agrícola?",
+      "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
+      "button": "Agendar piloto Agrofy"
+    }
+  },
+  "agrofyAbout": {
+    "metadata": {
+      "title": "Quem Somos — Agrofy",
+      "description": "Agrofy é a divisão de agronegócio do Grupo Minefy — a mesma telemetria industrial ActiSky validada em mineração pesada, aplicada ao campo."
+    },
+    "hero": {
+      "title": "Tecnologia de mineração pesada, agora no campo"
+    },
+    "intro": {
+      "text": "A Agrofy é a divisão de agronegócio do Grupo Minefy. Nascemos de uma constatação simples: a telemetria industrial que já protege e otimiza frotas de mineração — leitura de barramento CAN J1939, consumo, ociosidade, saúde do motor em tempo real — resolve exatamente os mesmos problemas em um trator, uma colheitadeira ou um pulverizador autopropelido. Em vez de reinventar a tecnologia para o agro, adaptamos o que já é validado em operação pesada.",
+      "highlight": "Nossa missão: levar ao campo a mesma disciplina de dado real que a mineração já exige."
+    },
+    "mission": {
+      "title": "Missão",
+      "text": "Aumentar a eficiência, a previsibilidade e a segurança das operações agrícolas com telemetria ActiSky embarcada — do barramento CAN J1939 da máquina ao dashboard do gestor da frente."
+    },
+    "vision": {
+      "title": "Visão",
+      "text": "Ser a referência em telemetria industrial aplicada ao agronegócio brasileiro, levando ao campo o mesmo rigor técnico validado em operações de mineração de grande porte."
+    },
+    "values": {
+      "title": "Valores",
+      "items": [
+        {
+          "title": "Dado real, não estimativa",
+          "text": "Decisões baseadas em telemetria de barramento da própria máquina, não em planilha de horímetro faturado."
+        },
+        {
+          "title": "Tecnologia agnóstica de marca",
+          "text": "Leitura via CAN J1939 funciona independente do fabricante da máquina agrícola."
+        },
+        {
+          "title": "Validado em operação pesada",
+          "text": "A mesma stack ActiSky que já opera 24/7 em mineração, adaptada ao ritmo da safra."
+        },
+        {
+          "title": "Piloto antes de escala",
+          "text": "Começamos com uma frente medida, nunca com promessa — a decisão de escalar vem do dado do próprio piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Conheça a tecnologia Agrofy de perto",
+      "text": "Fale com um especialista Agrofy ou acesse a plataforma online.",
+      "contactUs": "Fale Conosco",
+      "platform": "Acessar Plataforma"
+    }
+  },
+  "agrofyPilot": {
+    "metadata": {
+      "title": "Piloto Agrofy — Minefy",
+      "description": "Como funciona o piloto pago Agrofy: metodologia, KPIs medidos em campo e o que você recebe — telemetria ActiSky para sua operação agrícola."
+    },
+    "hero": {
+      "title": "Piloto Agrofy",
+      "subtitle": "Comece com um piloto pago e focado"
+    },
+    "intro": {
+      "badge": "METODOLOGIA",
+      "title": "Um piloto focado, não uma promessa",
+      "text": "Antes de qualquer conversa sobre escala, medimos. O piloto Agrofy instala telemetria ActiSky embarcada em uma frente ou unidade da sua operação e mede o resultado real dentro de um ciclo de safra — sem depender de estimativa, de horímetro faturado ou de case de terceiro."
+    },
+    "steps": {
+      "title": "Como funciona",
+      "items": [
+        {
+          "title": "Discovery",
+          "text": "Entendemos a frente ou operação, o maquinário envolvido e as dores específicas — ociosidade, consumo fora da curva, manutenção reativa, horímetro sem controle."
+        },
+        {
+          "title": "Piloto pago focado",
+          "text": "Uma frente ou unidade recebe telemetria ActiSky embarcada, lendo o barramento CAN J1939 da máquina em tempo real — sem integração longa, sem trocar de fornecedor de maquinário."
+        },
+        {
+          "title": "Medição de ROI no ciclo de safra",
+          "text": "Acompanhamos ociosidade, consumo, hora-máquina e sinais de manutenção preditiva ao longo de um ciclo de safra completo — o prazo mínimo pra um número ser confiável."
+        },
+        {
+          "title": "Decisão de escala com dado real",
+          "text": "Ao final do piloto, a decisão de expandir para o restante da frota é sua — baseada no número medido na sua própria operação, não em projeção."
+        }
+      ]
+    },
+    "measured": {
+      "title": "O que é medido no piloto",
+      "items": [
+        {
+          "title": "Hectares por dia",
+          "text": "Produtividade real de campo por máquina e por operador, direto da telemetria."
+        },
+        {
+          "title": "L/h e L/ha",
+          "text": "Consumo de combustível por hora de operação e por hectare trabalhado."
+        },
+        {
+          "title": "Horímetro real vs. faturado",
+          "text": "Confronto entre o horímetro lido do barramento da máquina e o horímetro usado em locação/faturamento."
+        },
+        {
+          "title": "DTCs e manutenção preditiva",
+          "text": "Códigos de falha (DTC) do motor e sinais de desgaste antes da parada não planejada."
+        }
+      ]
+    },
+    "deliverables": {
+      "title": "O que você recebe",
+      "items": [
+        {
+          "title": "Dashboard em tempo real",
+          "text": "Painel com a telemetria da frente piloto, acessível durante toda a duração do ciclo."
+        },
+        {
+          "title": "Relatórios do ciclo",
+          "text": "Consolidado de ociosidade, consumo e hora-máquina ao final do piloto, pronto para a decisão de escala."
+        },
+        {
+          "title": "Suporte de campo",
+          "text": "Instalação e suporte técnico da telemetria embarcada durante o piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Agende seu piloto Agrofy",
+      "text": "Fale com um especialista Agrofy e defina a frente ideal para começar a medir.",
+      "button": "Falar com um especialista"
     }
   },
   "projects": {
@@ -442,10 +1019,22 @@
       "title": "Telemetria integrada na descaracterização de barragens",
       "intro": "Fornecimento de tecnologia de telemetria integrada ao Sistema de Gerenciamento de Recursos Móveis da maior mineradora do país, com monitoramento 24/7 de equipamentos pesados em operação de descaracterização de barragens.",
       "metrics": [
-        { "value": "280+", "label": "Tablets em campo" },
-        { "value": "24/7", "label": "Monitoramento" },
-        { "value": "GRM", "label": "Integração despacho" },
-        { "value": "Zero", "label": "Incidentes" }
+        {
+          "value": "280+",
+          "label": "Tablets em campo"
+        },
+        {
+          "value": "24/7",
+          "label": "Monitoramento"
+        },
+        {
+          "value": "GRM",
+          "label": "Integração despacho"
+        },
+        {
+          "value": "Zero",
+          "label": "Incidentes"
+        }
       ],
       "sections": [
         {
@@ -506,10 +1095,30 @@
     "intro": "Nossos especialistas em telemetria para mineração estão prontos para entender sua operação. Demonstração gratuita, sem compromisso.",
     "info": {
       "items": [
-        { "icon": "mail", "label": "E-mail", "value": "louis.litt@minefymining.com", "href": "mailto:louis.litt@minefymining.com" },
-        { "icon": "phone", "label": "Telefone", "value": "+55 31 99670-9977", "href": "tel:+5531996709977" },
-        { "icon": "whatsapp", "label": "WhatsApp", "value": "Enviar mensagem", "href": "https://api.whatsapp.com/send?phone=5531996709977" },
-        { "icon": "location", "label": "Localização", "value": "Nova Lima, MG — Brasil", "href": "" }
+        {
+          "icon": "mail",
+          "label": "E-mail",
+          "value": "louis.litt@minefymining.com",
+          "href": "mailto:louis.litt@minefymining.com"
+        },
+        {
+          "icon": "phone",
+          "label": "Telefone",
+          "value": "+55 31 99670-9977",
+          "href": "tel:+5531996709977"
+        },
+        {
+          "icon": "whatsapp",
+          "label": "WhatsApp",
+          "value": "Enviar mensagem",
+          "href": "https://api.whatsapp.com/send?phone=5531996709977"
+        },
+        {
+          "icon": "location",
+          "label": "Localização",
+          "value": "Nova Lima, MG — Brasil",
+          "href": ""
+        }
       ]
     },
     "form": {
@@ -543,17 +1152,73 @@
       "contact": "Contato"
     },
     "solutionLinks": [
-      { "label": "Tablets Industriais", "href": "/solucoes#tablets" },
-      { "label": "ActiSky Telemetria", "href": "/solucoes#actisky" },
-      { "label": "Minefy Analytics", "href": "/solucoes#analytics" },
-      { "label": "Fleet 360", "href": "/solucoes#fleet360" },
-      { "label": "Minefy Safety", "href": "/solucoes#safety" },
-      { "label": "Consultoria", "href": "/solucoes#consulting" }
+      {
+        "label": "Tablets Industriais",
+        "href": "/solucoes#tablets"
+      },
+      {
+        "label": "ActiSky Telemetria",
+        "href": "/solucoes#actisky"
+      },
+      {
+        "label": "Minefy Analytics",
+        "href": "/solucoes#analytics"
+      },
+      {
+        "label": "Fleet 360",
+        "href": "/solucoes#fleet360"
+      },
+      {
+        "label": "Minefy Safety",
+        "href": "/solucoes#safety"
+      },
+      {
+        "label": "Consultoria",
+        "href": "/solucoes#consulting"
+      }
     ],
     "social": {
       "instagram": "https://www.instagram.com/MinefyMiningSystem",
       "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
       "whatsapp": "https://api.whatsapp.com/send?phone=5531996709977"
     }
+  },
+  "agroFooter": {
+    "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
+    "copyright": "© 2025 Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
+    "phone": "+55 31 99670-9977",
+    "email": "katrina.bennett@minefymining.com",
+    "platform": "Acessar Plataforma",
+    "columns": {
+      "solutions": "Soluções",
+      "company": "Empresa",
+      "contact": "Contato"
+    },
+    "solutionLinks": [
+      {
+        "label": "Tablets para o Campo",
+        "href": "/solucoes#tablets"
+      },
+      {
+        "label": "ActiSky Telemetria",
+        "href": "/solucoes#actisky"
+      },
+      {
+        "label": "Agrofy Analytics",
+        "href": "/solucoes#analytics"
+      },
+      {
+        "label": "Fleet 360",
+        "href": "/solucoes#fleet360"
+      },
+      {
+        "label": "Agrofy Safety",
+        "href": "/solucoes#safety"
+      },
+      {
+        "label": "Consultoria Operacional",
+        "href": "/solucoes#consulting"
+      }
+    ]
   }
 }

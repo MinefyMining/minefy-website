@@ -8,7 +8,7 @@ import { ParticleField } from "@/components/particle-field";
 import { DotGridBackground } from "@/components/dot-grid-background";
 import { MagneticButton } from "@/components/magnetic-button";
 
-interface HeroHomeProps {
+interface AgroHeroHomeProps {
   badge: string;
   title: string;
   subtitle: string;
@@ -31,7 +31,19 @@ const item = {
   },
 };
 
-export function HeroHome({
+/**
+ * Green mirror of `HeroHome` — full-screen animated hero for the Agrofy
+ * home. Same layered background (photo + dark wash + radial vignette +
+ * particle constellation + cursor dot-grid) and stagger choreography as the
+ * mining hero, but with agro copy/photo and green accents.
+ *
+ * `ParticleField` gets explicit green `colorRgb`/`highlightRgb` (the canvas
+ * engine draws with `ctx.fillStyle`/`strokeStyle`, so CSS scoping can't
+ * reach it). `DotGridBackground`'s cursor spotlight is recolored via the
+ * `.agro-theme .dotgrid-glow` CSS override in globals.css instead, since
+ * that component's color comes from a shared class, not props.
+ */
+export function AgroHeroHome({
   badge,
   title,
   subtitle,
@@ -39,8 +51,8 @@ export function HeroHome({
   cta,
   ctaSecondary,
   appUrl,
-}: HeroHomeProps) {
-  // Highlight the first word with the animated gold gradient.
+}: AgroHeroHomeProps) {
+  // Highlight the first word with the animated green gradient.
   const [firstWord, ...rest] = title.split(" ");
   const restTitle = rest.join(" ");
 
@@ -51,11 +63,11 @@ export function HeroHome({
           layout, so when the brand-intro overlay fades out on mount, it
           reveals this exact same scene underneath — no visible photo swap. */}
       <Image
-        src="/images/home-hero/hero-mineracao-bg.jpg"
-        alt="Escavadeira carregando caminhão fora-de-estrada em mina a céu aberto ao pôr do sol"
+        src="/images/home-hero/hero-agrofy-bg.jpg"
+        alt="Pulverizador autopropelido em operação numa lavoura de soja ao pôr do sol"
         fill
         priority
-        className="scale-105 object-cover object-[30%_60%]"
+        className="scale-105 object-cover object-[75%_55%]"
         sizes="100vw"
       />
 
@@ -65,18 +77,18 @@ export function HeroHome({
         className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/85 to-[#0A0A0A]/55"
         aria-hidden="true"
       />
-      {/* radial vignette + warm core glow */}
+      {/* radial vignette + green core glow */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(70% 60% at 30% 45%, rgba(212,168,71,0.10), transparent 60%), radial-gradient(120% 100% at 50% 50%, transparent 40%, #0A0A0A 100%)",
+            "radial-gradient(70% 60% at 30% 45%, rgba(34,197,94,0.12), transparent 60%), radial-gradient(120% 100% at 50% 50%, transparent 40%, #0A0A0A 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* Animated ambient layers — particle constellation + cursor dot-grid */}
-      <ParticleField className="opacity-90" />
+      {/* Animated ambient layers — particle constellation + cursor dot-grid, both green */}
+      <ParticleField className="opacity-90" colorRgb="34,197,94" highlightRgb="134,239,172" />
       <DotGridBackground className="opacity-60" />
 
       {/* Content */}
@@ -88,10 +100,10 @@ export function HeroHome({
           animate="show"
         >
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#D4A847]/30 bg-[#D4A847]/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#D4A847]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#16A34A]/40 bg-[#16A34A]/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#4ADE80]">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4A847] opacity-75 motion-safe:animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D4A847]" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#4ADE80] opacity-75 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ADE80]" />
               </span>
               {badge}
             </span>
@@ -101,7 +113,7 @@ export function HeroHome({
             variants={item}
             className="mt-6 text-[2.6rem] font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-7xl"
           >
-            <span className="text-gold-flow">{firstWord}</span>{" "}
+            <span className="text-green-flow">{firstWord}</span>{" "}
             {restTitle}
           </motion.h1>
 
@@ -116,7 +128,7 @@ export function HeroHome({
             <MagneticButton>
               <Link
                 href="/contato"
-                className="btn-sheen inline-flex items-center rounded-lg bg-[#D4A847] px-7 py-3.5 text-sm font-semibold text-[#0A0A0A] shadow-[0_8px_30px_rgba(212,168,71,0.3)] transition-colors duration-200 hover:bg-[#C49B3F]"
+                className="btn-sheen inline-flex items-center rounded-lg bg-[#16A34A] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(22,163,74,0.3)] transition-colors duration-200 hover:bg-[#15803D]"
               >
                 {cta}
               </Link>
@@ -137,7 +149,7 @@ export function HeroHome({
             variants={item}
             className="mt-7 inline-flex items-center gap-2 text-sm text-white/55"
           >
-            <Check className="h-4 w-4 shrink-0 text-[#D4A847]" />
+            <Check className="h-4 w-4 shrink-0 text-[#4ADE80]" />
             {trust}
           </motion.p>
         </motion.div>
@@ -156,7 +168,7 @@ export function HeroHome({
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="h-1.5 w-1 rounded-full bg-[#D4A847]" />
+          <span className="h-1.5 w-1 rounded-full bg-[#4ADE80]" />
         </motion.div>
       </motion.div>
     </section>

@@ -1,52 +1,63 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { StatsBar } from "@/components/stats-bar";
-import { BentoSolutions } from "@/components/bento-solutions";
-import { ClientCarousel } from "@/components/client-carousel";
-import { HeroHome } from "@/components/hero-home";
 import { AuroraBackground } from "@/components/aurora-background";
-import { LogoIntro } from "@/components/logo-intro";
-import { TechTelemetry } from "@/components/tech-telemetry";
-import { FaqSection } from "@/components/faq-section";
-import { HowItWorks } from "@/components/how-it-works";
-import { OutcomesSection } from "@/components/outcomes-section";
+import { AgroHeroHome } from "@/components/agro-hero-home";
+import { AgroHowItWorks } from "@/components/agro-how-it-works";
+import { AgroBentoSolutions } from "@/components/agro-bento-solutions";
+import { AgroTechTelemetry } from "@/components/agro-tech-telemetry";
+import { AgroOutcomesSection } from "@/components/agro-outcomes-section";
+import { AgroFaqSection } from "@/components/agro-faq-section";
+import { Link } from "@/i18n/navigation";
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
+type Props = { params: Promise<{ locale: string }> };
 
-const SOLUTION_IDS = [
+// Anchors on the dedicated `/agrofy/solucoes` page, in the same order as
+// `agrofySolutions.items` in messages/pt-BR.json.
+const AGRO_SOLUTION_IDS = [
   "tablets",
   "actisky",
   "analytics",
   "fleet360",
   "safety",
   "consulting",
-  "caminhonetes",
-  "compressores",
 ] as const;
 
-export default async function HomePage({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "agrofy.metadata" });
+  return { title: t("title"), description: t("description") };
+}
+
+/**
+ * Agrofy home — rebuilt to mirror the mineração home's exact section flow
+ * (`(mineracao)/mineracao/page.tsx`): Hero → Stats → HowItWorks →
+ * Solutions bento → TechTelemetry → Outcomes → photo-break → Authority →
+ * TestDrive CTA → Credibility (in place of Clients — Agrofy has no named
+ * client yet) → FAQ → Final CTA. Every section below uses a dedicated
+ * `agro-*` green component; nothing here imports a mineração component.
+ *
+ * The former ad-hoc "Pains" (4 alternating image/text blocks) and "Market"
+ * (why-now stats) sections from the previous iteration of this page are
+ * retired in favor of this mirrored structure — their strongest content
+ * lives on now, reframed: the pains became `outcomes` items, the market
+ * facts became the `stats` bar (with an explicit hedge note, since these are
+ * external market figures, never invented Agrofy traction numbers). The
+ * original copy is still in git history (commit `dcc919d` and earlier) if
+ * Frente 2 (Quem Somos / Projetos) wants to reuse it.
+ */
+export default async function AgrofyPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("agrofy");
 
-  const t = await getTranslations("home");
-
-  const productItems = t.raw("products.items") as Array<{
+  const solutionItems = t.raw("solutionsTeaser.items") as Array<{
     icon: string;
     title: string;
     description: string;
     badge: string;
   }>;
-
-  const authorityItems = t.raw("authority.items") as Array<{
-    title: string;
-    description: string;
-  }>;
-
-  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   const howSteps = t.raw("howItWorks.steps") as Array<{
     icon: string;
@@ -61,37 +72,34 @@ export default async function HomePage({ params }: Props) {
     text: string;
   }>;
 
-  return (
-    <>
-      {/* Brand intro — logo generates in center then flies to the header */}
-      <LogoIntro />
+  const authorityItems = t.raw("authority.items") as Array<{
+    title: string;
+    description: string;
+  }>;
 
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
+
+  return (
+    <div className="agro-theme min-h-screen bg-background">
       {/* ─────────────────────────────────────────────────────────────
           SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}
-      <HeroHome
+      <AgroHeroHome
         badge={t("hero.badge")}
         title={t("hero.title")}
         subtitle={t("hero.subtitle")}
         trust={t("hero.trust")}
         cta={t("hero.cta")}
         ctaSecondary={t("hero.ctaSecondary")}
-        appUrl="https://app.minefymining.com"
+        appUrl="https://app.agrofymining.com"
       />
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 2 — STATS
+          SECTION — HOW IT WORKS
+          (Stats/numbers section intentionally omitted — Agrofy has no
+          traction numbers to show yet, per CEO.)
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 bg-background border-y border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <StatsBar />
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 2.5 — HOW IT WORKS
-      ───────────────────────────────────────────────────────────── */}
-      <HowItWorks
+      <AgroHowItWorks
         kicker={t("howItWorks.kicker")}
         title={t("howItWorks.title")}
         subtitle={t("howItWorks.subtitle")}
@@ -99,21 +107,22 @@ export default async function HomePage({ params }: Props) {
       />
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 3 — SOLUTIONS GRID
+          SECTION 3 — SOLUTIONS BENTO (teaser — full catalog lives on
+          the dedicated `/agrofy/solucoes` page)
       ───────────────────────────────────────────────────────────── */}
-      <section id="solucoes" className="py-20 px-6 bg-background scroll-mt-24">
+      <section id="ofertas" className="scroll-mt-24 py-20 px-6 bg-card">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
-              {t("products.title")}
+              {t("solutionsTeaser.title")}
             </h2>
             <p className="text-muted-foreground text-center mt-3 max-w-2xl mx-auto">
-              {t("products.subtitle")}
+              {t("solutionsTeaser.subtitle")}
             </p>
           </ScrollReveal>
 
           <ScrollReveal className="mt-12">
-            <BentoSolutions items={productItems} ids={SOLUTION_IDS} />
+            <AgroBentoSolutions items={solutionItems} ids={AGRO_SOLUTION_IDS} />
           </ScrollReveal>
         </div>
       </section>
@@ -121,12 +130,12 @@ export default async function HomePage({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           SECTION 3.5 — TECH / REAL-TIME TELEMETRY
       ───────────────────────────────────────────────────────────── */}
-      <TechTelemetry />
+      <AgroTechTelemetry />
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 3.6 — OUTCOMES (what changes in your operation)
       ───────────────────────────────────────────────────────────── */}
-      <OutcomesSection
+      <AgroOutcomesSection
         kicker={t("outcomes.kicker")}
         title={t("outcomes.title")}
         subtitle={t("outcomes.subtitle")}
@@ -138,8 +147,8 @@ export default async function HomePage({ params }: Props) {
       ───────────────────────────────────────────────────────────── */}
       <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden">
         <Image
-          src="/images/mining/safety-excavator-sunset.jpg"
-          alt="Escavadeira de grande porte ao entardecer em mina a céu aberto"
+          src="/images/agro/pulverizador-autopropelido.jpg"
+          alt="Pulverizador autopropelido em operação em lavoura de grande porte"
           fill
           className="object-cover"
           sizes="100vw"
@@ -150,13 +159,13 @@ export default async function HomePage({ params }: Props) {
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="max-w-2xl px-6 text-center text-xl font-medium text-white/90 md:text-2xl">
-            Tecnologia para equipamentos de grande porte em mineração a céu aberto
+            Tecnologia para frotas agrícolas multimarca, do plantio à colheita
           </p>
         </div>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 5 — AUTHORITY — Why choose Minefy
+          SECTION 5 — AUTHORITY — Why choose Agrofy
       ───────────────────────────────────────────────────────────── */}
       <section className="py-20 px-6 bg-card">
         <div className="max-w-7xl mx-auto">
@@ -169,7 +178,7 @@ export default async function HomePage({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {authorityItems.map((item, index) => (
               <ScrollReveal key={index} delay={index * 100}>
-                <div className="bg-background rounded-xl p-8 border border-border transition-colors duration-200 hover:border-[#333]">
+                <div className="bg-background rounded-xl p-8 border border-border transition-colors duration-200 hover:border-[#16A34A]/40">
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
@@ -200,10 +209,10 @@ export default async function HomePage({ params }: Props) {
               </p>
               <div className="mt-8 flex flex-wrap gap-3 justify-center">
                 <a
-                  href="https://app.minefymining.com"
+                  href="https://app.agrofymining.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center bg-[#D4A847] text-[#0A0A0A] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+                  className="inline-flex items-center bg-[#16A34A] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
                 >
                   {t("testDrive.cta")}
                 </a>
@@ -221,32 +230,32 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          SECTION 7 — CLIENTS
+          SECTION 7 — CREDIBILITY (in place of Clients — no named agro
+          client yet; reuses the real mining-validated proof point)
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <ScrollReveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
-              Confiança
+      <section className="border-y border-border bg-card px-6 py-20">
+        <ScrollReveal>
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4ADE80]">
+              {t("credibility.kicker")}
             </p>
-            <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
-              {t("clients.title")}
+            <h2 className="mt-3 text-2xl font-bold text-foreground md:text-3xl">
+              {t("credibility.title")}
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-              {t("clients.subtitle")}
+            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+              {t("credibility.text")}
             </p>
-            <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent" />
-          </ScrollReveal>
-          <ScrollReveal delay={100} className="mt-12">
-            <ClientCarousel />
-          </ScrollReveal>
-        </div>
+            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#16A34A]/30 bg-[#16A34A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#4ADE80]">
+              {t("credibility.badge")}
+            </span>
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           SECTION 7.5 — FAQ
       ───────────────────────────────────────────────────────────── */}
-      <FaqSection
+      <AgroFaqSection
         title={t("faq.title")}
         subtitle={t("faq.subtitle")}
         items={faqItems}
@@ -263,12 +272,12 @@ export default async function HomePage({ params }: Props) {
               {t("cta.title")}
             </h2>
             <p className="text-muted-foreground mt-3">
-              {t("cta.subtitle")}
+              {t("cta.text")}
             </p>
             <div className="mt-8">
               <Link
                 href="/contato"
-                className="inline-flex items-center bg-[#D4A847] text-[#0A0A0A] px-8 py-4 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+                className="inline-flex items-center bg-[#16A34A] text-white px-8 py-4 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
               >
                 {t("cta.button")}
               </Link>
@@ -276,6 +285,6 @@ export default async function HomePage({ params }: Props) {
           </ScrollReveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }
