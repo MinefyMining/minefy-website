@@ -58,13 +58,16 @@ export function AgroHeroHome({
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
-      {/* Background photo — kept as a faint, cinematic texture under the tech layers */}
+      {/* Background photo — kept as a faint, cinematic texture under the tech
+          layers. Same file as `LogoIntro`'s `backgroundSrc` in this world's
+          layout, so when the brand-intro overlay fades out on mount, it
+          reveals this exact same scene underneath — no visible photo swap. */}
       <Image
-        src="/images/agro/hero-colheitadeira-soja-poente.jpg"
-        alt="Colheitadeira em operação numa lavoura de soja ao entardecer"
+        src="/images/home-hero/hero-agrofy-bg.jpg"
+        alt="Pulverizador autopropelido em operação numa lavoura de soja ao pôr do sol"
         fill
         priority
-        className="scale-105 object-cover"
+        className="scale-105 object-cover object-[75%_55%]"
         sizes="100vw"
       />
 

@@ -11,6 +11,19 @@ type Phase = "gen" | "fly" | "done";
 type Fly = { x: number; y: number; scale: number };
 type Variant = "gold" | "green";
 
+// Module-level (in-memory) set of `sessionKey`s that have already played.
+// Deliberately NOT `sessionStorage`: that API persists across a real reload
+// (F5) within the same tab per spec, which is the opposite of what's wanted
+// here — the intro should play again on a genuine reload of the site, but
+// not repeat on every internal client-side navigation. A plain module
+// variable gives exactly that: a real reload re-evaluates this module from
+// scratch (fresh, empty `Set`), while Next.js client-side route transitions
+// reuse the already-loaded module (the flag survives), so the intro fires
+// once per real page load and never again until the next hard
+// reload/new tab. Keyed by `sessionKey` so the two ecosystems never
+// interfere with each other's "already played" state.
+const playedThisLoad = new Set<string>();
+
 const THEME: Record<Variant, { ring: string; glow: string; dot: string }> = {
   gold: {
     ring: "#D4A847",
@@ -35,8 +48,10 @@ type LogoIntroProps = {
   logoHeight?: number;
   /** DOM id of the header logo this intro should land on (`getBoundingClientRect`). */
   targetId?: string;
-  /** sessionStorage key gating the "once per session" behavior — keep distinct
-   * per ecosystem so visiting one world doesn't skip the intro on the other. */
+  /** In-memory flag key gating the "once per real page load" behavior — keep
+   * distinct per ecosystem so visiting one world doesn't skip the intro on
+   * the other. Resets on a genuine reload/new tab, survives client-side
+   * (SPA) navigation within the same load — see `playedThisLoad` above. */
   sessionKey?: string;
   /** Landing-scale correction for when `logoSrc` is a different asset than the
    * header's `#site-logo` image. The fly scale maps the intro box onto the
@@ -65,9 +80,14 @@ type LogoIntroProps = {
 /**
  * Brand intro: the logo "generates" in the center of the screen (blur-in +
  * a ring drawing around it + glow), then flies up to its final position in
- * the header. Plays once per browser session; skipped entirely under
+ * the header. Plays once per real page load (a hard reload/new tab plays it
+ * again; client-side navigation between pages does not — see
+ * `playedThisLoad` above), and is skipped entirely under
  * `prefers-reduced-motion`. Measures the real header logo (`#targetId`) so
- * the landing position matches exactly.
+ * the landing position matches exactly. The whole overlay is
+ * `aria-hidden="true"` (purely decorative, non-interactive — `pointerEvents:
+ * "none"` so it never traps focus or blocks clicks) and unmounts itself once
+ * the fly-in finishes, handing off to the real header logo underneath.
  *
  * Shared between the two ecosystems via props — `<LogoIntro />` (no props)
  * renders the gold Minefy intro anchoring on `(mineracao)`'s header; the
@@ -103,13 +123,10 @@ export function LogoIntro({
   const [fly, setFly] = useState<Fly | null>(null);
 
   // Whether the intro should play at all: skipped under reduced-motion or when
-  // it already played this session. Evaluated only after mount (client-only),
-  // so SSR/no-JS render nothing and there is no hydration mismatch.
-  const skip =
-    mounted &&
-    (reduce === true ||
-      (typeof window !== "undefined" &&
-        sessionStorage.getItem(sessionKey) !== null));
+  // it already played during this page load. Evaluated only after mount
+  // (client-only), so SSR/no-JS render nothing and there is no hydration
+  // mismatch.
+  const skip = mounted && (reduce === true || playedThisLoad.has(sessionKey));
 
   useEffect(() => {
     if (!mounted || skip) return;
@@ -144,13 +161,17 @@ export function LogoIntro({
   if (!mounted || skip || phase === "done") return null;
 
   const finish = () => {
-    sessionStorage.setItem(sessionKey, "1");
+    playedThisLoad.add(sessionKey);
     document.body.style.overflow = "";
     setPhase("done");
   };
 
   return (
-    <div className="fixed inset-0 z-[120] grid place-items-center" style={{ pointerEvents: "none" }}>
+    <div
+      className="fixed inset-0 z-[120] grid place-items-center"
+      style={{ pointerEvents: "none" }}
+      aria-hidden="true"
+    >
       {/* Background — fades out as the logo flies into place. Flat fallback
           fill; when `backgroundSrc` is set, the photo layer below covers it
           almost entirely, but this still guards any edge/overscroll gap. */}

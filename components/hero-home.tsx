@@ -46,13 +46,16 @@ export function HeroHome({
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
-      {/* Background photo — kept as a faint, cinematic texture under the tech layers */}
+      {/* Background photo — kept as a faint, cinematic texture under the tech
+          layers. Same file as `LogoIntro`'s `backgroundSrc` in this world's
+          layout, so when the brand-intro overlay fades out on mount, it
+          reveals this exact same scene underneath — no visible photo swap. */}
       <Image
-        src="/images/mining/hero-cat-d11.jpg"
-        alt="CAT D11 operando em mina a céu aberto"
+        src="/images/home-hero/hero-mineracao-bg.jpg"
+        alt="Escavadeira carregando caminhão fora-de-estrada em mina a céu aberto ao pôr do sol"
         fill
         priority
-        className="scale-105 object-cover"
+        className="scale-105 object-cover object-[30%_60%]"
         sizes="100vw"
       />
 

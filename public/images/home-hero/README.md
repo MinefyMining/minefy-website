@@ -1,41 +1,31 @@
-# Home hero — origem e status (BLOQUEADO — não usadas ainda)
+# Home hero — origem e status
 
-## Adicionadas em 2026-07-23 (reestruturação de domínio Minefy/Agrofy)
+## Resolvido em 2026-07-23 (2ª passada) — `hero-mineracao-bg.jpg` / `hero-agrofy-bg.jpg`
 
-| Arquivo | Origem | Conteúdo | Uso previsto | Status |
-|---|---|---|---|---|
-| `hero-minefy-group.png` | CEO (1672×941) | Mina a céu aberto ao entardecer, escavadeira + caminhão fora-de-estrada, com o anel/emblema "Minefy Group" dourado queimado no centro | Fundo full-screen da home mineração + intro (`LogoIntro backgroundSrc`) | **Bloqueado** — precisa de versão limpa (sem emblema/texto) |
-| `hero-agrofy-group.png` | CEO (1672×941) | Lavoura de soja ao entardecer, pulverizador autopropelido em operação, com o anel/emblema "Agrofy · Minefy Group" verde queimado no centro | Fundo full-screen da home Agrofy + intro (`LogoIntro variant="green" backgroundSrc`) | **Bloqueado** — precisa de versão limpa (sem emblema/texto) |
+O CEO adicionou duas fotos **limpas** (sem emblema/texto queimado),
+1672×941, ~460KB cada:
 
-## Por que estão bloqueadas
+| Arquivo | Conteúdo | Uso |
+|---|---|---|
+| `hero-mineracao-bg.jpg` | Escavadeira carregando caminhão fora-de-estrada em mina a céu aberto, pôr do sol | Fundo de `HeroHome` **e** `backgroundSrc` do `LogoIntro` gold em `(mineracao)/layout.tsx` |
+| `hero-agrofy-bg.jpg` | Pulverizador autopropelido em lavoura de soja, pôr do sol | Fundo de `AgroHeroHome` **e** `backgroundSrc` do `LogoIntro` green em `(agrofy)/layout.tsx` |
 
-O plano da reestruturação (2026-07-23) pedia usar estas duas fotos como fundo
-full-screen de cada home, com o anel/logo (`agrofy-logo.png` / `logo-transparente.png`)
-animando do centro até o header por cima — mas para isso o **fundo tem que estar limpo**,
-sem o emblema/texto queimado, senão o efeito duplica (um símbolo parado na foto + um
-"voando" por cima, incoerente).
+Isso desbloqueou o item que estava pendente abaixo: o mesmo arquivo é usado
+tanto pelo hero da home quanto pelo `backgroundSrc` do `LogoIntro` (ver
+`components/logo-intro.tsx`), garantindo que quando o overlay do intro
+desaparece (~2.6s após o mount), ele revela a **mesma foto** já renderizada
+por trás no `HeroHome`/`AgroHeroHome` — sem troca de imagem perceptível.
 
-**Verificado nesta sessão:** as ferramentas Adobe MCP disponíveis no ambiente **não
-incluem remoção generativa de objeto / inpaint** — `image_fill_area` só preenche uma
-máscara com **cor sólida** (não com conteúdo gerado coerente com a foto), e a
-documentação do conector lista explicitamente "Object/element removal from images" e
-"Generative AI... (except `image_generative_expand`)" como **não disponíveis** neste
-ambiente. `image_generative_expand` só estende bordas (outpaint), não repinta o miolo
-da imagem. Não há caminho pra produzir a versão limpa com as ferramentas atuais sem
-resultar em um patch de cor sólida por cima da foto — abaixo do Princípio de Excelência.
+## Histórico — fotos do CEO ainda bloqueadas (não usadas)
 
-Conforme a própria instrução da tarefa ("se o inpaint não ficar bom, pare e avise"),
-este passo específico foi interrompido em vez de entregar um resultado malfeito.
+| Arquivo | Origem | Conteúdo | Status |
+|---|---|---|---|
+| `hero-minefy-group.png` | CEO (1672×941) | Mina a céu aberto ao entardecer, escavadeira + caminhão fora-de-estrada, com o anel/emblema "Minefy Group" dourado queimado no centro | **Ainda bloqueado** — precisa de versão limpa (sem emblema/texto) se algum dia for usada; não é mais necessária para o intro (substituída por `hero-mineracao-bg.jpg`) |
+| `hero-agrofy-group.png` | CEO (1672×941) | Lavoura de soja ao entardecer, pulverizador autopropelido em operação, com o anel/emblema "Agrofy · Minefy Group" verde queimado no centro | **Ainda bloqueado** — mesma observação; substituída por `hero-agrofy-bg.jpg` |
 
-## O que já está pronto para quando o fundo limpo chegar
-
-- `components/logo-intro.tsx` já aceita uma prop `backgroundSrc` (opcional, não
-  ativada em nenhum dos dois layouts ainda) — quando definida, o intro abre com essa
-  foto full-bleed atrás do anel/logo (com véu escuro pra legibilidade) em vez da cor
-  chapada atual, e desliga a grade de pontos (que ficaria estranha sobre uma foto real).
-- Falta apenas: (1) gerar/receber as 2 versões limpas (sem emblema) destas fotos —
-  via Firefly/Photoshop fora deste ambiente, ou pedindo ao mesmo gerador que criou as
-  originais para exportar também a versão sem anel/texto; (2) trocar o fundo de
-  `hero-home.tsx`/`agro-hero-home.tsx` para a foto limpa; (3) passar
-  `backgroundSrc="/images/home-hero/<arquivo-limpo>"` no `<LogoIntro />` de
-  `(mineracao)/layout.tsx` e `(agrofy)/layout.tsx`.
+Essas duas continuam no repo apenas como referência/histórico (não são mais
+o caminho planejado para o hero — não editar/promover sem novo pedido).
+Motivo do bloqueio original: as ferramentas Adobe MCP disponíveis neste
+ambiente não incluem remoção generativa de objeto/inpaint coerente
+(`image_fill_area` só preenche com cor sólida; `image_generative_expand` só
+estende borda). Ver commit `1c37921` para o diagnóstico completo.

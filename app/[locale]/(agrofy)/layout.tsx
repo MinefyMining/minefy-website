@@ -9,10 +9,13 @@ import { LogoIntro } from "@/components/logo-intro";
  * cursor glow, and the film-grain overlay. Route group `(agrofy)` keeps this
  * scoped to `/agrofy` and `/agrofy/contato` without affecting URLs.
  *
- * `<LogoIntro variant="green" .../>` plays Agrofy's own once-per-session
+ * `<LogoIntro variant="green" .../>` plays Agrofy's own once-per-real-page-load
  * fly-into-header brand intro, anchored on `AgroHeader`'s `#site-logo` — a
  * separate `sessionKey` ("agrofy-intro") keeps it fully independent from the
  * mineração intro, so visiting one world never skips the intro on the other.
+ * `backgroundSrc` opens it on the same clean sunset lavoura photo
+ * `AgroHeroHome` uses as its own background (`hero-agrofy-bg.jpg`), so the
+ * overlay fade-out reveals the identical scene underneath — no photo swap.
  *
  * This is a fully separate layout from `(mineracao)/layout.tsx` — it never
  * imports `MiningHeader`/`MiningFooter`, so a visitor inside `/agrofy` can
@@ -38,6 +41,7 @@ export default function AgrofyLayout({ children }: { children: React.ReactNode }
         logoHeight={1024}
         sessionKey="agrofy-intro"
         fillCompensation={1.486}
+        backgroundSrc="/images/home-hero/hero-agrofy-bg.jpg"
       />
       <ScrollProgress variant="green" />
       <CursorGlow variant="green" />
