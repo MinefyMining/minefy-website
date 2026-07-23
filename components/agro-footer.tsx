@@ -43,7 +43,7 @@ export function AgroFooter() {
             <p className="text-sm text-muted-foreground max-w-xs">{t("tagline")}</p>
 
             <a
-              href="https://app.minefymining.com"
+              href="https://app.agrofymining.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-[#16A34A] hover:text-[#15803D] font-medium transition-colors"
@@ -88,7 +88,7 @@ export function AgroFooter() {
                 </li>
               ))}
               <li>
-                <a href="https://app.minefymining.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://app.agrofymining.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   Plataforma
                 </a>
               </li>

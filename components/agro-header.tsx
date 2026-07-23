@@ -110,7 +110,7 @@ export function AgroHeader() {
           <ThemeToggle />
           {/* Platform access — same neutral SaaS login for both sectors */}
           <a
-            href="https://app.minefymining.com"
+            href="https://app.agrofymining.com"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 bg-[#16A34A] text-white px-5 py-2 rounded-lg text-[13px] font-semibold hover:bg-[#15803D] transition-colors"
@@ -147,7 +147,7 @@ export function AgroHeader() {
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">
                 <a
-                  href="https://app.minefymining.com"
+                  href="https://app.agrofymining.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#16A34A] text-white px-5 py-2.5 rounded-lg text-sm font-semibold"

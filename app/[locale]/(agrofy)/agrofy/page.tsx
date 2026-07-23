@@ -91,7 +91,7 @@ export default async function AgrofyPage({ params }: Props) {
         trust={t("hero.trust")}
         cta={t("hero.cta")}
         ctaSecondary={t("hero.ctaSecondary")}
-        appUrl="https://app.minefymining.com"
+        appUrl="https://app.agrofymining.com"
       />
 
       {/* ─────────────────────────────────────────────────────────────
@@ -209,7 +209,7 @@ export default async function AgrofyPage({ params }: Props) {
               </p>
               <div className="mt-8 flex flex-wrap gap-3 justify-center">
                 <a
-                  href="https://app.minefymining.com"
+                  href="https://app.agrofymining.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-[#16A34A] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"

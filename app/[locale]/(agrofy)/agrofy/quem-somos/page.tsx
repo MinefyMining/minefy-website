@@ -136,7 +136,7 @@ export default async function AgrofyAboutPage({ params }: Props) {
               {t("cta.contactUs")}
             </Link>
             <a
-              href="https://app.minefymining.com"
+              href="https://app.agrofymining.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-foreground/20 text-foreground px-8 py-3 rounded-lg font-medium text-sm hover:border-foreground/40 hover:bg-foreground/5 transition-colors duration-200"
