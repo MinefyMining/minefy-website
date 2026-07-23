@@ -130,7 +130,7 @@ export default async function AgrofyAboutPage({ params }: Props) {
           </h2>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
-              href="/agrofy/contato"
+              href="/contato"
               className="inline-flex items-center gap-2 bg-[#16A34A] text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
             >
               {t("cta.contactUs")}

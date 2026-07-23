@@ -17,17 +17,25 @@ import {
  * Header for the AGROFY ecosystem only (green branding, own logo). Rendered
  * by `app/[locale]/(agrofy)/layout.tsx`. Every link here stays inside the
  * Agrofy sector — no mineração nav item, no link back to `/mineracao`,
- * `/solucoes`, `/projetos` or `/quem-somos`, and no link to `/` (the
- * sector-chooser splash). See `mining-header.tsx` for the mineração
- * counterpart; the two never share nav items.
+ * `/solucoes`, `/projetos` or `/quem-somos` (mineração's own routes). See
+ * `mining-header.tsx` for the mineração counterpart; the two never share nav
+ * items.
  *
  * Nav shape mirrors mining 1:1 (Início/Quem Somos/Soluções/Piloto/Contato) —
  * "Como Funciona" was removed from here because it's a home-page section
  * anchor, not a top-level nav item (mining doesn't have one either).
+ *
+ * Hrefs are domain-root-relative (`/`, `/solucoes`, ...), not
+ * `/agrofy`-prefixed: since the sector-chooser splash was retired for
+ * domain-based routing (`proxy.ts`), `agrofymining.com` serves this whole
+ * tree at its root — an `/agrofy` link would show a redundant path segment
+ * in the address bar. The internal route this layout actually renders is
+ * still `/agrofy/*` under the hood (`(agrofy)/agrofy/...`), which is what
+ * `usePathname()` reports post-rewrite — see the normalization below.
  */
 export function AgroHeader() {
   const t = useTranslations("agroNav");
-  const pathname = usePathname();
+  const rawPathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -39,20 +47,24 @@ export function AgroHeader() {
   }, []);
 
   const navLinks = [
-    { key: "home", href: "/agrofy" },
-    { key: "about", href: "/agrofy/quem-somos" },
-    { key: "solutions", href: "/agrofy/solucoes" },
-    { key: "pilot", href: "/agrofy/piloto" },
-    { key: "contact", href: "/agrofy/contato" },
+    { key: "home", href: "/" },
+    { key: "about", href: "/quem-somos" },
+    { key: "solutions", href: "/solucoes" },
+    { key: "pilot", href: "/piloto" },
+    { key: "contact", href: "/contato" },
   ] as const;
 
-  // Unlike mining (where "/mineracao" and "/quem-somos" etc. are disjoint
-  // top-level paths), Agrofy's sub-pages nest under "/agrofy" itself — so a
-  // plain `startsWith("/agrofy")` would keep "Início" highlighted on every
-  // Agrofy page. Exact-match only the home href; startsWith is safe for the
-  // rest since none of them prefix one another.
+  // `usePathname()` reports the INTERNAL route (Next.js resolves it
+  // post-rewrite — see `proxy.ts`), which for every page in this layout is
+  // `/agrofy` or `/agrofy/...`, never the clean external path above. Strip
+  // that prefix before comparing so "Início" only matches the home route
+  // (not every Agrofy page) and the rest match by their clean path.
+  const pathname = rawPathname.startsWith("/agrofy")
+    ? rawPathname.slice("/agrofy".length) || "/"
+    : rawPathname;
+
   const isActive = (href: string) =>
-    href === "/agrofy" ? pathname === href : pathname.startsWith(href);
+    href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
     <header
@@ -62,7 +74,7 @@ export function AgroHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo — Agrofy */}
-        <Link href="/agrofy" className="flex shrink-0 items-center gap-2">
+        <Link href="/" className="flex shrink-0 items-center gap-2">
           <Image
             id="site-logo"
             src="/images/agro/agrofy-logo.png"

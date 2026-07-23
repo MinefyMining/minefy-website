@@ -46,6 +46,20 @@ type LogoIntroProps = {
    * asset) so the VISIBLE artwork lands at exactly the header's visible size.
    * Defaults to 1 (same asset in intro and header, e.g. the Minefy gold logo). */
   fillCompensation?: number;
+  /**
+   * Optional full-bleed photo shown behind the "generating" logo instead of
+   * the flat `bg-background` fill — lets the intro open directly on the
+   * hero photo (e.g. the CEO's mining/agro group art with the emblem
+   * removed) rather than a plain color, so the ring/logo appears to
+   * "belong" to that photo before flying up to the header.
+   *
+   * IMPORTANT: this must be a CLEAN plate — the emblem/wordmark burned into
+   * the source composite has to be removed first. The logo here animates
+   * away from center, so if the same emblem is still baked into the photo
+   * it would visibly double up (one static, one flying) for the ~2s the
+   * intro is on screen. Don't pass the raw CEO artwork directly.
+   */
+  backgroundSrc?: string;
 };
 
 /**
@@ -59,6 +73,12 @@ type LogoIntroProps = {
  * renders the gold Minefy intro anchoring on `(mineracao)`'s header; the
  * Agrofy world renders `<LogoIntro variant="green" .../>` anchoring on its
  * own header. Each carries its own `sessionKey` so the two never interfere.
+ *
+ * `backgroundSrc` (optional) swaps the flat-color backdrop for a full-bleed
+ * photo — see that prop's own docstring for the "clean plate" requirement.
+ * Neither world passes it yet: it's wired up here ready for the CEO's
+ * mining/agro group photos once a background-removed (no emblem/wordmark)
+ * version of each exists.
  */
 export function LogoIntro({
   variant = "gold",
@@ -69,6 +89,7 @@ export function LogoIntro({
   targetId = "site-logo",
   sessionKey = "minefy-intro",
   fillCompensation = 1,
+  backgroundSrc,
 }: LogoIntroProps = {}) {
   const theme = THEME[variant];
   const reduce = useReducedMotion();
@@ -130,24 +151,46 @@ export function LogoIntro({
 
   return (
     <div className="fixed inset-0 z-[120] grid place-items-center" style={{ pointerEvents: "none" }}>
-      {/* Background — fades out as the logo flies into place */}
+      {/* Background — fades out as the logo flies into place. Flat fallback
+          fill; when `backgroundSrc` is set, the photo layer below covers it
+          almost entirely, but this still guards any edge/overscroll gap. */}
       <motion.div
         className="absolute inset-0 bg-background"
         animate={{ opacity: phase === "fly" ? 0 : 1 }}
         transition={{ duration: 0.7, ease: "easeInOut" }}
       />
-      {/* faint dot texture under the logo for the "tech" feel */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `radial-gradient(${theme.dot} 1px, transparent 1px)`,
-          backgroundSize: "26px 26px",
-          maskImage: "radial-gradient(circle at 50% 50%, #000 0%, transparent 55%)",
-          WebkitMaskImage: "radial-gradient(circle at 50% 50%, #000 0%, transparent 55%)",
-        }}
-        animate={{ opacity: phase === "fly" ? 0 : [0, 1] }}
-        transition={{ duration: 1 }}
-      />
+
+      {/* Optional full-bleed photo (clean plate, no burned-in emblem) — the
+          intro opens directly on the hero image instead of a flat color.
+          Fades out in lockstep with the flat background above. */}
+      {backgroundSrc && (
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: phase === "fly" ? 0 : 1 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          <Image src={backgroundSrc} alt="" fill priority className="object-cover" sizes="100vw" />
+          {/* Dark wash so the centered ring/logo and glow stay legible over
+              the photo, matching the hero section's own treatment. */}
+          <div className="absolute inset-0 bg-background/55" aria-hidden="true" />
+        </motion.div>
+      )}
+
+      {/* faint dot texture under the logo for the "tech" feel — skipped over
+          a real photo background, where the dot grid would just look noisy. */}
+      {!backgroundSrc && (
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(${theme.dot} 1px, transparent 1px)`,
+            backgroundSize: "26px 26px",
+            maskImage: "radial-gradient(circle at 50% 50%, #000 0%, transparent 55%)",
+            WebkitMaskImage: "radial-gradient(circle at 50% 50%, #000 0%, transparent 55%)",
+          }}
+          animate={{ opacity: phase === "fly" ? 0 : [0, 1] }}
+          transition={{ duration: 1 }}
+        />
+      )}
 
       {/* Logo group (this is what flies to the header) */}
       <motion.div

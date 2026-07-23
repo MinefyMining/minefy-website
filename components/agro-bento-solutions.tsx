@@ -105,14 +105,16 @@ function FeaturedTile({ item, href }: { item: AgroSolutionItem; href: string }) 
 /**
  * Bento layout for the Agrofy home solutions teaser: first item is a large
  * featured tile, the rest render as standard product cards. Every tile links
- * to the dedicated `/agrofy/solucoes` page instead of expanding inline.
+ * to the dedicated `/solucoes` page instead of expanding inline (the page is
+ * `(agrofy)/agrofy/solucoes` internally, reached at the domain-root-relative
+ * `/solucoes` on `agrofymining.com` — see `proxy.ts` / `agro-header.tsx`).
  */
 export function AgroBentoSolutions({ items, ids }: AgroBentoSolutionsProps) {
   const [first, ...rest] = items;
 
   return (
     <div className="grid auto-rows-[minmax(170px,auto)] grid-cols-1 gap-5 md:grid-cols-3">
-      {first && <FeaturedTile item={first} href={`/agrofy/solucoes#${ids[0] ?? ""}`} />}
+      {first && <FeaturedTile item={first} href={`/solucoes#${ids[0] ?? ""}`} />}
       {rest.map((item, i) => (
         <AgroProductCard
           key={i}
@@ -120,7 +122,7 @@ export function AgroBentoSolutions({ items, ids }: AgroBentoSolutionsProps) {
           title={item.title}
           description={item.description}
           badge={item.badge}
-          href={`/agrofy/solucoes#${ids[i + 1] ?? ""}`}
+          href={`/solucoes#${ids[i + 1] ?? ""}`}
           index={i + 1}
         />
       ))}

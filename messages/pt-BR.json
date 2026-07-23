@@ -3,26 +3,6 @@
     "title": "Minefy — Telemetria e Tecnologia para Mineração",
     "description": "Telemetria avançada, tablets industriais e gestão inteligente para mineração a céu aberto. Monitoramento real-time de equipamentos de grande porte. Teste gratuitamente."
   },
-  "chooser": {
-    "metadata": {
-      "title": "Minefy — Mineração & Agronegócio · escolha seu setor",
-      "description": "Minefy é tecnologia e telemetria para operações de grande porte. Escolha seu setor — Mineração ou Agronegócio (Agrofy) — e entre na plataforma feita para ele."
-    },
-    "mining": {
-      "kicker": "Minefy",
-      "label": "Mineração",
-      "text": "Telemetria e gestão inteligente para equipamentos de grande porte a céu aberto.",
-      "cta": "Entrar",
-      "aria": "Entrar no site da Minefy — Mineração"
-    },
-    "agro": {
-      "kicker": "Agrofy",
-      "label": "Agronegócio",
-      "text": "A mesma tecnologia ActiSky, agora no campo — tratores, colheitadeiras e pulverizadores.",
-      "cta": "Entrar",
-      "aria": "Entrar no site da Agrofy — Agronegócio"
-    }
-  },
   "nav": {
     "home": "Home",
     "about": "Quem Somos",
@@ -1217,27 +1197,27 @@
     "solutionLinks": [
       {
         "label": "Tablets para o Campo",
-        "href": "/agrofy/solucoes#tablets"
+        "href": "/solucoes#tablets"
       },
       {
         "label": "ActiSky Telemetria",
-        "href": "/agrofy/solucoes#actisky"
+        "href": "/solucoes#actisky"
       },
       {
         "label": "Agrofy Analytics",
-        "href": "/agrofy/solucoes#analytics"
+        "href": "/solucoes#analytics"
       },
       {
         "label": "Fleet 360",
-        "href": "/agrofy/solucoes#fleet360"
+        "href": "/solucoes#fleet360"
       },
       {
         "label": "Agrofy Safety",
-        "href": "/agrofy/solucoes#safety"
+        "href": "/solucoes#safety"
       },
       {
         "label": "Consultoria Operacional",
-        "href": "/agrofy/solucoes#consulting"
+        "href": "/solucoes#consulting"
       }
     ]
   }

@@ -20,9 +20,10 @@ export function MiningFooter() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
 
-  // Same rule as the header: the brand logo always points back to
-  // `/mineracao`, never to `/` (the sector-chooser splash).
-  const homeHref = "/mineracao";
+  // Same rule as the header: the brand logo points at the domain root now
+  // that `minefymining.com` serves this world at `/` (see `proxy.ts`) —
+  // there's no more separate sector-chooser splash to avoid linking back to.
+  const homeHref = "/";
 
   const solutionLinks = t.raw("solutionLinks") as Array<{ label: string; href: string }>;
 

@@ -124,7 +124,7 @@ export function AgroHeroHome({
           <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
             <MagneticButton>
               <Link
-                href="/agrofy/contato"
+                href="/contato"
                 className="btn-sheen inline-flex items-center rounded-lg bg-[#16A34A] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(22,163,74,0.3)] transition-colors duration-200 hover:bg-[#15803D]"
               >
                 {cta}

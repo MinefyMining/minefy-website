@@ -217,7 +217,7 @@ export default async function AgrofyPage({ params }: Props) {
                   {t("testDrive.cta")}
                 </a>
                 <Link
-                  href="/agrofy/contato"
+                  href="/contato"
                   className="inline-flex items-center border border-foreground/20 text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-foreground/40 hover:bg-foreground/5 transition-colors duration-200"
                 >
                   {t("testDrive.ctaSecondary")}
@@ -276,7 +276,7 @@ export default async function AgrofyPage({ params }: Props) {
             </p>
             <div className="mt-8">
               <Link
-                href="/agrofy/contato"
+                href="/contato"
                 className="inline-flex items-center bg-[#16A34A] text-white px-8 py-4 rounded-lg font-semibold text-sm hover:bg-[#15803D] transition-colors duration-200"
               >
                 {t("cta.button")}

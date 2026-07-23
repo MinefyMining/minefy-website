@@ -6,9 +6,9 @@ import { Link } from "@/i18n/navigation";
 import { ExternalLink } from "lucide-react";
 
 const companyLinks = [
-  { key: "about", href: "/agrofy/quem-somos" },
-  { key: "pilot", href: "/agrofy/piloto" },
-  { key: "contact", href: "/agrofy/contato" },
+  { key: "about", href: "/quem-somos" },
+  { key: "pilot", href: "/piloto" },
+  { key: "contact", href: "/contato" },
 ] as const;
 
 /**
@@ -19,6 +19,10 @@ const companyLinks = [
  * sitewide; only the internal navigation links differ per sector.
  *
  * Column layout mirrors mining 1:1: Brand / Soluções / Empresa / Contato.
+ *
+ * Hrefs are domain-root-relative (`/`, `/quem-somos`, ...), matching
+ * `agrofymining.com` serving this tree at its root via `proxy.ts` — see
+ * `agro-header.tsx`'s docstring for the full rationale.
  */
 export function AgroFooter() {
   const t = useTranslations("agroFooter");
@@ -33,7 +37,7 @@ export function AgroFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="space-y-4">
-            <Link href="/agrofy" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Image src="/images/agro/agrofy-logo.png" alt="Agrofy" width={200} height={200} className="w-[64px] h-auto" />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">{t("tagline")}</p>

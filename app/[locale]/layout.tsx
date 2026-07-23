@@ -10,11 +10,13 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
-// Sitewide fallback only — every route below (chooser, /mineracao, /agrofy,
+// Sitewide fallback only — every route below (/mineracao, /agrofy,
 // institutional pages) defines its own generateMetadata that overrides this.
+// Uses the mineração namespace since that's the default world (see
+// `proxy.ts` — unmatched/dev hosts fall back to mineração).
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "chooser.metadata" });
+  const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     title: t("title"),
     description: t("description"),

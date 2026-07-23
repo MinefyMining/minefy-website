@@ -16,14 +16,17 @@ import {
 /**
  * Header for the MINEFY MINING ecosystem only (gold branding). Rendered by
  * `app/[locale]/(mineracao)/layout.tsx`. Every link here stays inside the
- * mining sector — there is deliberately no "Agrofy" item and no link back to
- * `/` (the sector-chooser splash). See `agro-header.tsx` for the Agrofy
- * counterpart; the two never share nav items.
+ * mining sector — there is deliberately no "Agrofy" item. Since the
+ * sector-chooser splash was retired in favor of domain-based routing
+ * (`proxy.ts` — `minefymining.com` serves this world at its root), the logo
+ * and "Home" link point at `/`, not `/mineracao`.
+ * See `agro-header.tsx` for the Agrofy counterpart; the two never share nav
+ * items.
  */
 export function MiningHeader() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
-  const pathname = usePathname();
+  const rawPathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -34,7 +37,7 @@ export function MiningHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const homeHref = "/mineracao";
+  const homeHref = "/";
 
   const navLinks = [
     { key: "home", href: homeHref },
@@ -44,7 +47,15 @@ export function MiningHeader() {
     { key: "contact", href: "/contato" },
   ] as const;
 
-  const isActive = (href: string) => pathname.startsWith(href);
+  // `usePathname()` reports the INTERNAL route that actually rendered the
+  // page (Next.js resolves it post-rewrite — see `proxy.ts`), which for the
+  // home page is still the literal `/mineracao` file route even though `/`
+  // is what shows in the address bar. Normalize that one case so "Home"
+  // highlights correctly; every other mineração route is already both the
+  // internal and the external path (no rewrite touches them).
+  const pathname = rawPathname === "/mineracao" ? "/" : rawPathname;
+
+  const isActive = (href: string) => (href === "/" ? pathname === href : pathname.startsWith(href));
 
   return (
     <header
