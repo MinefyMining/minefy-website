@@ -59,7 +59,16 @@ function resolveSite(request: NextRequest): Site {
  */
 function mapPathnameForSite(site: Site, pathname: string): string {
   if (site === "mineracao") {
-    return pathname === "/" ? "/mineracao" : pathname;
+    if (pathname === "/") return "/mineracao";
+    // Isolation guard: the Agrofy world lives under `/agrofy` internally and
+    // must NOT be reachable on the mineração domain. Map any `/agrofy*`
+    // request to a non-existent route so Next serves 404 — symmetric to how
+    // the Agrofy branch 404s mineração-only paths by prefixing them under
+    // `/agrofy` (e.g. `agrofymining.com/mineracao` → `/agrofy/mineracao` → 404).
+    if (pathname === "/agrofy" || pathname.startsWith("/agrofy/")) {
+      return "/mineracao-cross-world-blocked";
+    }
+    return pathname;
   }
   if (pathname === "/") return "/agrofy";
   if (pathname === "/agrofy" || pathname.startsWith("/agrofy/")) return pathname;
