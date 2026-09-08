@@ -108,8 +108,18 @@ export function AgroFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-4">
+        <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">{t("copyright")}</p>
+          {/* LGPD art. 41 §1º — identidade e canal de contato do Encarregado
+              de Dados (DPO) publicados institucionalmente, sitewide. O DPO é
+              único para toda a Minefy Mining System (Minefy + Agrofy), por
+              isso vem do namespace "footer" compartilhado. */}
+          <p className="text-xs text-muted-foreground">
+            {tFooter("dpo.label")}: {tFooter("dpo.name")} ·{" "}
+            <a href={`mailto:${tFooter("dpo.email")}`} className="hover:text-foreground transition-colors">
+              {tFooter("dpo.email")}
+            </a>
+          </p>
         </div>
       </div>
     </footer>
