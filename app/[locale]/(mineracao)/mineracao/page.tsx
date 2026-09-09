@@ -224,8 +224,8 @@ export default async function HomePage({ params }: Props) {
           </ScrollReveal>
           <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {methodSteps.map((s, i) => (
-              <ScrollReveal key={s.step} delay={i * 80} className="h-full">
-                <li className="relative flex h-full flex-col rounded-xl border border-border bg-card p-6">
+              <li key={s.step} className="h-full">
+                <ScrollReveal delay={i * 80} className="relative flex h-full flex-col rounded-xl border border-border bg-card p-6">
                   <span className="font-mono text-sm font-bold text-[#D4A847]">
                     {s.step}
                   </span>
@@ -241,8 +241,8 @@ export default async function HomePage({ params }: Props) {
                       aria-hidden="true"
                     />
                   )}
-                </li>
-              </ScrollReveal>
+                </ScrollReveal>
+              </li>
             ))}
           </ol>
         </div>

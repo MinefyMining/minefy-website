@@ -187,6 +187,17 @@ html.js .rise-in {
   animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Variante transform-only para o elemento LCP (H1 do hero): pinta no
+   primeiro frame (opacity nunca sai de 1) e só desliza — não atrasa o
+   Largest Contentful Paint no móvel. */
+@keyframes rise-in-t {
+  from { transform: translateY(24px); }
+  to { transform: translateY(0); }
+}
+html.js .rise-in-t {
+  animation: rise-in-t 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* ── Simple hover card ── */
 .card-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -628,7 +639,7 @@ html.js .rise-in {
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   .reveal, html.js .reveal { opacity: 1; transform: none; transition: none; }
-  html.js .rise-in { animation: none; }
+  html.js .rise-in, html.js .rise-in-t { animation: none; }
   html { scroll-behavior: auto; }
   .aurora-blob--gold,
   .aurora-blob--amber,

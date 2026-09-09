@@ -140,16 +140,16 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           </ScrollReveal>
           <ol className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {data.deliverables.map((item, i) => (
-              <ScrollReveal key={item} delay={i * 60} className="h-full">
-                <li className="flex h-full flex-col rounded-xl border border-border bg-card p-5">
+              <li key={item} className="h-full">
+                <ScrollReveal delay={i * 60} className="flex h-full flex-col rounded-xl border border-border bg-card p-5">
                   <span className="font-mono text-xs font-semibold text-[#D4A847]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="mt-2 text-sm font-medium leading-snug text-foreground">
                     {item}
                   </span>
-                </li>
-              </ScrollReveal>
+                </ScrollReveal>
+              </li>
             ))}
           </ol>
         </div>

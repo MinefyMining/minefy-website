@@ -221,7 +221,7 @@ export function HeroCorporate({
           </div>
 
           <h1
-            className="rise-in mt-6 text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="rise-in-t mt-6 text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
             style={rise(1)}
           >
             <span className="text-gold-flow">{connectLine}.</span>
