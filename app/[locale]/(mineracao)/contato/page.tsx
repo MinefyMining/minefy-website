@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { isServico } from "@/lib/contact-schema";
-import { issueContactToken } from "@/lib/contact-token";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 
@@ -42,10 +41,6 @@ export default async function ContactPage({ params, searchParams }: Props) {
   const { servico } = await searchParams;
   const initialService =
     servico === undefined ? undefined : isServico(servico) ? servico : ("outro" as const);
-
-  // Nonce HMAC stateless (anti-abuso 5.3); null enquanto
-  // CONTACT_TOKEN_SECRET não estiver configurada (API em fail-open).
-  const contactToken = issueContactToken();
 
   const infoItems = t.raw("info.items") as Array<{
     icon: string;
@@ -137,11 +132,7 @@ export default async function ContactPage({ params, searchParams }: Props) {
           {/* Right: form */}
           <ScrollReveal delay={150}>
             <div className="bg-card rounded-xl p-8 border border-border">
-              <ContactForm
-                variant="full"
-                initialService={initialService}
-                contactToken={contactToken}
-              />
+              <ContactForm variant="full" initialService={initialService} />
             </div>
           </ScrollReveal>
         </div>

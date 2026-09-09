@@ -137,8 +137,15 @@ describe("POST /api/contact", () => {
     sendMock.mockResolvedValue({ data: { id: "mock-id" }, error: null });
     process.env.CONTACT_TOKEN_SECRET = "segredo-de-teste-nunca-real";
     const { POST } = await loadRoute(true);
-    expect((await POST(jsonRequest({ ...valid, t: "forjado.assinatura" }))).status).toBe(400);
-    expect((await POST(jsonRequest(valid))).status).toBe(400);
+    // 400 SEMPRE carrega code:"invalid_token" — é o contrato que permite ao
+    // formulário re-emitir o nonce e reenviar sem perder os campos digitados
+    // (token expira em 30min; formulário aberto não pode custar o lead).
+    const res1 = await POST(jsonRequest({ ...valid, t: "forjado.assinatura" }));
+    expect(res1.status).toBe(400);
+    expect((await res1.json()).code).toBe("invalid_token");
+    const res2 = await POST(jsonRequest(valid));
+    expect(res2.status).toBe(400);
+    expect((await res2.json()).code).toBe("invalid_token");
     expect(sendMock).not.toHaveBeenCalled();
 
     // com token legítimo dentro da janela → 200

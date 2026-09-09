@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 /**
  * Nonce HMAC stateless para o formulário de contato (MIKE-ARQUITETURA 5.3):
- * a página de contato (Server Component) emite `t = base64url(issuedAt) +
+ * a rota dedicada `/api/contact-token` emite (a página é ISR — token no render congelaria no cache além da janela de 30min) `t = base64url(issuedAt) +
  * "." + HMAC_SHA256(issuedAt, CONTACT_TOKEN_SECRET)`; a API valida a
  * assinatura e a janela `3s < now - issuedAt < 30min`. Sem estado, sem
  * banco, sem vendor. Enquanto a env var não existir na Vercel, tudo opera
@@ -10,8 +10,10 @@ import { createHmac, timingSafeEqual } from "node:crypto";
  * pendência está registrada no ALEX-ENTREGA.md.
  */
 
-const MIN_AGE_MS = 3_000;
-const MAX_AGE_MS = 30 * 60_000;
+import {
+  CONTACT_TOKEN_MIN_AGE_MS as MIN_AGE_MS,
+  CONTACT_TOKEN_MAX_AGE_MS as MAX_AGE_MS,
+} from "./contact-token-client";
 
 function secret(): string | null {
   return process.env.CONTACT_TOKEN_SECRET || null;

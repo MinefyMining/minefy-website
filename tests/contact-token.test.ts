@@ -37,3 +37,37 @@ describe("nonce HMAC stateless (MIKE-ARQUITETURA 5.3)", () => {
     expect(verifyContactToken(undefined, now)).toBe("invalid");
   });
 });
+
+describe("GET /api/contact-token (emissão client-side — página é ISR)", () => {
+  it("sem secret → { token: null } e Cache-Control: no-store", async () => {
+    delete process.env.CONTACT_TOKEN_SECRET;
+    const { GET } = await import("@/app/api/contact-token/route");
+    const res = await GET();
+    expect(res.headers.get("cache-control")).toBe("no-store");
+    expect((await res.json()).token).toBeNull();
+  });
+
+  it("com secret → token emitido verifica como válido após a idade mínima", async () => {
+    process.env.CONTACT_TOKEN_SECRET = "segredo-de-teste-nunca-real";
+    const { GET } = await import("@/app/api/contact-token/route");
+    const { verifyContactToken } = await import("@/lib/contact-token");
+    const { token } = (await (await GET()).json()) as { token: string };
+    expect(token).toBeTruthy();
+    expect(verifyContactToken(token, Date.now() + 5_000)).toBe("valid");
+    delete process.env.CONTACT_TOKEN_SECRET;
+  });
+});
+
+describe("tokenIssuedAt (helper client-safe)", () => {
+  it("lê o issuedAt do token e rejeita formato quebrado", async () => {
+    process.env.CONTACT_TOKEN_SECRET = "segredo-de-teste-nunca-real";
+    const { issueContactToken } = await import("@/lib/contact-token");
+    const { tokenIssuedAt } = await import("@/lib/contact-token-client");
+    const now = 1_757_000_000_000;
+    const token = issueContactToken(now)!;
+    expect(tokenIssuedAt(token)).toBe(now);
+    expect(tokenIssuedAt("sem-ponto")).toBeNull();
+    expect(tokenIssuedAt("bm90bnVt.abc")).toBeNull();
+    delete process.env.CONTACT_TOKEN_SECRET;
+  });
+});

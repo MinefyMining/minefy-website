@@ -3,7 +3,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
-import { issueContactToken } from "@/lib/contact-token";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 
@@ -144,7 +143,6 @@ export default async function AgrofyContactPage({ params }: Props) {
               <ContactForm
                 variant="full"
                 division="agrofy"
-                contactToken={issueContactToken()}
               />
             </div>
           </ScrollReveal>

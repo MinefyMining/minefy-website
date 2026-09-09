@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,6 +15,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import {
+  CONTACT_TOKEN_MIN_AGE_MS,
+  tokenIssuedAt,
+} from "@/lib/contact-token-client";
 import {
   Form,
   FormControl,
@@ -36,19 +40,51 @@ interface ContactFormProps {
    * the default. Always editable by the visitor (Agrofy hides the field and
    * submits its own anchor). */
   initialService?: Servico;
-  /** Stateless HMAC nonce issued by the server page (anti-abuse). `null`
-   * while CONTACT_TOKEN_SECRET isn't configured — the API fails open. */
-  contactToken?: string | null;
 }
 
 export function ContactForm({
   variant = "full",
   division = "mineracao",
   initialService,
-  contactToken = null,
 }: ContactFormProps) {
   const t = useTranslations("contact");
   const [status, setStatus] = useState<Status>("idle");
+
+  /**
+   * Nonce HMAC anti-abuso (MIKE-ARQUITETURA 5.3), buscado no MOUNT em
+   * `/api/contact-token` — nunca emitido no render da página (ISR
+   * congelaria um token de 30min por até 24h e mataria lead legítimo).
+   * A idade do token passa a medir o tempo real do visitante na página.
+   * `null` = emissão indisponível (secret não configurado ou fetch
+   * falhou); a API decide em fail-open, o formulário nunca trava aqui.
+   */
+  const tokenRef = useRef<string | null>(null);
+  const fetchToken = useCallback(async (): Promise<string | null> => {
+    try {
+      const res = await fetch("/api/contact-token", { cache: "no-store" });
+      if (!res.ok) return null;
+      const json = (await res.json()) as { token?: string | null };
+      tokenRef.current = json.token ?? null;
+      return tokenRef.current;
+    } catch {
+      return null;
+    }
+  }, []);
+  useEffect(() => {
+    void fetchToken();
+  }, [fetchToken]);
+
+  /** Espera transparente até o token atingir a idade mínima exigida pela
+   * API — o visitante rápido NUNCA é bloqueado: no pior caso o envio leva
+   * ~3s a mais dentro do estado "enviando". */
+  async function waitTokenMinAge(token: string) {
+    const issued = tokenIssuedAt(token);
+    if (issued === null) return;
+    const remaining = CONTACT_TOKEN_MIN_AGE_MS - (Date.now() - issued);
+    if (remaining > 0) {
+      await new Promise((r) => setTimeout(r, remaining + 150));
+    }
+  }
   const statusRef = useRef<HTMLDivElement>(null);
   const isAgro = division === "agrofy";
   const defaultService: Servico =
@@ -66,7 +102,6 @@ export function ContactForm({
       servico: defaultService,
       division,
       hp: "",
-      t: contactToken ?? undefined,
     },
   });
 
@@ -106,11 +141,33 @@ export function ContactForm({
       )}`,
     };
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, t: contactToken ?? undefined }),
-      });
+      const post = async (token: string | null) => {
+        if (token) await waitTokenMinAge(token);
+        return fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...data, t: token ?? undefined }),
+        });
+      };
+
+      let token = tokenRef.current ?? (await fetchToken());
+      let response = await post(token);
+
+      // Token expirado/ausente (ex.: formulário aberto por mais de 30min):
+      // re-emite e reenvia UMA vez — os campos digitados ficam intactos
+      // (nenhum reset fora do caminho de sucesso). O lead não se perde por
+      // burocracia de nonce.
+      if (response.status === 400) {
+        const payload = (await response
+          .clone()
+          .json()
+          .catch(() => null)) as { code?: string } | null;
+        if (payload?.code === "invalid_token") {
+          token = await fetchToken();
+          response = await post(token);
+        }
+      }
+
       if (response.ok) {
         setStatus("success");
         setFallbackLinks(null);

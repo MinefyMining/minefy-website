@@ -92,8 +92,13 @@ export async function POST(request: Request) {
     // legítimo por config faltando — pendência registrada). ──
     const tokenVerdict = verifyContactToken(data.t);
     if (tokenVerdict === "invalid") {
+      // `code` explícito para o cliente re-emitir o token via
+      // /api/contact-token e reenviar SEM perder o que foi digitado
+      // (token expirado depois de 30min de formulário aberto não pode
+      // custar o lead). Não revela nada que a rota pública de emissão
+      // já não entregue.
       return NextResponse.json(
-        { success: false, message: "Validation error" },
+        { success: false, code: "invalid_token", message: "Validation error" },
         { status: 400 },
       );
     }
