@@ -106,7 +106,12 @@ export function MiningFooter() {
 
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">{t("copyright")}</p>
+          <p className="text-xs text-muted-foreground">
+            {t("copyright")} ·{" "}
+            <Link href="/privacidade" className="hover:text-foreground transition-colors">
+              {t("privacyLink")}
+            </Link>
+          </p>
           {/* LGPD art. 41 §1º — identidade e canal de contato do Encarregado
               de Dados (DPO) publicados institucionalmente, sitewide. */}
           <p className="text-xs text-muted-foreground">
