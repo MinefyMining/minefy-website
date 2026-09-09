@@ -87,7 +87,7 @@ export function HeroStage({
         {/* Fotografia — banda 35svh no mobile, palco inteiro no desktop.
             Um único <Image>: mesma URL nos dois enquadramentos (sem
             download duplicado), priority por ser o LCP. */}
-        <div className="relative h-[35svh] min-h-[250px] overflow-hidden lg:absolute lg:inset-0 lg:h-auto lg:min-h-0">
+        <div className="relative h-[35svh] min-h-[250px] overflow-hidden lg:absolute lg:inset-y-0 lg:left-0 lg:right-auto lg:h-auto lg:min-h-0 lg:w-[78%]">
           <div className="rise-in absolute inset-0" style={rise(3)}>
             <Image
               src="/images/premium/scroller-cinematic.jpg"
@@ -96,14 +96,14 @@ export function HeroStage({
               priority
               sizes="100vw"
               className="object-cover"
-              style={{ objectPosition: "32% 56%" }}
+              style={{ objectPosition: "30% 50%" }}
             />
             {/* costura do palco: a margem escura do asset funde no carvão
                 (garantia em ultrawide) + leitura da manchete e da base */}
             <div
-              className="absolute inset-y-0 right-0 hidden w-[42%] lg:block"
+              className="absolute inset-y-0 right-0 hidden w-[24%] lg:block"
               style={{
-                background: `linear-gradient(to right, transparent, ${BG}CC 62%, ${BG})`,
+                background: `linear-gradient(to right, transparent, ${BG}B3 70%, ${BG})`,
               }}
               aria-hidden="true"
             />

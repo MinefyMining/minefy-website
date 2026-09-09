@@ -304,8 +304,8 @@ export function AgentConsole({ className = "" }: { className?: string }) {
                   aria-hidden="true"
                 />
                 <span
-                  className={`mt-1.5 block truncate font-mono text-[8.5px] uppercase tracking-wider ${
-                    isActive ? "text-white/85" : isDone ? "text-[#E8C877]/80" : "text-white/35"
+                  className={`mt-1.5 block truncate font-mono text-[10px] uppercase tracking-wider ${
+                    isActive ? "text-white/85" : isDone ? "text-[#E8C877]/80" : "text-white/55"
                   }`}
                 >
                   {s.label}
