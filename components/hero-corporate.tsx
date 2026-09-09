@@ -157,7 +157,7 @@ function SystemsMap() {
         <text x="480" y="205" textAnchor="middle" fill={GOLD} fontSize="11" fontWeight="600">
           Aprovação
         </text>
-        <text x="480" y="221" textAnchor="middle" fill="#9a9a9a" fontSize="9">
+        <text x="480" y="221" textAnchor="middle" fill="#9a9a9a" fontSize="8">
           humana, onde você definir
         </text>
       </g>
