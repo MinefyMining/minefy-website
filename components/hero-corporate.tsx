@@ -27,7 +27,7 @@ const COOL = "#7FB4D8"; // acento frio contido — fluxos de dados
  * navigation that exists elsewhere, so the whole SVG stays out of the
  * accessibility tree except for the node links' labels.
  */
-function SystemsMap() {
+export function SystemsMap() {
   const nodeBox =
     "transition-opacity duration-200 hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847]";
 
@@ -47,6 +47,13 @@ function SystemsMap() {
           <stop offset="0%" stopColor={GOLD} stopOpacity="0.28" />
           <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
         </radialGradient>
+        <clipPath id="hc-portrait-clip">
+          <circle cx="280" cy="210" r="61" />
+        </clipPath>
+        <linearGradient id="hc-portrait-shade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#090B0D" stopOpacity="0" />
+          <stop offset="100%" stopColor="#090B0D" stopOpacity="0.98" />
+        </linearGradient>
       </defs>
 
       {/* glow under the agent core */}
@@ -69,8 +76,8 @@ function SystemsMap() {
       />
       {/* agent → approval → result */}
       <g stroke={GOLD} strokeOpacity="0.7" strokeWidth="1.5" fill="none">
-        <path d="M342,210 C380,210 390,210 424,210" className="flow-dash" />
-        <path d="M462,238 C462,266 462,276 462,300" className="flow-dash" />
+        <path d="M342,210 C365,210 375,210 398,210" className="flow-dash" />
+        <path d="M476,244 C476,266 470,276 470,300" className="flow-dash" />
       </g>
 
       {/* ── left: company systems (cool accent) ── */}
@@ -139,25 +146,30 @@ function SystemsMap() {
           <circle cx="280" cy="210" r="62" fill="url(#hc-agent)" stroke={GOLD} strokeOpacity="0.8" strokeWidth="1.5" />
           <circle cx="280" cy="210" r="72" fill="none" stroke={GOLD} strokeOpacity="0.25" strokeWidth="1" strokeDasharray="3 6" />
           <circle cx="280" cy="148" r="3" fill={GOLD} className="node-pulse" />
-          <text x="280" y="204" textAnchor="middle" fill="#FFFFFF" fontSize="14.5" fontWeight="700">
-            Agente
-          </text>
-          <text x="280" y="221" textAnchor="middle" fill={GOLD} fontSize="12.5" fontWeight="600">
-            Minefy
-          </text>
-          <text x="280" y="238" textAnchor="middle" fill="#B8B8B8" fontSize="9.5">
-            executa no escopo autorizado
+          <g clipPath="url(#hc-portrait-clip)" aria-hidden="true">
+            <image
+              href="/images/premium/agent-portrait.jpg"
+              x="218"
+              y="148"
+              width="124"
+              height="124"
+              preserveAspectRatio="xMaxYMin slice"
+            />
+            <rect x="218" y="230" width="124" height="42" fill="url(#hc-portrait-shade)" />
+          </g>
+          <text x="280" y="254" textAnchor="middle" fill="#FFFFFF" fontSize="12" fontWeight="600">
+            Agente Minefy
           </text>
         </g>
       </Link>
 
       {/* ── right: human approval ── */}
       <g>
-        <rect x="420" y="182" width="120" height="56" rx="12" fill="#12100B" stroke={GOLD} strokeOpacity="0.45" />
-        <text x="480" y="205" textAnchor="middle" fill={GOLD} fontSize="12.5" fontWeight="600">
+        <rect x="398" y="176" width="156" height="68" rx="12" fill="#12100B" stroke={GOLD} strokeOpacity="0.45" />
+        <text x="476" y="202" textAnchor="middle" fill={GOLD} fontSize="12.5" fontWeight="600">
           Aprovação
         </text>
-        <text x="480" y="221" textAnchor="middle" fill="#B8B8B8" fontSize="9.5">
+        <text x="476" y="224" textAnchor="middle" fill="#B8B8B8" fontSize="9.5">
           humana, onde você definir
         </text>
       </g>
