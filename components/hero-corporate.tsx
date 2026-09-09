@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
 import { Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { MagneticButton } from "@/components/magnetic-button";
@@ -15,18 +12,8 @@ interface HeroCorporateProps {
   ctaSecondary: string;
 }
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 18 },
-  },
-};
+/** Delay escalonado da entrada — CSS puro (`.rise-in`), sem JS. */
+const rise = (i: number) => ({ animationDelay: `${0.1 + i * 0.09}s` });
 
 const GOLD = "#D4A847";
 const COOL = "#7FB4D8"; // acento frio contido — fluxos de dados
@@ -195,9 +182,10 @@ function SystemsMap() {
 }
 
 /**
- * Corporate hero (home 2026-09): concise, NON-blocking — every piece of
- * text is server-streamed by the parent and this component only adds
- * enter animations (user-gated via MotionConfig) and the systems map.
+ * Corporate hero (home 2026-09): concise, NON-blocking — a SERVER
+ * component: every piece of text ships visible in the HTML (the CSS-only
+ * `.rise-in` entrance is gated behind `html.js`, so no-JS visitors and
+ * crawlers see everything, and reduced-motion users get zero animation).
  * CTAs: primary → contact, secondary → the interactive lab.
  */
 export function HeroCorporate({
@@ -225,30 +213,30 @@ export function HeroCorporate({
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.05fr_1fr]">
         {/* ── Copy ── */}
-        <motion.div variants={container} initial="hidden" animate="show">
-          <motion.div variants={item}>
+        <div>
+          <div className="rise-in" style={rise(0)}>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#D4A847]/30 bg-[#D4A847]/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-[#D4A847]">
               {badge}
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={item}
-            className="mt-6 text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
+          <h1
+            className="rise-in mt-6 text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            style={rise(1)}
           >
             <span className="text-gold-flow">{connectLine}.</span>
             <br />
             {executeLine}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-5 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
+          <p
+            className="rise-in mt-5 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
+            style={rise(2)}
           >
             {subtitle}
-          </motion.p>
+          </p>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
+          <div className="rise-in mt-8 flex flex-wrap gap-3" style={rise(3)}>
             <MagneticButton>
               <Link
                 href="/contato"
@@ -265,26 +253,21 @@ export function HeroCorporate({
                 {ctaSecondary}
               </Link>
             </MagneticButton>
-          </motion.div>
+          </div>
 
-          <motion.p
-            variants={item}
-            className="mt-7 inline-flex items-center gap-2 text-sm text-white/55"
+          <p
+            className="rise-in mt-7 inline-flex items-center gap-2 text-sm text-white/55"
+            style={rise(4)}
           >
             <Check className="h-4 w-4 shrink-0 text-[#D4A847]" aria-hidden="true" />
             {trust}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* ── Systems/agents map (fills the former decorative dead zone) ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="hidden justify-center lg:flex"
-        >
+        <div className="rise-in hidden justify-center lg:flex" style={rise(3)}>
           <SystemsMap />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

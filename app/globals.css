@@ -161,15 +161,30 @@ html {
   }
 }
 
-/* ── Reveal animations ── */
+/* ── Reveal animations ──
+   Gated atrás de `html.js` (classe adicionada por script inline no
+   <head>): sem JavaScript NADA fica escondido — o conteúdo crítico é
+   legível no HTML servido (critério 3.2 da arquitetura). */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.reveal.visible {
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Entrada do hero corporativo — animação 100% CSS (roda sem framer, some
+   sob reduced-motion, e sem JS o conteúdo nasce visível). */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+html.js .rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ── Simple hover card ── */
@@ -612,7 +627,8 @@ html {
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal, html.js .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .rise-in { animation: none; }
   html { scroll-behavior: auto; }
   .aurora-blob--gold,
   .aurora-blob--amber,

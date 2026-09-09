@@ -499,7 +499,7 @@ export function ExperienceLab({ className = "" }: { className?: string }) {
 
           {/* ── Detail panel ── */}
           <div className="relative min-h-[320px] rounded-xl border border-border bg-background/60 p-5 md:p-6">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`${scenario.id}-${step.id}`}
                 initial={{ opacity: 0, y: 8 }}
