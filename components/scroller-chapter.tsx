@@ -20,14 +20,18 @@ interface ScrollerChapterProps {
 }
 
 /**
- * Capítulo 01 da home — Scroller. Composição editorial cinematográfica:
- * a fotografia domina a tela e abre em máscara conforme o scroll
- * (`.reveal-mask` via IntersectionObserver — sem scrolljacking), com um
- * drift sutil transform-only dirigido pela visibilidade
- * (`.chapter-parallax`, progressive enhancement + reduced-motion off).
- * Server Component: texto integral no HTML; os três pontos são uma lista
- * editorial com régua fina — sem grade de cards. A legenda "Imagem
- * ilustrativa" é discreta por decisão editorial.
+ * Capítulo 01 da home — Scroller. Direção de arte 2026-09-09: o hero
+ * mostra a máquina COMPLETA no palco; o capítulo muda de enquadramento e
+ * mostra o DETALHE MECÂNICO — recorte intencional sobre os tambores
+ * helicoidais (mesma fotografia cinematográfica, enquadrada por
+ * object-position + scale, sem novo binário). Editorial horizontal:
+ * mídia à esquerda, título e narrativa ao lado — diferente da composição
+ * do hero, que ancora o texto sobre a base da foto.
+ *
+ * Revelação em máscara (`.reveal-mask` via IntersectionObserver — sem
+ * scrolljacking) e drift sutil transform-only (`.chapter-parallax`,
+ * progressive enhancement + reduced-motion off). Server Component;
+ * mídia lazy (abaixo da dobra). Legenda "Imagem ilustrativa" discreta.
  */
 export function ScrollerChapter({
   kicker,
@@ -40,44 +44,45 @@ export function ScrollerChapter({
   imageAlt,
 }: ScrollerChapterProps) {
   return (
-    <section id="scroller" className="scroll-mt-20 bg-[#0A0A0A] pb-24 pt-10">
-      {/* ── mídia dominante ── */}
-      <ScrollReveal className="px-2 sm:px-4">
-        <figure className="reveal-mask relative mx-auto h-[62vh] max-h-[720px] min-h-[380px] w-full max-w-[1600px] overflow-hidden">
-          <div className="chapter-parallax absolute inset-0 will-change-transform">
-            <Image
-              src="/images/scroller/scroller-field-web.jpg"
-              alt={imageAlt}
-              fill
-              sizes="100vw"
-              className="object-cover"
-              style={{ objectPosition: "55% 60%" }}
-            />
-          </div>
-          {/* luz de leitura, sem esconder a máquina */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/85 via-transparent to-[#0A0A0A]/30"
-            aria-hidden="true"
-          />
-          <figcaption className="absolute bottom-4 right-5 font-mono text-[10px] uppercase tracking-[0.25em] text-white/45">
-            {mediaNote}
-          </figcaption>
-          {/* título sobre a imagem — hierarquia editorial */}
-          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-7xl px-6 pb-12 sm:pb-16">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
-              {kicker}
-            </p>
-            <h2 className="mt-3 text-5xl font-extrabold tracking-tight text-white sm:text-7xl lg:text-8xl">
-              {title}
-            </h2>
-          </div>
-        </figure>
-      </ScrollReveal>
-
-      {/* ── narrativa ── */}
-      <div className="mx-auto mt-14 grid w-full max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+    <section id="scroller" className="scroll-mt-20 bg-[#0A0A0A] pb-24 pt-16">
+      {/* ── editorial horizontal: detalhe mecânico + narrativa ── */}
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
         <ScrollReveal>
-          <p className="max-w-md text-xl leading-relaxed text-white/80 lg:text-2xl">
+          <figure className="reveal-mask relative h-[46vh] min-h-[320px] max-h-[620px] w-full overflow-hidden lg:h-[56vh]">
+            <div className="chapter-parallax absolute inset-0 will-change-transform">
+              <Image
+                src="/images/premium/scroller-cinematic.jpg"
+                alt={imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="scale-[1.65] object-cover lg:scale-[1.8]"
+                style={{ objectPosition: "44% 76%" }}
+              />
+            </div>
+            {/* leitura sem esconder a mecânica */}
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/25"
+              aria-hidden="true"
+            />
+            <div className="grain absolute inset-0" aria-hidden="true" />
+            <figcaption className="absolute bottom-3.5 right-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/45">
+              {mediaNote}
+            </figcaption>
+            {/* régua de escala editorial no pé do recorte */}
+            <p className="absolute bottom-3.5 left-4 font-mono text-[10px] uppercase tracking-[0.25em] text-[#E8C877]/80">
+              Propulsão helicoidal · detalhe
+            </p>
+          </figure>
+        </ScrollReveal>
+
+        <ScrollReveal delay={90}>
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
+            {kicker}
+          </p>
+          <h2 className="mt-3 text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+            {title}
+          </h2>
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-white/80 lg:text-xl">
             {lede}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -96,12 +101,18 @@ export function ScrollerChapter({
             </Link>
           </div>
         </ScrollReveal>
+      </div>
 
-        {/* lista editorial — régua fina, sem cards */}
-        <ol className="divide-y divide-white/10 border-y border-white/10">
+      {/* ── lista editorial — régua fina, sem cards ── */}
+      <div className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6">
+        <ol className="divide-y divide-white/10 border-y border-white/10 lg:grid lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+          {/* li fora, reveal dentro — ol>div>li reprova axe list/listitem */}
           {points.map((point, i) => (
-            <ScrollReveal key={point.title} delay={i * 110}>
-              <li className="flex gap-6 py-7">
+            <li
+              key={point.title}
+              className="py-7 lg:px-8 lg:py-9 lg:first:pl-0 lg:last:pr-0"
+            >
+              <ScrollReveal delay={i * 110} className="flex gap-5 lg:flex-col lg:gap-4">
                 <span
                   className="chapter-num shrink-0 pt-1 text-3xl sm:text-4xl"
                   aria-hidden="true"
@@ -116,8 +127,8 @@ export function ScrollerChapter({
                     {point.text}
                   </p>
                 </div>
-              </li>
-            </ScrollReveal>
+              </ScrollReveal>
+            </li>
           ))}
         </ol>
       </div>
