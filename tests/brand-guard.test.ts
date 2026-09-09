@@ -84,8 +84,26 @@ describe("vocabulário de garantia absoluta em copy pública (messages/)", () =>
   });
 });
 
-describe("card #compressores usa apresentação visual PRÓPRIA (MIKE-REVISAO B2)", () => {
-  it("a imagem do card é o SVG original — nunca foto (.jpg/.png/.webp) de catálogo", () => {
+describe("card #compressores usa fotografia real AUTORIZADA (direção de arte CEO 2026-09-09)", () => {
+  /**
+   * A trava anterior (MIKE-REVISAO B2) forçava SVG para impedir foto de
+   * catálogo com marca de fornecedor. Por ordem do CEO (2026-09-09) o card
+   * volta a FOTOGRAFIA REAL TRATADA — regra técnica errada não supera o
+   * pedido do CEO. O guard de MARCAS segue integral: o FORBIDDEN acima
+   * continua varrendo conteúdo E nomes de arquivo público. O que muda é a
+   * mecânica: em vez de proibir binário por extensão, aceita-se SOMENTE o
+   * conjunto autorizado em public/images/premium/ — assets com proveniência
+   * registrada em shared/website-evolution-2026-09-09/referencias/
+   * PREMIUM-PROVENIENCIA.md (interno, fora do repo). Asset novo ali exige
+   * registrar proveniência e estender esta lista conscientemente.
+   */
+  const AUTHORIZED_PREMIUM = [
+    "agent-portrait.jpg",
+    "compressor-studio.jpg",
+    "scroller-cinematic.jpg",
+  ];
+
+  it("a imagem do card é a fotografia tratada autorizada", () => {
     const messages = JSON.parse(
       readFileSync(join(ROOT, "messages", "pt-BR.json"), "utf8"),
     );
@@ -93,13 +111,19 @@ describe("card #compressores usa apresentação visual PRÓPRIA (MIKE-REVISAO B2
       (i) => i.id === "compressores",
     );
     expect(item).toBeDefined();
-    expect(item!.image.endsWith(".svg")).toBe(true);
+    expect(item!.image).toBe("/images/premium/compressor-studio.jpg");
   });
 
-  it("nenhum binário compressor-*.{jpg,jpeg,png,webp} volta a existir em public/", () => {
+  it("qualquer mídia de compressor em public/ é a autorizada — foto de catálogo avulsa segue proibida", () => {
     const offenders = walkFiles(join(ROOT, "public"))
       .map((f) => relative(ROOT, f))
-      .filter((f) => /compressor.*\.(jpe?g|png|webp|avif)$/i.test(f));
+      .filter((f) => /compressor/i.test(f))
+      .filter((f) => f !== "public/images/premium/compressor-studio.jpg");
     expect(offenders).toEqual([]);
+  });
+
+  it("public/images/premium/ contém SOMENTE os assets autorizados desta rodada", () => {
+    const files = readdirSync(join(ROOT, "public", "images", "premium")).sort();
+    expect(files).toEqual([...AUTHORIZED_PREMIUM].sort());
   });
 });
