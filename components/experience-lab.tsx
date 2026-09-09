@@ -335,6 +335,34 @@ export function ExperienceLab({ className = "" }: { className?: string }) {
         </p>
       </div>
 
+      {/* ── No-JS / crawler fallback (critério 3.2): o conteúdo COMPLETO dos
+          5 passos de cada cenário é server-rendered aqui dentro de
+          <noscript> — sem JavaScript o visitante lê a jornada inteira; com
+          JS o player interativo abaixo assume. ── */}
+      <noscript>
+        <div className="space-y-8 p-5 md:p-8">
+          {SCENARIOS.map((s) => (
+            <section key={s.id}>
+              <h3 className="text-lg font-bold text-foreground">{s.label}</h3>
+              <ol className="mt-3 space-y-4">
+                {STEPS.map((st, i) => {
+                  const c = s.steps[st.id];
+                  return (
+                    <li key={st.id} className="rounded-lg border border-border bg-card p-4">
+                      <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                        passo {i + 1} · {st.label}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-foreground">{c.heading}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          ))}
+        </div>
+      </noscript>
+
       <div className="p-5 md:p-8">
         {/* ── Scenario tabs ── */}
         <div
