@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Minefy — Telemetria e Tecnologia para Mineração",
-    "description": "Telemetria avançada, tablets industriais e gestão inteligente para mineração a céu aberto. Monitoramento real-time de equipamentos de grande porte. Teste gratuitamente."
+    "description": "Telemetria avançada, tablets industriais e gestão inteligente para mineração a céu aberto. Monitoramento real-time de equipamentos de grande porte. Solicite uma demonstração."
   },
   "nav": {
     "home": "Home",
@@ -40,12 +40,12 @@
           "label": "Monitoramento real-time"
         },
         {
-          "value": "Zero",
-          "label": "Incidentes críticos"
+          "value": "GRM",
+          "label": "Integração com despacho de mina"
         },
         {
-          "value": "#1",
-          "label": "Validado na maior mineradora do Brasil"
+          "value": "CAN",
+          "label": "Telemetria J1939 embarcada"
         }
       ]
     },
@@ -81,7 +81,7 @@
         {
           "icon": "tablet",
           "title": "Tablets para Mineração",
-          "description": "Três linhas para cada operação: comercial (kit robusto de campo), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida, sempre integrada à plataforma Minefy.",
+          "description": "Três linhas para cada operação: comercial (kit robusto de campo), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida, com integração nativa à plataforma Minefy.",
           "badge": "HARDWARE"
         },
         {
@@ -117,7 +117,7 @@
         {
           "icon": "car",
           "title": "Caminhonetes Operacionais",
-          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e frota sempre em plena condição, sem imobilizar capital em frota própria.",
+          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e frota revisada e mantida em condição de operação, sem imobilizar capital em frota própria.",
           "badge": "LOCAÇÃO"
         },
         {
@@ -159,7 +159,7 @@
       "title": "Por que mineradoras escolhem a Minefy",
       "items": [
         {
-          "title": "Validado na maior mineradora do Brasil",
+          "title": "Em operação na maior mineradora do Brasil",
           "description": "Nossa tecnologia opera em projetos de descaracterização de barragens na maior mineradora do país, monitorando equipamentos de grande porte 24/7."
         },
         {
@@ -218,14 +218,14 @@
     },
     "cta": {
       "title": "Quer ver na prática?",
-      "subtitle": "Teste a plataforma com dados da sua operação. Demonstração gratuita, sem compromisso.",
-      "button": "Solicitar Demonstração Gratuita"
+      "subtitle": "Teste a plataforma com dados da sua operação. Demonstração sem compromisso.",
+      "button": "Solicitar Demonstração"
     }
   },
   "about": {
     "metadata": {
       "title": "Quem Somos — Minefy",
-      "description": "Empresa de Mining Tech com tecnologia validada na maior mineradora do Brasil. Telemetria, segurança e eficiência para operações de grande porte."
+      "description": "Engenharia de tecnologia nascida na mineração de grande porte: telemetria industrial, IA corporativa, agentes autônomos e serviços de TI."
     },
     "hero": {
       "title": "Tecnologia nascida no chão de mina"
@@ -245,8 +245,8 @@
           "label": "Produtos"
         },
         {
-          "value": "#1",
-          "label": "Maior mineradora do BR"
+          "value": "2",
+          "label": "Divisões: mineração e agro"
         },
         {
           "value": "24/7",
@@ -303,7 +303,7 @@
         "id": "tablets",
         "badge": "HARDWARE",
         "title": "Tablets para Mineração",
-        "description": "Três linhas de tablets para cada nível de exigência da operação — do apoio em cabine ao computador veicular embarcado. Você escolhe o grau de robustez; a integração com a plataforma Minefy vem garantida em todas.",
+        "description": "Três linhas de tablets para cada nível de exigência da operação — do apoio em cabine ao computador veicular embarcado. Você escolhe o grau de robustez; todas saem integradas à plataforma Minefy.",
         "tiers": [
           {
             "name": "Comercial",
@@ -458,7 +458,7 @@
         "features": [
           "Veículos 4x4 de última geração equipados para operação de campo",
           "Giroflex, sinalização e kit de segurança conforme normas da operação",
-          "Frota zero-quilômetro ou de baixa rodagem, sempre em plena condição de operação",
+          "Frota nova ou de baixa rodagem, mantida em plena condição de operação",
           "Pacotes sob medida para sua demanda — quilometragem livre ou planos que cabem no seu orçamento",
           "Contrato flexível, sem imobilizar capital em frota própria",
           "Rastreamento e telemetria ActiSky integráveis sob demanda"
@@ -671,7 +671,7 @@
         {
           "icon": "tablet",
           "title": "Tablets para o Campo",
-          "description": "Três linhas de robustez — do kit veicular comercial ao computador embarcado industrial — sempre integradas à plataforma Agrofy.",
+          "description": "Três linhas de robustez — do kit veicular comercial ao computador embarcado industrial — todas integradas à plataforma Agrofy.",
           "badge": "HARDWARE"
         },
         {
@@ -722,7 +722,7 @@
         "id": "tablets",
         "badge": "HARDWARE",
         "title": "Tablets para o Campo",
-        "description": "Três linhas de tablets para cada nível de exigência da lavoura — do apoio na cabine ao computador embarcado da colheitadeira. Você escolhe o grau de robustez; a integração com a plataforma Agrofy vem garantida em todas.",
+        "description": "Três linhas de tablets para cada nível de exigência da lavoura — do apoio na cabine ao computador embarcado da colheitadeira. Você escolhe o grau de robustez; todas saem integradas à plataforma Agrofy.",
         "tiers": [
           {
             "name": "Comercial",
@@ -917,7 +917,7 @@
         },
         {
           "title": "Piloto antes de escala",
-          "text": "Começamos com uma frente medida, nunca com promessa — a decisão de escalar vem do dado do próprio piloto."
+          "text": "Começamos com uma frente medida, não com promessa — a decisão de escalar vem do dado do próprio piloto."
         }
       ]
     },
@@ -1033,8 +1033,8 @@
           "label": "Integração despacho"
         },
         {
-          "value": "Zero",
-          "label": "Incidentes"
+          "value": "CAN",
+          "label": "Telemetria J1939 embarcada"
         }
       ],
       "sections": [
@@ -1087,13 +1087,13 @@
   "contact": {
     "metadata": {
       "title": "Contato — Minefy",
-      "description": "Fale com nossos especialistas em telemetria para mineração. Demonstração gratuita."
+      "description": "Fale com a Minefy: telemetria industrial, IA corporativa, agentes autônomos e serviços de TI. Solicite uma demonstração."
     },
     "hero": {
       "title": "Fale com a Minefy"
     },
     "title": "Entre em Contato",
-    "intro": "Nossos especialistas em telemetria para mineração estão prontos para entender sua operação. Demonstração gratuita, sem compromisso.",
+    "intro": "Conte o que você precisa — da telemetria industrial às novas frentes de IA corporativa, agentes autônomos e serviços de TI. Vamos entender sua operação e desenhar o próximo passo, sem compromisso.",
     "info": {
       "items": [
         {
@@ -1155,7 +1155,7 @@
     }
   },
   "footer": {
-    "tagline": "Telemetria avançada para mineração de grande porte.",
+    "tagline": "Engenharia, IA e operação — conectamos dados, sistemas e pessoas, da mina ao escritório.",
     "copyright": "Minefy Mining System. Todos os direitos reservados.",
     "phone": "+55 (31) 99380-1664",
     "email": "louis.litt@minefymining.com",
@@ -1368,7 +1368,7 @@
     "evidence": {
       "kicker": "Evidências industriais",
       "title": "A engenharia por trás: validada na mineração",
-      "note": "Os números e projetos abaixo vêm da nossa operação de telemetria e gestão de frota em mineração — o histórico de engenharia que sustenta as novas frentes de IA, agentes e TI. As novas ofertas são novas: nenhum cliente industrial listado contratou os serviços de IA."
+      "note": "Experiência em telemetria e gestão de frota para operações industriais."
     },
     "cta": {
       "title": "Vamos desenhar sua solução",
@@ -1521,7 +1521,7 @@
         "Acompanhamento de rotinas de operação",
         "Organização de rotinas administrativas"
       ],
-      "examplesNote": "Exemplos ilustrativos de funções de agente. Um agente não toma decisões infalíveis, não tem acesso irrestrito e não substitui integralmente uma equipe — ele executa dentro do escopo autorizado, com supervisão.",
+      "examplesNote": "Exemplos ilustrativos de funções de agente. Um agente não tem acesso irrestrito nem substitui integralmente uma equipe — ele executa dentro do escopo autorizado, com supervisão humana e decisões passíveis de revisão.",
       "deliverables": [
         "Especificação do agente (função, conhecimento, limites)",
         "Ferramentas conectadas ao fluxo real",
