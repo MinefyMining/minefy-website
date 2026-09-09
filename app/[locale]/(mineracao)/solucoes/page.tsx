@@ -66,7 +66,7 @@ export default async function SolutionsPage({ params }: Props) {
       {/* ── Hero ── */}
       <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">
         <Image
-          src="/images/mining/komatsu-pc2000.jpg"
+          src="/images/mining/escavadeira-grande-porte.jpg"
           alt="Vista aérea de mina a céu aberto"
           fill
           priority
