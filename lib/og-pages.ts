@@ -11,6 +11,7 @@ import messages from "@/messages/pt-BR.json";
 export const OG_PAGES: Record<string, { title: string; site: Site }> = {
   home: { title: messages.corporateHome.metadata.title, site: "mineracao" },
   solucoes: { title: messages.services.hub.metadata.title, site: "mineracao" },
+  "solucoes-scroller": { title: messages.services.scroller.metadata.title, site: "mineracao" },
   "solucoes-ia-corporativa": { title: messages.services.ia.metadata.title, site: "mineracao" },
   "solucoes-agentes-autonomos": { title: messages.services.agentes.metadata.title, site: "mineracao" },
   "solucoes-servicos-ti": { title: messages.services.ti.metadata.title, site: "mineracao" },

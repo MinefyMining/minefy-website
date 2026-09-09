@@ -197,6 +197,58 @@ html.js .reveal.visible {
   transform: translateY(0);
 }
 
+/* ── Capítulos da home (Scroller + IA) ──
+   Mesmo contrato do .reveal: gated por html.js (sem JS nada some),
+   transform/opacity apenas, respeita reduced-motion no bloco global. */
+
+/* Revelação em máscara: o contêiner abre em clip-path quando o
+   IntersectionObserver do ScrollReveal marca .visible. */
+.reveal-mask {
+  transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease;
+}
+html.js .reveal-mask {
+  clip-path: inset(12% 6% 12% 6% round 24px);
+  opacity: 0.6;
+}
+html.js .reveal.visible .reveal-mask,
+html.js .reveal-mask.visible {
+  clip-path: inset(0 0 0 0 round 0px);
+  opacity: 1;
+}
+
+/* Parallax sutil dirigido pelo scroll — progressive enhancement:
+   só em browsers com animation-timeline, só com motion permitido, só com
+   JS (coerência com o resto). Transform-only; "pausado fora da tela" por
+   construção (a timeline é a visibilidade do próprio elemento). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .chapter-parallax {
+      animation: chapter-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes chapter-drift {
+  from { transform: scale(1.12) translateY(3%); }
+  to   { transform: scale(1.02) translateY(-3%); }
+}
+
+/* Número editorial dos capítulos (01/02) */
+.chapter-num {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 168, 71, 0.55);
+}
+.chapter-num--ice {
+  -webkit-text-stroke: 1px rgba(127, 180, 216, 0.55);
+}
+.light .chapter-num { -webkit-text-stroke-color: rgba(184, 134, 11, 0.6); }
+.light .chapter-num--ice { -webkit-text-stroke-color: rgba(58, 108, 140, 0.6); }
+
 /* Entrada do hero corporativo — animação 100% CSS (roda sem framer, some
    sob reduced-motion, e sem JS o conteúdo nasce visível). */
 @keyframes rise-in {
@@ -659,6 +711,8 @@ html.js .rise-in-t {
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   .reveal, html.js .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal-mask { clip-path: none; opacity: 1; transition: none; }
+  html.js .chapter-parallax { animation: none; }
   html.js .rise-in, html.js .rise-in-t { animation: none; }
   html { scroll-behavior: auto; }
   .aurora-blob--gold,

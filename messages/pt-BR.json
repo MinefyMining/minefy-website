@@ -1136,6 +1136,7 @@
       "service": "Serviço / interesse",
       "serviceOptions": {
         "mineracao-telemetria": "Operação industrial e telemetria",
+        "scroller": "Scroller — equipamento anfíbio",
         "ia-corporativa": "IA corporativa",
         "agentes-autonomos": "Agentes autônomos",
         "servicos-ti": "Serviços de TI",
@@ -1189,6 +1190,10 @@
       {
         "label": "Consultoria",
         "href": "/solucoes#consulting"
+      },
+      {
+        "label": "Scroller",
+        "href": "/solucoes/scroller"
       },
       {
         "label": "IA Corporativa",
@@ -1261,8 +1266,8 @@
   },
   "corporateHome": {
     "metadata": {
-      "title": "Minefy — Inteligência que conecta. Tecnologia que executa.",
-      "description": "Integramos inteligência artificial, criamos agentes autônomos e desenvolvemos soluções de TI para conectar dados, sistemas e operações — com engenharia validada em operação industrial de grande porte."
+      "title": "Minefy — O próximo movimento: Scroller e IA",
+      "description": "Scroller — equipamento anfíbio para desaguamento e adensamento de rejeitos — e IA corporativa com agentes autônomos, sobre a engenharia industrial da Minefy."
     },
     "hero": {
       "badge": "Engenharia · IA · Operação",
@@ -1365,13 +1370,81 @@
         }
       ]
     },
+    "heroDual": {
+      "badge": "Duas novas frentes",
+      "title": "O próximo movimento da sua operação.",
+      "subtitle": "Da matéria à inteligência: um equipamento anfíbio para superfícies de rejeitos e terrenos de baixa capacidade de suporte — e uma camada de IA que conecta seus sistemas, dados e decisões.",
+      "scenes": {
+        "scroller": {
+          "num": "01",
+          "label": "Scroller",
+          "tagline": "Propulsão helicoidal anfíbia para desaguamento e adensamento de rejeitos.",
+          "cta": "Conheça a Scroller"
+        },
+        "ia": {
+          "num": "02",
+          "label": "Inteligência artificial",
+          "tagline": "IA corporativa e agentes autônomos conectados aos seus sistemas — executando com aprovação humana.",
+          "cta": "Explore a IA"
+        }
+      }
+    },
+    "scrollerChapter": {
+      "kicker": "01 · Nova frente",
+      "title": "Scroller",
+      "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento do material.",
+      "points": [
+        {
+          "title": "Desaguamento e adensamento",
+          "text": "Os rolos helicoidais revolvem e sulcam a superfície do depósito — o mud farming que acelera o desaguamento e a consolidação do rejeito."
+        },
+        {
+          "title": "Aplicabilidade por estudo",
+          "text": "Estudo prévio sobre o seu terreno e o seu plano define onde e como a frente entra — antes de qualquer mobilização."
+        },
+        {
+          "title": "Integração à operação",
+          "text": "Dimensionamento, janela de trabalho e integração definidos com a engenharia Minefy, conforme o escopo de cada caso."
+        }
+      ],
+      "ctaPrimary": "Falar com a engenharia",
+      "ctaSecondary": "Ver a frente Scroller",
+      "mediaNote": "Imagem ilustrativa."
+    },
+    "iaChapter": {
+      "kicker": "02 · Inteligência aplicada",
+      "title": "Do terreno físico aos fluxos digitais",
+      "lede": "A mesma engenharia que lê o barramento do equipamento pesado conecta agora os sistemas da sua empresa a modelos de IA — com escopo definido e aprovação humana onde você decidir.",
+      "offers": [
+        {
+          "title": "IA corporativa",
+          "text": "Modelos de IA conectados aos seus dados e sistemas reais — para responder, classificar, resumir e apoiar decisão dentro do seu contexto.",
+          "href": "/solucoes/ia-corporativa",
+          "cta": "IA corporativa"
+        },
+        {
+          "title": "Agentes autônomos",
+          "text": "Agentes que executam tarefas de ponta a ponta dentro do escopo autorizado — consultam sistemas, preparam documentos e registram tudo.",
+          "href": "/solucoes/agentes-autonomos",
+          "cta": "Agentes autônomos"
+        }
+      ],
+      "tiNote": "Sustentado por serviços de TI sob medida — integrações, APIs e engenharia de software.",
+      "tiCta": "Serviços de TI"
+    },
+    "industrial": {
+      "kicker": "A base industrial",
+      "title": "A engenharia que nos formou continua em operação",
+      "text": "Telemetria ActiSky, tablets industriais, Analytics, Fleet 360, Safety e locações — o portfólio completo de mineração continua em operação e disponível para a sua frota.",
+      "cta": "Ver soluções de mineração"
+    },
     "faq": {
       "title": "Perguntas frequentes",
       "subtitle": "O que times de operação, dados e TI perguntam antes de começar com a Minefy.",
       "items": [
         {
           "q": "O que a Minefy faz hoje?",
-          "a": "Duas coisas que se alimentam: operamos telemetria e gestão de frota para operações industriais (a jornada completa está em Soluções) e aplicamos essa mesma engenharia em três frentes corporativas — IA aplicada ao negócio, agentes autônomos e serviços de TI sob medida."
+          "a": "Três movimentos que se alimentam: operamos telemetria e gestão de frota para operações industriais (a jornada completa está em Soluções); estruturamos a frente Scroller — equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos, com aplicação dimensionada por estudo; e aplicamos a mesma engenharia em IA corporativa, agentes autônomos e serviços de TI sob medida."
         },
         {
           "q": "O que é IA corporativa aplicada ao meu negócio?",
@@ -1430,6 +1503,14 @@
             "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota e segurança — o portfólio completo está detalhado abaixo, nesta página.",
             "href": "#tablets",
             "ctaLabel": "Ver portfólio industrial"
+          },
+          {
+            "id": "scroller",
+            "badge": "NOVA FRENTE",
+            "title": "Scroller",
+            "text": "Equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos.",
+            "href": "/solucoes/scroller",
+            "ctaLabel": "Conhecer a frente"
           },
           {
             "id": "ia",
@@ -1560,6 +1641,35 @@
         "Manutenção e evolução"
       ],
       "cta": "Desenhar meu agente"
+    },
+    "scroller": {
+      "metadata": {
+        "title": "Scroller — Minefy",
+        "description": "Veículo anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos (mud farming). Aplicação dimensionada por estudo, com a engenharia Minefy."
+      },
+      "hero": {
+        "kicker": "Nova frente · Equipamento",
+        "title": "Scroller",
+        "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento e a consolidação do material.",
+        "imageAlt": "Veículo anfíbio de propulsão helicoidal sobre depósito de rejeitos, com rolos helicoidais parcialmente submersos na lama"
+      },
+      "sections": [
+        {
+          "title": "Desaguamento e adensamento",
+          "text": "Os rolos helicoidais flutuam sobre o depósito e revolvem a superfície em sulcos — o processo conhecido como mud farming, que acelera o desaguamento e o adensamento mecânico do rejeito."
+        },
+        {
+          "title": "Aplicabilidade por estudo",
+          "text": "Antes de qualquer mobilização, um estudo prévio de aplicabilidade sobre o seu terreno e o seu plano define onde e como a frente entra."
+        },
+        {
+          "title": "Integração à sua operação",
+          "text": "Dimensionamento, janela de trabalho e integração ao plano da operação definidos com a engenharia Minefy, conforme o escopo de cada caso."
+        }
+      ],
+      "status": "Frente em estruturação — avaliação técnica caso a caso com a engenharia Minefy.",
+      "cta": "Falar com a engenharia",
+      "backToHub": "Todas as soluções"
     },
     "ti": {
       "metadata": {

@@ -1,26 +1,17 @@
 import type { ComponentType } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import {
-  ArrowRight,
-  Mountain,
-  Brain,
-  Bot,
-  Code2,
-  Plug,
-  Rocket,
-  Activity,
-  RefreshCcw,
-} from "lucide-react";
+import { ArrowRight, Plug, Rocket, Activity, RefreshCcw } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
 import { ClientCarousel } from "@/components/client-carousel";
-import { HeroCorporate } from "@/components/hero-corporate";
+import { HeroDual } from "@/components/hero-dual";
+import { ScrollerChapter } from "@/components/scroller-chapter";
 import { ExperienceLab } from "@/components/experience-lab";
 import { AuroraBackground } from "@/components/aurora-background";
 import { FaqSection } from "@/components/faq-section";
-import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -37,13 +28,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-const doorIcons: Record<string, ComponentType<{ className?: string }>> = {
-  mountain: Mountain,
-  brain: Brain,
-  bot: Bot,
-  code: Code2,
-};
-
 const engineeringIcons: Record<string, ComponentType<{ className?: string }>> = {
   plug: Plug,
   rocket: Rocket,
@@ -52,15 +36,15 @@ const engineeringIcons: Record<string, ComponentType<{ className?: string }>> = 
 };
 
 /**
- * Corporate home (2026-09 evolution) — section order per the approved plan:
- * 1. concise non-blocking hero + systems/agents map
- * 2. four entry doors by need
- * 3-4. "Explore uma execução" (interactive lab incl. the result demo, all
- *      simulated and persistently labeled as such)
- * 5. engineering capacity  6. method  7. verified industrial evidence
- * (clearly separated from the new offers)  8. contextual CTA.
- * The full mining commercial flow lives untouched at /solucoes (same
- * anchors as always) — door #1 leads straight to it.
+ * Home corporativa — revisão Scroller + IA (CEO, 2026-09-09):
+ * DOIS protagonistas na primeira dobra, narrativa em capítulos no scroll:
+ *   Abertura dual → Capítulo 01 Scroller (mídia dominante) → transição
+ *   matéria→digital → Capítulo 02 IA (ofertas + laboratório interativo)
+ *   → base industrial (uma faixa de continuidade, não uma "quinta porta")
+ *   → capacidade de engenharia → método → evidências verificadas → FAQ
+ *   → CTA.
+ * Sem scrolljacking, sem WebGL, texto integral no HTML; animações
+ * transform/opacity gated por `html.js` + reduced-motion.
  */
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
@@ -68,14 +52,7 @@ export default async function HomePage({ params }: Props) {
 
   const t = await getTranslations("corporateHome");
   const tHome = await getTranslations("home");
-
-  const doors = t.raw("doors.items") as Array<{
-    icon: string;
-    title: string;
-    text: string;
-    href: string;
-    ctaLabel: string;
-  }>;
+  const tServices = await getTranslations("services");
 
   const engineering = t.raw("engineering.items") as Array<{
     icon: string;
@@ -94,87 +71,129 @@ export default async function HomePage({ params }: Props) {
     description: string;
   }>;
 
-  // FAQ CORPORATIVA (corporateHome.faq) — a FAQ industrial de mineração
-  // continua íntegra na jornada /solucoes (achado CODEX-UX).
+  const scrollerPoints = t.raw("scrollerChapter.points") as Array<{
+    title: string;
+    text: string;
+  }>;
+
+  const iaOffers = t.raw("iaChapter.offers") as Array<{
+    title: string;
+    text: string;
+    href: string;
+    cta: string;
+  }>;
+
+  // FAQ corporativa — a FAQ industrial continua íntegra em /solucoes.
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
     <>
-      {/* ── 1. HERO — concise, non-blocking, with systems/agents map ── */}
-      <HeroCorporate
-        badge={t("hero.badge")}
-        title={t("hero.title")}
-        subtitle={t("hero.subtitle")}
-        trust={t("hero.trust")}
-        cta={t("hero.cta")}
-        ctaSecondary={t("hero.ctaSecondary")}
+      {/* ── ABERTURA DUAL — Scroller e IA no primeiro viewport ── */}
+      <HeroDual
+        badge={t("heroDual.badge")}
+        title={t("heroDual.title")}
+        subtitle={t("heroDual.subtitle")}
+        scroller={{
+          num: t("heroDual.scenes.scroller.num"),
+          label: t("heroDual.scenes.scroller.label"),
+          tagline: t("heroDual.scenes.scroller.tagline"),
+          cta: t("heroDual.scenes.scroller.cta"),
+        }}
+        ia={{
+          num: t("heroDual.scenes.ia.num"),
+          label: t("heroDual.scenes.ia.label"),
+          tagline: t("heroDual.scenes.ia.tagline"),
+          cta: t("heroDual.scenes.ia.cta"),
+        }}
+        scrollerImageAlt={tServices("scroller.hero.imageAlt")}
+        scrollerMediaNote={t("scrollerChapter.mediaNote")}
       />
 
-      {/* ── 2. FOUR ENTRY DOORS ── */}
-      <section id="frentes" className="scroll-mt-24 border-y border-border bg-background px-6 py-20">
-        <div className="mx-auto max-w-7xl">
+      {/* ── CAPÍTULO 01 · SCROLLER ── */}
+      <ScrollerChapter
+        kicker={t("scrollerChapter.kicker")}
+        title={t("scrollerChapter.title")}
+        lede={t("scrollerChapter.lede")}
+        points={scrollerPoints}
+        ctaPrimary={t("scrollerChapter.ctaPrimary")}
+        ctaSecondary={t("scrollerChapter.ctaSecondary")}
+        mediaNote={t("scrollerChapter.mediaNote")}
+        imageAlt={tServices("scroller.hero.imageAlt")}
+      />
+
+      {/* transição — da matéria aos fluxos digitais */}
+      <div aria-hidden="true" className="flex justify-center bg-[#0A0A0A]">
+        <div className="h-28 w-px bg-gradient-to-b from-[#D4A847]/70 via-white/20 to-[#7FB4D8]/70" />
+      </div>
+
+      {/* ── CAPÍTULO 02 · INTELIGÊNCIA ARTIFICIAL ── */}
+      <section id="ia" className="scroll-mt-20 bg-[#0A0A0A] px-6 pb-24 pt-14">
+        <div className="mx-auto w-full max-w-7xl">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {t("doors.kicker")}
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#9FC6E2]">
+              {t("iaChapter.kicker")}
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
-              {t("doors.title")}
+            <h2 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+              {t("iaChapter.title")}
             </h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground">
-              {t("doors.subtitle")}
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/65">
+              {t("iaChapter.lede")}
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {doors.map((door, i) => {
-              const Icon = doorIcons[door.icon] ?? Mountain;
-              return (
-                <ScrollReveal key={door.title} delay={i * 70} className="h-full">
-                  <Link href={door.href} className="block h-full">
-                    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/25 bg-primary/10">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </span>
-                      <h3 className="mt-4 text-lg font-semibold leading-snug text-foreground">
-                        {door.title}
-                      </h3>
-                      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                        {door.text}
-                      </p>
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                        {door.ctaLabel}
-                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                      </span>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              );
-            })}
+          {/* as duas ofertas de IA — régua editorial, sem grade de cards */}
+          <div className="mt-12 grid grid-cols-1 gap-10 border-y border-white/10 py-10 lg:grid-cols-2 lg:gap-16">
+            {iaOffers.map((offer, i) => (
+              <ScrollReveal key={offer.href} delay={i * 110}>
+                <Link
+                  href={offer.href}
+                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7FB4D8]"
+                >
+                  <span
+                    className="chapter-num chapter-num--ice text-3xl sm:text-4xl"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-2xl font-bold text-white">
+                    {offer.title}
+                  </h3>
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-white/60">
+                    {offer.text}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#9FC6E2]">
+                    {offer.cta}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Link>
+              </ScrollReveal>
+            ))}
           </div>
-        </div>
-      </section>
 
-      {/* ── 3-4. EXPLORE UMA EXECUÇÃO (interactive lab + result demo) ── */}
-      <section id="execucao" className="scroll-mt-24 bg-background px-6 py-20">
-        <div className="mx-auto max-w-6xl">
-          <ScrollReveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {t("lab.kicker")}
-            </p>
-            <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
-              {t("lab.title")}
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-              {t("lab.subtitle")}
+          {/* TI como sustentação — uma linha, não uma porta */}
+          <ScrollReveal delay={120}>
+            <p className="mt-6 text-sm text-white/50">
+              {t("iaChapter.tiNote")}{" "}
+              <Link
+                href="/solucoes/servicos-ti"
+                className="font-medium text-white/80 underline underline-offset-4 transition-colors hover:text-white"
+              >
+                {t("iaChapter.tiCta")}
+              </Link>
             </p>
           </ScrollReveal>
-          <ScrollReveal delay={100} className="mt-10">
+
+          {/* laboratório interativo — a demonstração funcional do capítulo */}
+          <ScrollReveal delay={100} className="mt-14">
             <ExperienceLab />
           </ScrollReveal>
           <div className="mt-6 text-center">
             <Link
               href="/experiencias"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#9FC6E2] transition-colors hover:text-white"
             >
               {t("lab.fullCta")}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -183,7 +202,33 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── 5. ENGINEERING CAPACITY ── */}
+      {/* ── BASE INDUSTRIAL — faixa de continuidade ── */}
+      <section className="border-y border-border bg-background px-6 py-16">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("industrial.kicker")}
+            </p>
+            <h2 className="mt-2 max-w-xl text-2xl font-bold text-foreground md:text-3xl">
+              {t("industrial.title")}
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {t("industrial.text")}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <Link
+              href="/solucoes"
+              className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-primary/40 px-6 py-3 text-sm font-semibold text-primary transition-colors duration-200 hover:bg-primary/10"
+            >
+              {t("industrial.cta")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── CAPACIDADE DE ENGENHARIA ── */}
       <section id="engenharia" className="scroll-mt-24 bg-card px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
@@ -215,7 +260,7 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── 6. METHOD ── */}
+      {/* ── MÉTODO ── */}
       <section id="como-entregamos" className="scroll-mt-24 bg-background px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
@@ -252,7 +297,7 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── 7. VERIFIED INDUSTRIAL EVIDENCE (distinct from the new offers) ── */}
+      {/* ── EVIDÊNCIAS INDUSTRIAIS VERIFICADAS ── */}
       <section id="evidencias" className="scroll-mt-24 border-t border-border bg-card px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
@@ -292,14 +337,14 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── FAQ (preserved from the previous home) ── */}
+      {/* ── FAQ ── */}
       <FaqSection
         title={t("faq.title")}
         subtitle={t("faq.subtitle")}
         items={faqItems}
       />
 
-      {/* ── 8. CONTEXTUAL CTA ── */}
+      {/* ── CTA CONTEXTUAL ── */}
       <section className="relative overflow-hidden bg-background px-6 py-20 text-center">
         <AuroraBackground particles={false} className="opacity-60" />
         <div className="relative z-10 mx-auto max-w-7xl">

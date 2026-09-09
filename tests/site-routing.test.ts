@@ -52,6 +52,7 @@ describe("mapPathnameForSite — mundo mineração (minefymining.com)", () => {
 
   it.each([
     "/solucoes",
+    "/solucoes/scroller",
     "/solucoes/ia-corporativa",
     "/solucoes/agentes-autonomos",
     "/solucoes/servicos-ti",
@@ -93,6 +94,9 @@ describe("mapPathnameForSite — mundo Agrofy (agrofymining.com)", () => {
     // /mineracao vira /agrofy/mineracao, que não existe → 404
     expect(mapPathnameForSite("agro", "/mineracao")).toBe("/agrofy/mineracao");
     // as novas páginas de serviço também não existem no mundo agro
+    expect(mapPathnameForSite("agro", "/solucoes/scroller")).toBe(
+      "/agrofy/solucoes/scroller", // sem página no mundo agro → 404 (trava o vazamento)
+    );
     expect(mapPathnameForSite("agro", "/solucoes/ia-corporativa")).toBe(
       "/agrofy/solucoes/ia-corporativa",
     );

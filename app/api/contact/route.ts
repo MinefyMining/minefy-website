@@ -21,6 +21,7 @@ const MAX_BODY_BYTES = 16_384;
 /** Rótulos PT-BR do serviço/interesse para o e-mail interno de notificação. */
 const SERVICE_LABELS: Record<Servico, string> = {
   "mineracao-telemetria": "Operação industrial e telemetria",
+  scroller: "Scroller — equipamento anfíbio",
   "ia-corporativa": "IA corporativa",
   "agentes-autonomos": "Agentes autônomos",
   "servicos-ti": "Serviços de TI",

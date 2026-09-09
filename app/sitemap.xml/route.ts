@@ -10,6 +10,7 @@ const PUBLIC_PATHS: Record<Site, string[]> = {
   mineracao: [
     "/",
     "/solucoes",
+    "/solucoes/scroller",
     "/solucoes/ia-corporativa",
     "/solucoes/agentes-autonomos",
     "/solucoes/servicos-ti",
