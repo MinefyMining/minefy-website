@@ -10,14 +10,29 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "solutions.metadata" });
-  return { title: t("title"), description: t("description") };
+  const t = await getTranslations({ locale, namespace: "services.hub.metadata" });
+  const canonical = "https://www.minefymining.com/solucoes";
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { canonical },
+  };
 }
 
 export default async function SolutionsPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("solutions");
+  const tHub = await getTranslations("services.hub.fronts");
+
+  const fronts = tHub.raw("items") as Array<{
+    id: string;
+    badge: string;
+    title: string;
+    text: string;
+    href: string;
+    ctaLabel: string;
+  }>;
 
   const items = t.raw("items") as Array<{
     id: string;
@@ -70,6 +85,58 @@ export default async function SolutionsPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ── Hub: quatro frentes (2026-09) — IA corporativa, agentes e TI
+             ganham páginas próprias; o portfólio industrial permanece nesta
+             página com as MESMAS âncoras de sempre (#tablets, #actisky, …),
+             preservando links antigos e o fluxo comercial de mineração. ── */}
+      <section id="frentes" className="scroll-mt-24 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+              {tHub("kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {tHub("title")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              {tHub("subtitle")}
+            </p>
+          </ScrollReveal>
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {fronts.map((front, i) => {
+              const inner = (
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D4A847]/50">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#D4A847]">
+                    {front.badge}
+                  </span>
+                  <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
+                    {front.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {front.text}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#D4A847]">
+                    {front.ctaLabel}
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </span>
+                </div>
+              );
+              return (
+                <ScrollReveal key={front.id} delay={i * 70} className="h-full">
+                  {front.href.startsWith("#") ? (
+                    <a href={front.href} className="block h-full">{inner}</a>
+                  ) : (
+                    <Link href={front.href} className="block h-full">{inner}</Link>
+                  )}
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto h-px max-w-5xl bg-border" />
 
       {/* ── Solutions List ── */}
       <div className="px-6">

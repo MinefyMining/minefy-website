@@ -1131,7 +1131,18 @@
       "submit": "Enviar",
       "sending": "Enviando...",
       "success": "Mensagem enviada! Retornaremos em até 24h.",
-      "error": "Erro ao enviar. Tente pelo WhatsApp."
+      "error": "Erro ao enviar. Tente pelo WhatsApp.",
+      "company": "Empresa (opcional)",
+      "service": "Serviço / interesse",
+      "servicePlaceholder": "Selecione o interesse",
+      "serviceOptions": {
+        "mineracao-telemetria": "Operação industrial e telemetria",
+        "ia-corporativa": "IA corporativa",
+        "agentes-autonomos": "Agentes autônomos",
+        "servicos-ti": "Serviços de TI",
+        "outro": "Outro assunto"
+      },
+      "fallback": "Prefere um canal direto? Chame no WhatsApp ou escreva para louis.litt@minefymining.com."
     },
     "validation": {
       "nameRequired": "Informe seu nome",
@@ -1244,6 +1255,339 @@
     "metadata": {
       "title": "Política de Privacidade — Minefy Mining System",
       "description": "Como a Minefy trata dados pessoais em conformidade com a LGPD: finalidades, bases legais, dado biométrico do módulo de segurança do motorista, retenção e direitos do titular."
+    }
+  },
+  "corporateHome": {
+    "metadata": {
+      "title": "Minefy — Inteligência que conecta. Tecnologia que executa.",
+      "description": "Integramos inteligência artificial, criamos agentes autônomos e desenvolvemos soluções de TI para conectar dados, sistemas e operações — com engenharia validada em operação industrial de grande porte."
+    },
+    "hero": {
+      "badge": "Engenharia · IA · Operação",
+      "title": "Inteligência que conecta. Tecnologia que executa.",
+      "subtitle": "Integramos inteligência artificial, criamos agentes autônomos e desenvolvemos soluções de TI para conectar dados, sistemas e operações.",
+      "cta": "Vamos desenhar sua solução",
+      "ctaSecondary": "Explore na prática",
+      "trust": "Engenharia validada em operação industrial de grande porte"
+    },
+    "doors": {
+      "kicker": "Por onde começar",
+      "title": "Quatro portas de entrada",
+      "subtitle": "Cada empresa chega com uma necessidade diferente. Escolha a sua — o caminho técnico a gente desenha junto.",
+      "items": [
+        {
+          "icon": "mountain",
+          "title": "Operação industrial",
+          "text": "Telemetria de equipamentos, tablets de campo, gestão de frota e segurança para mineração e operações pesadas.",
+          "href": "/solucoes#tablets",
+          "ctaLabel": "Ver soluções de mineração"
+        },
+        {
+          "icon": "brain",
+          "title": "Aplicar IA na empresa",
+          "text": "Transformar conhecimento, dados e processos em assistência e automação aplicáveis à sua operação.",
+          "href": "/solucoes/ia-corporativa",
+          "ctaLabel": "IA corporativa"
+        },
+        {
+          "icon": "bot",
+          "title": "Criar agentes autônomos",
+          "text": "Agentes de IA com função, conhecimento e ferramentas desenhados para o seu processo — com aprovação humana onde você definir.",
+          "href": "/solucoes/agentes-autonomos",
+          "ctaLabel": "Agentes autônomos"
+        },
+        {
+          "icon": "code",
+          "title": "Desenvolver e integrar sistemas",
+          "text": "Sistemas web, APIs, integrações, dashboards e modernização — engenharia de software para conectar e evoluir sua operação.",
+          "href": "/solucoes/servicos-ti",
+          "ctaLabel": "Serviços de TI"
+        }
+      ]
+    },
+    "lab": {
+      "kicker": "Explore uma execução",
+      "title": "Veja um agente trabalhando, passo a passo",
+      "subtitle": "Escolha um cenário e acompanhe o fluxo Entrada → Conhecimento → Agente → Aprovação → Resultado. Tudo aqui é demonstração com dados simulados.",
+      "fullCta": "Abrir o laboratório completo"
+    },
+    "engineering": {
+      "kicker": "Capacidade de engenharia",
+      "title": "O que sustenta cada entrega",
+      "items": [
+        {
+          "icon": "plug",
+          "title": "Integração",
+          "text": "Conectamos sistemas, APIs e bases de dados existentes — a solução nasce ligada ao que sua empresa já usa."
+        },
+        {
+          "icon": "rocket",
+          "title": "Implantação",
+          "text": "Do piloto controlado à produção, com critérios de qualidade definidos antes de escalar."
+        },
+        {
+          "icon": "activity",
+          "title": "Monitoramento",
+          "text": "Registros, painéis e alertas de execução: o que o sistema faz fica visível e auditável."
+        },
+        {
+          "icon": "refresh",
+          "title": "Evolução",
+          "text": "Acompanhamento contínuo, ajustes por feedback real de uso e evolução de escopo por etapas."
+        }
+      ]
+    },
+    "method": {
+      "kicker": "Como entregamos",
+      "title": "Descobrir → Validar → Integrar → Operar e evoluir",
+      "steps": [
+        {
+          "step": "01",
+          "title": "Descobrir",
+          "text": "Entendemos o processo, os sistemas e os dados. Mapeamos oportunidades e priorizamos pelo que gera valor primeiro."
+        },
+        {
+          "step": "02",
+          "title": "Validar",
+          "text": "Piloto com escopo fechado e critérios de qualidade combinados — antes de qualquer aposta grande."
+        },
+        {
+          "step": "03",
+          "title": "Integrar",
+          "text": "A solução entra no fluxo real de trabalho, conectada aos sistemas e com permissões e limites definidos."
+        },
+        {
+          "step": "04",
+          "title": "Operar e evoluir",
+          "text": "Monitoramento, manutenção e evolução contínua, com registros do que foi executado."
+        }
+      ]
+    },
+    "evidence": {
+      "kicker": "Evidências industriais",
+      "title": "A engenharia por trás: validada na mineração",
+      "note": "Os números e projetos abaixo vêm da nossa operação de telemetria e gestão de frota em mineração — o histórico de engenharia que sustenta as novas frentes de IA, agentes e TI. As novas ofertas são novas: nenhum cliente industrial listado contratou os serviços de IA."
+    },
+    "cta": {
+      "title": "Vamos desenhar sua solução",
+      "subtitle": "Conte o seu contexto — operação industrial, IA, agentes ou desenvolvimento — e a gente responde com um caminho técnico concreto.",
+      "button": "Iniciar conversa"
+    }
+  },
+  "services": {
+    "labels": {
+      "scope": "O que fazemos",
+      "deliverables": "Entregáveis",
+      "examples": "Exemplos demonstrativos",
+      "backToHub": "Todas as soluções"
+    },
+    "hub": {
+      "metadata": {
+        "title": "Soluções — Minefy",
+        "description": "Quatro frentes: operação industrial e telemetria, IA corporativa, agentes autônomos e serviços de TI. Engenharia da Minefy aplicada ao seu contexto."
+      },
+      "fronts": {
+        "kicker": "Quatro frentes",
+        "title": "Soluções Minefy",
+        "subtitle": "Da telemetria industrial que nos formou às novas frentes de IA, agentes e engenharia de software.",
+        "items": [
+          {
+            "id": "mineracao",
+            "badge": "OPERAÇÃO INDUSTRIAL",
+            "title": "Mineração e telemetria",
+            "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota e segurança — o portfólio completo está detalhado abaixo, nesta página.",
+            "href": "#tablets",
+            "ctaLabel": "Ver portfólio industrial"
+          },
+          {
+            "id": "ia",
+            "badge": "IA CORPORATIVA",
+            "title": "IA integrada ao trabalho da sua empresa",
+            "text": "Diagnóstico de casos de uso, integração com sistemas, busca em conhecimento, copilotos internos e implantação com avaliação.",
+            "href": "/solucoes/ia-corporativa",
+            "ctaLabel": "Conhecer IA corporativa"
+          },
+          {
+            "id": "agentes",
+            "badge": "AGENTES AUTÔNOMOS",
+            "title": "Agentes de IA desenhados para o seu processo",
+            "text": "Função, conhecimento, ferramentas, memória e limites personalizados — com aprovação humana nos passos que você definir.",
+            "href": "/solucoes/agentes-autonomos",
+            "ctaLabel": "Conhecer agentes"
+          },
+          {
+            "id": "ti",
+            "badge": "SERVIÇOS DE TI",
+            "title": "Engenharia de software para sua operação",
+            "text": "Sistemas e aplicações web, APIs e integrações, dashboards e dados, modernização e sustentação técnica sob escopo.",
+            "href": "/solucoes/servicos-ti",
+            "ctaLabel": "Conhecer serviços de TI"
+          }
+        ]
+      }
+    },
+    "ia": {
+      "metadata": {
+        "title": "IA Corporativa — Minefy",
+        "description": "IA integrada ao trabalho da sua empresa: diagnóstico de casos de uso, integração com sistemas e APIs, busca em base de conhecimento, copilotos internos e implantação com avaliação contínua."
+      },
+      "badge": "IA CORPORATIVA",
+      "title": "IA integrada ao trabalho da sua empresa.",
+      "benefit": "Transformamos conhecimento, dados e processos em assistência e automação aplicáveis à operação — IA que trabalha dentro do seu fluxo, não ao lado dele.",
+      "scope": [
+        {
+          "title": "Diagnóstico de casos de uso",
+          "text": "Mapeamos onde a IA gera valor no seu contexto e priorizamos pelo impacto e pela viabilidade."
+        },
+        {
+          "title": "Integração com sistemas e APIs",
+          "text": "A IA conversa com o que sua empresa já usa — sistemas internos, planilhas, bases e serviços — via integrações desenhadas caso a caso."
+        },
+        {
+          "title": "Busca em base de conhecimento",
+          "text": "Perguntas em linguagem natural respondidas a partir dos SEUS documentos, com referência à fonte."
+        },
+        {
+          "title": "Extração e organização de documentos",
+          "text": "Contratos, laudos, relatórios e formulários viram dados estruturados e pesquisáveis."
+        },
+        {
+          "title": "Copilotos internos",
+          "text": "Assistentes por área — operação, comercial, administrativo — treinados no vocabulário e nos processos da empresa."
+        },
+        {
+          "title": "Implantação, avaliação e evolução",
+          "text": "Critérios de qualidade definidos antes do go-live, medição de resultado e evolução contínua."
+        }
+      ],
+      "examples": [
+        "Consultar documentos internos e receber respostas com referências à fonte",
+        "Classificar e rotear solicitações recebidas por e-mail ou formulário",
+        "Consolidar informação operacional dispersa em resumos acionáveis"
+      ],
+      "examplesNote": "Exemplos ilustrativos do tipo de aplicação — cada projeto parte de um diagnóstico do seu contexto. Integrações com sistemas específicos são desenhadas e validadas caso a caso.",
+      "deliverables": [
+        "Mapa de oportunidades priorizadas",
+        "Desenho de integração com seus sistemas",
+        "Piloto com critérios de qualidade",
+        "Implantação assistida",
+        "Acompanhamento e evolução"
+      ],
+      "cta": "Planejar uma aplicação de IA"
+    },
+    "agentes": {
+      "metadata": {
+        "title": "Agentes Autônomos — Minefy",
+        "description": "Agentes de IA desenhados para o seu processo: função e conhecimento personalizados, conexão com ferramentas, permissões e limites, aprovação humana e registros de execução."
+      },
+      "badge": "AGENTES AUTÔNOMOS",
+      "title": "Agentes de IA desenhados para o seu processo.",
+      "benefit": "Autonomia aqui significa executar dentro de um escopo autorizado: o agente trabalha, registra o que fez e para nos pontos em que você exige aprovação humana.",
+      "scope": [
+        {
+          "title": "Função e conhecimento personalizados",
+          "text": "Cada agente nasce com papel definido e com o conhecimento do seu negócio — não é um chatbot genérico."
+        },
+        {
+          "title": "Conexão com ferramentas",
+          "text": "O agente usa os sistemas do fluxo real: e-mail, agendas, planilhas, APIs internas — conforme o desenho do projeto."
+        },
+        {
+          "title": "Memória pertinente",
+          "text": "Contexto que persiste entre execuções, na medida definida pelo processo — nem amnésia, nem acúmulo indiscriminado."
+        },
+        {
+          "title": "Execução de fluxos",
+          "text": "Rotinas de múltiplos passos executadas de ponta a ponta, com o estado de cada etapa registrado."
+        },
+        {
+          "title": "Permissões e limites",
+          "text": "Escopo de ação explícito: o que o agente pode fazer sozinho, o que exige aprovação e o que é proibido."
+        },
+        {
+          "title": "Aprovação humana",
+          "text": "Nos passos que o cliente definir, o agente prepara e ESPERA — a decisão é de quem aprova."
+        },
+        {
+          "title": "Registros e monitoramento",
+          "text": "Cada ação fica logada e auditável; painéis mostram o que os agentes fizeram e vão fazer."
+        }
+      ],
+      "examples": [
+        "Triagem comercial de leads recebidos",
+        "Atendimento interno a perguntas recorrentes",
+        "Acompanhamento de rotinas de operação",
+        "Organização de rotinas administrativas"
+      ],
+      "examplesNote": "Exemplos ilustrativos de funções de agente. Um agente não toma decisões infalíveis, não tem acesso irrestrito e não substitui integralmente uma equipe — ele executa dentro do escopo autorizado, com supervisão.",
+      "deliverables": [
+        "Especificação do agente (função, conhecimento, limites)",
+        "Ferramentas conectadas ao fluxo real",
+        "Avaliações de cenário antes do go-live",
+        "Painel e log de execução",
+        "Manutenção e evolução"
+      ],
+      "cta": "Desenhar meu agente"
+    },
+    "ti": {
+      "metadata": {
+        "title": "Serviços de TI — Minefy",
+        "description": "Engenharia de software para conectar e evoluir sua operação: sistemas e aplicações web, APIs e integrações, dashboards e dados, modernização e sustentação técnica sob escopo."
+      },
+      "badge": "SERVIÇOS DE TI",
+      "title": "Engenharia de software para conectar e evoluir sua operação.",
+      "benefit": "O mesmo time que constrói e opera a plataforma industrial da Minefy — backend, frontend, dados e infraestrutura — disponível para o seu projeto.",
+      "scope": [
+        {
+          "title": "Sistemas e aplicações web",
+          "text": "Aplicações completas, do desenho da interface ao backend e ao banco de dados."
+        },
+        {
+          "title": "APIs e integrações",
+          "text": "Serviços que conectam sistemas entre si — internos, de parceiros e de terceiros."
+        },
+        {
+          "title": "Dashboards e dados",
+          "text": "Painéis operacionais e gerenciais sobre os dados que a empresa já tem."
+        },
+        {
+          "title": "Modernização de sistemas",
+          "text": "Evolução por etapas de sistemas legados, sem parar a operação."
+        },
+        {
+          "title": "Infraestrutura de aplicações",
+          "text": "Containers, deploy, ambientes e observabilidade para as aplicações entregues."
+        },
+        {
+          "title": "Sustentação técnica",
+          "text": "Correções, melhorias e suporte contínuo sob escopo contratado."
+        }
+      ],
+      "scopeNote": "Trabalhamos sob escopo contratado, com entregas por etapas. Compromissos de nível de serviço são definidos em contrato, projeto a projeto.",
+      "deliverables": [
+        "Diagnóstico técnico",
+        "Escopo por etapas",
+        "Implementação com testes",
+        "Documentação do que foi entregue",
+        "Sustentação contratada"
+      ],
+      "cta": "Conversar sobre meu projeto"
+    }
+  },
+  "experiences": {
+    "metadata": {
+      "title": "Experiências — Laboratório interativo Minefy",
+      "description": "Explore, passo a passo, como um agente de IA da Minefy executa um fluxo real: Entrada, Conhecimento, Agente, Aprovação e Resultado. Demonstração interativa com dados simulados."
+    },
+    "hero": {
+      "kicker": "Laboratório interativo",
+      "title": "Explore uma execução",
+      "subtitle": "Escolha um cenário — Atendimento, Documentos ou Operações — e acompanhe o que acontece em cada passo do fluxo. Demonstração interativa com dados simulados: nada aqui está conectado a sistemas reais."
+    },
+    "cta": {
+      "title": "Quer esse fluxo rodando no seu processo?",
+      "subtitle": "O laboratório mostra a mecânica; o desenho do agente real parte do seu contexto, dos seus sistemas e dos seus limites de aprovação.",
+      "button": "Desenhar meu agente"
     }
   }
 }
