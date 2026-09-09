@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { useIsLight } from "@/lib/use-theme-store";
 
 type Variant = "dark" | "light";
@@ -17,15 +17,6 @@ const clients = [
   { name: "Consórcio Mina Fábrica", base: "minafabrica" },
   { name: "Trust", base: "trust" },
 ];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 120, damping: 18 } },
-};
 
 /** Logo with a text fallback — the client is never lost if the image fails. */
 function ClientLogo({ name, src, variant }: { name: string; src: string; variant: Variant }) {
@@ -63,23 +54,21 @@ export function ClientCarousel() {
   const variant: Variant = useIsLight() ? "light" : "dark";
 
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
-    >
-      {clients.map((client) => {
+    /* Entrada staggered via `.reveal` gateada por `html.js` (padrão do
+       resto do site): sem JS os logos ficam VISÍVEIS no HTML servido —
+       era o único componente ainda no padrão motion whileInView, que
+       deixava initial opacity:0 aplicado sem hidratação (MIKE-REVISAO R2 /
+       achado no-JS do CODEX). */
+    <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {clients.map((client, index) => {
         const src =
           variant === "light"
             ? `/images/clients/${client.base}.png`
             : `/images/clients/${client.base}-mono.png`;
 
         return (
-          <motion.div
-            key={client.name}
-            variants={item}
+          <ScrollReveal key={client.name} delay={index * 70}>
+          <div
             className={
               variant === "light"
                 ? "group relative flex h-28 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(0,0,0,0.5)]"
@@ -99,9 +88,10 @@ export function ClientCarousel() {
               />
             )}
             <ClientLogo name={client.name} src={src} variant={variant} />
-          </motion.div>
+          </div>
+          </ScrollReveal>
         );
       })}
-    </motion.div>
+    </div>
   );
 }

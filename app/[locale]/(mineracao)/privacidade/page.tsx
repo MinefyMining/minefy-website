@@ -19,7 +19,7 @@ export default async function PrivacyPage({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <main className="px-6 py-24">
+    <main data-hero-surface="theme" className="px-6 py-24">
       <article className="mx-auto max-w-3xl">
         <header className="mb-12 border-b border-border pb-8">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground text-balance">

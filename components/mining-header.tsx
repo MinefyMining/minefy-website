@@ -74,7 +74,7 @@ export function MiningHeader() {
             width={800}
             height={570}
             priority
-            className={`object-contain h-auto transition-all duration-200 ${scrolled ? "w-[60px]" : "w-[80px]"}`}
+            className={`header-logo object-contain h-auto transition-all duration-200 ${scrolled ? "w-[60px]" : "w-[80px]"}`}
           />
         </Link>
 
@@ -86,10 +86,10 @@ export function MiningHeader() {
               href={href}
               className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors ${
                 isActive(href)
-                  ? scrolled ? "text-foreground" : "text-white"
+                  ? scrolled ? "text-foreground" : "text-[var(--header-fg)]"
                   : scrolled
                     ? "text-muted-foreground hover:text-foreground"
-                    : "text-white/70 hover:text-white"
+                    : "text-[var(--header-fg-muted)] hover:text-[var(--header-fg)]"
               }`}
             >
               {t(key)}
@@ -114,7 +114,7 @@ export function MiningHeader() {
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger className="lg:hidden" aria-label="Menu">
-              <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-white"}`} />
+              <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-[var(--header-fg)]"}`} />
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
               <SheetTitle className="sr-only">Menu</SheetTitle>

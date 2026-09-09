@@ -1365,6 +1365,36 @@
         }
       ]
     },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "O que times de operação, dados e TI perguntam antes de começar com a Minefy.",
+      "items": [
+        {
+          "q": "O que a Minefy faz hoje?",
+          "a": "Duas coisas que se alimentam: operamos telemetria e gestão de frota para operações industriais (a jornada completa está em Soluções) e aplicamos essa mesma engenharia em três frentes corporativas — IA aplicada ao negócio, agentes autônomos e serviços de TI sob medida."
+        },
+        {
+          "q": "O que é IA corporativa aplicada ao meu negócio?",
+          "a": "É conectar modelos de IA aos seus dados e sistemas reais — ERP, planilhas, e-mail, documentos — para responder, classificar, resumir e apoiar decisão dentro do seu contexto, com escopo e acesso definidos por você. Não é chatbot genérico: é IA com o conhecimento da sua operação."
+        },
+        {
+          "q": "O que um agente autônomo pode fazer — e o que ele não faz?",
+          "a": "Um agente executa tarefas de ponta a ponta dentro de um escopo autorizado: consulta sistemas, prepara documentos, aciona fluxos e registra tudo. Ele não tem acesso irrestrito, não substitui integralmente uma equipe e passa por aprovação humana nos pontos que você definir."
+        },
+        {
+          "q": "Como funciona a integração com os sistemas que já uso?",
+          "a": "Trabalhamos com o que existe: APIs quando há, e conectores construídos caso a caso quando não há — bancos de dados, planilhas, e-mail e sistemas legados. O desenho da integração faz parte do diagnóstico inicial, antes de qualquer desenvolvimento."
+        },
+        {
+          "q": "Como meus dados ficam protegidos?",
+          "a": "Escopo de acesso definido por contrato, credenciais segregadas por cliente, registro auditável do que cada agente executa e tratamento de dados pessoais conforme a LGPD. Os limites do que a IA pode ler e fazer são definidos com você — e ficam documentados."
+        },
+        {
+          "q": "Como começa um projeto?",
+          "a": "Com uma conversa de diagnóstico: entendemos o processo, escolhemos uma frente com resultado mensurável e entregamos um piloto medido. A decisão de escalar vem do resultado do próprio piloto — não de promessa."
+        }
+      ]
+    },
     "evidence": {
       "kicker": "Evidências industriais",
       "title": "A engenharia por trás: validada na mineração",

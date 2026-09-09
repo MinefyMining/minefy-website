@@ -106,6 +106,26 @@
   --sidebar-border: #E7E3DA;
 }
 
+/* ── Header sobre topo por página (CODEX-UX: contraste no tema claro) ──
+   Default do mundo mineração: heros com FOTO ESCURA e overlay #0A0A0A fixo
+   → texto branco no header não-scrolled, nos DOIS temas.
+   Páginas cujo topo segue o TEMA (páginas de serviço, /experiencias,
+   /privacidade) marcam o hero com [data-hero-surface="theme"]: via :has()
+   o header troca para tokens semânticos — no claro, texto escuro sobre
+   fundo claro; o logo dourado ganha um realce de contraste.
+   Fallback sem :has() (<5% dos browsers): comportamento anterior. */
+:root {
+  --header-fg: #ffffff;
+  --header-fg-muted: rgba(255, 255, 255, 0.7);
+}
+body:has([data-hero-surface="theme"]) {
+  --header-fg: var(--foreground);
+  --header-fg-muted: var(--muted-foreground);
+}
+.light body:has([data-hero-surface="theme"]) .header-logo {
+  filter: brightness(0.62) saturate(1.35);
+}
+
 /* Light-theme surface overrides for effects that assume a dark base */
 .light .glass-card,
 .light .glass-card-hover {

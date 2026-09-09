@@ -94,8 +94,8 @@ function SystemsMap() {
             x="68"
             y={n.y + 22}
             textAnchor="middle"
-            fill="#AFCBE0"
-            fontSize="10.5"
+            fill="#C4D8E8"
+            fontSize="12"
             fontFamily="var(--font-jetbrains-mono), monospace"
           >
             {n.label.split(" ")[0]}
@@ -104,8 +104,8 @@ function SystemsMap() {
             x="68"
             y={n.y + 36}
             textAnchor="middle"
-            fill="#7d97a8"
-            fontSize="9"
+            fill="#9FB9CB"
+            fontSize="10.5"
             fontFamily="var(--font-jetbrains-mono), monospace"
           >
             {n.label.split(" ").slice(1).join(" ")}
@@ -125,10 +125,10 @@ function SystemsMap() {
           stroke={GOLD}
           strokeOpacity="0.45"
         />
-        <text x="280" y="65" textAnchor="middle" fill={GOLD} fontSize="11" fontWeight="600">
+        <text x="280" y="65" textAnchor="middle" fill={GOLD} fontSize="12.5" fontWeight="600">
           Conhecimento
         </text>
-        <text x="280" y="81" textAnchor="middle" fill="#9a9a9a" fontSize="9">
+        <text x="280" y="81" textAnchor="middle" fill="#B8B8B8" fontSize="10.5">
           docs · políticas · histórico
         </text>
       </g>
@@ -139,13 +139,13 @@ function SystemsMap() {
           <circle cx="280" cy="210" r="62" fill="url(#hc-agent)" stroke={GOLD} strokeOpacity="0.8" strokeWidth="1.5" />
           <circle cx="280" cy="210" r="72" fill="none" stroke={GOLD} strokeOpacity="0.25" strokeWidth="1" strokeDasharray="3 6" />
           <circle cx="280" cy="148" r="3" fill={GOLD} className="node-pulse" />
-          <text x="280" y="204" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="700">
+          <text x="280" y="204" textAnchor="middle" fill="#FFFFFF" fontSize="14.5" fontWeight="700">
             Agente
           </text>
-          <text x="280" y="221" textAnchor="middle" fill={GOLD} fontSize="11" fontWeight="600">
+          <text x="280" y="221" textAnchor="middle" fill={GOLD} fontSize="12.5" fontWeight="600">
             Minefy
           </text>
-          <text x="280" y="238" textAnchor="middle" fill="#9a9a9a" fontSize="8.5">
+          <text x="280" y="238" textAnchor="middle" fill="#B8B8B8" fontSize="9.5">
             executa no escopo autorizado
           </text>
         </g>
@@ -153,11 +153,11 @@ function SystemsMap() {
 
       {/* ── right: human approval ── */}
       <g>
-        <rect x="424" y="182" width="112" height="56" rx="12" fill="#12100B" stroke={GOLD} strokeOpacity="0.45" />
-        <text x="480" y="205" textAnchor="middle" fill={GOLD} fontSize="11" fontWeight="600">
+        <rect x="420" y="182" width="120" height="56" rx="12" fill="#12100B" stroke={GOLD} strokeOpacity="0.45" />
+        <text x="480" y="205" textAnchor="middle" fill={GOLD} fontSize="12.5" fontWeight="600">
           Aprovação
         </text>
-        <text x="480" y="221" textAnchor="middle" fill="#9a9a9a" fontSize="8">
+        <text x="480" y="221" textAnchor="middle" fill="#B8B8B8" fontSize="9.5">
           humana, onde você definir
         </text>
       </g>
@@ -165,16 +165,16 @@ function SystemsMap() {
       {/* ── bottom right: result ── */}
       <g>
         <rect x="404" y="300" width="132" height="52" rx="12" fill="#0F1410" stroke="#69B37E" strokeOpacity="0.45" />
-        <text x="470" y="322" textAnchor="middle" fill="#8FD0A0" fontSize="11" fontWeight="600">
+        <text x="470" y="322" textAnchor="middle" fill="#A5DDB4" fontSize="12.5" fontWeight="600">
           Resultado
         </text>
-        <text x="470" y="338" textAnchor="middle" fill="#9a9a9a" fontSize="9">
+        <text x="470" y="338" textAnchor="middle" fill="#B8B8B8" fontSize="10.5">
           registrado e auditável
         </text>
       </g>
 
       {/* honesty caption inside the artwork */}
-      <text x="280" y="404" textAnchor="middle" fill="#6b6b6b" fontSize="8.5" fontFamily="var(--font-jetbrains-mono), monospace">
+      <text x="280" y="404" textAnchor="middle" fill="#8F8F8F" fontSize="10" fontFamily="var(--font-jetbrains-mono), monospace">
         DIAGRAMA ILUSTRATIVO · DADOS SIMULADOS
       </text>
     </svg>

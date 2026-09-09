@@ -98,7 +98,7 @@ export default async function ContactPage({ params, searchParams }: Props) {
                 const card = (
                   <div className="bg-card p-4 rounded-lg border border-border flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-[#D4A847]" />
+                      <Icon className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">

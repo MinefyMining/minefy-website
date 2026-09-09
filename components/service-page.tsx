@@ -36,7 +36,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-36 pb-16 px-6">
+      <section data-hero-surface="theme" className="relative overflow-hidden pt-36 pb-16 px-6">
         <AuroraBackground grid={false} particles={false} className="opacity-50" />
         <div className="relative z-10 mx-auto max-w-4xl">
           <Link
@@ -46,7 +46,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
             <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
             {data.labels.backToHub}
           </Link>
-          <span className="mt-6 inline-block rounded-md bg-secondary px-3 py-1 text-xs uppercase tracking-wider text-[#D4A847]">
+          <span className="mt-6 inline-block rounded-md bg-secondary px-3 py-1 text-xs uppercase tracking-wider text-primary">
             {data.badge}
           </span>
           <h1 className="mt-5 text-4xl font-bold leading-tight text-foreground md:text-5xl">
@@ -71,7 +71,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <ScrollReveal>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {data.labels.scope}
             </h2>
           </ScrollReveal>
@@ -104,14 +104,14 @@ export function ServicePage({ data }: { data: ServicePageData }) {
         <section className="px-6 py-8">
           <div className="mx-auto max-w-5xl rounded-2xl border border-border bg-card p-8 md:p-10">
             <ScrollReveal>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                 {data.labels.examples}
               </h2>
               <ul className="mt-6 space-y-3">
                 {data.examples.map((ex) => (
                   <li key={ex} className="flex items-start gap-3">
                     <Check
-                      className="mt-0.5 h-4 w-4 shrink-0 text-[#D4A847]"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-primary"
                       aria-hidden="true"
                     />
                     <span className="text-sm leading-relaxed text-foreground/90">
@@ -134,7 +134,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <ScrollReveal>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {data.labels.deliverables}
             </h2>
           </ScrollReveal>

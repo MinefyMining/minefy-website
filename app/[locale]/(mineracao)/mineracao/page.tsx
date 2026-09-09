@@ -94,7 +94,9 @@ export default async function HomePage({ params }: Props) {
     description: string;
   }>;
 
-  const faqItems = tHome.raw("faq.items") as Array<{ q: string; a: string }>;
+  // FAQ CORPORATIVA (corporateHome.faq) — a FAQ industrial de mineração
+  // continua íntegra na jornada /solucoes (achado CODEX-UX).
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
     <>
@@ -112,7 +114,7 @@ export default async function HomePage({ params }: Props) {
       <section id="frentes" className="scroll-mt-24 border-y border-border bg-background px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {t("doors.kicker")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
@@ -129,9 +131,9 @@ export default async function HomePage({ params }: Props) {
               return (
                 <ScrollReveal key={door.title} delay={i * 70} className="h-full">
                   <Link href={door.href} className="block h-full">
-                    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D4A847]/50">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#D4A847]/25 bg-[#D4A847]/10">
-                        <Icon className="h-5 w-5 text-[#D4A847]" />
+                    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/25 bg-primary/10">
+                        <Icon className="h-5 w-5 text-primary" />
                       </span>
                       <h3 className="mt-4 text-lg font-semibold leading-snug text-foreground">
                         {door.title}
@@ -139,7 +141,7 @@ export default async function HomePage({ params }: Props) {
                       <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                         {door.text}
                       </p>
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#D4A847]">
+                      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                         {door.ctaLabel}
                         <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                       </span>
@@ -156,7 +158,7 @@ export default async function HomePage({ params }: Props) {
       <section id="execucao" className="scroll-mt-24 bg-background px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {t("lab.kicker")}
             </p>
             <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
@@ -172,7 +174,7 @@ export default async function HomePage({ params }: Props) {
           <div className="mt-6 text-center">
             <Link
               href="/experiencias"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#D4A847] transition-colors hover:text-[#C49B3F]"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
             >
               {t("lab.fullCta")}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -185,7 +187,7 @@ export default async function HomePage({ params }: Props) {
       <section id="engenharia" className="scroll-mt-24 bg-card px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {t("engineering.kicker")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
@@ -198,7 +200,7 @@ export default async function HomePage({ params }: Props) {
               return (
                 <ScrollReveal key={cap.title} delay={i * 70}>
                   <div className="h-full rounded-xl border border-border bg-background p-6">
-                    <Icon className="h-5 w-5 text-[#D4A847]" aria-hidden="true" />
+                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
                     <h3 className="mt-3 text-base font-semibold text-foreground">
                       {cap.title}
                     </h3>
@@ -217,7 +219,7 @@ export default async function HomePage({ params }: Props) {
       <section id="como-entregamos" className="scroll-mt-24 bg-background px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {t("method.kicker")}
             </p>
             <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
@@ -228,7 +230,7 @@ export default async function HomePage({ params }: Props) {
             {methodSteps.map((s, i) => (
               <li key={s.step} className="h-full">
                 <ScrollReveal delay={i * 80} className="relative flex h-full flex-col rounded-xl border border-border bg-card p-6">
-                  <span className="font-mono text-sm font-bold text-[#D4A847]">
+                  <span className="font-mono text-sm font-bold text-primary">
                     {s.step}
                   </span>
                   <h3 className="mt-3 text-lg font-semibold text-foreground">
@@ -239,7 +241,7 @@ export default async function HomePage({ params }: Props) {
                   </p>
                   {i < methodSteps.length - 1 && (
                     <ArrowRight
-                      className="absolute -right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-[#D4A847]/50 lg:block"
+                      className="absolute -right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-primary/50 lg:block"
                       aria-hidden="true"
                     />
                   )}
@@ -254,7 +256,7 @@ export default async function HomePage({ params }: Props) {
       <section id="evidencias" className="scroll-mt-24 border-t border-border bg-card px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {t("evidence.kicker")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
@@ -292,8 +294,8 @@ export default async function HomePage({ params }: Props) {
 
       {/* ── FAQ (preserved from the previous home) ── */}
       <FaqSection
-        title={tHome("faq.title")}
-        subtitle={tHome("faq.subtitle")}
+        title={t("faq.title")}
+        subtitle={t("faq.subtitle")}
         items={faqItems}
       />
 
@@ -311,7 +313,7 @@ export default async function HomePage({ params }: Props) {
             <div className="mt-8">
               <Link
                 href="/contato"
-                className="inline-flex items-center rounded-lg bg-[#D4A847] px-8 py-4 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
+                className="inline-flex items-center rounded-lg bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-200 hover:bg-primary/90"
               >
                 {t("cta.button")}
               </Link>

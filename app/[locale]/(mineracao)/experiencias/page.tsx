@@ -27,10 +27,10 @@ export default async function ExperiencesPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden px-6 pt-36 pb-10">
+      <section data-hero-surface="theme" className="relative overflow-hidden px-6 pt-36 pb-10">
         <AuroraBackground grid={false} particles={false} className="opacity-50" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
             {t("hero.kicker")}
           </p>
           <h1 className="mt-3 text-4xl font-bold text-foreground md:text-5xl">

@@ -6,6 +6,7 @@ import { AuroraBackground } from "@/components/aurora-background";
 import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
 import { pageMetadata } from "@/lib/seo";
+import { FaqSection } from "@/components/faq-section";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -24,6 +25,7 @@ export default async function SolutionsPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("solutions");
+  const tHome = await getTranslations("home");
   const tHub = await getTranslations("services.hub.fronts");
 
   const fronts = tHub.raw("items") as Array<{
@@ -94,7 +96,7 @@ export default async function SolutionsPage({ params }: Props) {
       <section id="frentes" className="scroll-mt-24 px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {tHub("kicker")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
@@ -107,8 +109,8 @@ export default async function SolutionsPage({ params }: Props) {
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {fronts.map((front, i) => {
               const inner = (
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D4A847]/50">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#D4A847]">
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
                     {front.badge}
                   </span>
                   <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
@@ -117,7 +119,7 @@ export default async function SolutionsPage({ params }: Props) {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {front.text}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#D4A847]">
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                     {front.ctaLabel}
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
@@ -154,7 +156,7 @@ export default async function SolutionsPage({ params }: Props) {
                     className="py-20 scroll-mt-24 max-w-6xl mx-auto"
                   >
                     <div className="text-center mb-12">
-                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                      <span className="text-xs uppercase tracking-wider bg-secondary text-primary px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
                       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
@@ -169,7 +171,7 @@ export default async function SolutionsPage({ params }: Props) {
                       {item.tiers.map((tier) => (
                         <div
                           key={tier.name}
-                          className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-[#D4A847]/50 hover:-translate-y-1"
+                          className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-1"
                         >
                           {/* Product image — studio stage */}
                           <div className="relative h-64 overflow-hidden flex items-center justify-center p-7 bg-gradient-to-b from-[#191919] to-[#0C0C0C]">
@@ -215,7 +217,7 @@ export default async function SolutionsPage({ params }: Props) {
 
                           {/* Body */}
                           <div className="flex flex-1 flex-col p-6">
-                            <p className="text-base font-bold text-[#D4A847]">
+                            <p className="text-base font-bold text-primary">
                               {tier.name}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1 mb-3">
@@ -230,7 +232,7 @@ export default async function SolutionsPage({ params }: Props) {
                                   key={spec}
                                   className="flex items-start gap-2.5"
                                 >
-                                  <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                  <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                                   <span className="text-xs text-muted-foreground">
                                     {spec}
                                   </span>
@@ -315,7 +317,7 @@ export default async function SolutionsPage({ params }: Props) {
 
                     {/* Content */}
                     <div className="w-full md:w-1/2">
-                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                      <span className="text-xs uppercase tracking-wider bg-secondary text-primary px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
                       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
@@ -330,7 +332,7 @@ export default async function SolutionsPage({ params }: Props) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           {item.features.map((feature) => (
                             <div key={feature} className="flex items-start gap-3">
-                              <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                              <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                               <span className="text-sm text-muted-foreground">{feature}</span>
                             </div>
                           ))}
@@ -340,13 +342,13 @@ export default async function SolutionsPage({ params }: Props) {
                       {/* Safety features */}
                       {item.safetyFeatures && (
                         <div className="mb-5">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A847] mb-3">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">
                             {t("safetyLabel")}
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {item.safetyFeatures.map((feature) => (
                               <div key={feature} className="flex items-start gap-3">
-                                <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                                 <span className="text-sm text-muted-foreground">{feature}</span>
                               </div>
                             ))}
@@ -357,13 +359,13 @@ export default async function SolutionsPage({ params }: Props) {
                       {/* Operational features */}
                       {item.operationalFeatures && (
                         <div>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A847] mb-3">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">
                             {t("operationalLabel")}
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {item.operationalFeatures.map((feature) => (
                               <div key={feature} className="flex items-start gap-3">
-                                <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                                 <span className="text-sm text-muted-foreground">{feature}</span>
                               </div>
                             ))}
@@ -385,6 +387,14 @@ export default async function SolutionsPage({ params }: Props) {
       </div>
 
       {/* ── CTA ── */}
+      {/* ── FAQ industrial — preservada na jornada de mineração (CODEX-UX):
+          a home virou corporativa e a FAQ de gestor de mina vive AQUI. ── */}
+      <FaqSection
+        title={tHome("faq.title")}
+        subtitle={tHome("faq.subtitle")}
+        items={tHome.raw("faq.items") as Array<{ q: string; a: string }>}
+      />
+
       <section className="py-20 px-6 text-center">
         <ScrollReveal>
           <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
@@ -398,7 +408,7 @@ export default async function SolutionsPage({ params }: Props) {
               </p>
               <Link
                 href="/contato"
-                className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors duration-200"
               >
                 {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />

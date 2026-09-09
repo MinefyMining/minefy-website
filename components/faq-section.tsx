@@ -28,7 +28,7 @@ export function FaqSection({ title, subtitle, items }: FaqSectionProps) {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">FAQ</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">FAQ</p>
           <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">{title}</h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">{subtitle}</p>
         </motion.div>
@@ -44,7 +44,7 @@ export function FaqSection({ title, subtitle, items }: FaqSectionProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
                 className={`overflow-hidden rounded-2xl border transition-colors ${
-                  isOpen ? "border-[#D4A847]/40 bg-card" : "border-border bg-card/60"
+                  isOpen ? "border-primary/40 bg-card" : "border-border bg-card/60"
                 }`}
               >
                 <button
@@ -57,7 +57,7 @@ export function FaqSection({ title, subtitle, items }: FaqSectionProps) {
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.2 }}
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#D4A847]/40 text-[#D4A847]"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-primary/40 text-primary"
                   >
                     <Plus className="h-4 w-4" />
                   </motion.span>
