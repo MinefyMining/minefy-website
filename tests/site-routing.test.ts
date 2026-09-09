@@ -1,5 +1,44 @@
 import { describe, expect, it } from "vitest";
-import { mapPathnameForSite } from "@/lib/site-routing";
+import {
+  canonicalFor,
+  isBrandedHost,
+  mapPathnameForSite,
+  resolveSiteFromHost,
+} from "@/lib/site";
+
+describe("resolveSiteFromHost — tabela obrigatória (MIKE-ARQUITETURA 2.4)", () => {
+  it.each([
+    ["www.minefymining.com", "mineracao"],
+    ["minefymining.com", "mineracao"],
+    ["www.agrofymining.com", "agro"],
+    ["agrofymining.com", "agro"],
+    ["minefy-website.vercel.app", "mineracao"],
+    ["localhost:3000", "mineracao"],
+  ] as const)("%s → %s", (host, site) => {
+    expect(resolveSiteFromHost(host)).toBe(site);
+  });
+
+  it("null → mineracao (fallback)", () => {
+    expect(resolveSiteFromHost(null)).toBe("mineracao");
+  });
+
+  it("override de dev só vale em host não-branded", () => {
+    expect(isBrandedHost("www.minefymining.com")).toBe(true);
+    expect(isBrandedHost("agrofymining.com")).toBe(true);
+    expect(isBrandedHost("localhost:3000")).toBe(false);
+    expect(isBrandedHost(null)).toBe(false);
+  });
+});
+
+describe("canonicalFor — canonical usa origem pública + path EXTERNO", () => {
+  it("nunca contém /agrofy nem /mineracao", () => {
+    expect(canonicalFor("agro", "/solucoes")).toBe("https://www.agrofymining.com/solucoes");
+    expect(canonicalFor("mineracao", "/")).toBe("https://www.minefymining.com/");
+    expect(canonicalFor("mineracao", "/solucoes/ia-corporativa")).toBe(
+      "https://www.minefymining.com/solucoes/ia-corporativa",
+    );
+  });
+});
 
 /**
  * Contrato de rotas/domínios do split mineração × Agrofy (proxy.ts).

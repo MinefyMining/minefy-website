@@ -1,7 +1,12 @@
 import { NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
-import { mapPathnameForSite, type Site } from "./lib/site-routing";
+import {
+  isBrandedHost,
+  mapPathnameForSite,
+  resolveSiteFromHost,
+  type Site,
+} from "./lib/site";
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -26,8 +31,7 @@ function resolveSite(request: NextRequest): Site {
   // host to the fallback branch below. The raw header is what's actually
   // sent by the browser/CDN for the domain being visited.
   const host = request.headers.get("host") ?? request.nextUrl.hostname;
-  if (host.includes("agrofymining")) return "agro";
-  if (host.includes("minefymining")) return "mineracao";
+  if (isBrandedHost(host)) return resolveSiteFromHost(host);
 
   // Local/dev/preview hosts don't carry brand information in the hostname —
   // allow previewing either world via `?site=agro` / `?site=mineracao`. See
@@ -56,6 +60,17 @@ export default async function proxy(request: NextRequest) {
   }
 
   const response = handleI18nRouting(request);
+
+  // SEO: o path interno exposto por engano duplicaria o conteúdo público
+  // (`/mineracao` ≡ `/` no mundo mineração; `/agrofy/*` ≡ `/*` no agro).
+  // Decisão de arquitetura: noindex declarativo, NUNCA redirect aqui.
+  if (
+    (site === "mineracao" && externalPathname === "/mineracao") ||
+    (site === "agro" &&
+      (externalPathname === "/agrofy" || externalPathname.startsWith("/agrofy/")))
+  ) {
+    response.headers.set("X-Robots-Tag", "noindex, follow");
+  }
 
   // Persist a `?site=` dev/preview override in a cookie: client-side
   // navigations after the first load don't repeat the query string, so

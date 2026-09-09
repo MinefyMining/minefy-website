@@ -46,7 +46,7 @@ export default async function AgrofySolutionsPage({ params }: Props) {
   }>;
 
   return (
-    <div className="agro-theme min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
       <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">

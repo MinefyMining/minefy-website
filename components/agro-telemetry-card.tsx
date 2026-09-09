@@ -63,12 +63,15 @@ export function AgroTelemetryCard({ className = "", title = "Agrofy" }: AgroTele
         <div>
           <p className="font-mono text-sm font-semibold text-foreground">{title}</p>
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            live · can j1939
+            demo · can j1939
           </p>
         </div>
         <span className="flex items-center gap-1.5 text-xs text-[#16A34A]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#16A34A] motion-safe:animate-pulse" />
-          online
+          <span
+            className="h-1.5 w-1.5 rounded-full bg-[#16A34A] motion-safe:animate-pulse"
+            aria-hidden="true"
+          />
+          simulação
         </span>
       </div>
 
@@ -113,6 +116,13 @@ export function AgroTelemetryCard({ className = "", title = "Agrofy" }: AgroTele
       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/5">
         <div className="h-full w-[74%] rounded-full bg-gradient-to-r from-[#16A34A] to-[#86EFAC]" />
       </div>
+      {/* Persistent honesty label — simulated values, not a live feed. */}
+      <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+        Demonstração interativa · dados simulados
+      </p>
+      <span className="sr-only">
+        Valores ilustrativos, não correspondem a uma operação real.
+      </span>
     </motion.div>
   );
 }

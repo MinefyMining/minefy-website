@@ -41,7 +41,7 @@ function useScreenTexture() {
     x.fillText("ActiSky", 36, 70);
     x.font = "600 20px monospace";
     x.fillStyle = "rgba(255,255,255,0.5)";
-    x.fillText("LIVE · CAN J1939", 36, 100);
+    x.fillText("DEMO · CAN J1939", 36, 100);
     // online dot
     x.fillStyle = GOLD;
     x.beginPath();

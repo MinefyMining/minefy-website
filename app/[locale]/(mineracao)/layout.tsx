@@ -1,3 +1,4 @@
+import { NextIntlClientProvider } from "next-intl";
 import { MiningHeader } from "@/components/mining-header";
 import { MiningFooter } from "@/components/mining-footer";
 import { ScrollProgress } from "@/components/scroll-progress";
@@ -7,32 +8,54 @@ import { LogoIntro } from "@/components/logo-intro";
 /**
  * Chrome for the MINEFY MINING ecosystem — gold header/footer, scroll
  * progress and cursor glow, and the film-grain overlay. Route group
- * `(mineracao)` keeps this scoped to `/mineracao`, `/quem-somos`,
- * `/solucoes`, `/projetos` and `/contato` without affecting URLs.
+ * `(mineracao)` keeps this scoped to the mining-world routes without
+ * affecting URLs.
  *
  * `<LogoIntro blocking={false} />` plays a once-per-real-page-load,
  * NON-BLOCKING brand signature anchored on `MiningHeader`'s `#site-logo` —
  * the page renders and stays interactive underneath from the first frame.
  *
- * Deliberately NOT applied to `app/[locale]/page.tsx` (the sector-chooser
- * splash at `/`, chromeless by design) nor to any Agrofy route — see
- * `(agrofy)/layout.tsx` for that separate ecosystem's chrome (its own green
- * `LogoIntro` instance). The two never share a layout so a mineração page
- * can never render an Agrofy nav item (or vice versa).
+ * The `NextIntlClientProvider` here delivers ONLY the namespaces this
+ * world's Client Components consume (`pick` — MIKE-ARQUITETURA 2.3): the
+ * Agrofy copy never reaches a mineração payload, and vice versa. Server
+ * Components keep using `getTranslations` (full dictionary, server-side).
  */
-export default function MineracaoLayout({ children }: { children: React.ReactNode }) {
+
+// Ano do copyright é computado no SERVIDOR e congela no output estático —
+// ISR de 24h garante que a virada de ano se corrige sozinha sem deploy.
+export const revalidate = 86400;
+
+/** Namespaces que os Client Components deste mundo realmente usam. */
+const CLIENT_NAMESPACES = ["nav", "footer", "contact", "home"] as const;
+
+type Props = {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
+export default async function MineracaoLayout({ children, params }: Props) {
+  const { locale } = await params;
+  const all = (await import(`@/messages/${locale}.json`)).default as Record<
+    string,
+    unknown
+  >;
+  const messages = Object.fromEntries(
+    CLIENT_NAMESPACES.map((ns) => [ns, all[ns]]),
+  );
+  const year = new Date().getFullYear();
+
   return (
-    <>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       {/* Non-blocking brand signature (P1 fix 2026-09-09): content is visible
           and clickable from the first frame — no opaque cover, no scroll
-          lock, shorter beat. Agrofy keeps its own (blocking) instance. */}
+          lock, short beat. Agrofy keeps its own (blocking) instance. */}
       <LogoIntro blocking={false} />
       <ScrollProgress variant="gold" />
       <CursorGlow variant="gold" />
       <MiningHeader />
       <main className="min-h-screen">{children}</main>
-      <MiningFooter />
+      <MiningFooter year={year} />
       <div className="grain" aria-hidden="true" />
-    </>
+    </NextIntlClientProvider>
   );
 }

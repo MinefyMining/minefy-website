@@ -51,7 +51,7 @@ export default async function AgrofyContactPage({ params }: Props) {
   );
 
   return (
-    <div className="agro-theme min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* ── Hero with agro photo ── */}
       <section className="relative min-h-[45vh] flex items-end overflow-hidden">
         <Image

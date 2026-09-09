@@ -68,7 +68,10 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
           </p>
         </div>
         <span className="flex items-center gap-1.5 text-xs text-[#D4A847]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D4A847] motion-safe:animate-pulse" />
+          <span
+            className="h-1.5 w-1.5 rounded-full bg-[#D4A847] motion-safe:animate-pulse"
+            aria-hidden="true"
+          />
           simulação
         </span>
       </div>
@@ -120,6 +123,9 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
       <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
         Demonstração interativa · dados simulados
       </p>
+      <span className="sr-only">
+        Valores ilustrativos, não correspondem a uma operação real.
+      </span>
     </motion.div>
   );
 }

@@ -80,7 +80,7 @@ export default async function AgrofyPage({ params }: Props) {
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
-    <div className="agro-theme min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* ─────────────────────────────────────────────────────────────
           SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}

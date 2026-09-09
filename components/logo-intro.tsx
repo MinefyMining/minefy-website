@@ -135,7 +135,13 @@ export function LogoIntro({
   // it already played during this page load. Evaluated only after mount
   // (client-only), so SSR/no-JS render nothing and there is no hydration
   // mismatch.
-  const skip = mounted && (reduce === true || playedThisLoad.has(sessionKey));
+  // Non-blocking mode also skips entirely below 768px: on mobile, LCP is
+  // the scarce resource and the intro doesn't pay for itself (decision 4.1).
+  const skip =
+    mounted &&
+    (reduce === true ||
+      playedThisLoad.has(sessionKey) ||
+      (!blocking && typeof window !== "undefined" && window.innerWidth < 768));
 
   useEffect(() => {
     if (!mounted || skip) return;
@@ -157,7 +163,7 @@ export function LogoIntro({
         });
       }
       setPhase("fly");
-    }, blocking ? 1650 : 900);
+    }, blocking ? 1650 : 500);
     return () => {
       clearTimeout(t);
       document.body.style.overflow = "";
@@ -233,7 +239,7 @@ export function LogoIntro({
         }
         transition={
           phase === "fly"
-            ? { duration: 0.95, ease: [0.6, 0.01, 0.05, 0.95] }
+            ? { duration: blocking ? 0.95 : 0.4, ease: [0.6, 0.01, 0.05, 0.95] }
             : { duration: 0 }
         }
         onAnimationComplete={() => phase === "fly" && finish()}

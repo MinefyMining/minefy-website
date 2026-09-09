@@ -9,6 +9,39 @@
  * production domain split resolves this. */
 export type Site = "mineracao" | "agro";
 
+/** Public origin of each world — used for canonical URLs, sitemap and
+ * robots. One deployment serves both domains, so a global static
+ * `metadataBase` would be wrong by construction (MIKE-ARQUITETURA 1.5). */
+export const SITE_ORIGIN: Record<Site, string> = {
+  mineracao: "https://www.minefymining.com",
+  agro: "https://www.agrofymining.com",
+};
+
+/**
+ * Single source of the host→world decision (rule R1). `agrofymining` hosts
+ * are the Agrofy world; everything else — `minefymining`, previews,
+ * localhost, missing header — falls back to mineração, the flagship brand.
+ * Dev overrides (`?site=` / cookie) are layered on top by `proxy.ts` for
+ * NON-branded hosts only; this function is the pure, testable core.
+ */
+export function resolveSiteFromHost(host: string | null): Site {
+  if (host && host.includes("agrofymining")) return "agro";
+  return "mineracao";
+}
+
+/** Whether the host carries brand information (production domains). When it
+ * does, dev/preview overrides must NOT apply. */
+export function isBrandedHost(host: string | null): boolean {
+  return !!host && (host.includes("agrofymining") || host.includes("minefymining"));
+}
+
+/** Canonical URL for a page: PUBLIC origin + EXTERNAL path. Never feed an
+ * internal (post-rewrite) pathname here — an Agrofy canonical must never
+ * contain `/agrofy`. */
+export function canonicalFor(site: Site, externalPath: string): string {
+  return `${SITE_ORIGIN[site]}${externalPath === "/" ? "/" : externalPath}`;
+}
+
 /**
  * Maps the externally-visible pathname (what shows in the browser's address
  * bar, on either domain) onto the internal route that actually renders it.

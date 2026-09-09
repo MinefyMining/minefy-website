@@ -16,7 +16,15 @@ const companyLinks = [
  * `app/[locale]/(mineracao)/layout.tsx`. No link here ever crosses into the
  * Agrofy sector — see `agro-footer.tsx` for that counterpart.
  */
-export function MiningFooter() {
+interface MiningFooterProps {
+  /** Ano do copyright, computado no layout (Server Component) — evita
+   * hydration mismatch de `new Date()` no cliente sobre HTML estático.
+   * O layout tem `revalidate = 86400`, então a virada de ano se corrige
+   * sozinha sem deploy. */
+  year: number;
+}
+
+export function MiningFooter({ year }: MiningFooterProps) {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
 
@@ -107,7 +115,7 @@ export function MiningFooter() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
-            {`© ${new Date().getFullYear()} `}
+            {`© ${year} `}
             {t("copyright")} ·{" "}
             <Link href="/privacidade" className="hover:text-foreground transition-colors">
               {t("privacyLink")}

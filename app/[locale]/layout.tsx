@@ -1,4 +1,3 @@
-import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { MotionConfig } from "motion/react";
@@ -36,11 +35,10 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
-  const messages = (await import(`@/messages/${locale}.json`)).default;
-
-  return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <MotionConfig reducedMotion="user">{children}</MotionConfig>
-    </NextIntlClientProvider>
-  );
+  // O NextIntlClientProvider NÃO vive mais aqui: entregava o dicionário
+  // INTEIRO (50KB, com a copy dos dois mundos) no payload de toda página.
+  // Cada route group agora monta o próprio provider com um `pick` só dos
+  // namespaces que seus Client Components realmente usam (MIKE-ARQUITETURA
+  // 2.3) — Server Components seguem com getTranslations, sem provider.
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
