@@ -3,13 +3,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
-import { isContactService } from "@/lib/contact-schema";
+import { isServico } from "@/lib/contact-schema";
+import { issueContactToken } from "@/lib/contact-token";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 
 type Props = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ interesse?: string }>;
+  searchParams: Promise<{ servico?: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
@@ -34,11 +35,17 @@ export default async function ContactPage({ params, searchParams }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("contact");
 
-  // Intenção pré-selecionada pelo CTA de origem (`?interesse=<slug>`) —
-  // validada contra o enum; valor desconhecido é simplesmente ignorado.
-  const { interesse } = await searchParams;
-  const serviceCandidate = interesse ?? null;
-  const initialService = isContactService(serviceCandidate) ? serviceCandidate : undefined;
+  // Intenção pré-selecionada pelo CTA de origem (`?servico=<slug>`) —
+  // validada contra o enum; valor desconhecido vira "outro" (nunca ecoar
+  // input cru), ausência de valor deixa o default do mundo ("mineracao-
+  // telemetria") por conta do formulário.
+  const { servico } = await searchParams;
+  const initialService =
+    servico === undefined ? undefined : isServico(servico) ? servico : ("outro" as const);
+
+  // Nonce HMAC stateless (anti-abuso 5.3); null enquanto
+  // CONTACT_TOKEN_SECRET não estiver configurada (API em fail-open).
+  const contactToken = issueContactToken();
 
   const infoItems = t.raw("info.items") as Array<{
     icon: string;
@@ -130,7 +137,11 @@ export default async function ContactPage({ params, searchParams }: Props) {
           {/* Right: form */}
           <ScrollReveal delay={150}>
             <div className="bg-card rounded-xl p-8 border border-border">
-              <ContactForm variant="full" initialService={initialService} />
+              <ContactForm
+                variant="full"
+                initialService={initialService}
+                contactToken={contactToken}
+              />
             </div>
           </ScrollReveal>
         </div>

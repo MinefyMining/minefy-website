@@ -62,7 +62,7 @@ export default async function ExperiencesPage({ params }: Props) {
               </p>
               <div className="mt-8">
                 <Link
-                  href="/contato?interesse=agentes-autonomos"
+                  href="/contato?servico=agentes-autonomos"
                   className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-8 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
                 >
                   {t("cta.button")}

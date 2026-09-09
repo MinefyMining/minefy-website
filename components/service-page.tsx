@@ -13,7 +13,7 @@ export interface ServicePageData {
   examplesNote?: string;
   deliverables: string[];
   cta: string;
-  /** `?interesse=` value the contact form pre-selects for this service. */
+  /** `?servico=` value the contact form pre-selects for this service. */
   contactInterest: string;
   labels: {
     scope: string;
@@ -31,7 +31,7 @@ export interface ServicePageData {
  * the CSS/IO-based `ScrollReveal` (which still renders content without JS).
  */
 export function ServicePage({ data }: { data: ServicePageData }) {
-  const contactHref = `/contato?interesse=${data.contactInterest}` as const;
+  const contactHref = `/contato?servico=${data.contactInterest}` as const;
 
   return (
     <div className="min-h-screen bg-background">

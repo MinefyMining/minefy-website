@@ -1,44 +1,55 @@
 import { z } from "zod";
 
-/** Serviço/interesse do lead — dimensão própria, SEPARADA da divisão
- * (mineração × Agrofy). Os CTAs das páginas de serviço pré-selecionam o
- * valor via `?interesse=<slug>`; o hub e a home deixam a escolha livre. */
-export const CONTACT_SERVICES = [
+/** Serviço/interesse do lead — dimensão própria, ORTOGONAL à divisão
+ * (mineração × Agrofy): nunca derivar um do outro. Os CTAs das páginas de
+ * serviço pré-selecionam via `?servico=<slug>`; sem valor na query o
+ * default é o serviço-âncora do mundo que hospedou o formulário. */
+export const SERVICOS = [
   "mineracao-telemetria",
   "ia-corporativa",
   "agentes-autonomos",
   "servicos-ti",
+  "agro-telemetria",
   "outro",
 ] as const;
 
-export type ContactService = (typeof CONTACT_SERVICES)[number];
+export type Servico = (typeof SERVICOS)[number];
 
-export function isContactService(value: string | null): value is ContactService {
-  return value !== null && (CONTACT_SERVICES as readonly string[]).includes(value);
+export function isServico(value: string | null | undefined): value is Servico {
+  return value != null && (SERVICOS as readonly string[]).includes(value);
 }
 
-export const contactSchema = z.object({
-  name: z.string().min(1, "Preencha esse campo").max(120, "Máximo de 120 caracteres"),
-  phone: z.string().min(1, "Preencha esse campo").max(40, "Máximo de 40 caracteres"),
-  email: z
-    .string()
-    .min(1, "Preencha esse campo")
-    .max(160, "Máximo de 160 caracteres")
-    .email("Digite um endereço de e-mail válido"),
-  company: z.string().max(160, "Máximo de 160 caracteres").optional(),
-  subject: z.string().min(1, "Preencha esse campo").max(160, "Máximo de 160 caracteres"),
-  message: z.string().max(4000, "Máximo de 4000 caracteres").optional(),
-  /** Serviço/interesse — enum validado; opcional (o fluxo Agrofy não envia). */
-  service: z.enum(CONTACT_SERVICES).optional(),
-  // Which ecosystem the submission came from — mineração or Agrofy. Not
-  // shown as a visible field; the form sets it based on which contact page
-  // rendered it, so the email can be routed/labeled by origin. The API
-  // route treats a missing value as "mineracao".
-  division: z.enum(["mineracao", "agrofy"]).optional(),
-  /** Honeypot anti-abuso: campo invisível para humanos ("website"). Quando
-   * chega preenchido, a API aceita silenciosamente e NÃO envia e-mail —
-   * proteção adequada ao runtime serverless, sem estado em memória. */
-  website: z.string().max(200).optional(),
-});
+export const contactSchema = z
+  .object({
+    name: z.string().trim().min(2, "Informe seu nome").max(120, "Máximo de 120 caracteres"),
+    phone: z
+      .string()
+      .trim()
+      .min(8, "Informe um telefone válido")
+      .max(32, "Máximo de 32 caracteres")
+      .regex(/^[\d\s()+.-]+$/, "Telefone só pode conter dígitos e ( ) + . -"),
+    email: z
+      .string()
+      .trim()
+      .max(254, "Máximo de 254 caracteres")
+      .email("Digite um endereço de e-mail válido"),
+    empresa: z.string().trim().max(120, "Máximo de 120 caracteres").optional(),
+    subject: z.string().trim().min(3, "Informe o assunto").max(160, "Máximo de 160 caracteres"),
+    message: z.string().trim().max(4000, "Máximo de 4000 caracteres").optional(),
+    /** Obrigatório — todo lead chega classificado. */
+    servico: z.enum(SERVICOS),
+    /** Preservado por compatibilidade, mas a API DERIVA a divisão do header
+     * Host e ignora este valor (um POST forjado não rotula lead no mundo
+     * errado). */
+    division: z.enum(["mineracao", "agrofy"]).optional(),
+    /** Honeypot: campo invisível para humanos; qualquer conteúdo = bot.
+     * A API o checa ANTES do parse (responde 200 sem enviar nada). */
+    hp: z.string().max(0).optional(),
+    /** Nonce HMAC stateless emitido pela página de contato (anti-abuso sem
+     * estado em memória — proibido em serverless). Validado pela API quando
+     * CONTACT_TOKEN_SECRET existir; fail-open com log enquanto não existir. */
+    t: z.string().max(256).optional(),
+  })
+  .strict();
 
 export type ContactFormData = z.infer<typeof contactSchema>;

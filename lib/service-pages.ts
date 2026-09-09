@@ -5,7 +5,7 @@ import type { ServicePageData } from "@/components/service-page";
 export const SITE_URL = "https://www.minefymining.com";
 
 /** The three new service fronts — single source for slugs, i18n namespaces
- * and the `?interesse=` enum value each page's CTAs pre-select. */
+ * and the `?servico=` enum value each page's CTAs pre-select. */
 export const SERVICE_PAGES = {
   "ia-corporativa": { namespace: "services.ia", interest: "ia-corporativa" },
   "agentes-autonomos": { namespace: "services.agentes", interest: "agentes-autonomos" },

@@ -1134,15 +1134,17 @@
       "error": "Erro ao enviar. Tente pelo WhatsApp.",
       "company": "Empresa (opcional)",
       "service": "Serviço / interesse",
-      "servicePlaceholder": "Selecione o interesse",
       "serviceOptions": {
         "mineracao-telemetria": "Operação industrial e telemetria",
         "ia-corporativa": "IA corporativa",
         "agentes-autonomos": "Agentes autônomos",
         "servicos-ti": "Serviços de TI",
+        "agro-telemetria": "Telemetria agrícola",
         "outro": "Outro assunto"
       },
-      "fallback": "Prefere um canal direto? Chame no <whatsapp>WhatsApp</whatsapp> ou escreva para <email>louis.litt@minefymining.com</email>."
+      "fallback": "Sua mensagem não se perde: envie pelo <whatsapp>WhatsApp</whatsapp> ou por <email>e-mail</email> — os dois já vão preenchidos com o que você digitou.",
+      "errorUnavailable": "Não conseguimos enviar agora.",
+      "errorRateLimit": "Muitas tentativas. Tente em alguns minutos, ou fale direto no WhatsApp."
     },
     "validation": {
       "nameRequired": "Informe seu nome",
