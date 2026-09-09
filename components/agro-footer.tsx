@@ -110,6 +110,7 @@ export function AgroFooter() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
+            {`© ${new Date().getFullYear()} `}
             {t("copyright")} ·{" "}
             <Link href="/privacidade" className="hover:text-foreground transition-colors">
               {tFooter("privacyLink")}

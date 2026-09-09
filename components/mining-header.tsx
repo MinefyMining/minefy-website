@@ -43,6 +43,7 @@ export function MiningHeader() {
     { key: "home", href: homeHref },
     { key: "about", href: "/quem-somos" },
     { key: "solutions", href: "/solucoes" },
+    { key: "experiences", href: "/experiencias" },
     { key: "projects", href: "/projetos" },
     { key: "contact", href: "/contato" },
   ] as const;

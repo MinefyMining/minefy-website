@@ -10,11 +10,9 @@ import { LogoIntro } from "@/components/logo-intro";
  * `(mineracao)` keeps this scoped to `/mineracao`, `/quem-somos`,
  * `/solucoes`, `/projetos` and `/contato` without affecting URLs.
  *
- * `<LogoIntro />` (gold, default props) plays the once-per-real-page-load
- * fly-into-header brand intro anchored on `MiningHeader`'s `#site-logo`.
- * `backgroundSrc` opens it directly on the same clean sunset mining photo
- * `HeroHome` uses as its own background (`hero-mineracao-bg.jpg`), so when
- * the overlay fades out the reveal is seamless — no photo swap underneath.
+ * `<LogoIntro blocking={false} />` plays a once-per-real-page-load,
+ * NON-BLOCKING brand signature anchored on `MiningHeader`'s `#site-logo` —
+ * the page renders and stays interactive underneath from the first frame.
  *
  * Deliberately NOT applied to `app/[locale]/page.tsx` (the sector-chooser
  * splash at `/`, chromeless by design) nor to any Agrofy route — see
@@ -25,7 +23,10 @@ import { LogoIntro } from "@/components/logo-intro";
 export default function MineracaoLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <LogoIntro backgroundSrc="/images/home-hero/hero-mineracao-bg.jpg" />
+      {/* Non-blocking brand signature (P1 fix 2026-09-09): content is visible
+          and clickable from the first frame — no opaque cover, no scroll
+          lock, shorter beat. Agrofy keeps its own (blocking) instance. */}
+      <LogoIntro blocking={false} />
       <ScrollProgress variant="gold" />
       <CursorGlow variant="gold" />
       <MiningHeader />

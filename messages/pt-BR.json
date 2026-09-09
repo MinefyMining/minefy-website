@@ -9,7 +9,8 @@
     "solutions": "Soluções",
     "projects": "Projetos",
     "contact": "Contato",
-    "platform": "Acessar Plataforma"
+    "platform": "Acessar Plataforma",
+    "experiences": "Experiências"
   },
   "agroNav": {
     "home": "Início",
@@ -63,13 +64,13 @@
           "icon": "activity",
           "step": "02",
           "title": "Transmitir",
-          "text": "A telemetria sobe em tempo real para a plataforma Minefy, com resiliência mesmo em áreas de sinal instável: nada se perde."
+          "text": "A telemetria sobe em tempo real para a plataforma Minefy. Em áreas de sinal instável, os dados são armazenados no módulo e reenviados quando a conexão retorna."
         },
         {
           "icon": "gauge",
           "step": "03",
           "title": "Decidir",
-          "text": "Dashboards, ciclos e alertas chegam à sala de despacho — a operação age antes do problema acontecer, com decisão baseada em dado."
+          "text": "Dashboards, ciclos e alertas chegam à sala de despacho — a operação ganha tempo para agir, com decisão baseada em dado."
         }
       ]
     },
@@ -122,7 +123,7 @@
         {
           "icon": "wind",
           "title": "Compressores de Ar",
-          "description": "Locação de compressores de ar portáteis Atlas Copco, linha XAS 47-97, para perfuração, jateamento e ferramentas pneumáticas na mina.",
+          "description": "Locação de compressores de ar portáteis de alta performance para perfuração, jateamento e ferramentas pneumáticas na mina.",
           "badge": "EQUIPAMENTO"
         }
       ]
@@ -140,12 +141,12 @@
         {
           "icon": "wrench",
           "title": "Menos parada não planejada",
-          "text": "Temperatura, pressão e RPM monitorados antecipam a falha: a manutenção preditiva do Fleet 360 evita a quebra no meio do pit."
+          "text": "Temperatura, pressão e RPM monitorados antecipam a falha: a manutenção preditiva do Fleet 360 reduz o risco de quebra no meio do pit."
         },
         {
           "icon": "shield",
           "title": "Segurança que age antes",
-          "text": "Alertas de superaquecimento de freios, fadiga, proximidade e zonas de risco — alinhados à NR-22 — antes do incidente acontecer."
+          "text": "Alertas de superaquecimento de freios, fadiga, proximidade e zonas de risco — alinhados à NR-22 — para a operação agir a tempo."
         },
         {
           "icon": "chart",
@@ -207,7 +208,7 @@
         },
         {
           "q": "Funciona em áreas com sinal instável?",
-          "a": "Sim. Os dados de telemetria são tratados de forma resiliente: em áreas de conectividade intermitente, o envio é reorganizado e nada se perde quando o sinal volta."
+          "a": "Sim. Os dados de telemetria são tratados de forma resiliente: em áreas de conectividade intermitente, os dados são armazenados no módulo e reenviados quando o sinal retorna."
         },
         {
           "q": "Qual é o modelo comercial?",
@@ -472,12 +473,12 @@
       {
         "id": "compressores",
         "badge": "EQUIPAMENTO",
-        "title": "Compressores de Ar Atlas Copco",
-        "description": "Locação de compressores de ar portáteis Atlas Copco, linha XAS 47-97, com carenagem HardHat™ resistente a impacto — para perfuração, jateamento e ferramentas pneumáticas na operação de mina. Fabricação nacional, com suporte técnico e peças no Brasil.",
+        "title": "Compressores de Ar Portáteis",
+        "description": "Locação de compressores de ar portáteis com carenagem robusta resistente a impacto — para perfuração, jateamento e ferramentas pneumáticas na operação de mina. Suporte técnico e peças no Brasil.",
         "features": [
           "4 modelos — XAS 47, 77, 87 e 97, de 89 a 189 pcm de vazão de ar (FAD)",
           "Pressão de trabalho de 7 bar em toda a linha",
-          "Carenagem HardHat™ resistente a impacto — até 15% mais disponibilidade",
+          "Carenagem robusta resistente a impacto, feita para o ambiente de mina",
           "Motores Kubota / MWM robustos para operação contínua",
           "Baixo nível de ruído — 70 a 74 dB(A) a 7 metros",
           "Fabricação nacional, com suporte técnico e peças no Brasil"
@@ -644,7 +645,7 @@
         },
         {
           "q": "Funciona em áreas de sinal instável no campo?",
-          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — o envio é reorganizado e nada se perde quando o sinal volta."
+          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — os dados são armazenados no módulo e reenviados quando o sinal retorna."
         },
         {
           "q": "Qual é o modelo comercial?",
@@ -1142,7 +1143,7 @@
   },
   "footer": {
     "tagline": "Telemetria avançada para mineração de grande porte.",
-    "copyright": "© 2025 Minefy Mining System. Todos os direitos reservados.",
+    "copyright": "Minefy Mining System. Todos os direitos reservados.",
     "phone": "+55 (31) 99380-1664",
     "email": "louis.litt@minefymining.com",
     "platformUrl": "https://app.minefymining.com",
@@ -1175,6 +1176,18 @@
       {
         "label": "Consultoria",
         "href": "/solucoes#consulting"
+      },
+      {
+        "label": "IA Corporativa",
+        "href": "/solucoes/ia-corporativa"
+      },
+      {
+        "label": "Agentes Autônomos",
+        "href": "/solucoes/agentes-autonomos"
+      },
+      {
+        "label": "Serviços de TI",
+        "href": "/solucoes/servicos-ti"
       }
     ],
     "social": {
@@ -1191,7 +1204,7 @@
   },
   "agroFooter": {
     "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
-    "copyright": "© 2025 Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
+    "copyright": "Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
     "phone": "+55 (31) 99380-1664",
     "email": "katrina.bennett@minefymining.com",
     "platform": "Acessar Plataforma",
