@@ -1,6 +1,5 @@
 import { ogImage } from "@/lib/og";
-import type { Site } from "@/lib/site";
-import messages from "@/messages/pt-BR.json";
+import { OG_PAGES } from "@/lib/og-pages";
 
 /**
  * Imagens OpenGraph 1200×630 geradas localmente via `next/og` — MIKE-REVISAO
@@ -14,23 +13,6 @@ import messages from "@/messages/pt-BR.json";
  * `lib/seo.ts#ogSlug` gera o slug do lado das páginas; os dois lados derivam
  * do mesmo par (site, path externo) e não podem divergir.
  */
-const OG_PAGES: Record<string, { title: string; site: Site }> = {
-  home: { title: messages.corporateHome.metadata.title, site: "mineracao" },
-  solucoes: { title: messages.services.hub.metadata.title, site: "mineracao" },
-  "solucoes-ia-corporativa": { title: messages.services.ia.metadata.title, site: "mineracao" },
-  "solucoes-agentes-autonomos": { title: messages.services.agentes.metadata.title, site: "mineracao" },
-  "solucoes-servicos-ti": { title: messages.services.ti.metadata.title, site: "mineracao" },
-  experiencias: { title: messages.experiences.metadata.title, site: "mineracao" },
-  contato: { title: messages.contact.metadata.title, site: "mineracao" },
-  "quem-somos": { title: messages.about.metadata.title, site: "mineracao" },
-  projetos: { title: messages.projects.metadata.title, site: "mineracao" },
-  privacidade: { title: messages.privacy.metadata.title, site: "mineracao" },
-  "agro-home": { title: messages.agrofy.metadata.title, site: "agro" },
-  "agro-solucoes": { title: messages.agrofySolutions.metadata.title, site: "agro" },
-  "agro-quem-somos": { title: messages.agrofyAbout.metadata.title, site: "agro" },
-  "agro-piloto": { title: messages.agrofyPilot.metadata.title, site: "agro" },
-  "agro-contato": { title: messages.agrofy.contactPage.metadata.title, site: "agro" },
-};
 
 export async function GET(
   _request: Request,
