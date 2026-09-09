@@ -1104,14 +1104,14 @@
         {
           "icon": "phone",
           "label": "Telefone",
-          "value": "+55 31 99670-9977",
-          "href": "tel:+5531996709977"
+          "value": "+55 (31) 99380-1664",
+          "href": "tel:+5531993801664"
         },
         {
           "icon": "whatsapp",
           "label": "WhatsApp",
           "value": "Enviar mensagem",
-          "href": "https://api.whatsapp.com/send?phone=5531996709977"
+          "href": "https://api.whatsapp.com/send?phone=5531993801664"
         },
         {
           "icon": "location",
@@ -1143,7 +1143,7 @@
   "footer": {
     "tagline": "Telemetria avançada para mineração de grande porte.",
     "copyright": "© 2025 Minefy Mining System. Todos os direitos reservados.",
-    "phone": "+55 31 99670-9977",
+    "phone": "+55 (31) 99380-1664",
     "email": "louis.litt@minefymining.com",
     "platformUrl": "https://app.minefymining.com",
     "columns": {
@@ -1180,7 +1180,7 @@
     "social": {
       "instagram": "https://www.instagram.com/MinefyMiningSystem",
       "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
-      "whatsapp": "https://api.whatsapp.com/send?phone=5531996709977"
+      "whatsapp": "https://api.whatsapp.com/send?phone=5531993801664"
     },
     "dpo": {
       "label": "Encarregado pelo Tratamento de Dados Pessoais (DPO)",
@@ -1192,7 +1192,7 @@
   "agroFooter": {
     "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
     "copyright": "© 2025 Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
-    "phone": "+55 31 99670-9977",
+    "phone": "+55 (31) 99380-1664",
     "email": "katrina.bennett@minefymining.com",
     "platform": "Acessar Plataforma",
     "columns": {
