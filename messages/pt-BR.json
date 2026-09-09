@@ -1186,7 +1186,8 @@
       "label": "Encarregado pelo Tratamento de Dados Pessoais (DPO)",
       "name": "Patryck Giovani — Encarregado Interino",
       "email": "privacidade@minefymining.com"
-    }
+    },
+    "privacyLink": "Política de Privacidade"
   },
   "agroFooter": {
     "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
@@ -1225,5 +1226,11 @@
         "href": "/solucoes#consulting"
       }
     ]
+  },
+  "privacy": {
+    "metadata": {
+      "title": "Política de Privacidade — Minefy Mining System",
+      "description": "Como a Minefy trata dados pessoais em conformidade com a LGPD: finalidades, bases legais, dado biométrico do módulo de segurança do motorista, retenção e direitos do titular."
+    }
   }
 }
