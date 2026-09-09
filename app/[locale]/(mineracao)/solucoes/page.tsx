@@ -286,6 +286,7 @@ export default async function SolutionsPage({ params }: Props) {
                             src={item.image}
                             alt={item.title}
                             fill
+                            unoptimized={item.image.endsWith(".svg")}
                             className="relative z-10 object-contain"
                             style={{ filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.55))" }}
                             sizes="(max-width: 768px) 100vw, 50vw"
@@ -296,6 +297,7 @@ export default async function SolutionsPage({ params }: Props) {
                           src={item.image}
                           alt={item.title}
                           fill
+                          unoptimized={item.image.endsWith(".svg")}
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />

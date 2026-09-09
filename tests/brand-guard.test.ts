@@ -11,7 +11,10 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const ROOT = join(__dirname, "..");
-const FORBIDDEN = /galileosky|atlas.?copco|hardhat|roboflex|samsung/i;
+// MIKE-REVISAO O2: inclui designação de linha (XAS+n) e fabricantes de
+// componente (motores) — identificar o fornecedor por modelo é o mesmo
+// vazamento que citá-lo por nome.
+const FORBIDDEN = /galileosky|atlas.?copco|hardhat|roboflex|samsung|kubota|\bmwm\b|\bxas[\s-]?\d/i;
 
 function walkFiles(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
@@ -29,6 +32,7 @@ describe("marcas proibidas (fornecedores + GalileoSky)", () => {
       ...walkFiles(join(ROOT, "messages")),
       ...walkFiles(join(ROOT, "components")),
       ...walkFiles(join(ROOT, "app")),
+      ...walkFiles(join(ROOT, "lib")),
     ].filter((f) => /\.(json|tsx?|css|mdx?)$/.test(f));
     const hits: string[] = [];
     for (const f of files) {
@@ -57,7 +61,7 @@ describe("vocabulário de garantia absoluta em copy pública (messages/)", () =>
    * de entrar no dicionário — não depois.
    */
   const ABSOLUTE =
-    /\b(100%|zero|nunca|sempre|garantid\w*|infal[ií]v\w*|à prova de falhas|nada se perde|sem perdas|gratuit\w*)\b/i;
+    /\b(100%|zero|nunca|sempre|garantid\w*|infal[ií]v\w*|à prova de falhas|nada se perde|sem perdas|gratuit\w*|previn\w*|impede\w*|antes que aconte\w*)\b/i;
   const RANKING = /(^|[\s(>«"'])#1\b/;
 
   it("nenhum vocabulário absoluto, promessa de gratuidade ou ranking em messages/", () => {
@@ -77,5 +81,25 @@ describe("vocabulário de garantia absoluta em copy pública (messages/)", () =>
     };
     walk(messages, "");
     expect(violations).toEqual([]);
+  });
+});
+
+describe("card #compressores usa apresentação visual PRÓPRIA (MIKE-REVISAO B2)", () => {
+  it("a imagem do card é o SVG original — nunca foto (.jpg/.png/.webp) de catálogo", () => {
+    const messages = JSON.parse(
+      readFileSync(join(ROOT, "messages", "pt-BR.json"), "utf8"),
+    );
+    const item = (messages.solutions.items as Array<{ id: string; image: string }>).find(
+      (i) => i.id === "compressores",
+    );
+    expect(item).toBeDefined();
+    expect(item!.image.endsWith(".svg")).toBe(true);
+  });
+
+  it("nenhum binário compressor-*.{jpg,jpeg,png,webp} volta a existir em public/", () => {
+    const offenders = walkFiles(join(ROOT, "public"))
+      .map((f) => relative(ROOT, f))
+      .filter((f) => /compressor.*\.(jpe?g|png|webp|avif)$/i.test(f));
+    expect(offenders).toEqual([]);
   });
 });

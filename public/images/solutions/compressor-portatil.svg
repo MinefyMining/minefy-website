@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Ilustração de compressor de ar portátil rebocável">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161513"/>
+      <stop offset="1" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#23211C"/>
+      <stop offset="1" stop-color="#141310"/>
+    </linearGradient>
+    <radialGradient id="floor" cx="0.5" cy="1" r="0.75">
+      <stop offset="0" stop-color="#D4A847" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#D4A847" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#D4A847" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect width="800" height="450" fill="url(#dots)"/>
+  <ellipse cx="400" cy="420" rx="330" ry="70" fill="url(#floor)"/>
+
+  <!-- linha do chão -->
+  <line x1="90" y1="400" x2="710" y2="400" stroke="#3A362C" stroke-width="1.5"/>
+
+  <!-- ══ compressor rebocável — line-art ══ -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- chassi -->
+    <path d="M180 372 H560" stroke="#8C8676" stroke-width="4"/>
+    <!-- lança de reboque -->
+    <path d="M180 372 L118 352" stroke="#8C8676" stroke-width="4"/>
+    <circle cx="112" cy="350" r="7" fill="none" stroke="#D4A847" stroke-width="3"/>
+    <path d="M132 372 v-10" stroke="#8C8676" stroke-width="3"/>
+    <path d="M124 372 h16" stroke="#8C8676" stroke-width="3"/>
+
+    <!-- carenagem -->
+    <path d="M196 372 V262 q0 -34 34 -34 H520 q34 0 34 34 V372"
+          fill="url(#body)" stroke="#D4A847" stroke-width="2.5"/>
+    <!-- vinco da carenagem -->
+    <path d="M196 300 H554" stroke="#D4A847" stroke-width="1.4" opacity="0.55"/>
+    <!-- grade de ventilação -->
+    <g stroke="#D4A847" stroke-width="2" opacity="0.75">
+      <path d="M234 254 v34"/><path d="M252 254 v34"/><path d="M270 254 v34"/>
+      <path d="M288 254 v34"/><path d="M306 254 v34"/>
+    </g>
+    <!-- porta de serviço -->
+    <rect x="340" y="248" width="118" height="112" rx="10" fill="none" stroke="#8C8676" stroke-width="1.8"/>
+    <circle cx="448" cy="304" r="3" fill="#8C8676"/>
+    <!-- manômetro -->
+    <circle cx="502" cy="270" r="17" fill="#0F0E0C" stroke="#D4A847" stroke-width="2.2"/>
+    <path d="M502 270 L512 261" stroke="#D4A847" stroke-width="2.2"/>
+    <path d="M490 279 a17 17 0 0 1 -0.5 -14" stroke="#8C8676" stroke-width="1.4" fill="none"/>
+    <!-- saídas de ar -->
+    <path d="M554 322 h26" stroke="#D4A847" stroke-width="3"/>
+    <circle cx="586" cy="322" r="6.5" fill="none" stroke="#D4A847" stroke-width="2.5"/>
+    <path d="M554 344 h18" stroke="#8C8676" stroke-width="3"/>
+    <circle cx="578" cy="344" r="5.5" fill="none" stroke="#8C8676" stroke-width="2.2"/>
+    <!-- mangueira enrolada -->
+    <path d="M592 328 q30 10 26 34 q-4 20 -26 18 q-18 -2 -16 -18"
+          fill="none" stroke="#6B6555" stroke-width="2.5"/>
+
+    <!-- rodado -->
+    <circle cx="272" cy="396" r="30" fill="#0F0E0C" stroke="#D4A847" stroke-width="2.5"/>
+    <circle cx="272" cy="396" r="11" fill="none" stroke="#8C8676" stroke-width="2"/>
+    <g stroke="#8C8676" stroke-width="1.6">
+      <path d="M272 385 v-8"/><path d="M272 407 v8"/>
+      <path d="M261 396 h-8"/><path d="M283 396 h8"/>
+    </g>
+    <circle cx="488" cy="396" r="30" fill="#0F0E0C" stroke="#D4A847" stroke-width="2.5"/>
+    <circle cx="488" cy="396" r="11" fill="none" stroke="#8C8676" stroke-width="2"/>
+    <g stroke="#8C8676" stroke-width="1.6">
+      <path d="M488 385 v-8"/><path d="M488 407 v8"/>
+      <path d="M477 396 h-8"/><path d="M499 396 h8"/>
+    </g>
+
+    <!-- fluxo de ar estilizado -->
+    <g stroke="#7FB4D8" stroke-width="1.8" fill="none" opacity="0.65">
+      <path d="M612 310 q26 -10 44 -30"/>
+      <path d="M616 330 q34 -4 58 -20"/>
+      <path d="M614 350 q36 6 62 -2"/>
+    </g>
+  </g>
+
+  <!-- rótulo honesto, sempre visível dentro da arte -->
+  <text x="400" y="436" text-anchor="middle" fill="#9A937F" font-size="15"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace" letter-spacing="3">
+    ILUSTRAÇÃO · COMPRESSOR DE AR PORTÁTIL
+  </text>
+</svg>
