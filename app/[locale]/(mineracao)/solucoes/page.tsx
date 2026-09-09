@@ -67,7 +67,7 @@ export default async function SolutionsPage({ params }: Props) {
       <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">
         <Image
           src="/images/mining/escavadeira-grande-porte.jpg"
-          alt="Vista aérea de mina a céu aberto"
+          alt="Escavadeira de grande porte em operação ao entardecer em mina a céu aberto"
           fill
           priority
           className="object-cover"

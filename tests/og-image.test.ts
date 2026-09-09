@@ -16,23 +16,35 @@ import { pageMetadata, ogSlug } from "@/lib/seo";
 import { OG_PAGES } from "@/lib/og-pages";
 import { SITE_ORIGIN, type Site } from "@/lib/site";
 
-/** Todas as páginas publicadas, por mundo e path EXTERNO. */
+/**
+ * Páginas publicadas VARRIDAS DO FILESYSTEM (F4): qualquer `page.tsx` novo
+ * em um dos dois mundos entra aqui automaticamente — rota nova sem entrada
+ * na whitelist OG_PAGES quebra a suíte em vez de virar og:image 404
+ * silencioso em produção.
+ */
+import { readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
+
+function pagesOf(groupDir: string, stripPrefix: string): string[] {
+  const root = join(__dirname, "..", "app", "[locale]", groupDir);
+  const paths: string[] = [];
+  const walk = (dir: string, rel: string) => {
+    for (const entry of readdirSync(dir)) {
+      const full = join(dir, entry);
+      if (statSync(full).isDirectory()) walk(full, `${rel}/${entry}`);
+      else if (entry === "page.tsx") paths.push(rel || "/");
+    }
+  };
+  walk(root, "");
+  return paths.map((p) => {
+    const external = p === stripPrefix ? "/" : p.replace(new RegExp(`^${stripPrefix}`), "");
+    return external === "" ? "/" : external;
+  });
+}
+
 const PAGES: Array<{ site: Site; path: string }> = [
-  { site: "mineracao", path: "/" },
-  { site: "mineracao", path: "/solucoes" },
-  { site: "mineracao", path: "/solucoes/ia-corporativa" },
-  { site: "mineracao", path: "/solucoes/agentes-autonomos" },
-  { site: "mineracao", path: "/solucoes/servicos-ti" },
-  { site: "mineracao", path: "/experiencias" },
-  { site: "mineracao", path: "/contato" },
-  { site: "mineracao", path: "/quem-somos" },
-  { site: "mineracao", path: "/projetos" },
-  { site: "mineracao", path: "/privacidade" },
-  { site: "agro", path: "/" },
-  { site: "agro", path: "/solucoes" },
-  { site: "agro", path: "/quem-somos" },
-  { site: "agro", path: "/piloto" },
-  { site: "agro", path: "/contato" },
+  ...pagesOf("(mineracao)", "/mineracao").map((path) => ({ site: "mineracao" as Site, path })),
+  ...pagesOf("(agrofy)", "/agrofy").map((path) => ({ site: "agro" as Site, path })),
 ];
 
 function ogImageUrl(site: Site, path: string): string {
