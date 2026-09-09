@@ -4,6 +4,8 @@ import { MiningFooter } from "@/components/mining-footer";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { CursorGlow } from "@/components/cursor-glow";
 import { LogoIntro } from "@/components/logo-intro";
+import { SITE_ORIGIN } from "@/lib/site";
+import type { Metadata } from "next";
 
 /**
  * Chrome for the MINEFY MINING ecosystem — gold header/footer, scroll
@@ -24,6 +26,16 @@ import { LogoIntro } from "@/components/logo-intro";
 // Ano do copyright é computado no SERVIDOR e congela no output estático —
 // ISR de 24h garante que a virada de ano se corrige sozinha sem deploy.
 export const revalidate = 86400;
+
+/**
+ * metadataBase POR ROUTE GROUP (padrão "origem por group, constante" do
+ * MIKE-ARQUITETURA 1.5): resolve URLs relativas de metadata — em especial
+ * o og:image da convenção `opengraph-image.tsx` — para a origem pública
+ * do mundo Minefy. Canonical continua absoluto via `canonicalFor`.
+ */
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN.mineracao),
+};
 
 /** Namespaces que os Client Components deste mundo realmente usam. */
 const CLIENT_NAMESPACES = ["nav", "footer", "contact", "home"] as const;

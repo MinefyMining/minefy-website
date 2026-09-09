@@ -5,6 +5,7 @@ import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,7 +19,13 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofy.contactPage.metadata" });
-  return { title: t("title"), description: t("description") };
+  // path EXTERNO — canonical agro nunca contém /agrofy (lib/site.ts)
+  return pageMetadata({
+    site: "agro",
+    path: "/contato",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 /**

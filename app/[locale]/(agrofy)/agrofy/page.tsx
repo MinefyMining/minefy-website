@@ -10,6 +10,7 @@ import { AgroTechTelemetry } from "@/components/agro-tech-telemetry";
 import { AgroOutcomesSection } from "@/components/agro-outcomes-section";
 import { AgroFaqSection } from "@/components/agro-faq-section";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -27,7 +28,13 @@ const AGRO_SOLUTION_IDS = [
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofy.metadata" });
-  return { title: t("title"), description: t("description") };
+  // path EXTERNO — canonical agro nunca contém /agrofy (lib/site.ts)
+  return pageMetadata({
+    site: "agro",
+    path: "/",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 /**

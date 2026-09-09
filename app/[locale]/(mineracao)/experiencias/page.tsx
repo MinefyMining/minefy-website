@@ -4,18 +4,19 @@ import { Link } from "@/i18n/navigation";
 import { ExperienceLab } from "@/components/experience-lab";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "experiences.metadata" });
-  const canonical = "https://www.minefymining.com/experiencias";
-  return {
+  return pageMetadata({
+    site: "mineracao",
+    path: "/experiencias",
     title: t("title"),
     description: t("description"),
-    alternates: { canonical },
-  };
+  });
 }
 
 export default async function ExperiencesPage({ params }: Props) {

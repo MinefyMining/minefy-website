@@ -45,6 +45,21 @@ function fetchWithTimeout(
   );
 }
 
+/** Espera transparente (dentro do estado "enviando") até o token atingir a
+ * idade mínima — medida no monotônico LOCAL desde o recebimento, com teto
+ * de MIN_AGE + margem (`minAgeWaitMs`). Visitante rápido nunca é
+ * bloqueado; o relógio de parede do cliente é irrelevante (clock skew não
+ * entra na conta). */
+async function waitTokenMinAge(
+  token: { value: string; receivedAtMono: number } | null,
+): Promise<void> {
+  if (!token) return;
+  const remaining = minAgeWaitMs(performance.now() - token.receivedAtMono);
+  if (remaining > 0) {
+    await new Promise((r) => setTimeout(r, remaining));
+  }
+}
+
 interface ContactFormProps {
   variant?: "compact" | "full";
   /** Which ecosystem this form instance lives in. Cosmetic + default-service
@@ -98,19 +113,6 @@ export function ContactForm({
     tokenRequested.current = true;
     void fetchToken();
   }, [fetchToken]);
-
-  /** Espera transparente (dentro do estado "enviando") até o token atingir
-   * a idade mínima — medida no monotônico local desde o recebimento, com
-   * teto de MIN_AGE + margem. Visitante rápido nunca é bloqueado; relógio
-   * de parede do cliente é irrelevante. */
-  async function waitTokenMinAge() {
-    const current = tokenRef.current;
-    if (!current) return;
-    const remaining = minAgeWaitMs(performance.now() - current.receivedAtMono);
-    if (remaining > 0) {
-      await new Promise((r) => setTimeout(r, remaining));
-    }
-  }
 
   const statusRef = useRef<HTMLDivElement>(null);
   const isAgro = division === "agrofy";
@@ -169,7 +171,7 @@ export function ContactForm({
     };
     try {
       const post = async (token: string | null) => {
-        if (token) await waitTokenMinAge();
+        if (token) await waitTokenMinAge(tokenRef.current);
         return fetchWithTimeout(
           "/api/contact",
           {
@@ -226,7 +228,7 @@ export function ContactForm({
     <div className={variant === "full" ? "max-w-2xl mx-auto" : ""}>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={(e) => form.handleSubmit(onSubmit)(e)}
           onFocusCapture={ensureTokenRequested}
           onPointerDownCapture={ensureTokenRequested}
           className="relative space-y-6"

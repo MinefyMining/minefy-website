@@ -5,18 +5,19 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services.hub.metadata" });
-  const canonical = "https://www.minefymining.com/solucoes";
-  return {
+  return pageMetadata({
+    site: "mineracao",
+    path: "/solucoes",
     title: t("title"),
     description: t("description"),
-    alternates: { canonical },
-  };
+  });
 }
 
 export default async function SolutionsPage({ params }: Props) {

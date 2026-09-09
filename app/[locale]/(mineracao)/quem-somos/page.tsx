@@ -4,13 +4,19 @@ import { ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about.metadata" });
-  return { title: t("title"), description: t("description") };
+  return pageMetadata({
+    site: "mineracao",
+    path: "/quem-somos",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function AboutPage({ params }: Props) {

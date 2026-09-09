@@ -1,11 +1,17 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "privacy.metadata" });
-  return { title: t("title"), description: t("description") };
+  return pageMetadata({
+    site: "mineracao",
+    path: "/privacidade",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function PrivacyPage({ params }: Props) {

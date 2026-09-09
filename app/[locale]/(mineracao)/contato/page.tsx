@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/contact-form";
 import { isServico } from "@/lib/contact-schema";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -15,11 +16,12 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact.metadata" });
-  return {
+  return pageMetadata({
+    site: "mineracao",
+    path: "/contato",
     title: t("title"),
     description: t("description"),
-    alternates: { canonical: "https://www.minefymining.com/contato" },
-  };
+  });
 }
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {

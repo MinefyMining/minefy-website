@@ -20,6 +20,7 @@ import { ExperienceLab } from "@/components/experience-lab";
 import { AuroraBackground } from "@/components/aurora-background";
 import { FaqSection } from "@/components/faq-section";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -28,11 +29,12 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "corporateHome.metadata" });
-  return {
+  return pageMetadata({
+    site: "mineracao",
+    path: "/",
     title: t("title"),
     description: t("description"),
-    alternates: { canonical: "https://www.minefymining.com/" },
-  };
+  });
 }
 
 const doorIcons: Record<string, ComponentType<{ className?: string }>> = {

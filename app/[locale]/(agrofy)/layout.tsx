@@ -4,6 +4,8 @@ import { AgroFooter } from "@/components/agro-footer";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { CursorGlow } from "@/components/cursor-glow";
 import { LogoIntro } from "@/components/logo-intro";
+import { SITE_ORIGIN } from "@/lib/site";
+import type { Metadata } from "next";
 
 /**
  * Chrome for the AGROFY ecosystem — green header/footer, scroll progress and
@@ -27,6 +29,16 @@ import { LogoIntro } from "@/components/logo-intro";
 // Ano do copyright computado no servidor; ISR de 24h corrige a virada de
 // ano sem deploy (mesma regra do layout mineração).
 export const revalidate = 86400;
+
+/**
+ * metadataBase POR ROUTE GROUP (padrão "origem por group, constante" do
+ * MIKE-ARQUITETURA 1.5): resolve URLs relativas de metadata — em especial
+ * o og:image da convenção `opengraph-image.tsx` — para a origem pública
+ * do mundo Agrofy. Canonical continua absoluto via `canonicalFor`.
+ */
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN.agro),
+};
 
 /** Namespaces que os Client Components do mundo agro realmente usam.
  * (`footer` entra porque `agro-footer.tsx` reusa `footer.social`/links.) */

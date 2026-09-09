@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { AgroTelemetryCard } from "@/components/agro-telemetry-card";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 /**
  * Dedicated Agrofy solutions page — green mirror of
@@ -18,7 +19,13 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofySolutions.metadata" });
-  return { title: t("title"), description: t("description") };
+  // path EXTERNO — canonical agro nunca contém /agrofy (lib/site.ts)
+  return pageMetadata({
+    site: "agro",
+    path: "/solucoes",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function AgrofySolutionsPage({ params }: Props) {

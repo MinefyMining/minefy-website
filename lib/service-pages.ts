@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import type { ServicePageData } from "@/components/service-page";
+import { pageMetadata } from "./seo";
 
-export const SITE_URL = "https://www.minefymining.com";
 
 /** The three new service fronts — single source for slugs, i18n namespaces
  * and the `?servico=` enum value each page's CTAs pre-select. */
@@ -20,13 +20,12 @@ export async function buildServiceMetadata(
 ): Promise<Metadata> {
   const { namespace } = SERVICE_PAGES[slug];
   const t = await getTranslations({ locale, namespace: `${namespace}.metadata` });
-  const canonical = `${SITE_URL}/solucoes/${slug}`;
-  return {
+  return pageMetadata({
+    site: "mineracao",
+    path: `/solucoes/${slug}`,
     title: t("title"),
     description: t("description"),
-    alternates: { canonical },
-    openGraph: { title: t("title"), description: t("description"), url: canonical },
-  };
+  });
 }
 
 export async function buildServiceData(slug: ServiceSlug): Promise<ServicePageData> {
