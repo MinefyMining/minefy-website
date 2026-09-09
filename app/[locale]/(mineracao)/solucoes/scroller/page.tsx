@@ -39,13 +39,13 @@ export default async function ScrollerPage({ params }: Props) {
       {/* ── Hero — fotografia dominante ── */}
       <section className="relative flex min-h-[74vh] flex-col justify-end overflow-hidden bg-[#0A0A0A]">
         <Image
-          src="/images/scroller/scroller-field-web.jpg"
+          src="/images/premium/scroller-cinematic.jpg"
           alt={t("hero.imageAlt")}
           fill
           priority
           sizes="100vw"
           className="object-cover"
-          style={{ objectPosition: "55% 58%" }}
+          style={{ objectPosition: "40% 45%" }}
         />
         <div
           className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/25 to-[#0A0A0A]/45"

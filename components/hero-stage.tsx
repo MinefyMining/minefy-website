@@ -199,7 +199,7 @@ export function HeroStage({
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#9FC6E2]">
               {ia.num} · {ia.label}
             </span>
-            <span className="mt-1.5 line-clamp-2 max-w-[16rem] text-[13px] font-medium leading-snug text-white/85">
+            <span className="mt-1.5 max-w-[17rem] text-[13px] font-medium leading-snug text-white/85">
               {ia.tagline}
             </span>
             <span className="mt-2 font-mono text-[8.5px] uppercase tracking-[0.14em] text-white/40">

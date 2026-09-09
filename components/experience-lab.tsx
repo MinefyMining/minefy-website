@@ -412,10 +412,10 @@ export function ExperienceLab({ className = "" }: { className?: string }) {
           id="lab-panel"
           role="tabpanel"
           aria-labelledby={`lab-tab-${scenario.id}`}
-          className="mt-6 grid gap-6 lg:grid-cols-[260px_1fr]"
+          className="mt-6 grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-[260px_minmax(0,1fr)]"
         >
           {/* ── Step rail ── */}
-          <div>
+          <div className="min-w-0">
             <ol className="flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:gap-2 lg:overflow-visible">
               {STEPS.map((s, i) => {
                 const Icon = s.icon;
@@ -498,7 +498,7 @@ export function ExperienceLab({ className = "" }: { className?: string }) {
           </div>
 
           {/* ── Detail panel ── */}
-          <div className="relative min-h-[320px] rounded-xl border border-border bg-background/60 p-5 md:p-6">
+          <div className="relative min-w-0 min-h-[320px] rounded-xl border border-border bg-background/60 p-5 md:p-6">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`${scenario.id}-${step.id}`}
