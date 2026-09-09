@@ -1372,8 +1372,8 @@
     },
     "heroDual": {
       "badge": "Duas novas frentes",
-      "title": "O próximo movimento da sua operação.",
-      "subtitle": "Da matéria à inteligência: um equipamento anfíbio para superfícies de rejeitos e terrenos de baixa capacidade de suporte — e uma camada de IA que conecta seus sistemas, dados e decisões.",
+      "title": "O próximo <gold>movimento</gold> da sua operação.",
+      "subtitle": "Um equipamento anfíbio para superfícies de rejeitos — e uma camada de IA que conecta seus sistemas e decisões, com aprovação humana.",
       "scenes": {
         "scroller": {
           "num": "01",

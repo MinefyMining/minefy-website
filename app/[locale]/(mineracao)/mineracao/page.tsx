@@ -5,8 +5,9 @@ import { Link } from "@/i18n/navigation";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
 import { ClientCarousel } from "@/components/client-carousel";
-import { HeroDual } from "@/components/hero-dual";
+import { HeroStage } from "@/components/hero-stage";
 import { ScrollerChapter } from "@/components/scroller-chapter";
+import { SystemsMap } from "@/components/hero-corporate";
 import { ExperienceLab } from "@/components/experience-lab";
 import { AuroraBackground } from "@/components/aurora-background";
 import { FaqSection } from "@/components/faq-section";
@@ -88,10 +89,12 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      {/* ── ABERTURA DUAL — Scroller e IA no primeiro viewport ── */}
-      <HeroDual
+      {/* ── PALCO INTEGRADO — Scroller e IA no mesmo palco, primeiro viewport ── */}
+      <HeroStage
         badge={t("heroDual.badge")}
-        title={t("heroDual.title")}
+        title={t.rich("heroDual.title", {
+          gold: (chunks) => <span className="text-[#D4A847]">{chunks}</span>,
+        })}
         subtitle={t("heroDual.subtitle")}
         scroller={{
           num: t("heroDual.scenes.scroller.num"),
@@ -185,6 +188,10 @@ export default async function HomePage({ params }: Props) {
               </Link>
             </p>
           </ScrollReveal>
+
+          <div id="agente-minefy" className="mx-auto mt-12 max-w-2xl scroll-mt-24">
+            <SystemsMap />
+          </div>
 
           {/* laboratório interativo — a demonstração funcional do capítulo */}
           <ScrollReveal delay={100} className="mt-14">

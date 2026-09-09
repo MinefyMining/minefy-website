@@ -458,6 +458,26 @@ html.js .rise-in-t {
   animation: node-pulse 2.4s ease-in-out infinite;
 }
 
+/* ── Palco hero (direção de arte 2026-09-09) ────────────────────────────
+   Grão de filme estático — coesão fotografia+console sobre o carvão.
+   Sem animação, sem JS; só textura. */
+.grain {
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='gn'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23gn)'/></svg>");
+}
+
+/* Troca de estado do console do agente — opacity/transform apenas,
+   gated por html.js (sem JS o estado inicial nasce visível). */
+@keyframes console-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+html.js .console-swap {
+  animation: console-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @keyframes marquee {
   to { transform: translateX(-50%); }
 }
@@ -714,6 +734,7 @@ html.js .rise-in-t {
   html.js .reveal-mask { clip-path: none; opacity: 1; transition: none; }
   html.js .chapter-parallax { animation: none; }
   html.js .rise-in, html.js .rise-in-t { animation: none; }
+  html.js .console-swap { animation: none; }
   html { scroll-behavior: auto; }
   .aurora-blob--gold,
   .aurora-blob--amber,
