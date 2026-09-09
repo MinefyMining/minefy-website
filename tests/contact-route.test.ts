@@ -133,19 +133,20 @@ describe("POST /api/contact", () => {
     expect(sendMock).not.toHaveBeenCalled();
   });
 
-  it("(h) token: inválido → 400 quando secret existe; ausente com secret → 400; fail-open sem secret", async () => {
+  it("(h) token: inválido/ausente com secret → 409 token_stale; fail-open sem secret", async () => {
     sendMock.mockResolvedValue({ data: { id: "mock-id" }, error: null });
     process.env.CONTACT_TOKEN_SECRET = "segredo-de-teste-nunca-real";
     const { POST } = await loadRoute(true);
-    // 400 SEMPRE carrega code:"invalid_token" — é o contrato que permite ao
-    // formulário re-emitir o nonce e reenviar sem perder os campos digitados
-    // (token expira em 30min; formulário aberto não pode custar o lead).
+    // 409 + code:"token_stale" — distinto do 400 de schema (MIKE-REVISAO
+    // B1b): é o contrato que permite ao formulário re-emitir o nonce e
+    // reenviar sem perder os campos digitados (token expira em 30min;
+    // formulário aberto não pode custar o lead).
     const res1 = await POST(jsonRequest({ ...valid, t: "forjado.assinatura" }));
-    expect(res1.status).toBe(400);
-    expect((await res1.json()).code).toBe("invalid_token");
+    expect(res1.status).toBe(409);
+    expect((await res1.json()).code).toBe("token_stale");
     const res2 = await POST(jsonRequest(valid));
-    expect(res2.status).toBe(400);
-    expect((await res2.json()).code).toBe("invalid_token");
+    expect(res2.status).toBe(409);
+    expect((await res2.json()).code).toBe("token_stale");
     expect(sendMock).not.toHaveBeenCalled();
 
     // com token legítimo dentro da janela → 200

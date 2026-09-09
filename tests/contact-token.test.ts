@@ -13,18 +13,19 @@ describe("nonce HMAC stateless (MIKE-ARQUITETURA 5.3)", () => {
     expect(verifyContactToken("qualquer.coisa")).toBe("unconfigured");
   });
 
-  it("token emitido é válido dentro da janela 3s..30min", () => {
+  it("token emitido é válido dentro da janela 1s..30min", () => {
     process.env.CONTACT_TOKEN_SECRET = KEY;
     const issued = Date.now() - 10_000;
     const token = issueContactToken(issued)!;
     expect(verifyContactToken(token, issued + 10_000)).toBe("valid");
   });
 
-  it("rejeita token novo demais (<3s) e velho demais (>30min)", () => {
+  it("rejeita token novo demais (<1s) e velho demais (>30min)", () => {
     process.env.CONTACT_TOKEN_SECRET = KEY;
     const now = Date.now();
     const token = issueContactToken(now)!;
-    expect(verifyContactToken(token, now + 1_000)).toBe("invalid");
+    expect(verifyContactToken(token, now + 400)).toBe("invalid");
+    expect(verifyContactToken(token, now + 1_500)).toBe("valid");
     expect(verifyContactToken(token, now + 31 * 60_000)).toBe("invalid");
   });
 
@@ -69,5 +70,47 @@ describe("tokenIssuedAt (helper client-safe)", () => {
     expect(tokenIssuedAt("sem-ponto")).toBeNull();
     expect(tokenIssuedAt("bm90bnVt.abc")).toBeNull();
     delete process.env.CONTACT_TOKEN_SECRET;
+  });
+});
+
+describe("minAgeWaitMs — espera do cliente imune a clock skew", () => {
+  it("depende SÓ do tempo monotônico local: relógio do cliente atrasado 1h não muda nada", async () => {
+    const { minAgeWaitMs, CONTACT_TOKEN_MIN_AGE_MS, CONTACT_TOKEN_WAIT_MARGIN_MS } =
+      await import("@/lib/contact-token-client");
+    const cap = CONTACT_TOKEN_MIN_AGE_MS + CONTACT_TOKEN_WAIT_MARGIN_MS;
+    const { vi } = await import("vitest");
+    // relógio de parede ATRASADO 1h — não pode entrar na conta
+    const spy = vi.spyOn(Date, "now").mockReturnValue(Date.now() - 3_600_000);
+    try {
+      expect(minAgeWaitMs(0)).toBe(cap);
+      expect(minAgeWaitMs(cap)).toBe(0);
+      expect(minAgeWaitMs(10 * 60_000)).toBe(0);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
+  it("relógio do cliente ADIANTADO 1h também não muda nada", async () => {
+    const { minAgeWaitMs, CONTACT_TOKEN_MIN_AGE_MS, CONTACT_TOKEN_WAIT_MARGIN_MS } =
+      await import("@/lib/contact-token-client");
+    const cap = CONTACT_TOKEN_MIN_AGE_MS + CONTACT_TOKEN_WAIT_MARGIN_MS;
+    const { vi } = await import("vitest");
+    const spy = vi.spyOn(Date, "now").mockReturnValue(Date.now() + 3_600_000);
+    try {
+      expect(minAgeWaitMs(500)).toBe(cap - 500);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
+  it("teto rígido: nenhum input produz espera acima de MIN_AGE + margem (nem espera negativa)", async () => {
+    const { minAgeWaitMs, CONTACT_TOKEN_MIN_AGE_MS, CONTACT_TOKEN_WAIT_MARGIN_MS } =
+      await import("@/lib/contact-token-client");
+    const cap = CONTACT_TOKEN_MIN_AGE_MS + CONTACT_TOKEN_WAIT_MARGIN_MS;
+    expect(minAgeWaitMs(-3_600_000)).toBe(cap); // monotônico "negativo" impossível → cap
+    expect(minAgeWaitMs(Number.NaN)).toBe(cap);
+    // input não-finito → espera o TETO (limitado), nunca ilimitado
+    expect(minAgeWaitMs(Number.POSITIVE_INFINITY)).toBe(cap);
+    expect(minAgeWaitMs(999_999_999)).toBe(0);
   });
 });

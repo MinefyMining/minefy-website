@@ -92,14 +92,15 @@ export async function POST(request: Request) {
     // legítimo por config faltando — pendência registrada). ──
     const tokenVerdict = verifyContactToken(data.t);
     if (tokenVerdict === "invalid") {
-      // `code` explícito para o cliente re-emitir o token via
-      // /api/contact-token e reenviar SEM perder o que foi digitado
-      // (token expirado depois de 30min de formulário aberto não pode
-      // custar o lead). Não revela nada que a rota pública de emissão
-      // já não entregue.
+      // 409 + code distinto do 400 de schema (MIKE-REVISAO B1b): o cliente
+      // re-emite o token via /api/contact-token e reenvia UMA vez sem tocar
+      // nos campos digitados (aba esquecida/bfcache não pode custar o
+      // lead). Não revela nada que a rota pública de emissão já não
+      // entregue — bot também renova, e é por isso que isto é speed bump,
+      // não rate limit.
       return NextResponse.json(
-        { success: false, code: "invalid_token", message: "Validation error" },
-        { status: 400 },
+        { success: false, code: "token_stale", message: "Token expired" },
+        { status: 409 },
       );
     }
     if (tokenVerdict === "unconfigured") {

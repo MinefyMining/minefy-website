@@ -15,10 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import {
-  CONTACT_TOKEN_MIN_AGE_MS,
-  tokenIssuedAt,
-} from "@/lib/contact-token-client";
+import { minAgeWaitMs } from "@/lib/contact-token-client";
 import {
   Form,
   FormControl,
@@ -29,6 +26,24 @@ import {
 } from "@/components/ui/form";
 
 type Status = "idle" | "sending" | "success" | "unavailable" | "rate-limited" | "error";
+
+/**
+ * fetch com teto de tempo (AbortController): rede travada não pode deixar
+ * o formulário preso em "Enviando" para sempre — abort vira erro honesto
+ * no chamador, com os campos digitados preservados e os links de fallback
+ * (mailto/WhatsApp) pré-preenchidos.
+ */
+function fetchWithTimeout(
+  input: RequestInfo,
+  init: RequestInit,
+  timeoutMs: number,
+): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(input, { ...init, signal: controller.signal }).finally(() =>
+    clearTimeout(timer),
+  );
+}
 
 interface ContactFormProps {
   variant?: "compact" | "full";
@@ -51,40 +66,52 @@ export function ContactForm({
   const [status, setStatus] = useState<Status>("idle");
 
   /**
-   * Nonce HMAC anti-abuso (MIKE-ARQUITETURA 5.3), buscado no MOUNT em
-   * `/api/contact-token` — nunca emitido no render da página (ISR
-   * congelaria um token de 30min por até 24h e mataria lead legítimo).
-   * A idade do token passa a medir o tempo real do visitante na página.
-   * `null` = emissão indisponível (secret não configurado ou fetch
-   * falhou); a API decide em fail-open, o formulário nunca trava aqui.
+   * Nonce HMAC anti-abuso (MIKE-ARQUITETURA 5.3 · MIKE-REVISAO B1/B1b),
+   * buscado em `/api/contact-token` no PRIMEIRO FOCO do formulário — nunca
+   * no render da página (ISR congelaria um token de 30min no cache por até
+   * 24h) e nem no mount (evita 1 request por pageview/prefetch).
+   * `null` = emissão indisponível (secret não configurado, fetch falhou);
+   * a API decide em fail-open, o formulário nunca trava aqui.
+   *
+   * CLOCK SKEW: a espera da idade mínima usa APENAS relógio monotônico
+   * LOCAL (`performance.now()` desde o recebimento do token) — jamais
+   * comparar `Date.now()` do browser com `issuedAt` do servidor: um
+   * relógio de cliente atrasado 1h prenderia o envio por 1h. A espera tem
+   * teto rígido de MIN_AGE + margem; nenhum caminho espera ilimitado.
    */
-  const tokenRef = useRef<string | null>(null);
+  const tokenRef = useRef<{ value: string; receivedAtMono: number } | null>(null);
+  const tokenRequested = useRef(false);
   const fetchToken = useCallback(async (): Promise<string | null> => {
     try {
-      const res = await fetch("/api/contact-token", { cache: "no-store" });
+      const res = await fetchWithTimeout("/api/contact-token", { cache: "no-store" }, 5_000);
       if (!res.ok) return null;
       const json = (await res.json()) as { token?: string | null };
-      tokenRef.current = json.token ?? null;
-      return tokenRef.current;
+      if (!json.token) return null;
+      tokenRef.current = { value: json.token, receivedAtMono: performance.now() };
+      return json.token;
     } catch {
       return null;
     }
   }, []);
-  useEffect(() => {
+  const ensureTokenRequested = useCallback(() => {
+    if (tokenRequested.current) return;
+    tokenRequested.current = true;
     void fetchToken();
   }, [fetchToken]);
 
-  /** Espera transparente até o token atingir a idade mínima exigida pela
-   * API — o visitante rápido NUNCA é bloqueado: no pior caso o envio leva
-   * ~3s a mais dentro do estado "enviando". */
-  async function waitTokenMinAge(token: string) {
-    const issued = tokenIssuedAt(token);
-    if (issued === null) return;
-    const remaining = CONTACT_TOKEN_MIN_AGE_MS - (Date.now() - issued);
+  /** Espera transparente (dentro do estado "enviando") até o token atingir
+   * a idade mínima — medida no monotônico local desde o recebimento, com
+   * teto de MIN_AGE + margem. Visitante rápido nunca é bloqueado; relógio
+   * de parede do cliente é irrelevante. */
+  async function waitTokenMinAge() {
+    const current = tokenRef.current;
+    if (!current) return;
+    const remaining = minAgeWaitMs(performance.now() - current.receivedAtMono);
     if (remaining > 0) {
-      await new Promise((r) => setTimeout(r, remaining + 150));
+      await new Promise((r) => setTimeout(r, remaining));
     }
   }
+
   const statusRef = useRef<HTMLDivElement>(null);
   const isAgro = division === "agrofy";
   const defaultService: Servico =
@@ -142,27 +169,31 @@ export function ContactForm({
     };
     try {
       const post = async (token: string | null) => {
-        if (token) await waitTokenMinAge(token);
-        return fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...data, t: token ?? undefined }),
-        });
+        if (token) await waitTokenMinAge();
+        return fetchWithTimeout(
+          "/api/contact",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...data, t: token ?? undefined }),
+          },
+          15_000,
+        );
       };
 
-      let token = tokenRef.current ?? (await fetchToken());
+      let token = tokenRef.current?.value ?? (await fetchToken());
       let response = await post(token);
 
-      // Token expirado/ausente (ex.: formulário aberto por mais de 30min):
-      // re-emite e reenvia UMA vez — os campos digitados ficam intactos
-      // (nenhum reset fora do caminho de sucesso). O lead não se perde por
-      // burocracia de nonce.
-      if (response.status === 400) {
+      // 409 token_stale (aba esquecida >30min, bfcache, skew): re-emite e
+      // reenvia UMA vez — os campos digitados ficam intactos (nenhum reset
+      // fora do caminho de sucesso). O lead não se perde por burocracia de
+      // nonce.
+      if (response.status === 409) {
         const payload = (await response
           .clone()
           .json()
           .catch(() => null)) as { code?: string } | null;
-        if (payload?.code === "invalid_token") {
+        if (payload?.code === "token_stale") {
           token = await fetchToken();
           response = await post(token);
         }
@@ -194,7 +225,13 @@ export function ContactForm({
   return (
     <div className={variant === "full" ? "max-w-2xl mx-auto" : ""}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="relative space-y-6" noValidate>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          onFocusCapture={ensureTokenRequested}
+          onPointerDownCapture={ensureTokenRequested}
+          className="relative space-y-6"
+          noValidate
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
               control={form.control}
