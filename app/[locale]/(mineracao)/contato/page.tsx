@@ -3,15 +3,23 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { isContactService } from "@/lib/contact-schema";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ interesse?: string }>;
+};
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact.metadata" });
-  return { title: t("title"), description: t("description") };
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { canonical: "https://www.minefymining.com/contato" },
+  };
 }
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -21,10 +29,16 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
   location: MapPin,
 };
 
-export default async function ContactPage({ params }: Props) {
+export default async function ContactPage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
+
+  // Intenção pré-selecionada pelo CTA de origem (`?interesse=<slug>`) —
+  // validada contra o enum; valor desconhecido é simplesmente ignorado.
+  const { interesse } = await searchParams;
+  const serviceCandidate = interesse ?? null;
+  const initialService = isContactService(serviceCandidate) ? serviceCandidate : undefined;
 
   const infoItems = t.raw("info.items") as Array<{
     icon: string;
@@ -116,7 +130,7 @@ export default async function ContactPage({ params }: Props) {
           {/* Right: form */}
           <ScrollReveal delay={150}>
             <div className="bg-card rounded-xl p-8 border border-border">
-              <ContactForm variant="full" />
+              <ContactForm variant="full" initialService={initialService} />
             </div>
           </ScrollReveal>
         </div>

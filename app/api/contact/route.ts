@@ -9,6 +9,15 @@ const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL || "Minefy Website <noreply@minefymining.com>";
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "contact@minefymining.com";
 
+/** Rótulos PT-BR do serviço/interesse para o e-mail interno de notificação. */
+const SERVICE_LABELS: Record<string, string> = {
+  "mineracao-telemetria": "Operação industrial e telemetria",
+  "ia-corporativa": "IA corporativa",
+  "agentes-autonomos": "Agentes autônomos",
+  "servicos-ti": "Serviços de TI",
+  outro: "Outro assunto",
+};
+
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -21,7 +30,22 @@ function escapeHtml(str: string): string {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const data = contactSchema.parse(body);
+    const parsed = contactSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, message: "Validation error" },
+        { status: 400 },
+      );
+    }
+    const data = parsed.data;
+
+    // Honeypot: o campo "website" é invisível para humanos. Se veio
+    // preenchido, aceitamos silenciosamente (mesma resposta de sucesso,
+    // nada revelado ao bot) e NÃO enviamos e-mail — proteção sem estado,
+    // adequada a runtime serverless.
+    if (data.website && data.website.trim() !== "") {
+      return NextResponse.json({ success: true, message: "Email sent" });
+    }
 
     if (!resend) {
       console.error(
@@ -34,16 +58,22 @@ export async function POST(request: Request) {
     }
 
     const divisionLabel = data.division === "agrofy" ? "Agrofy" : "Mineração";
+    const serviceLabel = data.service ? SERVICE_LABELS[data.service] : null;
+    const subjectTag = serviceLabel
+      ? `${divisionLabel} · ${serviceLabel}`
+      : divisionLabel;
 
     const { data: sendResult, error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: data.email,
-      subject: `[Website · ${divisionLabel}] ${escapeHtml(data.subject)}`,
+      subject: `[Website · ${subjectTag}] ${escapeHtml(data.subject)}`,
       html: `
-        <h2>Nova mensagem do site — ${divisionLabel}</h2>
+        <h2>Nova mensagem do site — ${escapeHtml(subjectTag)}</h2>
         <p><strong>Divisão:</strong> ${divisionLabel}</p>
+        ${serviceLabel ? `<p><strong>Serviço / interesse:</strong> ${escapeHtml(serviceLabel)}</p>` : ""}
         <p><strong>Nome:</strong> ${escapeHtml(data.name)}</p>
+        ${data.company ? `<p><strong>Empresa:</strong> ${escapeHtml(data.company)}</p>` : ""}
         <p><strong>Telefone:</strong> ${escapeHtml(data.phone)}</p>
         <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
         <p><strong>Assunto:</strong> ${escapeHtml(data.subject)}</p>
@@ -64,12 +94,6 @@ export async function POST(request: Request) {
     );
     return NextResponse.json({ success: true, message: "Email sent" });
   } catch (error) {
-    if (error instanceof Error && error.name === "ZodError") {
-      return NextResponse.json(
-        { success: false, message: "Validation error" },
-        { status: 400 },
-      );
-    }
     console.error("Contact form error:", error);
     return NextResponse.json(
       { success: false, message: "Failed to send email" },
