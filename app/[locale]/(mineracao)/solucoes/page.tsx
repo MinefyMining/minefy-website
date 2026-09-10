@@ -27,8 +27,24 @@ export default async function SolutionsPage({ params }: Props) {
   const t = await getTranslations("solutions");
   const tHome = await getTranslations("home");
   const tHub = await getTranslations("services.hub.fronts");
+  const tScroller = await getTranslations("services.scroller");
 
   const fronts = tHub.raw("items") as Array<{
+    id: string;
+    badge: string;
+    title: string;
+    text: string;
+    href: string;
+    ctaLabel: string;
+  }>;
+
+  // Ofertas digitais — só as frentes de IA/agentes/TI entram na Divisão 02;
+  // Scroller e portfólio industrial vivem na Divisão 01 (Mineração).
+  const digitalFronts = fronts.filter((f) =>
+    ["ia", "agentes", "ti"].includes(f.id),
+  );
+
+  const divisionEntries = t.raw("divisions.entries") as Array<{
     id: string;
     badge: string;
     title: string;
@@ -89,59 +105,128 @@ export default async function SolutionsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Hub: quatro frentes (2026-09) — IA corporativa, agentes e TI
-             ganham páginas próprias; o portfólio industrial permanece nesta
-             página com as MESMAS âncoras de sempre (#tablets, #actisky, …),
-             preservando links antigos e o fluxo comercial de mineração. ── */}
+      {/* ── DUAS DIVISÕES (reorganização CEO 2026-09-10) — a antiga régua
+             "quatro frentes" virou duas entradas: Mineração (Scroller +
+             catálogo industrial completo, PRIMEIRO) e IA & TI (ofertas
+             digitais, depois). A âncora `#frentes` é preservada aqui; o
+             portfólio industrial mantém as MESMAS âncoras de sempre
+             (#tablets, #actisky, …). ── */}
       <section id="frentes" className="scroll-mt-24 px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {tHub("kicker")}
+              {t("divisions.kicker")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
-              {tHub("title")}
+              {t("divisions.title")}
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              {tHub("subtitle")}
+              {t("divisions.subtitle")}
             </p>
           </ScrollReveal>
-          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {fronts.map((front, i) => {
-              const inner = (
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
-                    {front.badge}
-                  </span>
-                  <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
-                    {front.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {front.text}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                    {front.ctaLabel}
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </span>
-                </div>
-              );
-              return (
-                <ScrollReveal key={front.id} delay={i * 70} className="h-full">
-                  {front.href.startsWith("#") ? (
-                    <a href={front.href} className="block h-full">{inner}</a>
-                  ) : (
-                    <Link href={front.href} className="block h-full">{inner}</Link>
-                  )}
-                </ScrollReveal>
-              );
-            })}
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {divisionEntries.map((entry, i) => (
+              <ScrollReveal key={entry.id} delay={i * 90} className="h-full">
+                <a href={entry.href} className="block h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      {entry.badge}
+                    </span>
+                    <h3 className="mt-3 text-xl font-semibold leading-snug text-foreground md:text-2xl">
+                      {entry.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {entry.text}
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                      {entry.ctaLabel}
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
       <div className="mx-auto h-px max-w-5xl bg-border" />
 
-      {/* ── Solutions List ── */}
+      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque, catálogo
+             industrial completo na sequência ── */}
+      <section id="mineracao" className="scroll-mt-24 px-6 pt-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("divisions.mineracao.kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {t("divisions.mineracao.title")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              {t("divisions.mineracao.lede")}
+            </p>
+          </ScrollReveal>
+
+          {/* Scroller — destaque da divisão, fotografia premium */}
+          <ScrollReveal delay={80}>
+            <div
+              id="scroller"
+              className="relative mt-10 scroll-mt-24 overflow-hidden rounded-2xl border border-border"
+            >
+              <div className="relative min-h-[380px] md:min-h-[440px]">
+                <Image
+                  src="/images/premium/scroller-cinematic.jpg"
+                  alt={tScroller("hero.imageAlt")}
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1152px"
+                  className="object-cover"
+                  style={{ objectPosition: "35% 55%" }}
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/90 via-[#0A0A0A]/55 to-[#0A0A0A]/15"
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0A0A0A]/85 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="relative z-10 flex h-full min-h-[380px] flex-col justify-end p-8 md:min-h-[440px] md:p-12">
+                  <span className="inline-block w-fit rounded-full border border-[#D4A847]/40 bg-[#0A0A0A]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#E8C877]">
+                    {t("divisions.scrollerFeature.badge")}
+                  </span>
+                  <h3 className="mt-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+                    {t("divisions.scrollerFeature.title")}
+                  </h3>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
+                    {t("divisions.scrollerFeature.text")}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link
+                      href="/solucoes/scroller"
+                      className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
+                    >
+                      {t("divisions.scrollerFeature.cta")}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                    <Link
+                      href="/contato?servico=scroller"
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/5 px-6 py-3 text-sm font-medium text-white transition-colors duration-200 hover:border-white/45 hover:bg-white/10"
+                    >
+                      {t("divisions.scrollerFeature.ctaSecondary")}
+                    </Link>
+                  </div>
+                  <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40">
+                    {t("divisions.scrollerFeature.mediaNote")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── Catálogo industrial — âncoras históricas preservadas ── */}
       <div className="px-6">
         {items.map((item, index) => {
           const isEven = index % 2 === 0;
@@ -385,6 +470,47 @@ export default async function SolutionsPage({ params }: Props) {
           );
         })}
       </div>
+
+      {/* ── DIVISÃO 02 · IA & TI — ofertas digitais depois do catálogo
+             industrial (ordem definida pelo CEO 2026-09-10) ── */}
+      <section id="ia-ti" className="scroll-mt-24 border-t border-border bg-card px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("divisions.iaTi.kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {t("divisions.iaTi.title")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              {t("divisions.iaTi.lede")}
+            </p>
+          </ScrollReveal>
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {digitalFronts.map((front, i) => (
+              <ScrollReveal key={front.id} delay={i * 70} className="h-full">
+                <Link href={front.href} className="block h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      {front.badge}
+                    </span>
+                    <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
+                      {front.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {front.text}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                      {front.ctaLabel}
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── CTA ── */}
       {/* ── FAQ industrial — preservada na jornada de mineração (CODEX-UX):

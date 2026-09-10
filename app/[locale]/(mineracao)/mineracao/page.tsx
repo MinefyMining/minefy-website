@@ -7,6 +7,7 @@ import { StatsBar } from "@/components/stats-bar";
 import { ClientCarousel } from "@/components/client-carousel";
 import { HeroStage } from "@/components/hero-stage";
 import { ScrollerChapter } from "@/components/scroller-chapter";
+import { BentoSolutions, type SolutionItem } from "@/components/bento-solutions";
 import { SystemsMap } from "@/components/hero-corporate";
 import { ExperienceLab } from "@/components/experience-lab";
 import { AuroraBackground } from "@/components/aurora-background";
@@ -36,16 +37,32 @@ const engineeringIcons: Record<string, ComponentType<{ className?: string }>> = 
   refresh: RefreshCcw,
 };
 
+/** Âncoras do catálogo industrial em /solucoes — mesma ordem de
+ * `home.products.items`. Preservadas desde a home antiga (footer e links
+ * externos apontam pra elas). */
+const SOLUTION_IDS = [
+  "tablets",
+  "actisky",
+  "analytics",
+  "fleet360",
+  "safety",
+  "consulting",
+  "caminhonetes",
+  "compressores",
+] as const;
+
 /**
- * Home corporativa — revisão Scroller + IA (CEO, 2026-09-09):
- * DOIS protagonistas na primeira dobra, narrativa em capítulos no scroll:
- *   Abertura dual → Capítulo 01 Scroller (mídia dominante) → transição
- *   matéria→digital → Capítulo 02 IA (ofertas + laboratório interativo)
- *   → base industrial (uma faixa de continuidade, não uma "quinta porta")
- *   → capacidade de engenharia → método → evidências verificadas → FAQ
- *   → CTA.
- * Sem scrolljacking, sem WebGL, texto integral no HTML; animações
- * transform/opacity gated por `html.js` + reduced-motion.
+ * Home corporativa — DUAS DIVISÕES (CEO, 2026-09-10):
+ * o hero comunica as duas divisões da Minefy e o scroll percorre cada uma:
+ *   Abertura dual (palco premium + console do agente) →
+ *   DIVISÃO 01 · Mineração (`#mineracao`): capítulo Scroller em destaque
+ *   (`#scroller`, âncora preservada) + catálogo industrial completo
+ *   (bento com as 8 soluções → /solucoes#…) → transição matéria→digital →
+ *   DIVISÃO 02 · IA & TI (`#ia`, âncora preservada): ofertas + laboratório
+ *   interativo → capacidade de engenharia → método → evidências → FAQ → CTA.
+ * Sem scrolljacking, texto integral no HTML; animações transform/opacity
+ * gated por `html.js` + reduced-motion. O único WebGL é o tile 3D do
+ * catálogo — lazy, gated por viewport e com fallback estático (Safe3D).
  */
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
@@ -76,6 +93,9 @@ export default async function HomePage({ params }: Props) {
     title: string;
     text: string;
   }>;
+
+  // Catálogo industrial completo — mesmos itens/ordem das âncoras de /solucoes.
+  const productItems = tHome.raw("products.items") as SolutionItem[];
 
   const iaOffers = t.raw("iaChapter.offers") as Array<{
     title: string;
@@ -112,17 +132,67 @@ export default async function HomePage({ params }: Props) {
         scrollerMediaNote={t("scrollerChapter.mediaNote")}
       />
 
-      {/* ── CAPÍTULO 01 · SCROLLER ── */}
-      <ScrollerChapter
-        kicker={t("scrollerChapter.kicker")}
-        title={t("scrollerChapter.title")}
-        lede={t("scrollerChapter.lede")}
-        points={scrollerPoints}
-        ctaPrimary={t("scrollerChapter.ctaPrimary")}
-        ctaSecondary={t("scrollerChapter.ctaSecondary")}
-        mediaNote={t("scrollerChapter.mediaNote")}
-        imageAlt={tServices("scroller.hero.imageAlt")}
-      />
+      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque + catálogo
+            industrial completo (reorganização em duas divisões, CEO
+            2026-09-10). A âncora antiga `#scroller` permanece no capítulo. ── */}
+      <section id="mineracao" className="scroll-mt-20">
+        <div className="bg-[#0A0A0A] px-6 pt-16">
+          <div className="mx-auto w-full max-w-7xl">
+            <ScrollReveal>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
+                {t("miningDivision.kicker")}
+              </p>
+              <h2 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                {t("miningDivision.title")}
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/65">
+                {t("miningDivision.lede")}
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* capítulo Scroller — o destaque da divisão */}
+        <ScrollerChapter
+          kicker={t("scrollerChapter.kicker")}
+          title={t("scrollerChapter.title")}
+          lede={t("scrollerChapter.lede")}
+          points={scrollerPoints}
+          ctaPrimary={t("scrollerChapter.ctaPrimary")}
+          ctaSecondary={t("scrollerChapter.ctaSecondary")}
+          mediaNote={t("scrollerChapter.mediaNote")}
+          imageAlt={tServices("scroller.hero.imageAlt")}
+        />
+
+        {/* catálogo industrial completo — todos os demais produtos juntos */}
+        <div id="catalogo-industrial" className="scroll-mt-24 border-y border-border bg-card px-6 py-20">
+          <div className="mx-auto w-full max-w-7xl">
+            <ScrollReveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                {t("miningDivision.catalog.kicker")}
+              </p>
+              <h3 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+                {t("miningDivision.catalog.title")}
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                {t("miningDivision.catalog.text")}
+              </p>
+            </ScrollReveal>
+            <div className="mt-10">
+              <BentoSolutions items={productItems} ids={SOLUTION_IDS} />
+            </div>
+            <div className="mt-8">
+              <Link
+                href="/solucoes#mineracao"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-foreground"
+              >
+                {t("miningDivision.catalog.cta")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* transição — da matéria aos fluxos digitais */}
       <div aria-hidden="true" className="flex justify-center bg-[#0A0A0A]">
@@ -206,32 +276,6 @@ export default async function HomePage({ params }: Props) {
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* ── BASE INDUSTRIAL — faixa de continuidade ── */}
-      <section className="border-y border-border bg-background px-6 py-16">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
-          <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {t("industrial.kicker")}
-            </p>
-            <h2 className="mt-2 max-w-xl text-2xl font-bold text-foreground md:text-3xl">
-              {t("industrial.title")}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {t("industrial.text")}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={80}>
-            <Link
-              href="/solucoes"
-              className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-primary/40 px-6 py-3 text-sm font-semibold text-primary transition-colors duration-200 hover:bg-primary/10"
-            >
-              {t("industrial.cta")}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </ScrollReveal>
         </div>
       </section>
 

@@ -123,7 +123,7 @@ export function HeroStage({
           {/* entrada 01 — overlay mobile (no desktop quem identifica é a
               coluna editorial do grid) */}
           <a
-            href="#scroller"
+            href="#mineracao"
             aria-label={`${scroller.num} — ${scroller.label}: ${scroller.cta}`}
             className="absolute inset-0 flex flex-col justify-end focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#D4A847] lg:hidden"
           >
@@ -167,7 +167,7 @@ export function HeroStage({
                 {scroller.tagline}
               </p>
               <a
-                href="#scroller"
+                href="#mineracao"
                 className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#E8C877] transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847]"
               >
                 {scroller.cta}

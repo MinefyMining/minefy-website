@@ -33,12 +33,20 @@ export function MiningFooter({ year }: MiningFooterProps) {
   // there's no more separate sector-chooser splash to avoid linking back to.
   const homeHref = "/";
 
-  const solutionLinks = t.raw("solutionLinks") as Array<{ label: string; href: string }>;
+  // Duas divisões (CEO 2026-09-10) — a antiga coluna única "Soluções" virou
+  // duas colunas: Mineração e IA & TI, com título clicável pra âncora da
+  // divisão em /solucoes. (`footer.solutionLinks` permanece no JSON como
+  // referência histórica.)
+  const divisions = t.raw("divisions") as Array<{
+    title: string;
+    href: string;
+    links: Array<{ label: string; href: string }>;
+  }>;
 
   return (
     <footer className="bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
             <Link href={homeHref}>
@@ -71,17 +79,26 @@ export function MiningFooter({ year }: MiningFooterProps) {
             </div>
           </div>
 
-          {/* Solutions */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#D4A847] mb-4">{t("columns.solutions")}</h3>
-            <ul className="space-y-2.5">
-              {solutionLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <Link href={href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Divisões — Mineração · IA & TI */}
+          {divisions.map((division) => (
+            <div key={division.href}>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-4">
+                <Link
+                  href={division.href}
+                  className="text-[#D4A847] hover:text-[#C49B3F] transition-colors"
+                >
+                  {division.title}
+                </Link>
+              </h3>
+              <ul className="space-y-2.5">
+                {division.links.map(({ label, href }) => (
+                  <li key={href}>
+                    <Link href={href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           {/* Company */}
           <div>

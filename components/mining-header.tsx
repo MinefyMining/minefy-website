@@ -39,10 +39,15 @@ export function MiningHeader() {
 
   const homeHref = "/";
 
+  // Duas divisões no lugar do item único "Soluções" (CEO 2026-09-10):
+  // Mineração e IA & TI são as entradas principais — ambas vivem em
+  // /solucoes, ancoradas nas respectivas seções. A rota /solucoes e todas
+  // as âncoras antigas continuam válidas.
   const navLinks = [
     { key: "home", href: homeHref },
+    { key: "mining", href: "/solucoes#mineracao" },
+    { key: "iaTi", href: "/solucoes#ia-ti" },
     { key: "about", href: "/quem-somos" },
-    { key: "solutions", href: "/solucoes" },
     { key: "experiences", href: "/experiencias" },
     { key: "projects", href: "/projetos" },
     { key: "contact", href: "/contato" },
@@ -56,7 +61,12 @@ export function MiningHeader() {
   // internal and the external path (no rewrite touches them).
   const pathname = rawPathname === "/mineracao" ? "/" : rawPathname;
 
-  const isActive = (href: string) => (href === "/" ? pathname === href : pathname.startsWith(href));
+  // Hash não faz parte do pathname — compara só a base da rota (as duas
+  // divisões acendem juntas em /solucoes, o que é honesto: ambas vivem lá).
+  const isActive = (href: string) => {
+    const base = href.split("#")[0] || "/";
+    return base === "/" ? pathname === base : pathname.startsWith(base);
+  };
 
   return (
     <header

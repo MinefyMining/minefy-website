@@ -7,6 +7,8 @@
     "home": "Home",
     "about": "Quem Somos",
     "solutions": "Soluções",
+    "mining": "Mineração",
+    "iaTi": "IA & TI",
     "projects": "Projetos",
     "contact": "Contato",
     "platform": "Acessar Plataforma",
@@ -297,6 +299,47 @@
     },
     "hero": {
       "title": "Soluções para mineração de grande porte"
+    },
+    "divisions": {
+      "kicker": "Duas divisões",
+      "title": "Soluções Minefy",
+      "subtitle": "Da engenharia industrial que nos formou à camada de inteligência artificial e TI — escolha por onde entrar.",
+      "entries": [
+        {
+          "id": "mineracao",
+          "badge": "DIVISÃO 01",
+          "title": "Equipamentos e soluções para mineração",
+          "text": "Scroller, tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança e locações — o catálogo industrial completo.",
+          "href": "#mineracao",
+          "ctaLabel": "Ver a divisão de mineração"
+        },
+        {
+          "id": "ia-ti",
+          "badge": "DIVISÃO 02",
+          "title": "Inteligência artificial e TI",
+          "text": "IA corporativa, agentes autônomos e engenharia de software — a camada digital que conecta seus sistemas e decisões.",
+          "href": "#ia-ti",
+          "ctaLabel": "Ver a divisão de IA & TI"
+        }
+      ],
+      "mineracao": {
+        "kicker": "Divisão 01 · Mineração",
+        "title": "Equipamentos e soluções para mineração",
+        "lede": "O Scroller abre a frente de rejeitos; o catálogo industrial completo — hardware, telemetria, software e locações — sustenta a operação."
+      },
+      "scrollerFeature": {
+        "badge": "DESTAQUE DA DIVISÃO",
+        "title": "Scroller",
+        "text": "Equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos — opera sobre superfícies de baixa capacidade de suporte, com aplicabilidade definida por estudo de engenharia.",
+        "cta": "Conhecer o Scroller",
+        "ctaSecondary": "Falar com a engenharia",
+        "mediaNote": "Imagem ilustrativa."
+      },
+      "iaTi": {
+        "kicker": "Divisão 02 · IA & TI",
+        "title": "Inteligência artificial e TI",
+        "lede": "Modelos de IA conectados aos seus dados, agentes que executam com aprovação humana e engenharia de software sob escopo — a mesma engenharia da mina, aplicada aos fluxos digitais da sua empresa."
+      }
     },
     "items": [
       {
@@ -1208,6 +1251,33 @@
         "href": "/solucoes/servicos-ti"
       }
     ],
+    "divisions": [
+      {
+        "title": "Mineração",
+        "href": "/solucoes#mineracao",
+        "links": [
+          { "label": "Scroller", "href": "/solucoes/scroller" },
+          { "label": "Tablets Industriais", "href": "/solucoes#tablets" },
+          { "label": "ActiSky Telemetria", "href": "/solucoes#actisky" },
+          { "label": "Minefy Analytics", "href": "/solucoes#analytics" },
+          { "label": "Fleet 360", "href": "/solucoes#fleet360" },
+          { "label": "Minefy Safety", "href": "/solucoes#safety" },
+          { "label": "Consultoria", "href": "/solucoes#consulting" },
+          { "label": "Caminhonetes Operacionais", "href": "/solucoes#caminhonetes" },
+          { "label": "Compressores de Ar", "href": "/solucoes#compressores" }
+        ]
+      },
+      {
+        "title": "IA & TI",
+        "href": "/solucoes#ia-ti",
+        "links": [
+          { "label": "IA Corporativa", "href": "/solucoes/ia-corporativa" },
+          { "label": "Agentes Autônomos", "href": "/solucoes/agentes-autonomos" },
+          { "label": "Serviços de TI", "href": "/solucoes/servicos-ti" },
+          { "label": "Experiências de IA", "href": "/experiencias" }
+        ]
+      }
+    ],
     "social": {
       "instagram": "https://www.instagram.com/MinefyMiningSystem",
       "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
@@ -1266,8 +1336,8 @@
   },
   "corporateHome": {
     "metadata": {
-      "title": "Minefy — O próximo movimento: Scroller e IA",
-      "description": "Scroller — equipamento anfíbio para desaguamento e adensamento de rejeitos — e IA corporativa com agentes autônomos, sobre a engenharia industrial da Minefy."
+      "title": "Minefy — Equipamentos para mineração e IA corporativa",
+      "description": "Duas divisões, uma engenharia: equipamentos e soluções para mineração — Scroller, telemetria ActiSky, tablets industriais e gestão de frota — e inteligência artificial e TI para conectar sistemas e decisões da sua empresa."
     },
     "hero": {
       "badge": "Engenharia · IA · Operação",
@@ -1371,26 +1441,37 @@
       ]
     },
     "heroDual": {
-      "badge": "Duas novas frentes",
-      "title": "O próximo <gold>movimento</gold> da sua operação.",
-      "subtitle": "Um equipamento anfíbio para superfícies de rejeitos — e uma camada de IA que conecta seus sistemas e decisões, com aprovação humana.",
+      "badge": "Duas divisões · uma engenharia",
+      "title": "Equipamentos para a <gold>mina</gold>. Inteligência para a empresa.",
+      "subtitle": "Equipamentos e soluções para mineração — do Scroller à telemetria de frota — e uma divisão de inteligência artificial e TI que conecta seus sistemas e decisões, com aprovação humana.",
       "scenes": {
         "scroller": {
           "num": "01",
-          "label": "Scroller",
-          "tagline": "Propulsão helicoidal anfíbia para desaguamento e adensamento de rejeitos.",
-          "cta": "Conheça a Scroller"
+          "label": "Mineração",
+          "tagline": "Scroller em destaque — e o catálogo industrial completo: tablets, telemetria ActiSky, frota, segurança e locações.",
+          "cta": "Ver equipamentos e soluções"
         },
         "ia": {
           "num": "02",
-          "label": "Inteligência artificial",
-          "tagline": "IA corporativa e agentes autônomos.",
-          "cta": "Explore a IA"
+          "label": "IA & TI",
+          "tagline": "IA corporativa, agentes autônomos e engenharia de software.",
+          "cta": "Explorar IA & TI"
         }
       }
     },
+    "miningDivision": {
+      "kicker": "Divisão 01 · Mineração",
+      "title": "Equipamentos e soluções para mineração",
+      "lede": "Do equipamento anfíbio ao dado da frota: o Scroller abre a frente de rejeitos e o catálogo industrial completo sustenta a operação — hardware, telemetria, software e locações.",
+      "catalog": {
+        "kicker": "Catálogo industrial",
+        "title": "Todas as soluções de mineração, em um só lugar",
+        "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança, consultoria e locações — cada item detalhado na página de soluções.",
+        "cta": "Ver o catálogo detalhado"
+      }
+    },
     "scrollerChapter": {
-      "kicker": "01 · Nova frente",
+      "kicker": "Destaque da divisão",
       "title": "Scroller",
       "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento do material.",
       "points": [
@@ -1412,7 +1493,7 @@
       "mediaNote": "Imagem ilustrativa."
     },
     "iaChapter": {
-      "kicker": "02 · Inteligência aplicada",
+      "kicker": "Divisão 02 · IA & TI",
       "title": "Do terreno físico aos fluxos digitais",
       "lede": "A mesma engenharia que lê o barramento do equipamento pesado conecta agora os sistemas da sua empresa a modelos de IA — com escopo definido e aprovação humana onde você decidir.",
       "offers": [
