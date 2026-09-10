@@ -471,6 +471,15 @@ export default async function SolutionsPage({ params }: Props) {
         })}
       </div>
 
+      {/* ── FAQ industrial — preservada na jornada de mineração (CODEX-UX):
+          a home virou corporativa e a FAQ de gestor de mina vive AQUI. ── */}
+      <FaqSection
+        title={tHome("faq.title")}
+        subtitle={tHome("faq.subtitle")}
+        items={tHome.raw("faq.items") as Array<{ q: string; a: string }>}
+      />
+
+
       {/* ── DIVISÃO 02 · IA & TI — ofertas digitais depois do catálogo
              industrial (ordem definida pelo CEO 2026-09-10) ── */}
       <section id="ia-ti" className="scroll-mt-24 border-t border-border bg-card px-6 py-20">
@@ -512,14 +521,6 @@ export default async function SolutionsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      {/* ── FAQ industrial — preservada na jornada de mineração (CODEX-UX):
-          a home virou corporativa e a FAQ de gestor de mina vive AQUI. ── */}
-      <FaqSection
-        title={tHome("faq.title")}
-        subtitle={tHome("faq.subtitle")}
-        items={tHome.raw("faq.items") as Array<{ q: string; a: string }>}
-      />
 
       <section className="py-20 px-6 text-center">
         <ScrollReveal>

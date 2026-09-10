@@ -61,11 +61,13 @@ export function MiningHeader() {
   // internal and the external path (no rewrite touches them).
   const pathname = rawPathname === "/mineracao" ? "/" : rawPathname;
 
-  // Hash não faz parte do pathname — compara só a base da rota (as duas
-  // divisões acendem juntas em /solucoes, o que é honesto: ambas vivem lá).
+  // As divisões compartilham o hub: nele nenhuma fica falsamente ativa.
+  // Nas páginas de produto, destaca apenas a divisão correspondente.
   const isActive = (href: string) => {
-    const base = href.split("#")[0] || "/";
-    return base === "/" ? pathname === base : pathname.startsWith(base);
+    const digital = ["/solucoes/ia-corporativa", "/solucoes/agentes-autonomos", "/solucoes/servicos-ti"];
+    if (href === "/solucoes#ia-ti") return digital.includes(pathname);
+    if (href === "/solucoes#mineracao") return pathname === "/solucoes/scroller";
+    return href === "/" ? pathname === href : pathname.startsWith(href);
   };
 
   return (
@@ -133,7 +135,7 @@ export function MiningHeader() {
               </div>
               <nav className="mt-6 flex flex-col gap-1 flex-1">
                 {navLinks.map(({ key, href }) => (
-                  <Link
+                  <a
                     key={key}
                     href={href}
                     onClick={() => setOpen(false)}
@@ -144,7 +146,7 @@ export function MiningHeader() {
                     }`}
                   >
                     {t(key)}
-                  </Link>
+                  </a>
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">
