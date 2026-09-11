@@ -101,6 +101,13 @@ describe("card #compressores usa fotografia real AUTORIZADA (direção de arte C
     "agent-portrait.jpg",
     "compressor-studio.jpg",
     "scroller-cinematic.jpg",
+    // Rodada 2026-09-11 (entrega Codex, proveniência registrada em
+    // shared/website-evolution-2026-09-09/): recorte alpha da máquina
+    // inteira (card do hub, object-contain sem texto por cima) e
+    // reconstrução ilustrativa do projeto (segunda imagem do capítulo
+    // Scroller, sem zoom). Guard de marcas segue integral sobre ambos.
+    "scroller-isolated.png",
+    "scroller-project.jpg",
   ];
 
   it("a imagem do card é a fotografia tratada autorizada", () => {

@@ -168,57 +168,71 @@ export default async function SolutionsPage({ params }: Props) {
             </p>
           </ScrollReveal>
 
-          {/* Scroller — destaque da divisão, fotografia premium */}
+          {/* Scroller — destaque da divisão. Rodada 2026-09-11 (CEO): a
+              máquina aparece INTEIRA (recorte alpha `scroller-isolated.png`,
+              object-contain, palco de estúdio) e o texto vive num bloco
+              PRÓPRIO ao lado — nada de copy sobre a máquina, nada de corte. */}
           <ScrollReveal delay={80}>
             <div
               id="scroller"
-              className="relative mt-10 scroll-mt-24 overflow-hidden rounded-2xl border border-border"
+              className="mt-10 grid scroll-mt-24 grid-cols-1 overflow-hidden rounded-2xl border border-border lg:grid-cols-[1.15fr_1fr]"
             >
-              <div className="relative min-h-[380px] md:min-h-[440px]">
+              {/* palco da máquina — imagem inteira, sem texto por cima */}
+              <div className="relative flex min-h-[300px] items-center justify-center bg-gradient-to-b from-[#181818] to-[#0B0B0B] p-6 md:min-h-[380px] md:p-10">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(110% 75% at 50% 34%, rgba(255,255,255,0.06), transparent 62%)",
+                  }}
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-24"
+                  style={{
+                    background:
+                      "radial-gradient(60% 100% at 50% 100%, rgba(212,168,71,0.14), transparent 70%)",
+                  }}
+                  aria-hidden="true"
+                />
                 <Image
-                  src="/images/premium/scroller-cinematic.jpg"
+                  src="/images/premium/scroller-isolated.png"
                   alt={tScroller("hero.imageAlt")}
                   fill
-                  sizes="(max-width: 1200px) 100vw, 1152px"
-                  className="object-cover"
-                  style={{ objectPosition: "35% 55%" }}
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="relative z-10 object-contain p-6 md:p-10"
+                  style={{ filter: "drop-shadow(0 24px 40px rgba(0,0,0,0.55))" }}
                 />
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/90 via-[#0A0A0A]/55 to-[#0A0A0A]/15"
-                  aria-hidden="true"
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0A0A0A]/85 to-transparent"
-                  aria-hidden="true"
-                />
-                <div className="relative z-10 flex h-full min-h-[380px] flex-col justify-end p-8 md:min-h-[440px] md:p-12">
-                  <span className="inline-block w-fit rounded-full border border-[#D4A847]/40 bg-[#0A0A0A]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#E8C877]">
-                    {t("divisions.scrollerFeature.badge")}
-                  </span>
-                  <h3 className="mt-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-                    {t("divisions.scrollerFeature.title")}
-                  </h3>
-                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
-                    {t("divisions.scrollerFeature.text")}
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <Link
-                      href="/solucoes/scroller"
-                      className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
-                    >
-                      {t("divisions.scrollerFeature.cta")}
-                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                    </Link>
-                    <Link
-                      href="/contato?servico=scroller"
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/5 px-6 py-3 text-sm font-medium text-white transition-colors duration-200 hover:border-white/45 hover:bg-white/10"
-                    >
-                      {t("divisions.scrollerFeature.ctaSecondary")}
-                    </Link>
-                  </div>
-                  <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40">
-                    {t("divisions.scrollerFeature.mediaNote")}
-                  </p>
+                <p className="absolute bottom-3 right-4 z-10 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40">
+                  {t("divisions.scrollerFeature.mediaNote")}
+                </p>
+              </div>
+
+              {/* bloco editorial — separado da máquina */}
+              <div className="flex flex-col justify-center border-t border-border bg-card p-8 md:p-12 lg:border-l lg:border-t-0">
+                <span className="inline-block w-fit rounded-full border border-[#D4A847]/40 bg-[#0A0A0A]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#E8C877]">
+                  {t("divisions.scrollerFeature.badge")}
+                </span>
+                <h3 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                  {t("divisions.scrollerFeature.title")}
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {t("divisions.scrollerFeature.text")}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href="/solucoes/scroller"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
+                  >
+                    {t("divisions.scrollerFeature.cta")}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <Link
+                    href="/contato?servico=scroller"
+                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/50"
+                  >
+                    {t("divisions.scrollerFeature.ctaSecondary")}
+                  </Link>
                 </div>
               </div>
             </div>
