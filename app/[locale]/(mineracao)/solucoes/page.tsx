@@ -26,6 +26,8 @@ export default async function SolutionsPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("solutions");
   const tHome = await getTranslations("home");
+  const tAI = await getTranslations("corporateHome.iaChapter");
+  const aiAreas = tAI.raw("areas.items") as Array<{title: string; automate: string; deliver: string}>;
   const tHub = await getTranslations("services.hub.fronts");
   const tScroller = await getTranslations("services.scroller");
 
@@ -509,7 +511,25 @@ export default async function SolutionsPage({ params }: Props) {
               {t("divisions.iaTi.lede")}
             </p>
           </ScrollReveal>
-          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="my-12 border-y border-primary/20 py-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{tAI("operation.kicker")}</p>
+            <h3 className="mt-3 max-w-3xl text-2xl font-bold text-foreground md:text-3xl">{tAI("operation.title")}</h3>
+            <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">{tAI("operation.text")}</p>
+          </div>
+          <h3 className="text-2xl font-bold text-foreground">{tAI("areas.title")}</h3>
+          <div className="mt-7 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+            {aiAreas.map((area, index) => (
+              <article key={area.title} className="border-t border-border pt-5">
+                <p className="text-xs font-mono text-primary">{String(index + 1).padStart(2, "0")}</p>
+                <h4 className="mt-2 text-lg font-semibold text-foreground">{area.title}</h4>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{area.automate}</p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/85"><span className="font-semibold">O que você recebe: </span>{area.deliver}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 text-xs leading-relaxed text-muted-foreground">{tAI("areas.note")}</p>
+          <h3 className="mt-14 text-2xl font-bold text-foreground">Três formas de transformar sua operação</h3>
+          <div className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-3">
             {digitalFronts.map((front, i) => (
               <ScrollReveal key={front.id} delay={i * 70} className="h-full">
                 <Link href={front.href} className="block h-full">

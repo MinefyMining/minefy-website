@@ -11,6 +11,10 @@ export interface ServicePageData {
   scopeNote?: string;
   examples?: string[];
   examplesNote?: string;
+  /** Casos por departamento (rodada IA & TI 2026-09-11) — demonstrativos. */
+  departments?: Array<{ title: string; text: string }>;
+  /** Régua de implantação: diagnóstico → piloto → integração → evolução. */
+  process?: Array<{ step: string; title: string; text: string }>;
   deliverables: string[];
   cta: string;
   /** `?servico=` value the contact form pre-selects for this service. */
@@ -20,6 +24,8 @@ export interface ServicePageData {
     deliverables: string;
     examples: string;
     backToHub: string;
+    departments?: string;
+    process?: string;
   };
 }
 
@@ -99,6 +105,33 @@ export function ServicePage({ data }: { data: ServicePageData }) {
         </div>
       </section>
 
+      {/* ── Casos por departamento (demonstrativos) ── */}
+      {data.departments && data.labels.departments && (
+        <section className="px-6 py-8">
+          <div className="mx-auto max-w-5xl">
+            <ScrollReveal>
+              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                {data.labels.departments}
+              </h2>
+            </ScrollReveal>
+            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {data.departments.map((dep, i) => (
+                <ScrollReveal key={dep.title} delay={i * 60}>
+                  <div className="h-full rounded-xl border border-border bg-card p-6 transition-colors duration-200 hover:border-[#D4A847]/40">
+                    <h3 className="text-base font-semibold text-foreground">
+                      {dep.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {dep.text}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── Examples (illustrative) ── */}
       {data.examples && (
         <section className="px-6 py-8">
@@ -154,6 +187,45 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           </ol>
         </div>
       </section>
+
+      {/* ── Processo de implantação ── */}
+      {data.process && data.labels.process && (
+        <section className="border-t border-border px-6 py-16">
+          <div className="mx-auto max-w-5xl">
+            <ScrollReveal>
+              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                {data.labels.process}
+              </h2>
+            </ScrollReveal>
+            <ol className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {data.process.map((p, i) => (
+                <li key={p.step} className="h-full">
+                  <ScrollReveal
+                    delay={i * 70}
+                    className="relative flex h-full flex-col rounded-xl border border-border bg-card p-6"
+                  >
+                    <span className="font-mono text-sm font-bold text-primary">
+                      {p.step}
+                    </span>
+                    <h3 className="mt-3 text-base font-semibold text-foreground">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {p.text}
+                    </p>
+                    {i < data.process!.length - 1 && (
+                      <ArrowRight
+                        className="absolute -right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-primary/50 lg:block"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </ScrollReveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
 
       {/* ── CTA ── */}
       <section className="px-6 py-16 text-center">

@@ -36,6 +36,8 @@ export async function buildServiceData(slug: ServiceSlug): Promise<ServicePageDa
   const hasExamples = t.has("examples");
   const hasScopeNote = t.has("scopeNote");
   const hasExamplesNote = t.has("examplesNote");
+  const hasDepartments = t.has("departments");
+  const hasProcess = t.has("process");
 
   return {
     badge: t("badge"),
@@ -45,6 +47,12 @@ export async function buildServiceData(slug: ServiceSlug): Promise<ServicePageDa
     scopeNote: hasScopeNote ? t("scopeNote") : undefined,
     examples: hasExamples ? (t.raw("examples") as string[]) : undefined,
     examplesNote: hasExamplesNote ? t("examplesNote") : undefined,
+    departments: hasDepartments
+      ? (t.raw("departments") as Array<{ title: string; text: string }>)
+      : undefined,
+    process: hasProcess
+      ? (t.raw("process") as Array<{ step: string; title: string; text: string }>)
+      : undefined,
     deliverables: t.raw("deliverables") as string[],
     cta: t("cta"),
     contactInterest: interest,
@@ -53,6 +61,8 @@ export async function buildServiceData(slug: ServiceSlug): Promise<ServicePageDa
       deliverables: tLabels("deliverables"),
       examples: tLabels("examples"),
       backToHub: tLabels("backToHub"),
+      departments: tLabels("departments"),
+      process: tLabels("process"),
     },
   };
 }

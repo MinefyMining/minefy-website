@@ -1256,25 +1256,64 @@
         "title": "Mineração",
         "href": "/solucoes#mineracao",
         "links": [
-          { "label": "Scroller", "href": "/solucoes/scroller" },
-          { "label": "Tablets Industriais", "href": "/solucoes#tablets" },
-          { "label": "ActiSky Telemetria", "href": "/solucoes#actisky" },
-          { "label": "Minefy Analytics", "href": "/solucoes#analytics" },
-          { "label": "Fleet 360", "href": "/solucoes#fleet360" },
-          { "label": "Minefy Safety", "href": "/solucoes#safety" },
-          { "label": "Consultoria", "href": "/solucoes#consulting" },
-          { "label": "Caminhonetes Operacionais", "href": "/solucoes#caminhonetes" },
-          { "label": "Compressores de Ar", "href": "/solucoes#compressores" }
+          {
+            "label": "Scroller",
+            "href": "/solucoes/scroller"
+          },
+          {
+            "label": "Tablets Industriais",
+            "href": "/solucoes#tablets"
+          },
+          {
+            "label": "ActiSky Telemetria",
+            "href": "/solucoes#actisky"
+          },
+          {
+            "label": "Minefy Analytics",
+            "href": "/solucoes#analytics"
+          },
+          {
+            "label": "Fleet 360",
+            "href": "/solucoes#fleet360"
+          },
+          {
+            "label": "Minefy Safety",
+            "href": "/solucoes#safety"
+          },
+          {
+            "label": "Consultoria",
+            "href": "/solucoes#consulting"
+          },
+          {
+            "label": "Caminhonetes Operacionais",
+            "href": "/solucoes#caminhonetes"
+          },
+          {
+            "label": "Compressores de Ar",
+            "href": "/solucoes#compressores"
+          }
         ]
       },
       {
         "title": "IA & TI",
         "href": "/solucoes#ia-ti",
         "links": [
-          { "label": "IA Corporativa", "href": "/solucoes/ia-corporativa" },
-          { "label": "Agentes Autônomos", "href": "/solucoes/agentes-autonomos" },
-          { "label": "Serviços de TI", "href": "/solucoes/servicos-ti" },
-          { "label": "Experiências de IA", "href": "/experiencias" }
+          {
+            "label": "IA Corporativa",
+            "href": "/solucoes/ia-corporativa"
+          },
+          {
+            "label": "Agentes Autônomos",
+            "href": "/solucoes/agentes-autonomos"
+          },
+          {
+            "label": "Serviços de TI",
+            "href": "/solucoes/servicos-ti"
+          },
+          {
+            "label": "Experiências de IA",
+            "href": "/experiencias"
+          }
         ]
       }
     ],
@@ -1496,6 +1535,48 @@
       "kicker": "Divisão 02 · IA & TI",
       "title": "Do terreno físico aos fluxos digitais",
       "lede": "A mesma engenharia que lê o barramento do equipamento pesado conecta agora os sistemas da sua empresa a modelos de IA — com escopo definido e aprovação humana onde você decidir.",
+      "operation": {
+        "kicker": "Aplicada na nossa operação",
+        "title": "A IA que já faz parte da nossa operação pode transformar a sua.",
+        "text": "Na Minefy, agentes de IA apoiam gestão, finanças, comercial, conteúdo e engenharia no dia a dia da empresa. Transformamos essa experiência em projetos sob medida: conectados aos seus sistemas, com responsabilidades claras e acompanhamento humano."
+      },
+      "areas": {
+        "kicker": "Casos por departamento",
+        "title": "Onde a IA entra na sua empresa",
+        "note": "Exemplos demonstrativos do tipo de aplicação por área — cada projeto parte de um diagnóstico do seu contexto, e as integrações são desenhadas e validadas caso a caso.",
+        "items": [
+          {
+            "title": "Comercial",
+            "automate": "Pesquisar e organizar oportunidades, preparar abordagens e propostas, acompanhar follow-ups e consolidar o pipeline.",
+            "deliver": "Assistente comercial com fontes e histórico, integrado ao CRM e aos canais aprovados."
+          },
+          {
+            "title": "Financeiro",
+            "automate": "Consolidar informações de caixa, apoiar a conferência documental, preparar relatórios e sinalizar pendências.",
+            "deliver": "Fluxo documentos → conferência → exceções → aprovação → relatório. Decisões e pagamentos permanecem com os responsáveis."
+          },
+          {
+            "title": "Operações e gestão",
+            "automate": "Reunir KPIs e entregas, resumir bloqueios, preparar briefings executivos e manter o acompanhamento recorrente.",
+            "deliver": "Agente gestor com painel, notificações e trilha de execução."
+          },
+          {
+            "title": "Marketing",
+            "automate": "Pesquisar pautas, manter o calendário, preparar rascunhos e variações de conteúdo e acompanhar a publicação.",
+            "deliver": "Fluxo editorial com identidade de marca e aprovação humana antes de publicar nos canais autorizados."
+          },
+          {
+            "title": "Conhecimento e documentos",
+            "automate": "Consultar políticas e manuais, resumir e classificar documentos, rastrear a fonte e encaminhar para revisão.",
+            "deliver": "Busca corporativa com permissões e respostas vinculadas às fontes. Não substitui parecer jurídico."
+          },
+          {
+            "title": "Engenharia e suporte",
+            "automate": "Apoiar o desenvolvimento, triar e diagnosticar chamados, manter documentação e integrações.",
+            "deliver": "Sistemas web, APIs, painéis, automações e manutenção sob escopo."
+          }
+        ]
+      },
       "offers": [
         {
           "title": "IA corporativa",
@@ -1508,10 +1589,45 @@
           "text": "Agentes que executam tarefas de ponta a ponta dentro do escopo autorizado — consultam sistemas, preparam documentos e registram tudo.",
           "href": "/solucoes/agentes-autonomos",
           "cta": "Agentes autônomos"
+        },
+        {
+          "title": "Serviços de TI",
+          "text": "Aplicações web, portais e dashboards, APIs e integrações com ERP/CRM, dados e migrações planejadas, cloud e sustentação — a base integrada que a IA precisa para funcionar de verdade.",
+          "href": "/solucoes/servicos-ti",
+          "cta": "Serviços de TI"
         }
       ],
-      "tiNote": "Sustentado por serviços de TI sob medida — integrações, APIs e engenharia de software.",
-      "tiCta": "Serviços de TI"
+      "process": {
+        "kicker": "Como implantamos",
+        "title": "Do diagnóstico à evolução contínua",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Diagnóstico",
+            "text": "Entendemos processos, sistemas e dados; escolhemos frentes com resultado mensurável e definimos escopo e limites de acesso."
+          },
+          {
+            "step": "02",
+            "title": "Piloto medido",
+            "text": "Uma frente entra em operação com critérios de qualidade definidos antes do go-live — a decisão de escalar vem do resultado."
+          },
+          {
+            "step": "03",
+            "title": "Integração",
+            "text": "Conexão aos sistemas do fluxo real, permissões segregadas, aprovação humana nos pontos definidos e registro auditável."
+          },
+          {
+            "step": "04",
+            "title": "Evolução",
+            "text": "Acompanhamento, medição e evolução contínua do que está em produção, sob escopo contratado."
+          }
+        ]
+      },
+      "diagnosis": {
+        "title": "Quer saber onde a IA gera valor na sua operação?",
+        "text": "Uma conversa de diagnóstico mapeia oportunidades no seu contexto — sem compromisso com ferramenta ou fornecedor.",
+        "button": "Mapear oportunidades de IA"
+      }
     },
     "industrial": {
       "kicker": "A base industrial",
@@ -1525,7 +1641,7 @@
       "items": [
         {
           "q": "O que a Minefy faz hoje?",
-          "a": "Três movimentos que se alimentam: operamos telemetria e gestão de frota para operações industriais (a jornada completa está em Soluções); estruturamos a frente Scroller — equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos, com aplicação dimensionada por estudo; e aplicamos a mesma engenharia em IA corporativa, agentes autônomos e serviços de TI sob medida."
+          "a": "Atuamos em duas divisões. Em mineração, reunimos Scroller, tablets industriais, telemetria ActiSky, gestão de frota, segurança e locações. Em IA e TI, integramos inteligência artificial aos sistemas da empresa, criamos agentes autônomos sob medida e desenvolvemos aplicações, APIs e automações."
         },
         {
           "q": "O que é IA corporativa aplicada ao meu negócio?",
@@ -1565,7 +1681,9 @@
       "scope": "O que fazemos",
       "deliverables": "Entregáveis",
       "examples": "Exemplos demonstrativos",
-      "backToHub": "Todas as soluções"
+      "backToHub": "Todas as soluções",
+      "departments": "Casos por departamento",
+      "process": "Como implantamos"
     },
     "hub": {
       "metadata": {

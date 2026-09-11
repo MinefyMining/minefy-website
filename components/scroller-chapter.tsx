@@ -20,18 +20,16 @@ interface ScrollerChapterProps {
 }
 
 /**
- * Capítulo 01 da home — Scroller. Direção de arte 2026-09-09: o hero
- * mostra a máquina COMPLETA no palco; o capítulo muda de enquadramento e
- * mostra o DETALHE MECÂNICO — recorte intencional sobre os tambores
- * helicoidais (mesma fotografia cinematográfica, enquadrada por
- * object-position + scale, sem novo binário). Editorial horizontal:
- * mídia à esquerda, título e narrativa ao lado — diferente da composição
- * do hero, que ancora o texto sobre a base da foto.
+ * Capítulo 01 da home — Scroller. Rodada 2026-09-11 (CEO): o recorte com
+ * zoom sobre os tambores foi REJEITADO — o capítulo agora muda de registro
+ * em relação ao hero: lá a fotografia cinematográfica, aqui a VISUALIZAÇÃO
+ * DE PROJETO (`scroller-project.jpg`, asset Codex 11/09) com a máquina
+ * INTEIRA em `object-contain`, sem scale/zoom, sobre palco de estúdio
+ * escuro. Editorial horizontal preservado: mídia à esquerda, narrativa ao
+ * lado. Legenda "Visualização ilustrativa do projeto" discreta.
  *
  * Revelação em máscara (`.reveal-mask` via IntersectionObserver — sem
- * scrolljacking) e drift sutil transform-only (`.chapter-parallax`,
- * progressive enhancement + reduced-motion off). Server Component;
- * mídia lazy (abaixo da dobra). Legenda "Imagem ilustrativa" discreta.
+ * scrolljacking). Server Component; mídia lazy (abaixo da dobra).
  */
 export function ScrollerChapter({
   kicker,
@@ -40,8 +38,6 @@ export function ScrollerChapter({
   points,
   ctaPrimary,
   ctaSecondary,
-  mediaNote,
-  imageAlt,
 }: ScrollerChapterProps) {
   return (
     <section id="scroller" className="scroll-mt-20 bg-[#0A0A0A] pb-24 pt-16">
@@ -49,14 +45,13 @@ export function ScrollerChapter({
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
         <ScrollReveal>
           <figure className="reveal-mask relative h-[46vh] min-h-[320px] max-h-[620px] w-full overflow-hidden lg:h-[56vh]">
-            <div className="chapter-parallax absolute inset-0 will-change-transform">
+            <div className="absolute inset-0">
               <Image
-                src="/images/premium/scroller-cinematic.jpg"
-                alt={imageAlt}
+                src="/images/premium/scroller-project.jpg"
+                alt="Visualização ilustrativa do projeto Scroller com o equipamento inteiro"
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
-                className="scale-[1.65] object-cover lg:scale-[1.8]"
-                style={{ objectPosition: "44% 76%" }}
+                className="object-contain p-4"
               />
             </div>
             {/* leitura sem esconder a mecânica */}
@@ -65,13 +60,9 @@ export function ScrollerChapter({
               aria-hidden="true"
             />
             <div className="grain absolute inset-0" aria-hidden="true" />
-            <figcaption className="absolute bottom-3.5 right-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/45">
-              {mediaNote}
+            <figcaption className="absolute inset-x-4 bottom-3 text-center text-[11px] leading-relaxed text-white/65">
+              Visualização ilustrativa do projeto
             </figcaption>
-            {/* régua de escala editorial no pé do recorte */}
-            <p className="absolute bottom-3.5 left-4 font-mono text-[10px] uppercase tracking-[0.25em] text-[#E8C877]/80">
-              Propulsão helicoidal · detalhe
-            </p>
           </figure>
         </ScrollReveal>
 

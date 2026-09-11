@@ -104,6 +104,18 @@ export default async function HomePage({ params }: Props) {
     cta: string;
   }>;
 
+  const iaAreas = t.raw("iaChapter.areas.items") as Array<{
+    title: string;
+    automate: string;
+    deliver: string;
+  }>;
+
+  const iaProcess = t.raw("iaChapter.process.steps") as Array<{
+    step: string;
+    title: string;
+    text: string;
+  }>;
+
   // FAQ corporativa — a FAQ industrial continua íntegra em /solucoes.
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
@@ -214,8 +226,62 @@ export default async function HomePage({ params }: Props) {
             </p>
           </ScrollReveal>
 
-          {/* as duas ofertas de IA — régua editorial, sem grade de cards */}
-          <div className="mt-12 grid grid-cols-1 gap-10 border-y border-white/10 py-10 lg:grid-cols-2 lg:gap-16">
+          {/* faixa "Aplicada na nossa operação" — a prova antes da oferta
+              (expansão IA & TI 2026-09-11, conteúdo validado) */}
+          <ScrollReveal delay={80}>
+            <div className="mt-12 rounded-2xl border border-[#7FB4D8]/25 bg-[#0B0E12] p-8 md:p-10">
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#9FC6E2]">
+                {t("iaChapter.operation.kicker")}
+              </p>
+              <p className="mt-3 max-w-3xl text-xl font-semibold leading-snug text-white md:text-2xl">
+                {t("iaChapter.operation.title")}
+              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/65 md:text-base">
+                {t("iaChapter.operation.text")}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* matriz de casos por departamento — o que automatiza · o que
+              entregamos, sem promessa de número */}
+          <div className="mt-14">
+            <ScrollReveal>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#9FC6E2]">
+                {t("iaChapter.areas.kicker")}
+              </p>
+              <h3 className="mt-3 text-2xl font-bold text-white md:text-3xl">
+                {t("iaChapter.areas.title")}
+              </h3>
+            </ScrollReveal>
+            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {iaAreas.map((area, i) => (
+                <ScrollReveal key={area.title} delay={i * 60}>
+                  <div className="flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 hover:border-[#7FB4D8]/40">
+                    <h4 className="text-base font-semibold text-white">
+                      {area.title}
+                    </h4>
+                    <p className="mt-2.5 text-sm leading-relaxed text-white/60">
+                      {area.automate}
+                    </p>
+                    <p className="mt-auto border-t border-white/10 pt-3 text-sm leading-relaxed text-white/75">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9FC6E2]">
+                        Entrega ·{" "}
+                      </span>
+                      {area.deliver}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+            <ScrollReveal delay={100}>
+              <p className="mt-5 max-w-3xl text-xs leading-relaxed text-white/45">
+                {t("iaChapter.areas.note")}
+              </p>
+            </ScrollReveal>
+          </div>
+
+          {/* as três ofertas — régua editorial, sem grade de cards */}
+          <div className="mt-14 grid grid-cols-1 gap-10 border-y border-white/10 py-10 lg:grid-cols-3 lg:gap-14">
             {iaOffers.map((offer, i) => (
               <ScrollReveal key={offer.href} delay={i * 110}>
                 <Link
@@ -246,17 +312,64 @@ export default async function HomePage({ params }: Props) {
             ))}
           </div>
 
-          {/* TI como sustentação — uma linha, não uma porta */}
-          <ScrollReveal delay={120}>
-            <p className="mt-6 text-sm text-white/50">
-              {t("iaChapter.tiNote")}{" "}
+          {/* régua de implantação — diagnóstico → piloto → integração →
+              evolução */}
+          <div className="mt-12">
+            <ScrollReveal>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#9FC6E2]">
+                {t("iaChapter.process.kicker")}
+              </p>
+              <h3 className="mt-3 text-2xl font-bold text-white md:text-3xl">
+                {t("iaChapter.process.title")}
+              </h3>
+            </ScrollReveal>
+            <ol className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {iaProcess.map((s, i) => (
+                <li key={s.step} className="h-full">
+                  <ScrollReveal
+                    delay={i * 70}
+                    className="relative flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-6"
+                  >
+                    <span className="font-mono text-sm font-bold text-[#9FC6E2]">
+                      {s.step}
+                    </span>
+                    <h4 className="mt-3 text-base font-semibold text-white">
+                      {s.title}
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">
+                      {s.text}
+                    </p>
+                    {i < iaProcess.length - 1 && (
+                      <ArrowRight
+                        className="absolute -right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-[#7FB4D8]/50 lg:block"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </ScrollReveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* CTA de diagnóstico — a porta de entrada da divisão */}
+          <ScrollReveal delay={90}>
+            <div className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-[#D4A847]/30 bg-gradient-to-r from-[#14110B] to-[#0B0E12] p-8 md:flex-row md:items-center md:p-10">
+              <div>
+                <p className="text-xl font-bold text-white md:text-2xl">
+                  {t("iaChapter.diagnosis.title")}
+                </p>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/60">
+                  {t("iaChapter.diagnosis.text")}
+                </p>
+              </div>
               <Link
-                href="/solucoes/servicos-ti"
-                className="font-medium text-white/80 underline underline-offset-4 transition-colors hover:text-white"
+                href="/contato?servico=ia-corporativa"
+                className="btn-sheen inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847]"
               >
-                {t("iaChapter.tiCta")}
+                {t("iaChapter.diagnosis.button")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-            </p>
+            </div>
           </ScrollReveal>
 
           <div id="agente-minefy" className="mx-auto mt-12 max-w-2xl scroll-mt-24">

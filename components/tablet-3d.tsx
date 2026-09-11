@@ -330,7 +330,7 @@ export default function Tablet3D({
 
   return (
     <Canvas
-      camera={{ position: [0, 0, 6.2], fov: 34 }}
+      camera={{ position: [0, 0, 7.4], fov: 34 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
       frameloop={reducedMotion ? "demand" : "always"}

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ScrollerShowcase } from "@/components/scroller-showcase";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -30,44 +30,24 @@ export default async function ScrollerPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("services.scroller");
-  const tChapter = await getTranslations("corporateHome.scrollerChapter");
 
   const sections = t.raw("sections") as Array<{ title: string; text: string }>;
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ── Hero — fotografia dominante ── */}
-      <section className="relative flex min-h-[74vh] flex-col justify-end overflow-hidden bg-[#0A0A0A]">
-        <Image
-          src="/images/premium/scroller-cinematic.jpg"
-          alt={t("hero.imageAlt")}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: "40% 45%" }}
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/25 to-[#0A0A0A]/45"
-          aria-hidden="true"
-        />
-        <p className="absolute bottom-4 right-5 font-mono text-[10px] uppercase tracking-[0.25em] text-white/45">
-          {tChapter("mediaNote")}
-        </p>
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-14 pt-36">
-          <Link
-            href="/solucoes"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-white/60 transition-colors hover:text-white"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
-            {t("backToHub")}
+      <section className="bg-[#0A0A0A] px-6 pb-16 pt-32">
+        <div className="mx-auto max-w-7xl">
+          <Link href="/solucoes#mineracao" className="inline-flex items-center gap-1.5 text-sm text-white/65 hover:text-white">
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />{t("backToHub")}
           </Link>
-          <p className="mt-6 font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
-            {t("hero.kicker")}
-          </p>
-          <h1 className="mt-3 text-6xl font-extrabold tracking-tight text-white sm:text-8xl">
-            {t("hero.title")}
-          </h1>
+          <div className="mb-10 mt-8 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">{t("hero.kicker")}</p>
+              <h1 className="mt-3 text-6xl font-extrabold tracking-tight text-white sm:text-8xl">{t("hero.title")}</h1>
+            </div>
+            <p className="max-w-md text-base leading-relaxed text-white/65">Conheça a configuração do equipamento e a visualização do projeto. Alterne as vistas e amplie para explorar os detalhes.</p>
+          </div>
+          <ScrollerShowcase />
         </div>
       </section>
 
