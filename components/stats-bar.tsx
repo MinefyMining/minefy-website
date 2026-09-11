@@ -41,14 +41,21 @@ function parseTarget(target: string): ParsedTarget {
 
 function useCountUp(target: string, isVisible: boolean) {
   const parsed = useMemo(() => parseTarget(target), [target]);
-  // Non-animatable targets render verbatim from the first paint (derived state,
-  // no effect needed). Animatable ones count up from "0" once visible.
-  const [display, setDisplay] = useState(() =>
-    parsed.animatable ? "0" : target
-  );
+  // The FINAL value is rendered from the very first paint (SSR/no-JS included)
+  // — the count-up is purely decorative and only replaces it after the item
+  // scrolls into view on a client that allows motion. This keeps the initial
+  // HTML honest: crawlers/readers/no-JS visitors never see "0".
+  const [display, setDisplay] = useState(target);
 
   useEffect(() => {
     if (!isVisible || !parsed.animatable) return;
+    // Decorative animation only — skipped under prefers-reduced-motion.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     const { prefix, suffix, numericValue, isDecimal, decimalPlaces } = parsed;
     const duration = 1800;

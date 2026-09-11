@@ -1,16 +1,19 @@
+import { AiDivisionIntro } from "@/components/ai-division-intro";
+import type { ComponentType } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
+import { ArrowRight, Plug, Rocket, Activity, RefreshCcw } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
-import { BentoSolutions } from "@/components/bento-solutions";
 import { ClientCarousel } from "@/components/client-carousel";
-import { HeroHome } from "@/components/hero-home";
+import { HeroStage } from "@/components/hero-stage";
+import { ScrollerChapter } from "@/components/scroller-chapter";
+import { BentoSolutions, type SolutionItem } from "@/components/bento-solutions";
+import { SystemsMap } from "@/components/hero-corporate";
+import { ExperienceLab } from "@/components/experience-lab";
 import { AuroraBackground } from "@/components/aurora-background";
-import { TechTelemetry } from "@/components/tech-telemetry";
 import { FaqSection } from "@/components/faq-section";
-import { HowItWorks } from "@/components/how-it-works";
-import { OutcomesSection } from "@/components/outcomes-section";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 type Props = {
@@ -19,13 +22,25 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
+  const t = await getTranslations({ locale, namespace: "corporateHome.metadata" });
+  return pageMetadata({
+    site: "mineracao",
+    path: "/",
     title: t("title"),
     description: t("description"),
-  };
+  });
 }
 
+const engineeringIcons: Record<string, ComponentType<{ className?: string }>> = {
+  plug: Plug,
+  rocket: Rocket,
+  activity: Activity,
+  refresh: RefreshCcw,
+};
+
+/** Âncoras do catálogo industrial em /solucoes — mesma ordem de
+ * `home.products.items`. Preservadas desde a home antiga (footer e links
+ * externos apontam pra elas). */
 const SOLUTION_IDS = [
   "tablets",
   "actisky",
@@ -37,244 +52,462 @@ const SOLUTION_IDS = [
   "compressores",
 ] as const;
 
+/**
+ * Home corporativa — DUAS DIVISÕES (CEO, 2026-09-10):
+ * o hero comunica as duas divisões da Minefy e o scroll percorre cada uma:
+ *   Abertura dual (palco premium + console do agente) →
+ *   DIVISÃO 01 · Mineração (`#mineracao`): capítulo Scroller em destaque
+ *   (`#scroller`, âncora preservada) + catálogo industrial completo
+ *   (bento com as 8 soluções → /solucoes#…) → transição matéria→digital →
+ *   DIVISÃO 02 · IA & TI (`#ia`, âncora preservada): ofertas + laboratório
+ *   interativo → capacidade de engenharia → método → evidências → FAQ → CTA.
+ * Sem scrolljacking, texto integral no HTML; animações transform/opacity
+ * gated por `html.js` + reduced-motion. O único WebGL é o tile 3D do
+ * catálogo — lazy, gated por viewport e com fallback estático (Safe3D).
+ */
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations("home");
+  const t = await getTranslations("corporateHome");
+  const tHome = await getTranslations("home");
+  const tServices = await getTranslations("services");
 
-  const productItems = t.raw("products.items") as Array<{
+  const engineering = t.raw("engineering.items") as Array<{
     icon: string;
     title: string;
-    description: string;
-    badge: string;
+    text: string;
   }>;
 
-  const authorityItems = t.raw("authority.items") as Array<{
-    title: string;
-    description: string;
-  }>;
-
-  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
-
-  const howSteps = t.raw("howItWorks.steps") as Array<{
-    icon: string;
+  const methodSteps = t.raw("method.steps") as Array<{
     step: string;
     title: string;
     text: string;
   }>;
 
-  const outcomeItems = t.raw("outcomes.items") as Array<{
-    icon: string;
+  const authorityItems = tHome.raw("authority.items") as Array<{
+    title: string;
+    description: string;
+  }>;
+
+  const scrollerPoints = t.raw("scrollerChapter.points") as Array<{
     title: string;
     text: string;
   }>;
 
+  // Catálogo industrial completo — mesmos itens/ordem das âncoras de /solucoes.
+  const productItems = tHome.raw("products.items") as SolutionItem[];
+
+  const iaOffers = t.raw("iaChapter.offers") as Array<{
+    title: string;
+    text: string;
+    href: string;
+    cta: string;
+  }>;
+
+  const iaAreas = t.raw("iaChapter.areas.items") as Array<{
+    title: string;
+    automate: string;
+    deliver: string;
+  }>;
+
+  const iaProcess = t.raw("iaChapter.process.steps") as Array<{
+    step: string;
+    title: string;
+    text: string;
+  }>;
+
+  // FAQ corporativa — a FAQ industrial continua íntegra em /solucoes.
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
+
   return (
     <>
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 1 — HERO (animated: aurora + particles + stagger)
-      ───────────────────────────────────────────────────────────── */}
-      <HeroHome
-        badge={t("hero.badge")}
-        title={t("hero.title")}
-        subtitle={t("hero.subtitle")}
-        trust={t("hero.trust")}
-        cta={t("hero.cta")}
-        ctaSecondary={t("hero.ctaSecondary")}
-        appUrl="https://app.minefymining.com"
+      {/* ── PALCO INTEGRADO — Scroller e IA no mesmo palco, primeiro viewport ── */}
+      <HeroStage
+        badge={t("heroDual.badge")}
+        title={t.rich("heroDual.title", {
+          gold: (chunks) => <span className="text-[#D4A847]">{chunks}</span>,
+        })}
+        subtitle={t("heroDual.subtitle")}
+        scroller={{
+          num: t("heroDual.scenes.scroller.num"),
+          label: t("heroDual.scenes.scroller.label"),
+          tagline: t("heroDual.scenes.scroller.tagline"),
+          cta: t("heroDual.scenes.scroller.cta"),
+        }}
+        ia={{
+          num: t("heroDual.scenes.ia.num"),
+          label: t("heroDual.scenes.ia.label"),
+          tagline: t("heroDual.scenes.ia.tagline"),
+          cta: t("heroDual.scenes.ia.cta"),
+        }}
+        scrollerImageAlt={tServices("scroller.hero.imageAlt")}
+        scrollerMediaNote={t("scrollerChapter.mediaNote")}
       />
 
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 2 — STATS
-      ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 bg-background border-y border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <StatsBar />
+      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque + catálogo
+            industrial completo (reorganização em duas divisões, CEO
+            2026-09-10). A âncora antiga `#scroller` permanece no capítulo. ── */}
+      <section id="mineracao" className="scroll-mt-20">
+        <div className="bg-[#0A0A0A] px-6 pt-16">
+          <div className="mx-auto w-full max-w-7xl">
+            <ScrollReveal>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
+                {t("miningDivision.kicker")}
+              </p>
+              <h2 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                {t("miningDivision.title")}
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/65">
+                {t("miningDivision.lede")}
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* capítulo Scroller — o destaque da divisão */}
+        <ScrollerChapter
+          kicker={t("scrollerChapter.kicker")}
+          title={t("scrollerChapter.title")}
+          lede={t("scrollerChapter.lede")}
+          points={scrollerPoints}
+          ctaPrimary={t("scrollerChapter.ctaPrimary")}
+          ctaSecondary={t("scrollerChapter.ctaSecondary")}
+          mediaNote={t("scrollerChapter.mediaNote")}
+          imageAlt={tServices("scroller.hero.imageAlt")}
+        />
+
+        {/* catálogo industrial completo — todos os demais produtos juntos */}
+        <div id="catalogo-industrial" className="scroll-mt-24 border-y border-border bg-card px-6 py-20">
+          <div className="mx-auto w-full max-w-7xl">
+            <ScrollReveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                {t("miningDivision.catalog.kicker")}
+              </p>
+              <h3 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+                {t("miningDivision.catalog.title")}
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                {t("miningDivision.catalog.text")}
+              </p>
+            </ScrollReveal>
+            <div className="mt-10">
+              <BentoSolutions items={productItems} ids={SOLUTION_IDS} />
+            </div>
+            <div className="mt-8">
+              <Link
+                href="/solucoes#mineracao"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-foreground"
+              >
+                {t("miningDivision.catalog.cta")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 2.5 — HOW IT WORKS
-      ───────────────────────────────────────────────────────────── */}
-      <HowItWorks
-        kicker={t("howItWorks.kicker")}
-        title={t("howItWorks.title")}
-        subtitle={t("howItWorks.subtitle")}
-        steps={howSteps}
-      />
+      {/* A âncora apresenta a identidade visual antes do conteúdo da divisão. */}
+      <section id="ia" className="scroll-mt-20 bg-[#0A0A0A] pb-24">
+        <AiDivisionIntro />
+        <div className="mx-auto w-full max-w-7xl px-6">
+          {/* faixa "Aplicada na nossa operação" — a prova antes da oferta
+              (expansão IA & TI 2026-09-11, conteúdo validado) */}
+          <ScrollReveal delay={80}>
+            <div className="mt-12 rounded-2xl border border-[#7FB4D8]/25 bg-[#0B0E12] p-8 md:p-10">
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#9FC6E2]">
+                {t("iaChapter.operation.kicker")}
+              </p>
+              <p className="mt-3 max-w-3xl text-xl font-semibold leading-snug text-white md:text-2xl">
+                {t("iaChapter.operation.title")}
+              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/65 md:text-base">
+                {t("iaChapter.operation.text")}
+              </p>
+            </div>
+          </ScrollReveal>
 
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 3 — SOLUTIONS GRID
-      ───────────────────────────────────────────────────────────── */}
-      <section id="solucoes" className="py-20 px-6 bg-background scroll-mt-24">
-        <div className="max-w-7xl mx-auto">
+          {/* matriz de casos por departamento — o que automatiza · o que
+              entregamos, sem promessa de número */}
+          <div className="mt-14">
+            <ScrollReveal>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#9FC6E2]">
+                {t("iaChapter.areas.kicker")}
+              </p>
+              <h3 className="mt-3 text-2xl font-bold text-white md:text-3xl">
+                {t("iaChapter.areas.title")}
+              </h3>
+            </ScrollReveal>
+            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {iaAreas.map((area, i) => (
+                <ScrollReveal key={area.title} delay={i * 60}>
+                  <div className="flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 hover:border-[#7FB4D8]/40">
+                    <h4 className="text-base font-semibold text-white">
+                      {area.title}
+                    </h4>
+                    <p className="mt-2.5 text-sm leading-relaxed text-white/60">
+                      {area.automate}
+                    </p>
+                    <p className="mt-auto border-t border-white/10 pt-3 text-sm leading-relaxed text-white/75">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9FC6E2]">
+                        Entrega ·{" "}
+                      </span>
+                      {area.deliver}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+            <ScrollReveal delay={100}>
+              <p className="mt-5 max-w-3xl text-xs leading-relaxed text-white/45">
+                {t("iaChapter.areas.note")}
+              </p>
+            </ScrollReveal>
+          </div>
+
+          {/* as três ofertas — régua editorial, sem grade de cards */}
+          <div className="mt-14 grid grid-cols-1 gap-10 border-y border-white/10 py-10 lg:grid-cols-3 lg:gap-14">
+            {iaOffers.map((offer, i) => (
+              <ScrollReveal key={offer.href} delay={i * 110}>
+                <Link
+                  href={offer.href}
+                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7FB4D8]"
+                >
+                  <span
+                    className="chapter-num chapter-num--ice text-3xl sm:text-4xl"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-2xl font-bold text-white">
+                    {offer.title}
+                  </h3>
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-white/60">
+                    {offer.text}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#9FC6E2]">
+                    {offer.cta}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {/* régua de implantação — diagnóstico → piloto → integração →
+              evolução */}
+          <div className="mt-12">
+            <ScrollReveal>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#9FC6E2]">
+                {t("iaChapter.process.kicker")}
+              </p>
+              <h3 className="mt-3 text-2xl font-bold text-white md:text-3xl">
+                {t("iaChapter.process.title")}
+              </h3>
+            </ScrollReveal>
+            <ol className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {iaProcess.map((s, i) => (
+                <li key={s.step} className="h-full">
+                  <ScrollReveal
+                    delay={i * 70}
+                    className="relative flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-6"
+                  >
+                    <span className="font-mono text-sm font-bold text-[#9FC6E2]">
+                      {s.step}
+                    </span>
+                    <h4 className="mt-3 text-base font-semibold text-white">
+                      {s.title}
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">
+                      {s.text}
+                    </p>
+                    {i < iaProcess.length - 1 && (
+                      <ArrowRight
+                        className="absolute -right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-[#7FB4D8]/50 lg:block"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </ScrollReveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* CTA de diagnóstico — a porta de entrada da divisão */}
+          <ScrollReveal delay={90}>
+            <div className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-[#D4A847]/30 bg-gradient-to-r from-[#14110B] to-[#0B0E12] p-8 md:flex-row md:items-center md:p-10">
+              <div>
+                <p className="text-xl font-bold text-white md:text-2xl">
+                  {t("iaChapter.diagnosis.title")}
+                </p>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/60">
+                  {t("iaChapter.diagnosis.text")}
+                </p>
+              </div>
+              <Link
+                href="/contato?servico=ia-corporativa"
+                className="btn-sheen inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847]"
+              >
+                {t("iaChapter.diagnosis.button")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </ScrollReveal>
+
+          <div id="agente-minefy" className="mx-auto mt-12 max-w-2xl scroll-mt-24">
+            <SystemsMap />
+          </div>
+
+          {/* laboratório interativo — a demonstração funcional do capítulo */}
+          <ScrollReveal delay={100} className="mt-14">
+            <ExperienceLab />
+          </ScrollReveal>
+          <div className="mt-6 text-center">
+            <Link
+              href="/experiencias"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#9FC6E2] transition-colors hover:text-white"
+            >
+              {t("lab.fullCta")}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CAPACIDADE DE ENGENHARIA ── */}
+      <section id="engenharia" className="scroll-mt-24 bg-card px-6 py-20">
+        <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">
-              {t("products.title")}
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("engineering.kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {t("engineering.title")}
             </h2>
-            <p className="text-muted-foreground text-center mt-3 max-w-2xl mx-auto">
-              {t("products.subtitle")}
+          </ScrollReveal>
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {engineering.map((cap, i) => {
+              const Icon = engineeringIcons[cap.icon] ?? Plug;
+              return (
+                <ScrollReveal key={cap.title} delay={i * 70}>
+                  <div className="h-full rounded-xl border border-border bg-background p-6">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                    <h3 className="mt-3 text-base font-semibold text-foreground">
+                      {cap.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {cap.text}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── MÉTODO ── */}
+      <section id="como-entregamos" className="scroll-mt-24 bg-background px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <ScrollReveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("method.kicker")}
+            </p>
+            <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
+              {t("method.title")}
+            </h2>
+          </ScrollReveal>
+          <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {methodSteps.map((s, i) => (
+              <li key={s.step} className="h-full">
+                <ScrollReveal delay={i * 80} className="relative flex h-full flex-col rounded-xl border border-border bg-card p-6">
+                  <span className="font-mono text-sm font-bold text-primary">
+                    {s.step}
+                  </span>
+                  <h3 className="mt-3 text-lg font-semibold text-foreground">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {s.text}
+                  </p>
+                  {i < methodSteps.length - 1 && (
+                    <ArrowRight
+                      className="absolute -right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-primary/50 lg:block"
+                      aria-hidden="true"
+                    />
+                  )}
+                </ScrollReveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ── EVIDÊNCIAS INDUSTRIAIS VERIFICADAS ── */}
+      <section id="evidencias" className="scroll-mt-24 border-t border-border bg-card px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("evidence.kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {t("evidence.title")}
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              {t("evidence.note")}
             </p>
           </ScrollReveal>
 
-          <ScrollReveal className="mt-12">
-            <BentoSolutions items={productItems} ids={SOLUTION_IDS} />
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 3.5 — TECH / REAL-TIME TELEMETRY
-      ───────────────────────────────────────────────────────────── */}
-      <TechTelemetry />
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 3.6 — OUTCOMES (what changes in your operation)
-      ───────────────────────────────────────────────────────────── */}
-      <OutcomesSection
-        kicker={t("outcomes.kicker")}
-        title={t("outcomes.title")}
-        subtitle={t("outcomes.subtitle")}
-        items={outcomeItems}
-      />
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 4 — FULL-WIDTH PHOTO BREAK
-      ───────────────────────────────────────────────────────────── */}
-      <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden">
-        <Image
-          src="/images/mining/safety-excavator-sunset.jpg"
-          alt="Escavadeira de grande porte ao entardecer em mina a céu aberto"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-[#0A0A0A]/60"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="max-w-2xl px-6 text-center text-xl font-medium text-white/90 md:text-2xl">
-            Tecnologia para equipamentos de grande porte em mineração a céu aberto
-          </p>
-        </div>
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 5 — AUTHORITY — Why choose Minefy
-      ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-card">
-        <div className="max-w-7xl mx-auto">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold text-foreground mb-12">
-              {t("authority.title")}
-            </h2>
+          <ScrollReveal delay={80} className="mt-10">
+            <StatsBar />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {authorityItems.map((item, index) => (
-              <ScrollReveal key={index} delay={index * 100}>
-                <div className="bg-background rounded-xl p-8 border border-border transition-colors duration-200 hover:border-[#333]">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
+              <ScrollReveal key={item.title} delay={index * 80}>
+                <div className="h-full rounded-xl border border-border bg-background p-8 transition-colors duration-200 hover:border-[#333]">
+                  <h3 className="mb-2 text-lg font-semibold text-foreground">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 6 — TEST DRIVE CTA
-      ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-background">
-        <div className="max-w-4xl mx-auto text-center">
-          <ScrollReveal>
-            <div className="glass-card relative overflow-hidden rounded-2xl p-12">
-              <AuroraBackground grid={false} particles={false} className="opacity-50" />
-              <div className="relative z-10">
-              <h2 className="text-3xl font-bold text-foreground">
-                {t("testDrive.title")}
-              </h2>
-              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-                {t("testDrive.subtitle")}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3 justify-center">
-                <a
-                  href="https://app.minefymining.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center bg-[#D4A847] text-[#0A0A0A] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
-                >
-                  {t("testDrive.cta")}
-                </a>
-                <Link
-                  href="/contato"
-                  className="inline-flex items-center border border-foreground/20 text-foreground px-6 py-3 rounded-lg font-medium text-sm hover:border-foreground/40 hover:bg-foreground/5 transition-colors duration-200"
-                >
-                  {t("testDrive.ctaSecondary")}
-                </Link>
-              </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 7 — CLIENTS
-      ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <ScrollReveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A847]">
-              Confiança
-            </p>
-            <h2 className="mt-3 text-center text-3xl font-bold text-foreground md:text-4xl">
-              {t("clients.title")}
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-              {t("clients.subtitle")}
-            </p>
-            <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-[#D4A847] to-transparent" />
-          </ScrollReveal>
           <ScrollReveal delay={100} className="mt-12">
             <ClientCarousel />
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 7.5 — FAQ
-      ───────────────────────────────────────────────────────────── */}
+      {/* ── FAQ ── */}
       <FaqSection
         title={t("faq.title")}
         subtitle={t("faq.subtitle")}
         items={faqItems}
       />
 
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 8 — FINAL CTA
-      ───────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden py-20 px-6 text-center bg-background">
+      {/* ── CTA CONTEXTUAL ── */}
+      <section className="relative overflow-hidden bg-background px-6 py-20 text-center">
         <AuroraBackground particles={false} className="opacity-60" />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 mx-auto max-w-7xl">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-3xl font-bold text-foreground md:text-4xl">
               {t("cta.title")}
             </h2>
-            <p className="text-muted-foreground mt-3">
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
               {t("cta.subtitle")}
             </p>
             <div className="mt-8">
               <Link
                 href="/contato"
-                className="inline-flex items-center bg-[#D4A847] text-[#0A0A0A] px-8 py-4 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+                className="inline-flex items-center rounded-lg bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-200 hover:bg-primary/90"
               >
                 {t("cta.button")}
               </Link>

@@ -1,8 +1,11 @@
+import { NextIntlClientProvider } from "next-intl";
 import { AgroHeader } from "@/components/agro-header";
 import { AgroFooter } from "@/components/agro-footer";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { CursorGlow } from "@/components/cursor-glow";
 import { LogoIntro } from "@/components/logo-intro";
+import { SITE_ORIGIN } from "@/lib/site";
+import type { Metadata } from "next";
 
 /**
  * Chrome for the AGROFY ecosystem — green header/footer, scroll progress and
@@ -23,9 +26,45 @@ import { LogoIntro } from "@/components/logo-intro";
  * place both sectors coexist is `app/[locale]/page.tsx` (the chooser at `/`),
  * which uses neither layout.
  */
-export default function AgrofyLayout({ children }: { children: React.ReactNode }) {
+// Ano do copyright computado no servidor; ISR de 24h corrige a virada de
+// ano sem deploy (mesma regra do layout mineração).
+export const revalidate = 86400;
+
+/**
+ * metadataBase POR ROUTE GROUP (padrão "origem por group, constante" do
+ * MIKE-ARQUITETURA 1.5): resolve URLs relativas de metadata — em especial
+ * o og:image da convenção `opengraph-image.tsx` — para a origem pública
+ * do mundo Agrofy. Canonical continua absoluto via `canonicalFor`.
+ */
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN.agro),
+};
+
+/** Namespaces que os Client Components do mundo agro realmente usam.
+ * (`footer` entra porque `agro-footer.tsx` reusa `footer.social`/links.) */
+const CLIENT_NAMESPACES = ["agroNav", "agroFooter", "footer", "agrofy", "contact"] as const;
+
+type Props = {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
+export default async function AgrofyLayout({ children, params }: Props) {
+  const { locale } = await params;
+  const all = (await import(`@/messages/${locale}.json`)).default as Record<
+    string,
+    unknown
+  >;
+  const messages = Object.fromEntries(
+    CLIENT_NAMESPACES.map((ns) => [ns, all[ns]]),
+  );
+  const year = new Date().getFullYear();
+
   return (
-    <>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+    {/* Regra R4: `.agro-theme` aplicado UMA vez, no wrapper raiz do mundo
+        agro — nenhuma página precisa (nem deve) reaplicar a classe. */}
+    <div className="agro-theme">
       {/* Intro-only asset: `agrofy-logo-intro.png` re-pads the shared
           `agrofy-logo.png` to the SAME content-to-canvas fill as the Minefy
           gold logo (61.3%), so both intros are born with identical visible
@@ -47,8 +86,9 @@ export default function AgrofyLayout({ children }: { children: React.ReactNode }
       <CursorGlow variant="green" />
       <AgroHeader />
       <main className="min-h-screen">{children}</main>
-      <AgroFooter />
+      <AgroFooter year={year} />
       <div className="grain" aria-hidden="true" />
-    </>
+    </div>
+    </NextIntlClientProvider>
   );
 }

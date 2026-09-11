@@ -62,6 +62,14 @@ type LogoIntroProps = {
    * Defaults to 1 (same asset in intro and header, e.g. the Minefy gold logo). */
   fillCompensation?: number;
   /**
+   * When false, the intro becomes a NON-BLOCKING brand signature: the page
+   * content is visible and clickable from the very first frame — no scroll
+   * lock, no opaque cover (only a light translucent scrim that fades), and a
+   * shorter "generate" beat before the logo flies into the header. Defaults
+   * to true (the original full-cover behavior, still used by Agrofy).
+   */
+  blocking?: boolean;
+  /**
    * Optional full-bleed photo shown behind the "generating" logo instead of
    * the flat `bg-background` fill — lets the intro open directly on the
    * hero photo (e.g. the CEO's mining/agro group art with the emblem
@@ -109,6 +117,7 @@ export function LogoIntro({
   targetId = "site-logo",
   sessionKey = "minefy-intro",
   fillCompensation = 1,
+  blocking = true,
   backgroundSrc,
 }: LogoIntroProps = {}) {
   const theme = THEME[variant];
@@ -126,11 +135,17 @@ export function LogoIntro({
   // it already played during this page load. Evaluated only after mount
   // (client-only), so SSR/no-JS render nothing and there is no hydration
   // mismatch.
-  const skip = mounted && (reduce === true || playedThisLoad.has(sessionKey));
+  // Non-blocking mode also skips entirely below 768px: on mobile, LCP is
+  // the scarce resource and the intro doesn't pay for itself (decision 4.1).
+  const skip =
+    mounted &&
+    (reduce === true ||
+      playedThisLoad.has(sessionKey) ||
+      (!blocking && typeof window !== "undefined" && window.innerWidth < 768));
 
   useEffect(() => {
     if (!mounted || skip) return;
-    document.body.style.overflow = "hidden";
+    if (blocking) document.body.style.overflow = "hidden";
     const t = setTimeout(() => {
       const el = document.getElementById(targetId);
       if (el) {
@@ -148,12 +163,12 @@ export function LogoIntro({
         });
       }
       setPhase("fly");
-    }, 1650);
+    }, blocking ? 1650 : 500);
     return () => {
       clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [mounted, skip, targetId, fillCompensation]);
+  }, [mounted, skip, targetId, fillCompensation, blocking]);
 
   // Don't render the opaque overlay during SSR / before mount or without JS
   // (no-JS visitors would otherwise be stuck on a black screen), nor when the
@@ -176,15 +191,15 @@ export function LogoIntro({
           fill; when `backgroundSrc` is set, the photo layer below covers it
           almost entirely, but this still guards any edge/overscroll gap. */}
       <motion.div
-        className="absolute inset-0 bg-background"
+        className={blocking ? "absolute inset-0 bg-background" : "absolute inset-0 bg-background/45 backdrop-blur-[2px]"}
         animate={{ opacity: phase === "fly" ? 0 : 1 }}
-        transition={{ duration: 0.7, ease: "easeInOut" }}
+        transition={{ duration: blocking ? 0.7 : 0.45, ease: "easeInOut" }}
       />
 
       {/* Optional full-bleed photo (clean plate, no burned-in emblem) — the
           intro opens directly on the hero image instead of a flat color.
           Fades out in lockstep with the flat background above. */}
-      {backgroundSrc && (
+      {blocking && backgroundSrc && (
         <motion.div
           className="absolute inset-0"
           animate={{ opacity: phase === "fly" ? 0 : 1 }}
@@ -199,7 +214,7 @@ export function LogoIntro({
 
       {/* faint dot texture under the logo for the "tech" feel — skipped over
           a real photo background, where the dot grid would just look noisy. */}
-      {!backgroundSrc && (
+      {blocking && !backgroundSrc && (
         <motion.div
           className="absolute inset-0"
           style={{
@@ -224,7 +239,7 @@ export function LogoIntro({
         }
         transition={
           phase === "fly"
-            ? { duration: 0.95, ease: [0.6, 0.01, 0.05, 0.95] }
+            ? { duration: blocking ? 0.95 : 0.4, ease: [0.6, 0.01, 0.05, 0.95] }
             : { duration: 0 }
         }
         onAnimationComplete={() => phase === "fly" && finish()}

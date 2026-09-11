@@ -106,6 +106,26 @@
   --sidebar-border: #E7E3DA;
 }
 
+/* ── Header sobre topo por página (CODEX-UX: contraste no tema claro) ──
+   Default do mundo mineração: heros com FOTO ESCURA e overlay #0A0A0A fixo
+   → texto branco no header não-scrolled, nos DOIS temas.
+   Páginas cujo topo segue o TEMA (páginas de serviço, /experiencias,
+   /privacidade) marcam o hero com [data-hero-surface="theme"]: via :has()
+   o header troca para tokens semânticos — no claro, texto escuro sobre
+   fundo claro; o logo dourado ganha um realce de contraste.
+   Fallback sem :has() (<5% dos browsers): comportamento anterior. */
+:root {
+  --header-fg: #ffffff;
+  --header-fg-muted: rgba(255, 255, 255, 0.7);
+}
+body:has([data-hero-surface="theme"]) {
+  --header-fg: var(--foreground);
+  --header-fg-muted: var(--muted-foreground);
+}
+.light body:has([data-hero-surface="theme"]) .header-logo {
+  filter: brightness(0.62) saturate(1.35);
+}
+
 /* Light-theme surface overrides for effects that assume a dark base */
 .light .glass-card,
 .light .glass-card-hover {
@@ -161,15 +181,93 @@ html {
   }
 }
 
-/* ── Reveal animations ── */
+/* ── Reveal animations ──
+   Gated atrás de `html.js` (classe adicionada por script inline no
+   <head>): sem JavaScript NADA fica escondido — o conteúdo crítico é
+   legível no HTML servido (critério 3.2 da arquitetura). */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.reveal.visible {
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ── Capítulos da home (Scroller + IA) ──
+   Mesmo contrato do .reveal: gated por html.js (sem JS nada some),
+   transform/opacity apenas, respeita reduced-motion no bloco global. */
+
+/* Revelação em máscara: o contêiner abre em clip-path quando o
+   IntersectionObserver do ScrollReveal marca .visible. */
+.reveal-mask {
+  transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease;
+}
+html.js .reveal-mask {
+  clip-path: inset(12% 6% 12% 6% round 24px);
+  opacity: 0.6;
+}
+html.js .reveal.visible .reveal-mask,
+html.js .reveal-mask.visible {
+  clip-path: inset(0 0 0 0 round 0px);
+  opacity: 1;
+}
+
+/* Parallax sutil dirigido pelo scroll — progressive enhancement:
+   só em browsers com animation-timeline, só com motion permitido, só com
+   JS (coerência com o resto). Transform-only; "pausado fora da tela" por
+   construção (a timeline é a visibilidade do próprio elemento). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .chapter-parallax {
+      animation: chapter-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes chapter-drift {
+  from { transform: scale(1.12) translateY(3%); }
+  to   { transform: scale(1.02) translateY(-3%); }
+}
+
+/* Número editorial dos capítulos (01/02) */
+.chapter-num {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 168, 71, 0.55);
+}
+.chapter-num--ice {
+  -webkit-text-stroke: 1px rgba(127, 180, 216, 0.55);
+}
+.light .chapter-num { -webkit-text-stroke-color: rgba(184, 134, 11, 0.6); }
+.light .chapter-num--ice { -webkit-text-stroke-color: rgba(58, 108, 140, 0.6); }
+
+/* Entrada do hero corporativo — animação 100% CSS (roda sem framer, some
+   sob reduced-motion, e sem JS o conteúdo nasce visível). */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+html.js .rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Variante transform-only para o elemento LCP (H1 do hero): pinta no
+   primeiro frame (opacity nunca sai de 1) e só desliza — não atrasa o
+   Largest Contentful Paint no móvel. */
+@keyframes rise-in-t {
+  from { transform: translateY(24px); }
+  to { transform: translateY(0); }
+}
+html.js .rise-in-t {
+  animation: rise-in-t 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ── Simple hover card ── */
@@ -358,6 +456,26 @@ html {
   transform-box: fill-box;
   transform-origin: center;
   animation: node-pulse 2.4s ease-in-out infinite;
+}
+
+/* ── Palco hero (direção de arte 2026-09-09) ────────────────────────────
+   Grão de filme estático — coesão fotografia+console sobre o carvão.
+   Sem animação, sem JS; só textura. */
+.grain {
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='gn'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23gn)'/></svg>");
+}
+
+/* Troca de estado do console do agente — opacity/transform apenas,
+   gated por html.js (sem JS o estado inicial nasce visível). */
+@keyframes console-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+html.js .console-swap {
+  animation: console-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes marquee {
@@ -612,7 +730,11 @@ html {
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal, html.js .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal-mask { clip-path: none; opacity: 1; transition: none; }
+  html.js .chapter-parallax { animation: none; }
+  html.js .rise-in, html.js .rise-in-t { animation: none; }
+  html.js .console-swap { animation: none; }
   html { scroll-behavior: auto; }
   .aurora-blob--gold,
   .aurora-blob--amber,

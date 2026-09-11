@@ -5,6 +5,7 @@ import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,7 +19,13 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofy.contactPage.metadata" });
-  return { title: t("title"), description: t("description") };
+  // path EXTERNO — canonical agro nunca contém /agrofy (lib/site.ts)
+  return pageMetadata({
+    site: "agro",
+    path: "/contato",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 /**
@@ -51,7 +58,7 @@ export default async function AgrofyContactPage({ params }: Props) {
   );
 
   return (
-    <div className="agro-theme min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* ── Hero with agro photo ── */}
       <section className="relative min-h-[45vh] flex items-end overflow-hidden">
         <Image
@@ -140,7 +147,10 @@ export default async function AgrofyContactPage({ params }: Props) {
           {/* Right: form */}
           <ScrollReveal delay={150}>
             <div className="bg-card rounded-xl p-8 border border-border">
-              <ContactForm variant="full" division="agrofy" />
+              <ContactForm
+                variant="full"
+                division="agrofy"
+              />
             </div>
           </ScrollReveal>
         </div>

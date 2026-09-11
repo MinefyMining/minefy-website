@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 const SECTION_ICONS: LucideIcon[] = [FileText, Radio, ShieldCheck, Gauge, Leaf];
 
@@ -13,7 +14,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects.metadata" });
-  return { title: t("title"), description: t("description") };
+  return pageMetadata({
+    site: "mineracao",
+    path: "/projetos",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function ProjectsPage({ params }: Props) {

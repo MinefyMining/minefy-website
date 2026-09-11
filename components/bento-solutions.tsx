@@ -141,15 +141,26 @@ function FeaturedTile({ item, href }: { item: SolutionItem; href: string }) {
         </div>
       </div>
 
-      {/* 3D device — WebGL chunk only loads when the tile nears the viewport */}
+      {/* 3D device — WebGL chunk only loads when the tile nears the viewport.
+          `interactionRef` liga o CARD INTEIRO (mouse/toque/teclado) à cena:
+          o parallax antigo só reagia sobre a coluna do canvas. */}
+      <span className="sr-only">
+        Demonstração 3D interativa: com o cartão focado, use as setas do
+        teclado para girar o tablet.
+      </span>
       <div ref={sceneRef} className="relative z-10 h-60 min-h-[240px] w-full md:h-auto">
         {near ? (
           <Safe3D>
-            <Tablet3D />
+            <Tablet3D interactionRef={ref} />
           </Safe3D>
         ) : (
           <TabletFallback />
         )}
+        {/* Rótulo de demonstração FORA do canvas — o texto desenhado dentro
+            do WebGL some sem GPU/JS; este fica sempre no DOM (regra 4.3). */}
+        <p className="pointer-events-none absolute bottom-1 left-0 right-0 text-center font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+          Demonstração · dados simulados
+        </p>
       </div>
     </Link>
   );

@@ -18,6 +18,7 @@ import {
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 const STEP_ICONS: LucideIcon[] = [Search, Radio, TrendingUp, CheckCircle2];
 const MEASURED_ICONS: LucideIcon[] = [Gauge, Droplets, Clock, AlertTriangle];
@@ -28,7 +29,13 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofyPilot.metadata" });
-  return { title: t("title"), description: t("description") };
+  // path EXTERNO — canonical agro nunca contém /agrofy (lib/site.ts)
+  return pageMetadata({
+    site: "agro",
+    path: "/piloto",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 /**
@@ -61,7 +68,7 @@ export default async function AgrofyPilotPage({ params }: Props) {
   }>;
 
   return (
-    <div className="agro-theme min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-24">

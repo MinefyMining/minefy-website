@@ -39,10 +39,16 @@ export function MiningHeader() {
 
   const homeHref = "/";
 
+  // Duas divisões no lugar do item único "Soluções" (CEO 2026-09-10):
+  // Mineração e IA & TI são as entradas principais — ambas vivem em
+  // /solucoes, ancoradas nas respectivas seções. A rota /solucoes e todas
+  // as âncoras antigas continuam válidas.
   const navLinks = [
     { key: "home", href: homeHref },
+    { key: "mining", href: "/solucoes#mineracao" },
+    { key: "iaTi", href: "/solucoes#ia-ti" },
     { key: "about", href: "/quem-somos" },
-    { key: "solutions", href: "/solucoes" },
+    { key: "experiences", href: "/experiencias" },
     { key: "projects", href: "/projetos" },
     { key: "contact", href: "/contato" },
   ] as const;
@@ -55,7 +61,14 @@ export function MiningHeader() {
   // internal and the external path (no rewrite touches them).
   const pathname = rawPathname === "/mineracao" ? "/" : rawPathname;
 
-  const isActive = (href: string) => (href === "/" ? pathname === href : pathname.startsWith(href));
+  // As divisões compartilham o hub: nele nenhuma fica falsamente ativa.
+  // Nas páginas de produto, destaca apenas a divisão correspondente.
+  const isActive = (href: string) => {
+    const digital = ["/solucoes/ia-corporativa", "/solucoes/agentes-autonomos", "/solucoes/servicos-ti"];
+    if (href === "/solucoes#ia-ti") return digital.includes(pathname);
+    if (href === "/solucoes#mineracao") return pathname === "/solucoes/scroller";
+    return href === "/" ? pathname === href : pathname.startsWith(href);
+  };
 
   return (
     <header
@@ -73,7 +86,7 @@ export function MiningHeader() {
             width={800}
             height={570}
             priority
-            className={`object-contain h-auto transition-all duration-200 ${scrolled ? "w-[60px]" : "w-[80px]"}`}
+            className={`header-logo object-contain h-auto transition-all duration-200 ${scrolled ? "w-[60px]" : "w-[80px]"}`}
           />
         </Link>
 
@@ -85,10 +98,10 @@ export function MiningHeader() {
               href={href}
               className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors ${
                 isActive(href)
-                  ? scrolled ? "text-foreground" : "text-white"
+                  ? scrolled ? "text-foreground" : "text-[var(--header-fg)]"
                   : scrolled
                     ? "text-muted-foreground hover:text-foreground"
-                    : "text-white/70 hover:text-white"
+                    : "text-[var(--header-fg-muted)] hover:text-[var(--header-fg)]"
               }`}
             >
               {t(key)}
@@ -113,7 +126,7 @@ export function MiningHeader() {
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger className="lg:hidden" aria-label="Menu">
-              <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-white"}`} />
+              <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-[var(--header-fg)]"}`} />
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
               <SheetTitle className="sr-only">Menu</SheetTitle>
@@ -122,7 +135,7 @@ export function MiningHeader() {
               </div>
               <nav className="mt-6 flex flex-col gap-1 flex-1">
                 {navLinks.map(({ key, href }) => (
-                  <Link
+                  <a
                     key={key}
                     href={href}
                     onClick={() => setOpen(false)}
@@ -133,7 +146,7 @@ export function MiningHeader() {
                     }`}
                   >
                     {t(key)}
-                  </Link>
+                  </a>
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">

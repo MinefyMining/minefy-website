@@ -24,7 +24,15 @@ const companyLinks = [
  * `agrofymining.com` serving this tree at its root via `proxy.ts` — see
  * `agro-header.tsx`'s docstring for the full rationale.
  */
-export function AgroFooter() {
+interface AgroFooterProps {
+  /** Ano do copyright, computado no layout (Server Component) — evita
+   * hydration mismatch de `new Date()` no cliente sobre HTML estático.
+   * O layout tem `revalidate = 86400`, então a virada de ano se corrige
+   * sozinha sem deploy. */
+  year: number;
+}
+
+export function AgroFooter({ year }: AgroFooterProps) {
   const t = useTranslations("agroFooter");
   const tFooter = useTranslations("footer");
   const tNav = useTranslations("agroNav");
@@ -32,7 +40,7 @@ export function AgroFooter() {
   const solutionLinks = t.raw("solutionLinks") as Array<{ label: string; href: string }>;
 
   return (
-    <footer className="agro-theme bg-card border-t border-border">
+    <footer className="bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
@@ -110,6 +118,7 @@ export function AgroFooter() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
+            {`© ${year} `}
             {t("copyright")} ·{" "}
             <Link href="/privacidade" className="hover:text-foreground transition-colors">
               {tFooter("privacyLink")}

@@ -22,9 +22,11 @@ function sparkPath(values: number[], w: number, h: number) {
 }
 
 /**
- * Reusable "live telemetry" dashboard card — the gold ActiSky panel used as a
+ * Reusable telemetry DEMO dashboard card — the gold ActiSky panel used as a
  * recurring tech motif across the site. Values gently tick on the client only
- * (SSR-stable initial render → no hydration mismatch). Honors reduced motion
+ * (SSR-stable initial render → no hydration mismatch) and are SIMULATED —
+ * the card carries a persistent "Demonstração interativa · dados simulados"
+ * label so it never reads as a live production feed. Honors reduced motion
  * via the CSS-gated `.flow-dash` / pulse utilities.
  */
 export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCardProps) {
@@ -62,12 +64,15 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
         <div>
           <p className="font-mono text-sm font-semibold text-foreground">{title}</p>
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            live · can j1939
+            demo · can j1939
           </p>
         </div>
         <span className="flex items-center gap-1.5 text-xs text-[#D4A847]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D4A847] motion-safe:animate-pulse" />
-          online
+          <span
+            className="h-1.5 w-1.5 rounded-full bg-[#D4A847] motion-safe:animate-pulse"
+            aria-hidden="true"
+          />
+          simulação
         </span>
       </div>
 
@@ -112,6 +117,15 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/5">
         <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-[#D4A847] to-[#F5D98B]" />
       </div>
+
+      {/* Persistent honesty label — this panel illustrates the product with
+          simulated values; it is NOT connected to a live operation. */}
+      <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+        Demonstração interativa · dados simulados
+      </p>
+      <span className="sr-only">
+        Valores ilustrativos, não correspondem a uma operação real.
+      </span>
     </motion.div>
   );
 }

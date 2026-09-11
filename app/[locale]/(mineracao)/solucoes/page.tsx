@@ -1,3 +1,4 @@
+import { AiDivisionIntro } from "@/components/ai-division-intro";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
@@ -5,19 +6,55 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { AuroraBackground } from "@/components/aurora-background";
 import { TelemetryCard } from "@/components/telemetry-card";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
+import { FaqSection } from "@/components/faq-section";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "solutions.metadata" });
-  return { title: t("title"), description: t("description") };
+  const t = await getTranslations({ locale, namespace: "services.hub.metadata" });
+  return pageMetadata({
+    site: "mineracao",
+    path: "/solucoes",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function SolutionsPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("solutions");
+  const tHome = await getTranslations("home");
+  const tAI = await getTranslations("corporateHome.iaChapter");
+  const aiAreas = tAI.raw("areas.items") as Array<{title: string; automate: string; deliver: string}>;
+  const tHub = await getTranslations("services.hub.fronts");
+  const tScroller = await getTranslations("services.scroller");
+
+  const fronts = tHub.raw("items") as Array<{
+    id: string;
+    badge: string;
+    title: string;
+    text: string;
+    href: string;
+    ctaLabel: string;
+  }>;
+
+  // Ofertas digitais — só as frentes de IA/agentes/TI entram na Divisão 02;
+  // Scroller e portfólio industrial vivem na Divisão 01 (Mineração).
+  const digitalFronts = fronts.filter((f) =>
+    ["ia", "agentes", "ti"].includes(f.id),
+  );
+
+  const divisionEntries = t.raw("divisions.entries") as Array<{
+    id: string;
+    badge: string;
+    title: string;
+    text: string;
+    href: string;
+    ctaLabel: string;
+  }>;
 
   const items = t.raw("items") as Array<{
     id: string;
@@ -48,8 +85,8 @@ export default async function SolutionsPage({ params }: Props) {
       {/* ── Hero ── */}
       <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-24">
         <Image
-          src="/images/mining/komatsu-pc2000.jpg"
-          alt="Vista aérea de mina a céu aberto"
+          src="/images/mining/escavadeira-grande-porte.jpg"
+          alt="Escavadeira de grande porte em operação ao entardecer em mina a céu aberto"
           fill
           priority
           className="object-cover"
@@ -71,7 +108,142 @@ export default async function SolutionsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Solutions List ── */}
+      {/* ── DUAS DIVISÕES (reorganização CEO 2026-09-10) — a antiga régua
+             "quatro frentes" virou duas entradas: Mineração (Scroller +
+             catálogo industrial completo, PRIMEIRO) e IA & TI (ofertas
+             digitais, depois). A âncora `#frentes` é preservada aqui; o
+             portfólio industrial mantém as MESMAS âncoras de sempre
+             (#tablets, #actisky, …). ── */}
+      <section id="frentes" className="scroll-mt-24 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("divisions.kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {t("divisions.title")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              {t("divisions.subtitle")}
+            </p>
+          </ScrollReveal>
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {divisionEntries.map((entry, i) => (
+              <ScrollReveal key={entry.id} delay={i * 90} className="h-full">
+                <a href={entry.href} className="block h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      {entry.badge}
+                    </span>
+                    <h3 className="mt-3 text-xl font-semibold leading-snug text-foreground md:text-2xl">
+                      {entry.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {entry.text}
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                      {entry.ctaLabel}
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto h-px max-w-5xl bg-border" />
+
+      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque, catálogo
+             industrial completo na sequência ── */}
+      <section id="mineracao" className="scroll-mt-24 px-6 pt-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              {t("divisions.mineracao.kicker")}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
+              {t("divisions.mineracao.title")}
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              {t("divisions.mineracao.lede")}
+            </p>
+          </ScrollReveal>
+
+          {/* Scroller — destaque da divisão. Rodada 2026-09-11 (CEO): a
+              máquina aparece INTEIRA (recorte alpha `scroller-isolated.png`,
+              object-contain, palco de estúdio) e o texto vive num bloco
+              PRÓPRIO ao lado — nada de copy sobre a máquina, nada de corte. */}
+          <ScrollReveal delay={80}>
+            <div
+              id="scroller"
+              className="mt-10 grid scroll-mt-24 grid-cols-1 overflow-hidden rounded-2xl border border-border lg:grid-cols-[1.15fr_1fr]"
+            >
+              {/* palco da máquina — imagem inteira, sem texto por cima */}
+              <div className="relative flex min-h-[300px] items-center justify-center bg-gradient-to-b from-[#181818] to-[#0B0B0B] p-6 md:min-h-[380px] md:p-10">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(110% 75% at 50% 34%, rgba(255,255,255,0.06), transparent 62%)",
+                  }}
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-24"
+                  style={{
+                    background:
+                      "radial-gradient(60% 100% at 50% 100%, rgba(212,168,71,0.14), transparent 70%)",
+                  }}
+                  aria-hidden="true"
+                />
+                <Image
+                  src="/images/premium/scroller-isolated.png"
+                  alt={tScroller("hero.imageAlt")}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="relative z-10 object-contain p-6 md:p-10"
+                  style={{ filter: "drop-shadow(0 24px 40px rgba(0,0,0,0.55))" }}
+                />
+                <p className="absolute bottom-3 right-4 z-10 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40">
+                  {t("divisions.scrollerFeature.mediaNote")}
+                </p>
+              </div>
+
+              {/* bloco editorial — separado da máquina */}
+              <div className="flex flex-col justify-center border-t border-border bg-card p-8 md:p-12 lg:border-l lg:border-t-0">
+                <span className="inline-block w-fit rounded-full border border-[#D4A847]/40 bg-[#0A0A0A]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#E8C877]">
+                  {t("divisions.scrollerFeature.badge")}
+                </span>
+                <h3 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                  {t("divisions.scrollerFeature.title")}
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {t("divisions.scrollerFeature.text")}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href="/solucoes/scroller"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
+                  >
+                    {t("divisions.scrollerFeature.cta")}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <Link
+                    href="/contato?servico=scroller"
+                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/50"
+                  >
+                    {t("divisions.scrollerFeature.ctaSecondary")}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── Catálogo industrial — âncoras históricas preservadas ── */}
       <div className="px-6">
         {items.map((item, index) => {
           const isEven = index % 2 === 0;
@@ -86,7 +258,7 @@ export default async function SolutionsPage({ params }: Props) {
                     className="py-20 scroll-mt-24 max-w-6xl mx-auto"
                   >
                     <div className="text-center mb-12">
-                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                      <span className="text-xs uppercase tracking-wider bg-secondary text-primary px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
                       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
@@ -101,7 +273,7 @@ export default async function SolutionsPage({ params }: Props) {
                       {item.tiers.map((tier) => (
                         <div
                           key={tier.name}
-                          className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-[#D4A847]/50 hover:-translate-y-1"
+                          className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-1"
                         >
                           {/* Product image — studio stage */}
                           <div className="relative h-64 overflow-hidden flex items-center justify-center p-7 bg-gradient-to-b from-[#191919] to-[#0C0C0C]">
@@ -147,7 +319,7 @@ export default async function SolutionsPage({ params }: Props) {
 
                           {/* Body */}
                           <div className="flex flex-1 flex-col p-6">
-                            <p className="text-base font-bold text-[#D4A847]">
+                            <p className="text-base font-bold text-primary">
                               {tier.name}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1 mb-3">
@@ -162,7 +334,7 @@ export default async function SolutionsPage({ params }: Props) {
                                   key={spec}
                                   className="flex items-start gap-2.5"
                                 >
-                                  <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                  <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                                   <span className="text-xs text-muted-foreground">
                                     {spec}
                                   </span>
@@ -219,6 +391,7 @@ export default async function SolutionsPage({ params }: Props) {
                             src={item.image}
                             alt={item.title}
                             fill
+                            unoptimized={item.image.endsWith(".svg")}
                             className="relative z-10 object-contain"
                             style={{ filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.55))" }}
                             sizes="(max-width: 768px) 100vw, 50vw"
@@ -229,6 +402,7 @@ export default async function SolutionsPage({ params }: Props) {
                           src={item.image}
                           alt={item.title}
                           fill
+                          unoptimized={item.image.endsWith(".svg")}
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
@@ -245,7 +419,7 @@ export default async function SolutionsPage({ params }: Props) {
 
                     {/* Content */}
                     <div className="w-full md:w-1/2">
-                      <span className="text-xs uppercase tracking-wider bg-secondary text-[#D4A847] px-3 py-1 rounded-md inline-block mb-4">
+                      <span className="text-xs uppercase tracking-wider bg-secondary text-primary px-3 py-1 rounded-md inline-block mb-4">
                         {item.badge}
                       </span>
                       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
@@ -260,7 +434,7 @@ export default async function SolutionsPage({ params }: Props) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           {item.features.map((feature) => (
                             <div key={feature} className="flex items-start gap-3">
-                              <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                              <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                               <span className="text-sm text-muted-foreground">{feature}</span>
                             </div>
                           ))}
@@ -270,13 +444,13 @@ export default async function SolutionsPage({ params }: Props) {
                       {/* Safety features */}
                       {item.safetyFeatures && (
                         <div className="mb-5">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A847] mb-3">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">
                             {t("safetyLabel")}
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {item.safetyFeatures.map((feature) => (
                               <div key={feature} className="flex items-start gap-3">
-                                <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                                 <span className="text-sm text-muted-foreground">{feature}</span>
                               </div>
                             ))}
@@ -287,13 +461,13 @@ export default async function SolutionsPage({ params }: Props) {
                       {/* Operational features */}
                       {item.operationalFeatures && (
                         <div>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A847] mb-3">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">
                             {t("operationalLabel")}
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {item.operationalFeatures.map((feature) => (
                               <div key={feature} className="flex items-start gap-3">
-                                <Check className="h-4 w-4 text-[#D4A847] shrink-0 mt-0.5" />
+                                <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                                 <span className="text-sm text-muted-foreground">{feature}</span>
                               </div>
                             ))}
@@ -314,7 +488,65 @@ export default async function SolutionsPage({ params }: Props) {
         })}
       </div>
 
-      {/* ── CTA ── */}
+      {/* ── FAQ industrial — preservada na jornada de mineração (CODEX-UX):
+          a home virou corporativa e a FAQ de gestor de mina vive AQUI. ── */}
+      <FaqSection
+        title={tHome("faq.title")}
+        subtitle={tHome("faq.subtitle")}
+        items={tHome.raw("faq.items") as Array<{ q: string; a: string }>}
+      />
+
+
+      {/* ── DIVISÃO 02 · IA & TI — ofertas digitais depois do catálogo
+             industrial (ordem definida pelo CEO 2026-09-10) ── */}
+      <section id="ia-ti" className="scroll-mt-20 bg-card pb-20">
+        <AiDivisionIntro />
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="my-12 border-y border-primary/20 py-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{tAI("operation.kicker")}</p>
+            <h3 className="mt-3 max-w-3xl text-2xl font-bold text-foreground md:text-3xl">{tAI("operation.title")}</h3>
+            <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">{tAI("operation.text")}</p>
+          </div>
+          <h3 className="text-2xl font-bold text-foreground">{tAI("areas.title")}</h3>
+          <div className="mt-7 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+            {aiAreas.map((area, index) => (
+              <article key={area.title} className="border-t border-border pt-5">
+                <p className="text-xs font-mono text-primary">{String(index + 1).padStart(2, "0")}</p>
+                <h4 className="mt-2 text-lg font-semibold text-foreground">{area.title}</h4>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{area.automate}</p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/85"><span className="font-semibold">O que você recebe: </span>{area.deliver}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 text-xs leading-relaxed text-muted-foreground">{tAI("areas.note")}</p>
+          <h3 className="mt-14 text-2xl font-bold text-foreground">Três formas de transformar sua operação</h3>
+          <div className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {digitalFronts.map((front, i) => (
+              <ScrollReveal key={front.id} delay={i * 70} className="h-full">
+                <Link href={front.href} className="block h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      {front.badge}
+                    </span>
+                    <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
+                      {front.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {front.text}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                      {front.ctaLabel}
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       <section className="py-20 px-6 text-center">
         <ScrollReveal>
           <div className="glass-card relative overflow-hidden rounded-2xl max-w-3xl mx-auto p-12">
@@ -328,7 +560,7 @@ export default async function SolutionsPage({ params }: Props) {
               </p>
               <Link
                 href="/contato"
-                className="inline-flex items-center gap-2 bg-[#D4A847] text-[#0A0A0A] px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#C49B3F] transition-colors duration-200"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors duration-200"
               >
                 {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />

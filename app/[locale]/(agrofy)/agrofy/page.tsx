@@ -10,6 +10,7 @@ import { AgroTechTelemetry } from "@/components/agro-tech-telemetry";
 import { AgroOutcomesSection } from "@/components/agro-outcomes-section";
 import { AgroFaqSection } from "@/components/agro-faq-section";
 import { Link } from "@/i18n/navigation";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -27,7 +28,13 @@ const AGRO_SOLUTION_IDS = [
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "agrofy.metadata" });
-  return { title: t("title"), description: t("description") };
+  // path EXTERNO — canonical agro nunca contém /agrofy (lib/site.ts)
+  return pageMetadata({
+    site: "agro",
+    path: "/",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 /**
@@ -80,7 +87,7 @@ export default async function AgrofyPage({ params }: Props) {
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
-    <div className="agro-theme min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* ─────────────────────────────────────────────────────────────
           SECTION 1 — HERO (animated: aurora + particles + stagger)
       ───────────────────────────────────────────────────────────── */}
