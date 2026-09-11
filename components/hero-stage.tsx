@@ -98,18 +98,20 @@ export function HeroStage({
               className="object-cover"
               style={{ objectPosition: "30% 50%" }}
             />
-            {/* costura do palco: a margem escura do asset funde no carvão
-                (garantia em ultrawide) + leitura da manchete e da base */}
+            {/* costura do palco (polimento 2026-09-11): pena mais larga e
+                progressiva da fotografia para a interface — sem corte seco;
+                a margem escura do asset funde no carvão (garantia em
+                ultrawide) + leitura da manchete e da base */}
             <div
-              className="absolute inset-y-0 right-0 hidden w-[24%] lg:block"
+              className="absolute inset-y-0 right-0 hidden w-[30%] lg:block"
               style={{
-                background: `linear-gradient(to right, transparent, ${BG}B3 70%, ${BG})`,
+                background: `linear-gradient(to right, transparent, ${BG}66 40%, ${BG}CC 72%, ${BG})`,
               }}
               aria-hidden="true"
             />
             <div
-              className="absolute inset-x-0 top-0 hidden h-28 lg:block"
-              style={{ background: `linear-gradient(to bottom, ${BG}B3, transparent)` }}
+              className="absolute inset-x-0 top-0 hidden h-32 lg:block"
+              style={{ background: `linear-gradient(to bottom, ${BG}, ${BG}99 45%, transparent)` }}
               aria-hidden="true"
             />
             <div
@@ -148,9 +150,10 @@ export function HeroStage({
           </a>
         </div>
 
-        {/* ── grid do palco (desktop): editorial à esquerda, console na
+        {/* ── grid do palco (desktop): editorial à esquerda, divisor
+              editorial fino (ouro→gelo, as duas divisões) e console na
               faixa escura à direita — a máquina vive no vão entre eles ── */}
-        <div className="relative mx-auto hidden w-full max-w-7xl flex-1 grid-cols-[1.62fr_1fr] gap-12 px-6 lg:grid">
+        <div className="relative mx-auto hidden w-full max-w-7xl flex-1 grid-cols-[1.62fr_1px_1fr] gap-10 px-6 lg:grid">
           <div className="flex flex-col justify-end pb-12">
             <span
               className="rise-in pointer-events-none select-none whitespace-nowrap text-[clamp(3rem,6.6vw,6.2rem)] font-extrabold leading-[0.85] tracking-tighter text-white/95"
@@ -182,19 +185,46 @@ export function HeroStage({
             </div>
           </div>
 
+          {/* divisor editorial vertical — ouro (mineração) funde em gelo
+              (IA), a régua das duas divisões sem risco duro */}
+          <div
+            className="my-10 w-px self-stretch"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, rgba(212,168,71,0.55) 22%, rgba(255,255,255,0.14) 52%, rgba(127,180,216,0.55) 82%, transparent)",
+            }}
+            aria-hidden="true"
+          />
+
           {/* console de IA — na margem escura preparada no asset */}
           <div className="rise-in flex items-center justify-end py-6" style={rise(5)}>
             <AgentConsole />
           </div>
         </div>
 
+        {/* costura mobile entre as bandas — divisor editorial ouro→gelo no
+              lugar do risco duro (polimento 2026-09-11) */}
+        <div
+          className="h-px w-full lg:hidden"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(212,168,71,0.5), rgba(255,255,255,0.12) 50%, rgba(127,180,216,0.5))",
+          }}
+          aria-hidden="true"
+        />
+
         {/* ── entrada 02 compacta (mobile) — retrato reconhecível, sem
               comprimir a interface completa em 29svh ── */}
         <a
           href="#ia"
           aria-label={`${ia.num} — ${ia.label}: ${ia.cta}`}
-          className="relative flex h-[29svh] min-h-[215px] overflow-hidden border-t border-white/10 bg-[#0B0E12] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#7FB4D8] lg:hidden"
+          className="relative flex h-[29svh] min-h-[215px] overflow-hidden bg-[#0B0E12] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#7FB4D8] lg:hidden"
         >
+          {/* fusão do carvão da banda 01 no fundo da banda 02 */}
+          <span
+            className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[#08080A] to-transparent"
+            aria-hidden="true"
+          />
           <span className="rise-in relative z-10 flex min-w-0 flex-1 flex-col justify-end px-4 pb-4" style={rise(4)}>
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#9FC6E2]">
               {ia.num} · {ia.label}

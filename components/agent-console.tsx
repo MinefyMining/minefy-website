@@ -235,7 +235,7 @@ export function AgentConsole({ className = "" }: { className?: string }) {
           className="absolute inset-0 bg-gradient-to-t from-[#0B0D11] via-[#0B0D11]/35 to-transparent"
           aria-hidden="true"
         />
-        <span className="absolute right-3.5 top-3 font-mono text-[9px] uppercase tracking-[0.22em] text-white/45">
+        <span className="absolute right-3 top-3 rounded-full bg-black/50 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.22em] text-white/60 backdrop-blur-[2px]">
           Demonstração · dados simulados
         </span>
         <div className="absolute bottom-2.5 left-4">
