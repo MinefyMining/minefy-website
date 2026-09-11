@@ -1,3 +1,4 @@
+import { AiDivisionIntro } from "@/components/ai-division-intro";
 import type { ComponentType } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, Plug, Rocket, Activity, RefreshCcw } from "lucide-react";
@@ -206,26 +207,10 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* transição — da matéria aos fluxos digitais */}
-      <div aria-hidden="true" className="flex justify-center bg-[#0A0A0A]">
-        <div className="h-28 w-px bg-gradient-to-b from-[#D4A847]/70 via-white/20 to-[#7FB4D8]/70" />
-      </div>
-
-      {/* ── CAPÍTULO 02 · INTELIGÊNCIA ARTIFICIAL ── */}
-      <section id="ia" className="scroll-mt-20 bg-[#0A0A0A] px-6 pb-24 pt-14">
-        <div className="mx-auto w-full max-w-7xl">
-          <ScrollReveal>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#9FC6E2]">
-              {t("iaChapter.kicker")}
-            </p>
-            <h2 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-              {t("iaChapter.title")}
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/65">
-              {t("iaChapter.lede")}
-            </p>
-          </ScrollReveal>
-
+      {/* A âncora apresenta a identidade visual antes do conteúdo da divisão. */}
+      <section id="ia" className="scroll-mt-20 bg-[#0A0A0A] pb-24">
+        <AiDivisionIntro />
+        <div className="mx-auto w-full max-w-7xl px-6">
           {/* faixa "Aplicada na nossa operação" — a prova antes da oferta
               (expansão IA & TI 2026-09-11, conteúdo validado) */}
           <ScrollReveal delay={80}>

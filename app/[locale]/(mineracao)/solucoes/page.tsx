@@ -1,3 +1,4 @@
+import { AiDivisionIntro } from "@/components/ai-division-intro";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
@@ -498,19 +499,9 @@ export default async function SolutionsPage({ params }: Props) {
 
       {/* ── DIVISÃO 02 · IA & TI — ofertas digitais depois do catálogo
              industrial (ordem definida pelo CEO 2026-09-10) ── */}
-      <section id="ia-ti" className="scroll-mt-24 border-t border-border bg-card px-6 py-20">
-        <div className="mx-auto max-w-6xl">
-          <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {t("divisions.iaTi.kicker")}
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-foreground md:text-4xl">
-              {t("divisions.iaTi.title")}
-            </h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground">
-              {t("divisions.iaTi.lede")}
-            </p>
-          </ScrollReveal>
+      <section id="ia-ti" className="scroll-mt-20 bg-card pb-20">
+        <AiDivisionIntro />
+        <div className="mx-auto max-w-7xl px-6">
           <div className="my-12 border-y border-primary/20 py-10">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{tAI("operation.kicker")}</p>
             <h3 className="mt-3 max-w-3xl text-2xl font-bold text-foreground md:text-3xl">{tAI("operation.title")}</h3>
