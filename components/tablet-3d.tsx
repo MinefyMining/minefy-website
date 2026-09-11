@@ -1,10 +1,13 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, type MutableRefObject, type RefObject } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, RoundedBox } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
+
+/** Normalized interaction target: x/y em [-1, 1] (y positivo = baixo). */
+type InputTarget = { x: number; y: number };
 
 /** Draw a branded telemetry dashboard onto a canvas → used as the screen texture. */
 function useScreenTexture() {
@@ -126,17 +129,108 @@ function roundRect(
   ctx.closePath();
 }
 
-function Device({ reducedMotion }: { reducedMotion: boolean }) {
+/**
+ * Liga mouse/toque/teclado do CARD INTEIRO à cena (fix 2026-09-11): o antigo
+ * parallax lia `state.pointer`, que só reage sobre a área do canvas (a coluna
+ * direita do tile) — sobre o texto/copy do card nada acontecia e a interação
+ * parecia morta. Agora os listeners vivem no elemento do tile (via
+ * `interactionRef`), normalizados pelo seu próprio retângulo, então qualquer
+ * ponto do card orienta o tablet. Toque: o primeiro toque/arrasto orienta
+ * (sem sequestrar o scroll). Teclado: com o card focado, as setas giram o
+ * dispositivo (controle explícito, com `preventDefault` só quando tratado).
+ * Sob reduced-motion o frameloop é `demand`; cada input chama `invalidate()`
+ * — a animação automática morre, o controle do usuário NÃO (regra 2026-09-11).
+ */
+function InteractionBridge({
+  interactionRef,
+  input,
+}: {
+  interactionRef?: RefObject<HTMLElement | null>;
+  input: MutableRefObject<InputTarget>;
+}) {
+  const invalidate = useThree((s) => s.invalidate);
+  const gl = useThree((s) => s.gl);
+
+  useEffect(() => {
+    const el = interactionRef?.current ?? gl.domElement.parentElement;
+    if (!el) return;
+
+    const orient = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      input.current.x = Math.min(1, Math.max(-1, ((e.clientX - r.left) / r.width) * 2 - 1));
+      input.current.y = Math.min(1, Math.max(-1, ((e.clientY - r.top) / r.height) * 2 - 1));
+      invalidate();
+    };
+    const rest = () => {
+      input.current.x = 0;
+      input.current.y = 0;
+      invalidate();
+    };
+    const onKey = (e: KeyboardEvent) => {
+      const step = 0.25;
+      let handled = true;
+      switch (e.key) {
+        case "ArrowLeft":
+          input.current.x = Math.max(-1, input.current.x - step);
+          break;
+        case "ArrowRight":
+          input.current.x = Math.min(1, input.current.x + step);
+          break;
+        case "ArrowUp":
+          input.current.y = Math.max(-1, input.current.y - step);
+          break;
+        case "ArrowDown":
+          input.current.y = Math.min(1, input.current.y + step);
+          break;
+        default:
+          handled = false;
+      }
+      if (handled) {
+        e.preventDefault();
+        invalidate();
+      }
+    };
+
+    el.addEventListener("pointermove", orient);
+    el.addEventListener("pointerdown", orient);
+    el.addEventListener("pointerleave", rest);
+    el.addEventListener("keydown", onKey);
+    return () => {
+      el.removeEventListener("pointermove", orient);
+      el.removeEventListener("pointerdown", orient);
+      el.removeEventListener("pointerleave", rest);
+      el.removeEventListener("keydown", onKey);
+    };
+  }, [interactionRef, gl, input, invalidate]);
+
+  return null;
+}
+
+function Device({
+  reducedMotion,
+  input,
+}: {
+  reducedMotion: boolean;
+  input: MutableRefObject<InputTarget>;
+}) {
   const group = useRef<THREE.Group>(null);
   const screen = useScreenTexture();
 
-  // Cursor parallax — disabled under `prefers-reduced-motion`.
-  useFrame((state) => {
-    if (reducedMotion || !group.current) return;
-    const px = state.pointer.x;
-    const py = state.pointer.y;
-    group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, -0.35 + px * 0.4, 0.06);
-    group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, 0.08 - py * 0.3, 0.06);
+  // Parallax dirigido pelo input do card (mouse/toque/teclado). Sob
+  // reduced-motion aplica DIRETO (sem easing = sem animação), mas o controle
+  // explícito do usuário permanece.
+  useFrame(() => {
+    if (!group.current) return;
+    const targetY = -0.35 + input.current.x * 0.4;
+    const targetX = 0.08 + input.current.y * 0.3;
+    if (reducedMotion) {
+      group.current.rotation.y = targetY;
+      group.current.rotation.x = targetX;
+    } else {
+      group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, targetY, 0.06);
+      group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, targetX, 0.06);
+    }
   });
 
   // rugged corner bumpers
@@ -220,12 +314,19 @@ function Device({ reducedMotion }: { reducedMotion: boolean }) {
 }
 
 /**
- * Interactive 3D industrial tablet (ActiSky) — floats and follows the cursor.
- * Under `prefers-reduced-motion: reduce` the device renders fully static
- * (no float, no parallax) and the render loop runs on demand only.
+ * Interactive 3D industrial tablet (ActiSky) — floats and follows the
+ * pointer/keyboard of the WHOLE tile (`interactionRef`), not just the canvas
+ * column. Under `prefers-reduced-motion: reduce` the idle float dies and the
+ * render loop runs on demand — but explicit user control (mouse, touch,
+ * arrow keys) keeps working via `invalidate()`.
  */
-export default function Tablet3D() {
+export default function Tablet3D({
+  interactionRef,
+}: {
+  interactionRef?: RefObject<HTMLElement | null>;
+}) {
   const reducedMotion = useReducedMotion() ?? false;
+  const input = useRef<InputTarget>({ x: 0, y: 0 });
 
   return (
     <Canvas
@@ -235,11 +336,12 @@ export default function Tablet3D() {
       frameloop={reducedMotion ? "demand" : "always"}
       style={{ background: "transparent" }}
     >
+      <InteractionBridge interactionRef={interactionRef} input={input} />
       <ambientLight intensity={0.5} />
       <directionalLight position={[4, 6, 5]} intensity={1.4} />
       <pointLight position={[-5, 2, 4]} color="#D4A847" intensity={45} distance={20} />
       <pointLight position={[5, -3, 3]} color="#F5D98B" intensity={22} distance={18} />
-      <Device reducedMotion={reducedMotion} />
+      <Device reducedMotion={reducedMotion} input={input} />
     </Canvas>
   );
 }
