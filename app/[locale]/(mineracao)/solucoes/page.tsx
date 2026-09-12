@@ -1,3 +1,4 @@
+import { MultiAgentFlow } from "@/components/multi-agent-flow";
 import { AiDivisionIntro } from "@/components/ai-division-intro";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
@@ -507,6 +508,7 @@ export default async function SolutionsPage({ params }: Props) {
             <h3 className="mt-3 max-w-3xl text-2xl font-bold text-foreground md:text-3xl">{tAI("operation.title")}</h3>
             <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">{tAI("operation.text")}</p>
           </div>
+          <MultiAgentFlow />
           <h3 className="text-2xl font-bold text-foreground">{tAI("areas.title")}</h3>
           <div className="mt-7 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
             {aiAreas.map((area, index) => (

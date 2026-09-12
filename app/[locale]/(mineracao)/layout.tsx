@@ -13,9 +13,8 @@ import type { Metadata } from "next";
  * `(mineracao)` keeps this scoped to the mining-world routes without
  * affecting URLs.
  *
- * `<LogoIntro blocking={false} />` plays a once-per-real-page-load,
- * NON-BLOCKING brand signature anchored on `MiningHeader`'s `#site-logo` —
- * the page renders and stays interactive underneath from the first frame.
+ * `<LogoIntro blocking landing="bottom" />` plays a once-per-real-page-load,
+ * opaque brand opening; the logo moves down before the page is revealed.
  *
  * The `NextIntlClientProvider` here delivers ONLY the namespaces this
  * world's Client Components consume (`pick` — MIKE-ARQUITETURA 2.3): the
@@ -58,10 +57,8 @@ export default async function MineracaoLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      {/* Non-blocking brand signature (P1 fix 2026-09-09): content is visible
-          and clickable from the first frame — no opaque cover, no scroll
-          lock, short beat. Agrofy keeps its own (blocking) instance. */}
-      <LogoIntro blocking={false} />
+      {/* Opaque opening, then a downward logo transition reveals the page. */}
+      <LogoIntro blocking landing="bottom" />
       <ScrollProgress variant="gold" />
       <CursorGlow variant="gold" />
       <MiningHeader />
