@@ -50,7 +50,7 @@ export function MiningFooter({ year }: MiningFooterProps) {
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
             <Link href={homeHref}>
-              <Image src="/images/logo-transparente.png" alt="Minefy" width={800} height={570} className="w-[100px] h-auto" />
+              <Image id="footer-logo" src="/images/logo-transparente.png" alt="Minefy" width={800} height={570} className="w-[100px] h-auto" />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">{t("tagline")}</p>
 
