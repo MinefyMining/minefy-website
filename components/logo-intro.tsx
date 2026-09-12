@@ -150,9 +150,7 @@ export function LogoIntro({
     if (blocking) document.body.style.overflow = "hidden";
     const t = setTimeout(() => {
       const el = document.getElementById(targetId);
-      if (landing === "bottom") {
-        setFly({ x: 0, y: window.innerHeight / 2 - 58, scale: 0.3 });
-      } else if (el) {
+      if (el) {
         const r = el.getBoundingClientRect();
         setFly({
           x: r.left + r.width / 2 - window.innerWidth / 2,
@@ -160,11 +158,11 @@ export function LogoIntro({
           scale: (r.width / INTRO_W) * fillCompensation,
         });
       } else {
-        setFly({
-          x: -window.innerWidth / 2 + 120,
-          y: -window.innerHeight / 2 + 60,
-          scale: 0.34 * fillCompensation,
-        });
+        // Without the real brand anchor, reveal the page rather than invent a landing point.
+        playedThisLoad.add(sessionKey);
+        document.body.style.overflow = "";
+        setPhase("done");
+        return;
       }
       setPhase("fly");
     }, blocking ? 1650 : 500);
@@ -172,7 +170,7 @@ export function LogoIntro({
       clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [mounted, skip, targetId, fillCompensation, blocking, landing]);
+  }, [mounted, skip, targetId, fillCompensation, blocking, landing, sessionKey]);
 
   // Don't render the opaque overlay during SSR / before mount or without JS
   // (no-JS visitors would otherwise be stuck on a black screen), nor when the

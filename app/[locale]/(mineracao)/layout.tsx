@@ -13,7 +13,7 @@ import type { Metadata } from "next";
  * `(mineracao)` keeps this scoped to the mining-world routes without
  * affecting URLs.
  *
- * `<LogoIntro blocking landing="bottom" />` plays a once-per-real-page-load,
+ * `<LogoIntro blocking landing="bottom" targetId="footer-logo" />` plays a once-per-real-page-load,
  * opaque brand opening; the logo moves down before the page is revealed.
  *
  * The `NextIntlClientProvider` here delivers ONLY the namespaces this
@@ -58,7 +58,7 @@ export default async function MineracaoLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {/* Opaque opening, then a downward logo transition reveals the page. */}
-      <LogoIntro blocking landing="bottom" />
+      <LogoIntro blocking landing="bottom" targetId="footer-logo" />
       <ScrollProgress variant="gold" />
       <CursorGlow variant="gold" />
       <MiningHeader />
