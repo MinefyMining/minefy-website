@@ -195,7 +195,7 @@ export function LogoIntro({
       <motion.div
         className={blocking ? "absolute inset-0 bg-black" : "absolute inset-0 bg-background/45 backdrop-blur-[2px]"}
         animate={{ opacity: phase === "fly" ? 0 : 1 }}
-        transition={{ duration: blocking ? 0.3 : 0.45, delay: blocking && landing === "bottom" ? 0.65 : 0, ease: "easeInOut" }}
+        transition={{ duration: blocking ? 0.3 : 0.45, delay: blocking && variant === "gold" ? 0.65 : 0, ease: "easeInOut" }}
       />
 
       {/* Optional full-bleed photo (clean plate, no burned-in emblem) — the

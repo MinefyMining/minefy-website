@@ -13,8 +13,8 @@ import type { Metadata } from "next";
  * `(mineracao)` keeps this scoped to the mining-world routes without
  * affecting URLs.
  *
- * `<LogoIntro blocking landing="bottom" targetId="footer-logo" />` plays a once-per-real-page-load,
- * opaque brand opening; the logo moves down before the page is revealed.
+ * `<LogoIntro blocking landing="header" targetId="site-logo" />` plays a once-per-real-page-load,
+ * opaque brand opening; the logo moves into the header before the page is revealed.
  *
  * The `NextIntlClientProvider` here delivers ONLY the namespaces this
  * world's Client Components consume (`pick` — MIKE-ARQUITETURA 2.3): the
@@ -57,8 +57,8 @@ export default async function MineracaoLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      {/* Opaque opening, then a downward logo transition reveals the page. */}
-      <LogoIntro blocking landing="bottom" targetId="footer-logo" />
+      {/* Opaque opening, then a logo transition into the header reveals the page. */}
+      <LogoIntro blocking landing="header" targetId="site-logo" />
       <ScrollProgress variant="gold" />
       <CursorGlow variant="gold" />
       <MiningHeader />
