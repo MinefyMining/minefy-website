@@ -757,3 +757,11 @@ html.js .console-swap {
   .marquee-track { transform: none; }
   .btn-sheen::after { display: none; }
 }
+
+@keyframes multi-agent-signal {
+  to { stroke-dashoffset: -72; }
+}
+.multi-agent-signal { animation: multi-agent-signal 1.6s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .multi-agent-signal { animation: none; }
+}

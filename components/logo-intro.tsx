@@ -69,6 +69,7 @@ type LogoIntroProps = {
    * to true (the original full-cover behavior, still used by Agrofy).
    */
   blocking?: boolean;
+  landing?: "header" | "bottom";
   /**
    * Optional full-bleed photo shown behind the "generating" logo instead of
    * the flat `bg-background` fill — lets the intro open directly on the
@@ -118,6 +119,7 @@ export function LogoIntro({
   sessionKey = "minefy-intro",
   fillCompensation = 1,
   blocking = true,
+  landing = "header",
   backgroundSrc,
 }: LogoIntroProps = {}) {
   const theme = THEME[variant];
@@ -148,7 +150,9 @@ export function LogoIntro({
     if (blocking) document.body.style.overflow = "hidden";
     const t = setTimeout(() => {
       const el = document.getElementById(targetId);
-      if (el) {
+      if (landing === "bottom") {
+        setFly({ x: 0, y: window.innerHeight / 2 - 58, scale: 0.3 });
+      } else if (el) {
         const r = el.getBoundingClientRect();
         setFly({
           x: r.left + r.width / 2 - window.innerWidth / 2,
@@ -168,7 +172,7 @@ export function LogoIntro({
       clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [mounted, skip, targetId, fillCompensation, blocking]);
+  }, [mounted, skip, targetId, fillCompensation, blocking, landing]);
 
   // Don't render the opaque overlay during SSR / before mount or without JS
   // (no-JS visitors would otherwise be stuck on a black screen), nor when the
@@ -191,9 +195,9 @@ export function LogoIntro({
           fill; when `backgroundSrc` is set, the photo layer below covers it
           almost entirely, but this still guards any edge/overscroll gap. */}
       <motion.div
-        className={blocking ? "absolute inset-0 bg-background" : "absolute inset-0 bg-background/45 backdrop-blur-[2px]"}
+        className={blocking ? "absolute inset-0 bg-black" : "absolute inset-0 bg-background/45 backdrop-blur-[2px]"}
         animate={{ opacity: phase === "fly" ? 0 : 1 }}
-        transition={{ duration: blocking ? 0.7 : 0.45, ease: "easeInOut" }}
+        transition={{ duration: blocking ? 0.3 : 0.45, delay: blocking && landing === "bottom" ? 0.65 : 0, ease: "easeInOut" }}
       />
 
       {/* Optional full-bleed photo (clean plate, no burned-in emblem) — the

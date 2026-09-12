@@ -9,7 +9,7 @@ import { ClientCarousel } from "@/components/client-carousel";
 import { HeroStage } from "@/components/hero-stage";
 import { ScrollerChapter } from "@/components/scroller-chapter";
 import { BentoSolutions, type SolutionItem } from "@/components/bento-solutions";
-import { SystemsMap } from "@/components/hero-corporate";
+import { MultiAgentFlow } from "@/components/multi-agent-flow";
 import { ExperienceLab } from "@/components/experience-lab";
 import { AuroraBackground } from "@/components/aurora-background";
 import { FaqSection } from "@/components/faq-section";
@@ -357,9 +357,7 @@ export default async function HomePage({ params }: Props) {
             </div>
           </ScrollReveal>
 
-          <div id="agente-minefy" className="mx-auto mt-12 max-w-2xl scroll-mt-24">
-            <SystemsMap />
-          </div>
+          <MultiAgentFlow />
 
           {/* laboratório interativo — a demonstração funcional do capítulo */}
           <ScrollReveal delay={100} className="mt-14">
