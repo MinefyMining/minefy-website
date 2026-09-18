@@ -6,7 +6,6 @@ import { z } from "zod";
  * default é o serviço-âncora do mundo que hospedou o formulário. */
 export const SERVICOS = [
   "mineracao-telemetria",
-  "scroller",
   "ia-corporativa",
   "agentes-autonomos",
   "servicos-ti",

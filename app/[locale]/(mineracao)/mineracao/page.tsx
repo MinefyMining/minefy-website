@@ -7,7 +7,6 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
 import { ClientCarousel } from "@/components/client-carousel";
 import { HeroStage } from "@/components/hero-stage";
-import { ScrollerChapter } from "@/components/scroller-chapter";
 import { BentoSolutions, type SolutionItem } from "@/components/bento-solutions";
 import { MultiAgentFlow } from "@/components/multi-agent-flow";
 import { ExperienceLab } from "@/components/experience-lab";
@@ -56,8 +55,7 @@ const SOLUTION_IDS = [
  * Home corporativa — DUAS DIVISÕES (CEO, 2026-09-10):
  * o hero comunica as duas divisões da Minefy e o scroll percorre cada uma:
  *   Abertura dual (palco premium + console do agente) →
- *   DIVISÃO 01 · Mineração (`#mineracao`): capítulo Scroller em destaque
- *   (`#scroller`, âncora preservada) + catálogo industrial completo
+ *   DIVISÃO 01 · Mineração (`#mineracao`): catálogo industrial completo
  *   (bento com as 8 soluções → /solucoes#…) → transição matéria→digital →
  *   DIVISÃO 02 · IA & TI (`#ia`, âncora preservada): ofertas + laboratório
  *   interativo → capacidade de engenharia → método → evidências → FAQ → CTA.
@@ -71,7 +69,6 @@ export default async function HomePage({ params }: Props) {
 
   const t = await getTranslations("corporateHome");
   const tHome = await getTranslations("home");
-  const tServices = await getTranslations("services");
 
   const engineering = t.raw("engineering.items") as Array<{
     icon: string;
@@ -88,11 +85,6 @@ export default async function HomePage({ params }: Props) {
   const authorityItems = tHome.raw("authority.items") as Array<{
     title: string;
     description: string;
-  }>;
-
-  const scrollerPoints = t.raw("scrollerChapter.points") as Array<{
-    title: string;
-    text: string;
   }>;
 
   // Catálogo industrial completo — mesmos itens/ordem das âncoras de /solucoes.
@@ -122,34 +114,28 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      {/* ── PALCO INTEGRADO — Scroller e IA no mesmo palco, primeiro viewport ── */}
+      {/* ── PALCO DE ABERTURA — divisões no mesmo palco, primeiro viewport ── */}
       <HeroStage
         badge={t("heroDual.badge")}
         title={t.rich("heroDual.title", {
           gold: (chunks) => <span className="text-[#D4A847]">{chunks}</span>,
         })}
         subtitle={t("heroDual.subtitle")}
-        scroller={{
-          num: t("heroDual.scenes.scroller.num"),
-          label: t("heroDual.scenes.scroller.label"),
-          tagline: t("heroDual.scenes.scroller.tagline"),
-          cta: t("heroDual.scenes.scroller.cta"),
+        scene={{
+          num: t("heroDual.scenes.mineracao.num"),
+          label: t("heroDual.scenes.mineracao.label"),
+          title: t("heroDual.scenes.mineracao.title"),
+          tagline: t("heroDual.scenes.mineracao.tagline"),
+          cta: t("heroDual.scenes.mineracao.cta"),
         }}
-        ia={{
-          num: t("heroDual.scenes.ia.num"),
-          label: t("heroDual.scenes.ia.label"),
-          tagline: t("heroDual.scenes.ia.tagline"),
-          cta: t("heroDual.scenes.ia.cta"),
-        }}
-        scrollerImageAlt={tServices("scroller.hero.imageAlt")}
-        scrollerMediaNote={t("scrollerChapter.mediaNote")}
+        imageAlt={t("heroDual.imageAlt")}
+        mediaNote={t("heroDual.mediaNote")}
       />
 
-      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque + catálogo
-            industrial completo (reorganização em duas divisões, CEO
-            2026-09-10). A âncora antiga `#scroller` permanece no capítulo. ── */}
+      {/* ── DIVISÃO 01 · MINERAÇÃO — catálogo industrial completo
+            (reorganização em duas divisões, CEO 2026-09-10). ── */}
       <section id="mineracao" className="scroll-mt-20">
-        <div className="bg-[#0A0A0A] px-6 pt-16">
+        <div className="bg-[#0A0A0A] px-6 py-16">
           <div className="mx-auto w-full max-w-7xl">
             <ScrollReveal>
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
@@ -165,19 +151,7 @@ export default async function HomePage({ params }: Props) {
           </div>
         </div>
 
-        {/* capítulo Scroller — o destaque da divisão */}
-        <ScrollerChapter
-          kicker={t("scrollerChapter.kicker")}
-          title={t("scrollerChapter.title")}
-          lede={t("scrollerChapter.lede")}
-          points={scrollerPoints}
-          ctaPrimary={t("scrollerChapter.ctaPrimary")}
-          ctaSecondary={t("scrollerChapter.ctaSecondary")}
-          mediaNote={t("scrollerChapter.mediaNote")}
-          imageAlt={tServices("scroller.hero.imageAlt")}
-        />
-
-        {/* catálogo industrial completo — todos os demais produtos juntos */}
+        {/* catálogo industrial completo — todos os produtos juntos */}
         <div id="catalogo-industrial" className="scroll-mt-24 border-y border-border bg-card px-6 py-20">
           <div className="mx-auto w-full max-w-7xl">
             <ScrollReveal>

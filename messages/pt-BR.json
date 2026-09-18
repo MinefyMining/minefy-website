@@ -309,7 +309,7 @@
           "id": "mineracao",
           "badge": "DIVISÃO 01",
           "title": "Equipamentos e soluções para mineração",
-          "text": "Scroller, tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança e locações — o catálogo industrial completo.",
+          "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança e locações — o catálogo industrial completo.",
           "href": "#mineracao",
           "ctaLabel": "Ver a divisão de mineração"
         },
@@ -325,15 +325,7 @@
       "mineracao": {
         "kicker": "Divisão 01 · Mineração",
         "title": "Equipamentos e soluções para mineração",
-        "lede": "O Scroller abre a frente de rejeitos; o catálogo industrial completo — hardware, telemetria, software e locações — sustenta a operação."
-      },
-      "scrollerFeature": {
-        "badge": "DESTAQUE DA DIVISÃO",
-        "title": "Scroller",
-        "text": "Equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos — opera sobre superfícies de baixa capacidade de suporte, com aplicabilidade definida por estudo de engenharia.",
-        "cta": "Conhecer o Scroller",
-        "ctaSecondary": "Falar com a engenharia",
-        "mediaNote": "Imagem ilustrativa."
+        "lede": "Hardware, telemetria, software e locações — o catálogo industrial completo que sustenta a operação."
       },
       "iaTi": {
         "kicker": "Divisão 02 · IA & TI",
@@ -1179,7 +1171,6 @@
       "service": "Serviço / interesse",
       "serviceOptions": {
         "mineracao-telemetria": "Operação industrial e telemetria",
-        "scroller": "Scroller — equipamento anfíbio",
         "ia-corporativa": "IA corporativa",
         "agentes-autonomos": "Agentes autônomos",
         "servicos-ti": "Serviços de TI",
@@ -1235,10 +1226,6 @@
         "href": "/solucoes#consulting"
       },
       {
-        "label": "Scroller",
-        "href": "/solucoes/scroller"
-      },
-      {
         "label": "IA Corporativa",
         "href": "/solucoes/ia-corporativa"
       },
@@ -1256,10 +1243,6 @@
         "title": "Mineração",
         "href": "/solucoes#mineracao",
         "links": [
-          {
-            "label": "Scroller",
-            "href": "/solucoes/scroller"
-          },
           {
             "label": "Tablets Industriais",
             "href": "/solucoes#tablets"
@@ -1376,7 +1359,7 @@
   "corporateHome": {
     "metadata": {
       "title": "Minefy — Equipamentos para mineração e IA corporativa",
-      "description": "Duas divisões, uma engenharia: equipamentos e soluções para mineração — Scroller, telemetria ActiSky, tablets industriais e gestão de frota — e inteligência artificial e TI para conectar sistemas e decisões da sua empresa."
+      "description": "Duas divisões, uma engenharia: equipamentos e soluções para mineração — telemetria ActiSky, tablets industriais e gestão de frota — e inteligência artificial e TI para conectar sistemas e decisões da sua empresa."
     },
     "hero": {
       "badge": "Engenharia · IA · Operação",
@@ -1482,12 +1465,13 @@
     "heroDual": {
       "badge": "Duas divisões · uma engenharia",
       "title": "Equipamentos para a <gold>mina</gold>. Inteligência para a empresa.",
-      "subtitle": "Equipamentos e soluções para mineração — do Scroller à telemetria de frota — e uma divisão de inteligência artificial e TI que conecta seus sistemas e decisões, com aprovação humana.",
+      "subtitle": "Equipamentos e soluções para mineração — da telemetria de frota aos tablets industriais — e uma divisão de inteligência artificial e TI que conecta seus sistemas e decisões, com aprovação humana.",
       "scenes": {
-        "scroller": {
+        "mineracao": {
           "num": "01",
           "label": "Mineração",
-          "tagline": "Scroller em destaque — e o catálogo industrial completo: tablets, telemetria ActiSky, frota, segurança e locações.",
+          "title": "Equipamentos e soluções",
+          "tagline": "O catálogo industrial completo: tablets, telemetria ActiSky, gestão de frota, segurança e locações.",
           "cta": "Ver equipamentos e soluções"
         },
         "ia": {
@@ -1496,40 +1480,20 @@
           "tagline": "IA corporativa, agentes autônomos e engenharia de software.",
           "cta": "Explorar IA & TI"
         }
-      }
+      },
+      "imageAlt": "Escavadeira de grande porte carregando caminhão fora de estrada em mina a céu aberto",
+      "mediaNote": "Imagem ilustrativa."
     },
     "miningDivision": {
       "kicker": "Divisão 01 · Mineração",
       "title": "Equipamentos e soluções para mineração",
-      "lede": "Do equipamento anfíbio ao dado da frota: o Scroller abre a frente de rejeitos e o catálogo industrial completo sustenta a operação — hardware, telemetria, software e locações.",
+      "lede": "Do equipamento pesado ao dado da frota: o catálogo industrial completo sustenta a operação — hardware, telemetria, software e locações.",
       "catalog": {
         "kicker": "Catálogo industrial",
         "title": "Todas as soluções de mineração, em um só lugar",
         "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança, consultoria e locações — cada item detalhado na página de soluções.",
         "cta": "Ver o catálogo detalhado"
       }
-    },
-    "scrollerChapter": {
-      "kicker": "Destaque da divisão",
-      "title": "Scroller",
-      "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento do material.",
-      "points": [
-        {
-          "title": "Desaguamento e adensamento",
-          "text": "Os rolos helicoidais revolvem e sulcam a superfície do depósito — o mud farming que acelera o desaguamento e a consolidação do rejeito."
-        },
-        {
-          "title": "Aplicabilidade por estudo",
-          "text": "Estudo prévio sobre o seu terreno e o seu plano define onde e como a frente entra — antes de qualquer mobilização."
-        },
-        {
-          "title": "Integração à operação",
-          "text": "Dimensionamento, janela de trabalho e integração definidos com a engenharia Minefy, conforme o escopo de cada caso."
-        }
-      ],
-      "ctaPrimary": "Falar com a engenharia",
-      "ctaSecondary": "Ver a frente Scroller",
-      "mediaNote": "Imagem ilustrativa."
     },
     "iaChapter": {
       "kicker": "Divisão 02 · IA & TI",
@@ -1641,7 +1605,7 @@
       "items": [
         {
           "q": "O que a Minefy faz hoje?",
-          "a": "Atuamos em duas divisões. Em mineração, reunimos Scroller, tablets industriais, telemetria ActiSky, gestão de frota, segurança e locações. Em IA e TI, integramos inteligência artificial aos sistemas da empresa, criamos agentes autônomos sob medida e desenvolvemos aplicações, APIs e automações."
+          "a": "Atuamos em duas divisões. Em mineração, reunimos tablets industriais, telemetria ActiSky, gestão de frota, segurança e locações. Em IA e TI, integramos inteligência artificial aos sistemas da empresa, criamos agentes autônomos sob medida e desenvolvemos aplicações, APIs e automações."
         },
         {
           "q": "O que é IA corporativa aplicada ao meu negócio?",
@@ -1702,14 +1666,6 @@
             "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota e segurança — o portfólio completo está detalhado abaixo, nesta página.",
             "href": "#tablets",
             "ctaLabel": "Ver portfólio industrial"
-          },
-          {
-            "id": "scroller",
-            "badge": "NOVA FRENTE",
-            "title": "Scroller",
-            "text": "Equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos.",
-            "href": "/solucoes/scroller",
-            "ctaLabel": "Conhecer a frente"
           },
           {
             "id": "ia",
@@ -1840,35 +1796,6 @@
         "Manutenção e evolução"
       ],
       "cta": "Desenhar meu agente"
-    },
-    "scroller": {
-      "metadata": {
-        "title": "Scroller — Minefy",
-        "description": "Veículo anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos (mud farming). Aplicação dimensionada por estudo, com a engenharia Minefy."
-      },
-      "hero": {
-        "kicker": "Nova frente · Equipamento",
-        "title": "Scroller",
-        "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento e a consolidação do material.",
-        "imageAlt": "Veículo anfíbio de propulsão helicoidal sobre depósito de rejeitos, com rolos helicoidais parcialmente submersos na lama"
-      },
-      "sections": [
-        {
-          "title": "Desaguamento e adensamento",
-          "text": "Os rolos helicoidais flutuam sobre o depósito e revolvem a superfície em sulcos — o processo conhecido como mud farming, que acelera o desaguamento e o adensamento mecânico do rejeito."
-        },
-        {
-          "title": "Aplicabilidade por estudo",
-          "text": "Antes de qualquer mobilização, um estudo prévio de aplicabilidade sobre o seu terreno e o seu plano define onde e como a frente entra."
-        },
-        {
-          "title": "Integração à sua operação",
-          "text": "Dimensionamento, janela de trabalho e integração ao plano da operação definidos com a engenharia Minefy, conforme o escopo de cada caso."
-        }
-      ],
-      "status": "Frente em estruturação — avaliação técnica caso a caso com a engenharia Minefy.",
-      "cta": "Falar com a engenharia",
-      "backToHub": "Todas as soluções"
     },
     "ti": {
       "metadata": {

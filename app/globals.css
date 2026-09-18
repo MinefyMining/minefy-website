@@ -197,7 +197,7 @@ html.js .reveal.visible {
   transform: translateY(0);
 }
 
-/* ── Capítulos da home (Scroller + IA) ──
+/* ── Capítulos da home (divisões) ──
    Mesmo contrato do .reveal: gated por html.js (sem JS nada some),
    transform/opacity apenas, respeita reduced-motion no bloco global. */
 

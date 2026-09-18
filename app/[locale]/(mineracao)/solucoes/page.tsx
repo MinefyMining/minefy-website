@@ -31,7 +31,6 @@ export default async function SolutionsPage({ params }: Props) {
   const tAI = await getTranslations("corporateHome.iaChapter");
   const aiAreas = tAI.raw("areas.items") as Array<{title: string; automate: string; deliver: string}>;
   const tHub = await getTranslations("services.hub.fronts");
-  const tScroller = await getTranslations("services.scroller");
 
   const fronts = tHub.raw("items") as Array<{
     id: string;
@@ -43,7 +42,7 @@ export default async function SolutionsPage({ params }: Props) {
   }>;
 
   // Ofertas digitais — só as frentes de IA/agentes/TI entram na Divisão 02;
-  // Scroller e portfólio industrial vivem na Divisão 01 (Mineração).
+  // o portfólio industrial vive na Divisão 01 (Mineração).
   const digitalFronts = fronts.filter((f) =>
     ["ia", "agentes", "ti"].includes(f.id),
   );
@@ -110,8 +109,8 @@ export default async function SolutionsPage({ params }: Props) {
       </section>
 
       {/* ── DUAS DIVISÕES (reorganização CEO 2026-09-10) — a antiga régua
-             "quatro frentes" virou duas entradas: Mineração (Scroller +
-             catálogo industrial completo, PRIMEIRO) e IA & TI (ofertas
+             "quatro frentes" virou duas entradas: Mineração (catálogo
+             industrial completo, PRIMEIRO) e IA & TI (ofertas
              digitais, depois). A âncora `#frentes` é preservada aqui; o
              portfólio industrial mantém as MESMAS âncoras de sempre
              (#tablets, #actisky, …). ── */}
@@ -156,8 +155,7 @@ export default async function SolutionsPage({ params }: Props) {
 
       <div className="mx-auto h-px max-w-5xl bg-border" />
 
-      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque, catálogo
-             industrial completo na sequência ── */}
+      {/* ── DIVISÃO 01 · MINERAÇÃO — catálogo industrial completo ── */}
       <section id="mineracao" className="scroll-mt-24 px-6 pt-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal>
@@ -170,76 +168,6 @@ export default async function SolutionsPage({ params }: Props) {
             <p className="mt-3 max-w-2xl text-muted-foreground">
               {t("divisions.mineracao.lede")}
             </p>
-          </ScrollReveal>
-
-          {/* Scroller — destaque da divisão. Rodada 2026-09-11 (CEO): a
-              máquina aparece INTEIRA (recorte alpha `scroller-isolated.png`,
-              object-contain, palco de estúdio) e o texto vive num bloco
-              PRÓPRIO ao lado — nada de copy sobre a máquina, nada de corte. */}
-          <ScrollReveal delay={80}>
-            <div
-              id="scroller"
-              className="mt-10 grid scroll-mt-24 grid-cols-1 overflow-hidden rounded-2xl border border-border lg:grid-cols-[1.15fr_1fr]"
-            >
-              {/* palco da máquina — imagem inteira, sem texto por cima */}
-              <div className="relative flex min-h-[300px] items-center justify-center bg-gradient-to-b from-[#181818] to-[#0B0B0B] p-6 md:min-h-[380px] md:p-10">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "radial-gradient(110% 75% at 50% 34%, rgba(255,255,255,0.06), transparent 62%)",
-                  }}
-                  aria-hidden="true"
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-24"
-                  style={{
-                    background:
-                      "radial-gradient(60% 100% at 50% 100%, rgba(212,168,71,0.14), transparent 70%)",
-                  }}
-                  aria-hidden="true"
-                />
-                <Image
-                  src="/images/premium/scroller-isolated.png"
-                  alt={tScroller("hero.imageAlt")}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 640px"
-                  className="relative z-10 object-contain p-6 md:p-10"
-                  style={{ filter: "drop-shadow(0 24px 40px rgba(0,0,0,0.55))" }}
-                />
-                <p className="absolute bottom-3 right-4 z-10 font-mono text-[9px] uppercase tracking-[0.25em] text-white/40">
-                  {t("divisions.scrollerFeature.mediaNote")}
-                </p>
-              </div>
-
-              {/* bloco editorial — separado da máquina */}
-              <div className="flex flex-col justify-center border-t border-border bg-card p-8 md:p-12 lg:border-l lg:border-t-0">
-                <span className="inline-block w-fit rounded-full border border-[#D4A847]/40 bg-[#0A0A0A]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#E8C877]">
-                  {t("divisions.scrollerFeature.badge")}
-                </span>
-                <h3 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
-                  {t("divisions.scrollerFeature.title")}
-                </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {t("divisions.scrollerFeature.text")}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Link
-                    href="/solucoes/scroller"
-                    className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
-                  >
-                    {t("divisions.scrollerFeature.cta")}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <Link
-                    href="/contato?servico=scroller"
-                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/50"
-                  >
-                    {t("divisions.scrollerFeature.ctaSecondary")}
-                  </Link>
-                </div>
-              </div>
-            </div>
           </ScrollReveal>
         </div>
       </section>

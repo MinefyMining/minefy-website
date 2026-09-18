@@ -66,7 +66,6 @@ export function MiningHeader() {
   const isActive = (href: string) => {
     const digital = ["/solucoes/ia-corporativa", "/solucoes/agentes-autonomos", "/solucoes/servicos-ti"];
     if (href === "/solucoes#ia-ti") return digital.includes(pathname);
-    if (href === "/solucoes#mineracao") return pathname === "/solucoes/scroller";
     return href === "/" ? pathname === href : pathname.startsWith(href);
   };
 
