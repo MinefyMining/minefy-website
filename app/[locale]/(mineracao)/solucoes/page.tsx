@@ -155,7 +155,10 @@ export default async function SolutionsPage({ params }: Props) {
 
       <div className="mx-auto h-px max-w-5xl bg-border" />
 
-      {/* ── DIVISÃO 01 · MINERAÇÃO — catálogo industrial completo ── */}
+      {/* ── DIVISÃO 01 · MINERAÇÃO — Scroller em destaque (tecnologia
+             McCosker, autorização escrita 2026-09-20: nome + descrição
+             funcional + fotografia já publicada em mccoskers.com.au, com
+             atribuição obrigatória), catálogo industrial na sequência ── */}
       <section id="mineracao" className="scroll-mt-24 px-6 pt-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal>
@@ -168,6 +171,65 @@ export default async function SolutionsPage({ params }: Props) {
             <p className="mt-3 max-w-2xl text-muted-foreground">
               {t("divisions.mineracao.lede")}
             </p>
+          </ScrollReveal>
+
+          {/* Scroller — destaque da divisão. Fotografia oficial da
+              McCosker (a mesma publicada em mccoskers.com.au), com crédito
+              sobre a imagem e atribuição no bloco editorial. */}
+          <ScrollReveal delay={80}>
+            <div
+              id="scroller"
+              className="mt-10 grid scroll-mt-24 grid-cols-1 overflow-hidden rounded-2xl border border-border lg:grid-cols-[1.15fr_1fr]"
+            >
+              {/* fotografia oficial — integral, sem texto por cima */}
+              <div className="relative min-h-[300px] md:min-h-[380px]">
+                <Image
+                  src="/images/scroller/scroller-mccosker.jpg"
+                  alt={t("divisions.scrollerFeature.imageAlt")}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="object-cover"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent"
+                  aria-hidden="true"
+                />
+                <p className="absolute bottom-3 right-4 z-10 font-mono text-[9px] uppercase tracking-[0.2em] text-white/75">
+                  {t("divisions.scrollerFeature.mediaNote")}
+                </p>
+              </div>
+
+              {/* bloco editorial — atribuição obrigatória em destaque */}
+              <div className="flex flex-col justify-center border-t border-border bg-card p-8 md:p-12 lg:border-l lg:border-t-0">
+                <span className="inline-block w-fit rounded-full border border-[#D4A847]/40 bg-[#0A0A0A]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#E8C877]">
+                  {t("divisions.scrollerFeature.badge")}
+                </span>
+                <h3 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                  {t("divisions.scrollerFeature.title")}
+                </h3>
+                <p className="mt-3 max-w-xl border-l-2 border-[#D4A847]/60 pl-4 text-sm font-medium leading-relaxed text-foreground/85">
+                  {t("divisions.scrollerFeature.attribution")}
+                </p>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {t("divisions.scrollerFeature.text")}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href="/solucoes/scroller"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#D4A847] px-6 py-3 text-sm font-semibold text-[#0A0A0A] transition-colors duration-200 hover:bg-[#C49B3F]"
+                  >
+                    {t("divisions.scrollerFeature.cta")}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <Link
+                    href="/contato?servico=scroller"
+                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/50"
+                  >
+                    {t("divisions.scrollerFeature.ctaSecondary")}
+                  </Link>
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>

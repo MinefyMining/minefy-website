@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { StatsBar } from "@/components/stats-bar";
 import { ClientCarousel } from "@/components/client-carousel";
 import { HeroStage } from "@/components/hero-stage";
+import { ScrollerChapter } from "@/components/scroller-chapter";
 import { BentoSolutions, type SolutionItem } from "@/components/bento-solutions";
 import { MultiAgentFlow } from "@/components/multi-agent-flow";
 import { ExperienceLab } from "@/components/experience-lab";
@@ -87,6 +88,11 @@ export default async function HomePage({ params }: Props) {
     description: string;
   }>;
 
+  const scrollerPoints = t.raw("scrollerChapter.points") as Array<{
+    title: string;
+    text: string;
+  }>;
+
   // Catálogo industrial completo — mesmos itens/ordem das âncoras de /solucoes.
   const productItems = tHome.raw("products.items") as SolutionItem[];
 
@@ -132,10 +138,11 @@ export default async function HomePage({ params }: Props) {
         mediaNote={t("heroDual.mediaNote")}
       />
 
-      {/* ── DIVISÃO 01 · MINERAÇÃO — catálogo industrial completo
-            (reorganização em duas divisões, CEO 2026-09-10). ── */}
+      {/* ── DIVISÃO 01 · MINERAÇÃO — capítulo Scroller (tecnologia
+            McCosker, autorização escrita 2026-09-20) + catálogo industrial
+            completo. A âncora `#scroller` vive no capítulo. ── */}
       <section id="mineracao" className="scroll-mt-20">
-        <div className="bg-[#0A0A0A] px-6 py-16">
+        <div className="bg-[#0A0A0A] px-6 pt-16">
           <div className="mx-auto w-full max-w-7xl">
             <ScrollReveal>
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#E8C877]">
@@ -150,6 +157,20 @@ export default async function HomePage({ params }: Props) {
             </ScrollReveal>
           </div>
         </div>
+
+        {/* capítulo Scroller — o destaque da divisão, com atribuição
+            obrigatória à McCosker (fabricante/dona da tecnologia) */}
+        <ScrollerChapter
+          kicker={t("scrollerChapter.kicker")}
+          title={t("scrollerChapter.title")}
+          lede={t("scrollerChapter.lede")}
+          attribution={t("scrollerChapter.attribution")}
+          points={scrollerPoints}
+          ctaPrimary={t("scrollerChapter.ctaPrimary")}
+          ctaSecondary={t("scrollerChapter.ctaSecondary")}
+          mediaNote={t("scrollerChapter.mediaNote")}
+          imageAlt={t("scrollerChapter.imageAlt")}
+        />
 
         {/* catálogo industrial completo — todos os produtos juntos */}
         <div id="catalogo-industrial" className="scroll-mt-24 border-y border-border bg-card px-6 py-20">
