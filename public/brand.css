@@ -1,0 +1,21 @@
+/* Official Image 2 in the header and footer, including the fragmenting FY.
+   Only the compact dashboard and favicon use the clean fallback. Never redraw. */
+.site-header{background:#000}
+.site-header .brand,.footer .brand{gap:0;flex-shrink:0;isolation:isolate;mix-blend-mode:screen}
+.site-header .brand-logo,.footer .brand-logo{display:block;height:auto;object-fit:contain}
+.site-header .brand-logo{width:252px}
+.footer .brand-logo{width:320px}
+.site-header .brand{padding-block:0}
+.command-wordmark .brand-logo{display:block;width:140px;height:auto;object-fit:contain}
+.command-wordmark{gap:0;flex-shrink:0}
+.brand-signature{background:#000;overflow:hidden}
+.brand-signature picture{display:block}
+/* Image 1 is an illustration: retain the full equipment and terrain composition. */
+.brand-signature img{display:block;width:100%;height:auto;aspect-ratio:2048/1152;object-fit:contain}
+@media(max-width:700px){
+ .site-header .brand-logo{width:220px}
+ .footer .brand{flex:0 0 100%}
+ .footer .brand-logo{width:min(300px,100%)}
+ .command-wordmark .brand-logo{width:128px}
+}
+@media(max-width:360px){.command-wordmark .brand-logo{width:124px}.command-topbar{gap:7px}.command-session{font-size:5px}}
