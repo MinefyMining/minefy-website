@@ -45,3 +45,6 @@ next-env.d.ts
 # Skills CLI tooling (ui-ux-pro-max etc.)
 .agents/
 skills-lock.json
+
+# Claude Code hook logs (written into the cwd of every shell command)
+.claude/

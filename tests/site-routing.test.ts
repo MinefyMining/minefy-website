@@ -41,11 +41,6 @@ describe("canonicalFor — canonical usa origem pública + path EXTERNO", () => 
   });
 });
 
-/**
- * Contrato de rotas/domínios do split mineração × Agrofy (proxy.ts).
- * Regressão aqui = página pública mudando de lugar ou mundo vazando
- * pro domínio errado.
- */
 describe("staticHomeFor — home estática (experiência cinematográfica, CEO 2026-10-09)", () => {
   it("mineração: `/` é reescrito para o bundle estático public/home.html", () => {
     expect(staticHomeFor("mineracao", "/")).toBe("/home.html");
@@ -69,6 +64,11 @@ describe("staticHomeFor — home estática (experiência cinematográfica, CEO 2
   });
 });
 
+/**
+ * Contrato de rotas/domínios do split mineração × Agrofy (proxy.ts).
+ * Regressão aqui = página pública mudando de lugar ou mundo vazando
+ * pro domínio errado.
+ */
 describe("mapPathnameForSite — mundo mineração (minefymining.com)", () => {
   it("reescreve apenas a home para o arquivo interno /mineracao (home corporativa anterior)", () => {
     expect(mapPathnameForSite("mineracao", "/")).toBe("/mineracao");

@@ -123,6 +123,39 @@ describe("bundle estático — integridade dos recursos locais", () => {
   });
 });
 
+describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10-10: um log de hook entrou em public/)", () => {
+  /** Inventário exato do bundle publicado: 65 arquivos vindos verbatim do
+   * pacote + `home.html` + o PNG og. Arquivo a mais (log, temporário,
+   * dotfile) ou a menos QUEBRA este teste — é a trava. Mudou o bundle de
+   * propósito? Regere `tests/fixtures/static-home-files.json` conscientemente. */
+  const EXPECTED = JSON.parse(
+    readFileSync(join(__dirname, "fixtures", "static-home-files.json"), "utf8"),
+  ) as string[];
+
+  const walk = (dir: string, rel = "", out: string[] = []): string[] => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const r = rel ? `${rel}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) walk(join(dir, entry.name), r, out);
+      else out.push(r);
+    }
+    return out;
+  };
+  const bundleFiles = () =>
+    walk(PUBLIC)
+      .filter((f) => f === "home.html" || /^(assets|vendor)\//.test(f) || /^[^/]+\.(js|css)$/.test(f))
+      .sort();
+
+  it("nenhum arquivo ou diretório oculto (segmento iniciado por ponto) em public/", () => {
+    const hidden = walk(PUBLIC).filter((f) => f.split("/").some((s) => s.startsWith(".")));
+    expect(hidden).toEqual([]);
+  });
+
+  it("o conjunto de arquivos do bundle é exatamente o inventário esperado", () => {
+    expect(EXPECTED.length).toBe(67);
+    expect(bundleFiles()).toEqual([...EXPECTED].sort());
+  });
+});
+
 describe("bundle estático — guard de marcas (ActiSky, nunca fornecedor)", () => {
   it("HTML, JS e CSS da home não citam GalileoSky nem fornecedores", () => {
     const files = readdirSync(PUBLIC).filter((f) => /\.(html|js|css)$/.test(f));
