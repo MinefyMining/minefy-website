@@ -1,4 +1,4 @@
-import {media} from './media-manifest.js?v=80df660aeb';
+import {media} from './media-manifest.js?v=4152dfe81a';
 const equipment=new Set(['haul','excavator','dozer','pickup','scroller']);
 export function equipmentIcon(type){
  const name=equipment.has(type)?type:'haul',asset=media[`equipment/${name}`];
