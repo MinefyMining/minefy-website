@@ -19,3 +19,26 @@
  .command-wordmark .brand-logo{width:128px}
 }
 @media(max-width:360px){.command-wordmark .brand-logo{width:124px}.command-topbar{gap:7px}.command-session{font-size:5px}}
+
+/* Keep the product entrance beside the contact CTA; never wait for scene media. */
+.site-header{gap:28px}
+.desktop-nav{gap:24px;white-space:nowrap}
+.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.header-actions .nav-cta{white-space:nowrap;gap:14px;padding:13px 15px}
+.header-actions .nav-platform{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+.header-actions .nav-platform:hover{background:var(--cream);border-color:var(--cream)}
+.mobile-menu{overflow-y:auto}
+.mobile-menu .mobile-platform{display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid var(--gold);padding:16px 20px;color:var(--gold);font:700 16px Manrope,Arial,sans-serif}
+@media(max-width:1180px){
+ .desktop-nav{display:none}
+ .site-header{gap:20px}
+ .header-actions{margin-left:auto}
+ .menu-button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:none;border:0;padding:12px;min-width:44px;min-height:44px;margin-left:0}
+ .menu-button span{width:24px;height:1px;background:var(--cream)}
+}
+@media(max-width:800px){
+ .site-header{gap:15px}
+ .header-actions{display:none}
+ .menu-button{margin-left:auto}
+}
+@media(max-width:360px){.site-header .brand-logo{width:190px}}

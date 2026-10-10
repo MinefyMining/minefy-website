@@ -1,4 +1,4 @@
-import {media, prepareImage, warmImage, warmOnApproach, sceneSizes} from './media.js?v=80df660aeb';
+import {media, prepareImage, warmImage, warmOnApproach, sceneSizes} from './media.js?v=4152dfe81a';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=t=>t*t*(3-2*t);

@@ -1,5 +1,5 @@
-import {swapImage,warmImage} from './media.js?v=80df660aeb';
-import {equipmentIcon} from './equipment-icons.js?v=80df660aeb';
+import {swapImage,warmImage} from './media.js?v=4152dfe81a';
+import {equipmentIcon} from './equipment-icons.js?v=4152dfe81a';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let paused=reduced.matches||document.body.classList.contains('motion-paused'),selected='TR-001',windowMinutes=30,zoom=1.05,animations=[];

@@ -1,4 +1,4 @@
-import {swapImage,warmImage} from './media.js?v=80df660aeb';
+import {swapImage,warmImage} from './media.js?v=4152dfe81a';
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
