@@ -60,13 +60,13 @@
           "icon": "radio",
           "step": "01",
           "title": "Conectar",
-          "text": "O módulo ActiSky é embarcado no equipamento e lê o barramento CAN J1939 — RPM, combustível, temperatura, pressão e posição GPS."
+          "text": "O módulo ActiSky é embarcado no equipamento e lê o barramento CAN J1939 — RPM, combustível, temperatura e posição GPS, conforme os sinais disponíveis em cada máquina."
         },
         {
           "icon": "activity",
           "step": "02",
           "title": "Transmitir",
-          "text": "A telemetria sobe em tempo real para a plataforma Minefy. Em áreas de sinal instável, os dados são armazenados no módulo e reenviados quando a conexão retorna."
+          "text": "A telemetria sobe em tempo real para a plataforma Minefy. Em áreas de sinal instável, os dados podem ser armazenados no módulo e reenviados quando a conexão retorna, conforme o módulo e a configuração implantados."
         },
         {
           "icon": "gauge",
@@ -83,31 +83,31 @@
         {
           "icon": "tablet",
           "title": "Tablets para Mineração",
-          "description": "Três linhas para cada operação: comercial (kit robusto de campo), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida — as três linhas são homologadas para a plataforma Minefy.",
+          "description": "Três linhas para cada operação: comercial (kit robusto de campo), semi-industrial (rugged de fábrica) e industrial (computador veicular embarcado). Robustez sob medida — a configuração de cada linha é dimensionada por operação e confirmada na proposta e na homologação.",
           "badge": "HARDWARE"
         },
         {
           "icon": "satellite",
           "title": "ActiSky Telemetria",
-          "description": "Módulos IoT com CAN J1939 para equipamentos pesados — RPM, consumo, temperatura, pressão, GPS. Dados na sua tela em milissegundos.",
+          "description": "Módulos IoT com CAN J1939 para equipamentos pesados — RPM, consumo, temperatura e GPS, conforme os sinais disponíveis em cada equipamento. Dados na sua tela em tempo real.",
           "badge": "IoT"
         },
         {
           "icon": "chart",
           "title": "Minefy Analytics",
-          "description": "Dashboards operacionais em tempo real para minas. KPIs de produção, relatórios automáticos e análise de tendências para decisões data-driven.",
+          "description": "Dashboards operacionais em tempo real para minas. KPIs de produção, relatórios exportáveis — CSV, XLSX e PDF no RDO — e análise de tendências para decisões data-driven.",
           "badge": "SOFTWARE"
         },
         {
           "icon": "truck",
           "title": "Fleet 360",
-          "description": "Gestão preditiva de frota pesada: caminhões fora de estrada, escavadeiras, carregadeiras. Manutenção antecipada e otimização de ciclos.",
+          "description": "Monitoramento de condição e gestão de frota pesada: caminhões fora de estrada, escavadeiras, carregadeiras. Alertas por regras configuradas sobre os sinais de telemetria — a evolução preditiva por IA está em desenvolvimento.",
           "badge": "GESTÃO"
         },
         {
           "icon": "shield",
           "title": "Minefy Safety",
-          "description": "Segurança operacional para mineração: monitoramento de fadiga, proximidade entre equipamentos, zonas de risco e compliance NR-22.",
+          "description": "Segurança operacional para mineração: monitoramento de fadiga e distração (ADAS/DMS) conforme instalação, alertas de zona de risco e apoio aos procedimentos de segurança da operação.",
           "badge": "SEGURANÇA"
         },
         {
@@ -119,7 +119,7 @@
         {
           "icon": "car",
           "title": "Caminhonetes Operacionais",
-          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e frota mantida em condição de operação, com manutenção preventiva programada — sem imobilizar capital em frota própria.",
+          "description": "Locação de caminhonetes 4x4 equipadas para operação de campo — sinalização, giroflex e veículos mantidos em condição de operação, com manutenção preventiva programada e disponibilidade definida por contrato — sem imobilizar capital em frota própria.",
           "badge": "LOCAÇÃO"
         },
         {
@@ -143,12 +143,12 @@
         {
           "icon": "wrench",
           "title": "Menos parada não planejada",
-          "text": "Temperatura, pressão e RPM monitorados antecipam a falha: a manutenção preditiva do Fleet 360 reduz o risco de quebra no meio do pit."
+          "text": "Temperatura e RPM monitorados disparam alertas por regras configuradas: o acompanhamento de condição do Fleet 360 ajuda a operação a agir antes da quebra no meio do pit."
         },
         {
           "icon": "shield",
           "title": "Segurança que age antes",
-          "text": "Alertas de superaquecimento de freios, fadiga, proximidade e zonas de risco — alinhados à NR-22 — para a operação agir a tempo."
+          "text": "Alertas de fadiga e distração, zonas de risco e condição do equipamento — disponíveis conforme instalação e configuração — apoiam os procedimentos de segurança da operação para agir a tempo."
         },
         {
           "icon": "chart",
@@ -194,7 +194,7 @@
       "items": [
         {
           "q": "O que é a telemetria ActiSky?",
-          "a": "São módulos IoT embarcados no equipamento que leem o barramento CAN J1939 e transmitem em tempo real — RPM, combustível, temperatura, pressão e GPS — direto para a plataforma Minefy, onde viram dashboards, ciclos e alertas."
+          "a": "São módulos IoT embarcados no equipamento que leem o barramento CAN J1939 e transmitem em tempo real — RPM, combustível, temperatura e GPS, conforme os sinais disponíveis em cada máquina — direto para a plataforma Minefy, onde viram dashboards, ciclos e alertas."
         },
         {
           "q": "Como é a instalação na minha frota?",
@@ -210,7 +210,7 @@
         },
         {
           "q": "Funciona em áreas com sinal instável?",
-          "a": "Sim. Os dados de telemetria são tratados de forma resiliente: em áreas de conectividade intermitente, os dados são armazenados no módulo e reenviados quando o sinal retorna."
+          "a": "Sim. Conforme o módulo e a configuração implantados, os dados de telemetria são tratados de forma resiliente: em áreas de conectividade intermitente, podem ser armazenados no módulo e reenviados quando o sinal retorna."
         },
         {
           "q": "Qual é o modelo comercial?",
@@ -338,7 +338,7 @@
         "id": "tablets",
         "badge": "HARDWARE",
         "title": "Tablets para Mineração",
-        "description": "Três linhas de tablets para cada nível de exigência da operação — do apoio em cabine ao computador veicular embarcado. Você escolhe o grau de robustez; todas homologadas para a plataforma Minefy.",
+        "description": "Três linhas de tablets para cada nível de exigência da operação — do apoio em cabine ao computador veicular embarcado. Você escolhe o grau de robustez; a configuração é dimensionada por operação e confirmada na proposta e na homologação.",
         "tiers": [
           {
             "name": "Comercial",
@@ -346,34 +346,34 @@
             "image": "/images/products/tablet-comercial.png",
             "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
             "specs": [
-              "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
-              "Kit veicular robusto: case + suporte veicular (MIL-STD-810G)",
-              "Carregamento magnético no berço veicular robusto",
-              "Plug-and-play com a plataforma Minefy"
+              "Tablet de última geração — tela e memória conforme modelo vigente",
+              "Kit veicular robusto: case anti-impacto + suporte veicular",
+              "Carregamento no berço veicular robusto",
+              "Integração à plataforma Minefy configurada por projeto"
             ]
           },
           {
             "name": "Semi-industrial",
             "example": "Ex.: tablet semi-industrial de última geração",
             "image": "/images/products/tablet-semi.png",
-            "description": "Robustez de fábrica para quem precisa de mobilidade em campo. Vedação IP68, certificação militar e tela que responde com luva — sem depender de case externo.",
+            "description": "Robustez de fábrica para quem precisa de mobilidade em campo — vedação, resistência e tela que responde com luva, sem depender de case externo. Graus de proteção variam por modelo e são confirmados na proposta.",
             "specs": [
-              "IP68 + MIL-STD-810H (água, poeira e queda)",
-              "Tela 8\" 1920×1200 · toque com luva",
-              "Bateria removível para turnos longos",
+              "Vedação e resistência de fábrica — grau IP e norma MIL conforme modelo",
+              "Tela de alta resolução com toque por luva — tamanho conforme modelo",
+              "Bateria para turnos longos",
               "Gestão remota via MDM corporativo"
             ]
           },
           {
             "name": "Industrial",
-            "example": "Ex.: Minefy T10 e T12",
+            "example": "Ex.: computador veicular embarcado",
             "image": "/images/products/tablet-industrial.png",
-            "description": "Computadores veiculares de instalação fixa, alimentados pela rede do próprio equipamento. Integração direta CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine.",
+            "description": "Computadores veiculares de instalação fixa, alimentados pela rede do próprio equipamento. Integração CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine. Interfaces e homologação são definidas por modelo de equipamento.",
             "specs": [
-              "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto)",
-              "IP66 + MIL-STD-810G · processador automotivo",
-              "2×CAN, RS232/RS485 e até 4 câmeras",
-              "Alimentação 9–36 V · RTK opcional · Android/Linux"
+              "Tela legível sob sol direto — tamanho e brilho conforme modelo",
+              "Construção para ambiente severo — grau IP e norma MIL conforme modelo",
+              "Interfaces CAN e seriais, com suporte a câmeras — conforme modelo homologado",
+              "Alimentação veicular · RTK opcional · Android/Linux — conforme projeto"
             ]
           }
         ],
@@ -387,20 +387,20 @@
         "id": "actisky",
         "badge": "IoT / TELEMETRIA",
         "title": "ActiSky Telemetria",
-        "description": "Módulos IoT de telemetria avançada com protocolo CAN J1939 para equipamentos pesados de mineração. GPS de alta precisão e comunicação em tempo real.",
+        "description": "Módulos IoT de telemetria com protocolo CAN J1939 para equipamentos pesados de mineração. Os sinais disponíveis dependem do barramento, dos sensores, da instalação e da homologação por modelo — definidos no escopo de cada projeto.",
         "safetyFeatures": [
-          "Superaquecimento de freios",
-          "Caçamba alta em deslocamento",
-          "Basculamento não autorizado",
-          "Pressão de óleo",
-          "Detecção de zona de risco"
+          "Temperatura do motor e do sistema de arrefecimento",
+          "Caçamba alta em deslocamento (conforme sinais instalados)",
+          "Basculamento fora de zona autorizada (conforme configuração)",
+          "Estados de freio de serviço e de estacionamento",
+          "Alertas de zona de risco (geofencing)"
         ],
         "operationalFeatures": [
-          "Ciclo de carga e basculamento",
+          "Ciclos de carga e basculamento (conforme configuração)",
           "Velocidade e RPM do motor",
-          "Consumo de diesel em tempo real",
+          "Consumo de combustível (canal e unidade conforme instalação)",
           "Horímetro digital",
-          "GPS de alta precisão",
+          "Posição por GPS (precisão conforme módulo)",
           "Detecção de ociosidade (idle)"
         ],
         "image": "/images/mining/komatsu-closeup.jpg",
@@ -417,10 +417,10 @@
         "features": [
           "Dashboards real-time via WebSocket",
           "KPIs de produção e ciclos de carga",
-          "Relatórios automáticos (diário/semanal/mensal)",
-          "Análise de tendências e anomalias",
+          "RDO e suas revisões com exportação CSV, XLSX e PDF",
+          "Análise estatística de tendências e anomalias",
           "Multi-tenancy com isolamento de dados por operação",
-          "Exportação PDF, Excel e integração API"
+          "Distribuição programada automática e integrações com ERP — evolução sob projeto"
         ],
         "image": "/images/solutions/9864-1.jpg",
         "metric": {
@@ -430,40 +430,40 @@
       },
       {
         "id": "fleet360",
-        "badge": "GESTÃO PREDITIVA",
+        "badge": "CONDIÇÃO DA FROTA",
         "title": "Fleet 360",
-        "description": "Gestão preditiva para frota pesada de mineração — caminhões fora de estrada, escavadeiras e carregadeiras. Manutenção antecipada e otimização de ciclos de carga.",
+        "description": "Monitoramento de condição e gestão da frota pesada de mineração — caminhões fora de estrada, escavadeiras e carregadeiras. Alertas por regras configuradas sobre os sinais de telemetria; a evolução preditiva por IA está em desenvolvimento.",
         "features": [
-          "Manutenção preditiva por dados de telemetria",
-          "Otimização de ciclos de carga e transporte",
-          "Controle de consumo por equipamento pesado",
-          "Alertas de manutenção preventiva",
-          "Histórico completo de cada máquina",
-          "Integração com sistemas de despacho e ERP"
+          "Monitoramento de condição por telemetria",
+          "Análise de ciclos de carga e transporte",
+          "Acompanhamento de consumo por equipamento (conforme canal instalado)",
+          "Alertas por regras e limites configurados",
+          "Histórico de telemetria de cada máquina",
+          "Evolução preditiva por IA em desenvolvimento"
         ],
         "image": "/images/mining/haul-truck-road.jpg",
         "metric": {
-          "value": "-35%",
-          "label": "Downtime"
+          "value": "Telemetria",
+          "label": "Condição da frota"
         }
       },
       {
         "id": "safety",
         "badge": "SEGURANÇA",
         "title": "Minefy Safety",
-        "description": "Sistema de segurança para operações de mineração. Monitoramento de fadiga de operadores, proximidade entre equipamentos pesados e controle de zonas de risco na mina.",
+        "description": "Sistema de segurança para operações de mineração. Monitoramento de fadiga e distração do operador (ADAS/DMS), com alertas disponíveis conforme instalação e habilitação; proximidade entre equipamentos e zonas de risco dependem da solução implantada e de validação de campo.",
         "features": [
-          "Monitoramento de fadiga de operadores",
-          "Detecção de proximidade entre equipamentos pesados",
-          "Geofencing e alertas de zona de risco na cava",
-          "Compliance NR-22 e normas ANM",
+          "Monitoramento de fadiga e distração (ADAS/DMS) — conforme instalação e habilitação",
+          "Proximidade entre equipamentos — sob solução dedicada e validação de campo",
+          "Geofencing e alertas de zona de risco — conforme configuração",
+          "Apoio aos procedimentos de segurança da operação (NR-22 e normas ANM)",
           "Registro de incidentes e near-misses",
           "Dashboard de segurança da operação"
         ],
         "image": "/images/mining/safety-excavator-sunset.jpg",
         "metric": {
-          "value": "NR-22",
-          "label": "Compliance"
+          "value": "ADAS/DMS",
+          "label": "Fadiga e distração"
         }
       },
       {
@@ -476,27 +476,27 @@
           "Implantação de telemetria em equipamentos pesados",
           "Integração com sistemas de despacho de frota",
           "Treinamento de operadores e despachantes",
-          "Suporte técnico 24/7 em campo",
+          "Suporte técnico em campo, com cobertura e prazos definidos em contrato",
           "Relatórios de performance operacional"
         ],
         "image": "/images/mining/fleet-d11-operation.jpg",
         "metric": {
-          "value": "24/7",
-          "label": "Suporte"
+          "value": "Em campo",
+          "label": "Suporte e implantação"
         }
       },
       {
         "id": "caminhonetes",
         "badge": "LOCAÇÃO",
         "title": "Caminhonetes Operacionais",
-        "description": "Frota de caminhonetes 4x4 equipadas para operação de campo em mineração — sinalização veicular, giroflex e prontas para o dia a dia da mina. Contrato de locação flexível, com pacotes sob medida, sem imobilizar capital em frota própria.",
+        "description": "Locação de caminhonetes 4x4 equipadas para operação de campo em mineração — sinalização veicular, giroflex e preparo para o dia a dia da mina. Disponibilidade, dimensionamento e mobilização definidos por contrato, sem imobilizar capital em frota própria.",
         "features": [
           "Veículos 4x4 de última geração equipados para operação de campo",
           "Giroflex, sinalização e kit de segurança conforme normas da operação",
-          "Frota nova ou de baixa rodagem, com manutenção preventiva programada",
+          "Veículos novos ou de baixa rodagem, conforme disponibilidade, com manutenção preventiva programada",
           "Pacotes sob medida para sua demanda — quilometragem livre ou planos que cabem no seu orçamento",
           "Contrato flexível, sem imobilizar capital em frota própria",
-          "Rastreamento e telemetria ActiSky integráveis sob demanda"
+          "Rastreamento e telemetria ActiSky integráveis conforme escopo contratado"
         ],
         "image": "/images/products/caminhonete-operacional-cutout.png",
         "studioImage": true,
@@ -509,19 +509,19 @@
         "id": "compressores",
         "badge": "EQUIPAMENTO",
         "title": "Compressores de Ar Portáteis",
-        "description": "Locação de compressores de ar portáteis com carenagem robusta resistente a impacto — para perfuração, jateamento e ferramentas pneumáticas na operação de mina. Suporte técnico e peças no Brasil.",
+        "description": "Locação de compressores de ar portáteis para perfuração, jateamento e ferramentas pneumáticas na operação de mina — sob consulta, com disponibilidade, dimensionamento e mobilização definidos por contrato.",
         "features": [
-          "Quatro faixas de vazão, de 89 a 189 pcm (FAD), para dimensionar por frente de serviço",
-          "Pressão de trabalho de 7 bar em toda a linha",
+          "Faixas de vazão para dimensionar por frente de serviço — especificação conforme modelo disponibilizado",
+          "Pressão de trabalho adequada a ferramentas pneumáticas — conforme modelo",
           "Carenagem robusta resistente a impacto, feita para o ambiente de mina",
-          "Motorização diesel de alta durabilidade, dimensionada para operação contínua",
-          "Baixo nível de ruído — 70 a 74 dB(A) a 7 metros",
-          "Fabricação nacional, com suporte técnico e peças no Brasil"
+          "Motorização diesel dimensionada para operação contínua",
+          "Nível de ruído controlado para o ambiente de mina — conforme modelo",
+          "Suporte técnico e peças no Brasil"
         ],
         "image": "/images/premium/compressor-studio.jpg",
         "metric": {
-          "value": "189 pcm",
-          "label": "Vazão máxima da linha"
+          "value": "Sob consulta",
+          "label": "Dimensionamento por frente"
         }
       }
     ],
@@ -1079,27 +1079,27 @@
         },
         {
           "title": "Telemetria Integrada",
-          "text": "Monitoramento detalhado em tempo real de todos os equipamentos pesados envolvidos na operação — caminhões fora de estrada, escavadeiras e carregadeiras, com dados integrados ao sistema de despacho."
+          "text": "Monitoramento em tempo real dos equipamentos pesados envolvidos na operação — caminhões fora de estrada, escavadeiras e carregadeiras — conforme a instalação dos módulos em cada máquina, com dados integrados ao sistema de despacho."
         },
         {
           "title": "Segurança Operacional",
-          "text": "Detecção de superaquecimento de freios, monitoramento de pressão de óleo, alertas de caçamba alta em deslocamento e controle de basculamento em zonas não autorizadas."
+          "text": "Alertas de condição e de operação segura — como caçamba alta em deslocamento e basculamento fora de zona autorizada — configurados conforme os sinais disponíveis em cada equipamento e o escopo do projeto."
         },
         {
           "title": "Eficiência de Frota",
-          "text": "Controle de ciclos de carregamento e basculamento, monitoramento de velocidade, RPM e consumo de diesel por equipamento. Resultado: operações mais eficientes e custos menores."
+          "text": "Controle de ciclos de carregamento e basculamento e monitoramento de velocidade, RPM e consumo de combustível por equipamento, conforme os canais instalados em cada máquina."
         },
         {
           "title": "Sustentabilidade",
-          "text": "Monitoramento de emissões e eficiência de combustível dos equipamentos pesados, contribuindo para as metas ambientais da operação."
+          "text": "Acompanhamento da eficiência de combustível dos equipamentos pesados, conforme os canais disponíveis, contribuindo para as metas ambientais da operação."
         }
       ],
       "impact": {
         "title": "Impacto na Operação",
         "items": [
           {
-            "title": "Controle total da frota",
-            "text": "Visão em tempo real de todos os equipamentos na cava, com gestão proativa de manutenção e segurança."
+            "title": "Visão total da frota monitorada",
+            "text": "Visão em tempo real dos equipamentos monitorados na cava, com acompanhamento proativo de condição e segurança."
           },
           {
             "title": "Decisões baseadas em dados",
