@@ -1,9 +1,17 @@
-import {swapImage,warmImage} from './media.js?v=4152dfe81a';
+import {deferEnhancement} from './enhancements.js?v=20261010-fast';
+const swapImage=(...args)=>import('./media.js?v=4152dfe81a').then(module=>module.swapImage(...args));
+const warmImage=(...args)=>import('./media.js?v=4152dfe81a').then(module=>module.warmImage(...args)).catch(()=>{});
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
 const reducedMedia = matchMedia('(prefers-reduced-motion: reduce)');
 let motionPaused = reducedMedia.matches;
+const transitions=new Set();
+function animate(element,keyframes,options){
+ if(motionPaused||!element?.animate)return;
+ const animation=element.animate(keyframes,options);transitions.add(animation);
+ animation.finished.catch(()=>{}).finally(()=>transitions.delete(animation));
+}
 let activeStage = -1, fleetProgress = 0;
 const stages = [
   { type:'haul', category:'TRANSPORTE DE GRANDE PORTE', title:'POTÊNCIA <br>COM <br><em>INTELIGÊNCIA.</em>', description:'Cada ciclo conta. Conecte o transporte de material à leitura de posição, condição do equipamento e alertas da operação.', features:['LOCALIZAÇÃO','TELEMETRIA','ALERTAS'], name:'CAMINHÃO FORA DE ESTRADA', context:'DA MÁQUINA À DECISÃO' },
@@ -22,7 +30,7 @@ document.addEventListener('keydown',e => { if(e.key==='Escape'){closeMenu();menu
 
 const motionButton = document.createElement('button');
 motionButton.className = 'motion-toggle';
-function syncMotion(){ document.body.classList.toggle('motion-paused',motionPaused);window.dispatchEvent(new CustomEvent('minefy-motion',{detail:{paused:motionPaused}})); motionButton.textContent=motionPaused?'▶':'Ⅱ'; motionButton.setAttribute('aria-label',motionPaused?'Ativar animações':'Pausar animações');motionButton.setAttribute('aria-pressed',String(motionPaused)); }
+function syncMotion(){ if(motionPaused)transitions.forEach(animation=>{try{animation.finish();}catch{animation.cancel();}});document.body.classList.toggle('motion-paused',motionPaused);window.dispatchEvent(new CustomEvent('minefy-motion',{detail:{paused:motionPaused}})); motionButton.textContent=motionPaused?'▶':'Ⅱ'; motionButton.setAttribute('aria-label',motionPaused?'Ativar animações':'Pausar animações');motionButton.setAttribute('aria-pressed',String(motionPaused)); }
 motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;syncMotion();});
 document.body.append(motionButton);syncMotion();
 reducedMedia.addEventListener('change', e=>{motionPaused=e.matches;syncMotion();});
@@ -52,8 +60,8 @@ async function chooseStage(index) {
   $('#fleet-panel').setAttribute('aria-labelledby',`tab-${data.type}`);
   $$('.fleet-tabs button').forEach((button,i)=>{button.setAttribute('aria-selected',String(i===index));button.tabIndex=i===index?0:-1;});
   image.alt=`${data.name.toLowerCase()} — cena conceitual`;
-  if(window.gsap&&!motionPaused)gsap.fromTo(image,{opacity:.35,scale:1.05},{opacity:1,scale:1,duration:.7,overwrite:true});
-  if (window.gsap && !motionPaused) gsap.fromTo('.fleet-copy',{opacity:.2,y:10},{opacity:1,y:0,duration:.5,overwrite:true});
+  animate(image,[{opacity:.35,transform:'scale(1.05)'},{opacity:1,transform:'scale(1)'}],{duration:700,easing:'ease-out'});
+  animate($('.fleet-copy'),[{opacity:.2,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:500,easing:'ease-out'});
 }
 function scrollToStage(index){
   const section=$('#frota'), height=section.offsetHeight-innerHeight;
@@ -105,5 +113,13 @@ window.addEventListener('scroll',queueScroll,{passive:true});window.addEventList
 const visibility=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('in-viewport',e.isIntersecting)),{rootMargin:'80px'});
 [$('.hero'),$('.ticker'),$('.command-frame')].filter(Boolean).forEach(el=>visibility.observe(el));
 
-if(window.gsap&&window.ScrollTrigger&&!motionPaused){gsap.registerPlugin(ScrollTrigger);$$('.reveal').forEach(element=>gsap.from(element,{scrollTrigger:{trigger:element,start:'top 94%',once:true},y:26,opacity:0,duration:.8,ease:'power2.out'}));}
+// Native, one-shot reveals replace two animation libraries on the critical path.
+const reveals=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{if(!entry.isIntersecting)return;reveals.unobserve(entry.target);animate(entry.target,[{opacity:0,transform:'translateY(26px)'},{opacity:1,transform:'translateY(0)'}],{duration:800,easing:'cubic-bezier(.16,1,.3,1)'});});
+},{rootMargin:'0px 0px -6% 0px'});
+$$('.reveal').forEach(element=>reveals.observe(element));
+
+// Load only the destination's interaction code. Direct links and fast taps also work.
+deferEnhancement('#jornada,#preditiva',()=>import('./story.js?v=20261010-fast'));
+deferEnhancement('#inteligencia,#solucoes',()=>import('./command.js?v=4152dfe81a'));
 document.documentElement.dataset.ready='true';

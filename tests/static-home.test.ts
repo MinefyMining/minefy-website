@@ -19,6 +19,26 @@ const PUBLIC = join(__dirname, "..", "public");
 const ORIGIN = "https://www.minefymining.com";
 const html = readFileSync(join(PUBLIC, "home.html"), "utf8");
 
+describe("home.html — opening-screen performance budget", () => {
+  it("keeps the initial JavaScript graph below 18 kB before compression", () => {
+    const visited = new Set<string>();
+    const visit = (file: string) => {
+      file = file.replace(/^\.\//, "").split("?")[0];
+      if (visited.has(file)) return;
+      visited.add(file);
+      const code = readFileSync(join(PUBLIC, file), "utf8");
+      // Static imports only: dynamic imports belong to the destination section.
+      for (const match of code.matchAll(/\bimport\s+(?:[^'";]+?\s+from\s+)?['"]([^'"]+)['"]/g)) visit(match[1]);
+    };
+    for (const match of html.matchAll(/<script[^>]+src="([^"]+)"/g)) visit(match[1]);
+    const bytes = [...visited].reduce((total, file) => total + readFileSync(join(PUBLIC, file)).length, 0);
+    expect(bytes).toBeLessThan(18000);
+    expect([...visited]).not.toContain("story.js");
+    expect([...visited]).not.toContain("command.js");
+    expect([...visited].some(file => file.startsWith("vendor/"))).toBe(false);
+  });
+});
+
 const FORBIDDEN = /galileosky|atlas.?copco|hardhat|roboflex|samsung|kubota|\bmwm\b|\bxas[\s-]?\d/i;
 
 function attr(name: string, prop: "property" | "name" | "rel" = "property"): string | null {
@@ -125,7 +145,7 @@ describe("bundle estático — integridade dos recursos locais", () => {
 
 describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10-10: um log de hook entrou em public/)", () => {
   /** Inventário exato do bundle publicado: 65 arquivos vindos verbatim do
-   * pacote + `home.html` + o PNG og + 2 variantes do celular com logo novo.
+   * pacote + `home.html` + o PNG og + 2 variantes do celular com logo novo + o carregador de melhorias progressivas.
    * As variantes anteriores ficam disponíveis para páginas já abertas. Arquivo a mais (log, temporário,
    * dotfile) ou a menos QUEBRA este teste — é a trava. Mudou o bundle de
    * propósito? Regere `tests/fixtures/static-home-files.json` conscientemente. */
@@ -152,7 +172,7 @@ describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10
   });
 
   it("o conjunto de arquivos do bundle é exatamente o inventário esperado", () => {
-    expect(EXPECTED.length).toBe(69);
+    expect(EXPECTED.length).toBe(70);
     expect(bundleFiles()).toEqual([...EXPECTED].sort());
   });
 });
