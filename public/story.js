@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=t=>t*t*(3-2*t);
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('motion-paused');
-let stageIndex=-1, phase=0;
+let stageIndex=-1, phase=0,copyAnimation;
 const chapters=[
  {type:'mining',kicker:'01 / ESCAVAÇÃO E CARREGAMENTO',title:'TUDO COMEÇA <br><em>EM CAMPO.</em>',description:'Perfurar, escavar, carregar. Equipamentos diferentes, um mesmo ciclo. A operação precisa de ritmo — e de visibilidade.',tags:['FRENTE DE LAVRA','CICLO OPERACIONAL'],fact:'A MINEFY CONECTA OS SINAIS DE QUEM PRODUZ.',label:'ESCAVAÇÃO → CARREGAMENTO',name:'O CICLO COMEÇA'},
  {type:'plant',kicker:'02 / TRATAMENTO DO MATERIAL',title:'O MATERIAL <br>SEGUE. <br><em>OS DADOS TAMBÉM.</em>',description:'O material chega à usina e percorre etapas de tratamento. Conectar a informação entre as frentes ajuda a enxergar o fluxo, os ritmos e as interfaces da operação.',tags:['USINA','FLUXO DO MATERIAL'],fact:'REPRESENTAÇÃO CONCEITUAL DO CICLO MINERAL.',label:'TRANSPORTE → TRATAMENTO',name:'A OPERAÇÃO AVANÇA'},
@@ -47,7 +47,7 @@ function updateChapter(index){
  $('#story-prev').disabled=index===0;$('#story-next').setAttribute('aria-label',index===8?'Explorar a combinação dos sinais':'Próximo capítulo');
  container.setAttribute('aria-label',`Cena cinematográfica conceitual: ${c.kicker.substring(5).toLowerCase()}`);
  $('#story-hud').hidden=!(index===4||index===5);$('#story-alert').hidden=!(index===6||index===7||index===8);
- if(changed&&window.gsap&&!paused)gsap.fromTo('.story-copy',{opacity:.3,y:10},{opacity:1,y:0,duration:.5,overwrite:true});
+ if(changed&&!paused&&$('.story-copy').animate){copyAnimation?.cancel();copyAnimation=$('.story-copy').animate([{opacity:.3,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:500,easing:'ease-out'});}
 }
 async function showChapter(index){
  if(!visible||index!==desiredIndex||index===failedIndex)return;
@@ -110,7 +110,7 @@ window.addEventListener('scroll',queueSync,{passive:true});window.addEventListen
 document.addEventListener('visibilitychange',queueSync);
 $('.story-sticky').addEventListener('pointermove',e=>{if(e.pointerType==='touch'||paused||!visible)return;pointerX=e.clientX/innerWidth-.5;pointerY=e.clientY/innerHeight-.5;queueSync();});
 $('.story-sticky').addEventListener('pointerleave',()=>{pointerX=pointerY=0;queueSync();});
-window.addEventListener('minefy-motion',e=>{paused=e.detail.paused;queueSync();});
+window.addEventListener('minefy-motion',e=>{paused=e.detail.paused;if(paused&&copyAnimation)copyAnimation.finish();queueSync();});
 warmOnApproach(section,sceneKey(0),sceneSizes);syncStory();
 
 // This lab demonstrates configurable compound rules; it is not a trained ML model.

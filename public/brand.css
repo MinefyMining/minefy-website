@@ -1,7 +1,7 @@
-/* Official Image 2 in the header and footer, including the fragmenting FY.
-   Only the compact dashboard and favicon use the clean fallback. Never redraw. */
-.site-header{background:#000}
-.site-header .brand,.footer .brand{gap:0;flex-shrink:0;isolation:isolate;mix-blend-mode:screen}
+/* The header uses the approved RGBA compact wordmark over its translucent surface.
+   The footer retains official Image 2, including the fragmenting FY. Never redraw. */
+.site-header .brand,.footer .brand{gap:0;flex-shrink:0}
+.footer .brand{isolation:isolate;mix-blend-mode:screen}
 .site-header .brand-logo,.footer .brand-logo{display:block;height:auto;object-fit:contain}
 .site-header .brand-logo{width:252px}
 .footer .brand-logo{width:320px}
@@ -42,3 +42,6 @@
  .menu-button{margin-left:auto}
 }
 @media(max-width:360px){.site-header .brand-logo{width:190px}}
+
+.enhancement-retry{position:relative;z-index:5;padding:16px 24px;background:#191d20;color:#f6f3eb;font:500 13px Manrope,Arial,sans-serif}
+.enhancement-retry button{border:0;background:none;color:var(--gold);text-decoration:underline;font:inherit;cursor:pointer;padding:8px}
