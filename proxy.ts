@@ -1,10 +1,11 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import {
   isBrandedHost,
   mapPathnameForSite,
   resolveSiteFromHost,
+  staticHomeFor,
   type Site,
 } from "./lib/site";
 
@@ -48,6 +49,17 @@ function resolveSite(request: NextRequest): Site {
 export default async function proxy(request: NextRequest) {
   const site = resolveSite(request);
   const externalPathname = request.nextUrl.pathname;
+
+  // Static home (CEO 2026-10-09): on the mineração world `/` serves the
+  // self-contained cinematic experience from `public/home.html`. Rewrite
+  // (never redirect) so the address bar stays `/`; next-intl is skipped —
+  // the static page carries its own `lang`, metadata and canonical.
+  // Agrofy (`staticHomeFor` → null) keeps its Next.js home untouched.
+  const staticHome = staticHomeFor(site, externalPathname);
+  if (staticHome) {
+    return NextResponse.rewrite(new URL(staticHome, request.url));
+  }
+
   const internalPathname = mapPathnameForSite(site, externalPathname);
 
   // Rewrite the request's own pathname BEFORE handing off to next-intl's
@@ -61,8 +73,10 @@ export default async function proxy(request: NextRequest) {
 
   const response = handleI18nRouting(request);
 
-  // SEO: o path interno exposto por engano duplicaria o conteúdo público
-  // (`/mineracao` ≡ `/` no mundo mineração; `/agrofy/*` ≡ `/*` no agro).
+  // SEO: paths internos não devem competir com os públicos (`/agrofy/*` ≡
+  // `/*` no agro). `/mineracao` segue noindex: desde 2026-10-10 ele serve a
+  // home corporativa ANTERIOR (link "Website institucional" da nova home
+  // estática) — conteúdo legado, alcançável mas não indexável.
   // Decisão de arquitetura: noindex declarativo, NUNCA redirect aqui.
   if (
     (site === "mineracao" && externalPathname === "/mineracao") ||

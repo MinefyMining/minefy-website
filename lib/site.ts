@@ -60,6 +60,11 @@ export function canonicalFor(site: Site, externalPath: string): string {
  */
 export function mapPathnameForSite(site: Site, pathname: string): string {
   if (site === "mineracao") {
+    // NOTE (2026-10-10): the public home `/` of the mineração world is now
+    // the static immersive experience (`staticHomeFor` — resolved by
+    // `proxy.ts` BEFORE this mapping). `/mineracao` keeps serving the
+    // previous corporate home (linked as "Website institucional"), so this
+    // mapping stays for tests/compatibility, not for live `/` traffic.
     if (pathname === "/") return "/mineracao";
     // Isolation guard: the Agrofy world lives under `/agrofy` internally and
     // must NOT be reachable on the mineração domain. Map any `/agrofy*`
@@ -74,4 +79,28 @@ export function mapPathnameForSite(site: Site, pathname: string): string {
   if (pathname === "/") return "/agrofy";
   if (pathname === "/agrofy" || pathname.startsWith("/agrofy/")) return pathname;
   return `/agrofy${pathname}`;
+}
+
+/**
+ * Static home per world (CEO 2026-10-09: the new institutional home of
+ * `minefymining.com` is the cinematic experience, a self-contained static
+ * bundle in `public/` — `home.html` + `/assets/optimized/*`, `/vendor/*`
+ * and the `*.js`/`*.css` modules it references with ROOT-relative paths).
+ * It is served by a middleware rewrite of `/` → `/home.html` so the address
+ * bar stays `/`; the React tree (`app/`) is never involved for that request.
+ * Agrofy keeps its Next.js home (`null` = no static home).
+ */
+export const STATIC_HOME: Record<Site, string | null> = {
+  mineracao: "/home.html",
+  agro: null,
+};
+
+/** Pure helper used by `proxy.ts`: the static file to rewrite to when
+ * `pathname` is the public home of a world that has one; otherwise `null`
+ * (fall through to `mapPathnameForSite` + next-intl). Only the exact `/`
+ * matches — `/mineracao` (previous corporate home, now linked as
+ * "Website institucional") and every other route are untouched. */
+export function staticHomeFor(site: Site, pathname: string): string | null {
+  if (pathname !== "/") return null;
+  return STATIC_HOME[site];
 }

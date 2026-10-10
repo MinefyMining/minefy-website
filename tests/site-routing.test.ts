@@ -4,6 +4,7 @@ import {
   isBrandedHost,
   mapPathnameForSite,
   resolveSiteFromHost,
+  staticHomeFor,
 } from "@/lib/site";
 
 describe("resolveSiteFromHost — tabela obrigatória (MIKE-ARQUITETURA 2.4)", () => {
@@ -40,13 +41,36 @@ describe("canonicalFor — canonical usa origem pública + path EXTERNO", () => 
   });
 });
 
+describe("staticHomeFor — home estática (experiência cinematográfica, CEO 2026-10-09)", () => {
+  it("mineração: `/` é reescrito para o bundle estático public/home.html", () => {
+    expect(staticHomeFor("mineracao", "/")).toBe("/home.html");
+  });
+
+  it("Agrofy NÃO tem home estática — mantém a home Next.js", () => {
+    expect(staticHomeFor("agro", "/")).toBeNull();
+  });
+
+  it.each([
+    "/mineracao",
+    "/solucoes",
+    "/solucoes/scroller",
+    "/contato",
+    "/privacidade",
+    "/home.html",
+    "/agrofy",
+  ])("qualquer outro path (%s) passa direto para o roteamento normal", (path) => {
+    expect(staticHomeFor("mineracao", path)).toBeNull();
+    expect(staticHomeFor("agro", path)).toBeNull();
+  });
+});
+
 /**
  * Contrato de rotas/domínios do split mineração × Agrofy (proxy.ts).
  * Regressão aqui = página pública mudando de lugar ou mundo vazando
  * pro domínio errado.
  */
 describe("mapPathnameForSite — mundo mineração (minefymining.com)", () => {
-  it("reescreve apenas a home para o arquivo interno /mineracao", () => {
+  it("reescreve apenas a home para o arquivo interno /mineracao (home corporativa anterior)", () => {
     expect(mapPathnameForSite("mineracao", "/")).toBe("/mineracao");
   });
 

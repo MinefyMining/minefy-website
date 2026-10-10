@@ -65,6 +65,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Bundle estático da home (experiência cinematográfica, CEO 2026-10-09):
+    // servido verbatim de public/ (vendor GSAP minificado + módulos ES do
+    // pacote congelado). Não é fonte do projeto Next — fica fora do lint.
+    "public/**",
   ]),
 ]);
 
