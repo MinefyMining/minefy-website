@@ -351,3 +351,125 @@ describe("estabilidade de capítulo e HUD", () => {
     expect(state.textContent).toBe("LEITURA ILUSTRATIVA");
   });
 });
+
+/* ───────── R2: FAYE-WQ-01 = MIKE-01 e MIKE-02 ───────── */
+const activeFrames = () => canvas.children.filter((f) => f.classes.has("is-active"));
+/** Exatamente um quadro pintado: ativo, nítido, anexado ao palco e com o <img> final. */
+function expectPainted(n: number) {
+  const frame = frameOf(n);
+  expect(frame, `quadro ${n + 1} no DOM`).toBeDefined();
+  expect(activeFrames()).toEqual([frame]);
+  expect(frame!.isConnected).toBe(true);
+  expect(frame!.classes.has("is-ready")).toBe(true);
+  expect(frame!.querySelectorAll("img").filter((img) => !img.classes.has("is-staging"))).toHaveLength(1);
+}
+type Failure = "download" | "timeout";
+async function failLast(kind: Failure) { if (kind === "download") { lastImage().fail(); await flush(0); } else await flush(15000); }
+
+describe("R2 — falha de cena nunca esvazia o palco (FAYE-WQ-01 = MIKE-01)", () => {
+  for (const kind of ["download", "timeout"] as Failure[]) {
+    it(`A (${kind}) 01 nítida → 02 falha → 03 carregando e falha: 01 segue pintada; a próxima cena válida comete e substitui`, async () => {
+      await enter(0); await resolveLast();
+      await enter(1); await failLast(kind);
+      expectPainted(0);
+      await enter(2); // getFrame(03) poda o conjunto: o quadro pintado precisa ficar
+      expectPainted(0);
+      expect(busy()).toBe("true");
+      await failLast(kind);
+      expectPainted(0);
+      expect(errorNote().hidden).toBe(false);
+      await flush(900);
+      expectPainted(0);
+      await enter(3); await resolveLast(); // cena válida: commit normal
+      expectPainted(3);
+      expect(busy()).toBe("false");
+      await flush(850); // o prune do commit pode retirar a cena antiga
+      expect(frameOf(0)).toBeUndefined();
+      expectPainted(3);
+      expect(canvas.children.length).toBeLessThanOrEqual(2);
+    });
+
+  }
+
+  // B exige erro antes de 850 ms: só a falha de download chega tão rápido (um timeout leva 15 s,
+  // depois do prune do commit anterior; esse caminho está coberto pelo caso A com timeout).
+  it("B (download) 01 comete → 02 falha antes do pruneTimer de 850 ms: ao disparar, 01 segue pintada", async () => {
+    await enter(0); await resolveLast();
+    await enter(1); lastImage().fail(); await flush(0);
+    await flush(900);
+    expectPainted(0);
+  });
+
+  it("o timer de prune agendado antes da falha (erro em < 850 ms) não remove o quadro pintado", async () => {
+    await enter(0); await resolveLast(); // agenda prune em 850 ms
+    scrollTo(1); await sync(); await flush(80); // 80 ms depois: pedido do 02
+    lastImage().fail(); await flush(0); // erro rápido, timer do 01 ainda pendente
+    expectPainted(0);
+    await flush(800);
+    expectPainted(0);
+  });
+
+  it("a câmera da cena anterior não assume o capítulo que falhou (push e calor do motor)", async () => {
+    await enter(3, 0.4); await resolveLast(); // caminhão nítido
+    const truck = frameOf(3)!;
+    const push = truck.style["--push"], heat = canvas.style["--heat"];
+    await enter(4, 0.9); lastImage().fail(); await flush(0); // motor falha
+    expect(title()).toBe("05"); // a copy segue o capítulo atual (decisão de produto mantida)
+    for (const p of [0.6, 0.95]) { scrollTo(4, p); await sync(); }
+    expect(truck.style["--push"]).toBe(push);
+    expect(canvas.style["--heat"]).toBe(heat);
+    expectPainted(3);
+  });
+
+  it("resize depois da falha não baixa a imagem do capítulo que falhou para o quadro anterior", async () => {
+    canvas.offsetWidth = 600; canvas.offsetHeight = 300;
+    await enter(0); await resolveLast(900);
+    await enter(1); lastImage().fail(); await flush(0);
+    const requests = FakeImage.instances.length;
+    vi.stubGlobal("devicePixelRatio", 2);
+    window.dispatchEvent(new Event("resize")); frames.splice(0).forEach((f) => f());
+    await flush(250);
+    expect(FakeImage.instances).toHaveLength(requests);
+    expectPainted(0);
+    expect(frameOf(0)!.querySelector("img")!.src).toContain("cinema-mining-900");
+  });
+
+  it("retry após a falha comete o capítulo e substitui a cena anterior", async () => {
+    await enter(0); await resolveLast();
+    await enter(1); lastImage().fail(); await flush(0);
+    (errorNote().querySelector("button") as El).dispatchEvent(new Event("click"));
+    await flush(0);
+    expectPainted(0);
+    await resolveLast();
+    expectPainted(1);
+    expect(title()).toBe("02");
+  });
+});
+
+describe("R2 — histerese só na fronteira adjacente (MIKE-02)", () => {
+  it("salto distante 01 → 06 + 0,02 seleciona o 06 e pede a cena dele", async () => {
+    await enter(0, 0.5); await resolveLast();
+    scrollTo(5, 0.02); await sync(); await flush(80);
+    expect(lastImage().src).toContain("cinema-can-");
+    await resolveLast();
+    expect(title()).toBe("06");
+    expectPainted(5);
+  });
+
+  it("salto distante para trás 08 → 03 + 0,98 seleciona o 03", async () => {
+    await enter(7, 0.5); await resolveLast();
+    scrollTo(2, 0.98); await sync(); await flush(80);
+    expect(lastImage().src).toContain("cinema-tailings-");
+    await resolveLast();
+    expect(title()).toBe("03");
+  });
+
+  it("a fronteira adjacente mantém a proteção de 3 % nos dois sentidos", async () => {
+    await enter(4, 0.5); await resolveLast();
+    const requests = FakeImage.instances.length;
+    scrollTo(5, 0.02); await sync(); await flush(80);
+    scrollTo(3, 0.98); await sync(); await flush(80);
+    expect(FakeImage.instances).toHaveLength(requests);
+    expect(title()).toBe("05");
+  });
+});

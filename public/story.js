@@ -33,8 +33,10 @@ status.setAttribute('role','status');status.setAttribute('aria-live','polite');s
 $('.story-sticky').append(status);
 function showStatus(index){clearTimeout(statusTimer);statusTimer=setTimeout(()=>{status.querySelector('b').textContent=`CENA ${String(index+1).padStart(2,'0')} · CARREGANDO`;status.hidden=false;},300);}
 function hideStatus(){clearTimeout(statusTimer);status.hidden=true;}
+// The painted frame can differ from stageIndex after a failed chapter (copy advances, plate stays): never prune it.
+function paintedIndex(){return activeFrame&&frames.get(Number(activeFrame.dataset.scene))===activeFrame?Number(activeFrame.dataset.scene):-1;}
 function pruneFrames(keep){
- for(const [index,frame] of frames){if(!keep.has(index)){frame.remove();frames.delete(index);}}
+ for(const [index,frame] of frames){if(!keep.has(index)&&frame!==activeFrame){frame.remove();frames.delete(index);}}
 }
 function getFrame(index){
  if(frames.has(index))return frames.get(index);
@@ -42,7 +44,7 @@ function getFrame(index){
  const frame=document.createElement('div');frame.className='film-frame';frame.dataset.scene=String(index);
  frame.style.backgroundImage=`url("${media[sceneKey(index)].preview}")`;
  container.append(frame);frames.set(index,frame);
- pruneFrames(new Set([stageIndex,index,...[...frames.keys()].slice(-2)]));
+ pruneFrames(new Set([paintedIndex(),index,...[...frames.keys()].slice(-2)]));
  return frame;
 }
 // Plate choice follows the real cover box, display density and the deepest camera push of the chapter.
@@ -94,7 +96,7 @@ async function showChapter(index){
   settlePlate(incoming,img,variant);incoming.classList.add('is-ready');incoming.classList.remove('is-preview');
   activeFrame=incoming;frames.forEach(frame=>frame.classList.toggle('is-active',frame===incoming));
   hideStatus();updateChapter(index);frameCamera();updateHud();container.setAttribute('aria-busy','false');
-  clearTimeout(pruneTimer);pruneTimer=setTimeout(()=>pruneFrames(new Set([stageIndex,desiredIndex])),850);
+  clearTimeout(pruneTimer);pruneTimer=setTimeout(()=>pruneFrames(new Set([paintedIndex(),desiredIndex])),850);
   clearTimeout(warmTimer);
   if(index<8)warmTimer=setTimeout(()=>{if(visible&&desiredIndex===index)warmScene(index+1);},650);
  }catch(error){
@@ -108,7 +110,7 @@ async function showChapter(index){
 }
 // A larger viewport or density promotes the plate of the current chapter; a smaller one never downgrades it.
 function promoteScene(){
- if(!visible||stageIndex<0||stageIndex!==desiredIndex||!activeFrame?.classList.contains('is-ready'))return;
+ if(!visible||stageIndex<0||stageIndex!==desiredIndex||paintedIndex()!==stageIndex||!activeFrame?.classList.contains('is-ready'))return;
  const index=stageIndex,frame=activeFrame,key=sceneKey(index),variant=sceneVariant(index);
  if(variant.width<=Number(frame.dataset.width||0)||frame.dataset.pending===variant.url)return;
  const id=request;frame.dataset.pending=variant.url;
@@ -124,7 +126,8 @@ function promoteScene(){
  })();
 }
 function frameCamera(){
- if(!activeFrame||!visible||stageIndex!==desiredIndex)return;
+ // After a failed chapter the previous plate keeps its own camera until a new commit.
+ if(!activeFrame||!visible||stageIndex!==desiredIndex||paintedIndex()!==stageIndex)return;
  // Camera travel is capped where the plate has fewer pixels than the display asks for.
  const detail=Number(activeFrame.dataset.detail||1),allowance=detail>=1?1:Math.max(.6,detail);
  const travel=paused?0:ease(phase),push=pushFor(stageIndex)*allowance;
@@ -152,8 +155,8 @@ function syncStory(){
  if(!visible){clearTimeout(selectionTimer);clearTimeout(warmTimer);hideStatus();return;}
  const p=clamp(-r.top/(r.height-innerHeight)),position=p*9;
  let n=Math.min(8,Math.floor(position));
- // 3 % of a chapter of hysteresis: resting on a boundary does not alternate chapters.
- if(desiredIndex>=0&&n!==desiredIndex){if(n>desiredIndex&&position<n+.03)n=desiredIndex;else if(n<desiredIndex&&position>n+.97)n=desiredIndex;}
+ // 3 % of a chapter of hysteresis on the adjacent boundary only: resting on it does not alternate chapters; distant jumps land at once.
+ if(desiredIndex>=0&&Math.abs(n-desiredIndex)===1){if(n>desiredIndex&&position<n+.03)n=desiredIndex;else if(n<desiredIndex&&position>n+.97)n=desiredIndex;}
  phase=clamp(position-n);
  if(n!==desiredIndex||!wasVisible){
   desiredIndex=n;failedIndex=-1;clearTimeout(selectionTimer);clearTimeout(warmTimer);
