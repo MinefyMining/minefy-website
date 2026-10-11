@@ -60,7 +60,7 @@
           "icon": "radio",
           "step": "01",
           "title": "Conectar",
-          "text": "O módulo ActiSky é embarcado no equipamento e lê o barramento CAN J1939 — RPM, combustível, temperatura e posição GPS, conforme os sinais disponíveis em cada máquina."
+          "text": "O módulo ActiSky é embarcado no equipamento e lê o barramento CAN J1939 — RPM, combustível, temperatura e posição GPS, conforme os sinais disponíveis em cada máquina. Pressão e temperatura do óleo: integração em desenvolvimento, ativada após validação do sinal por equipamento."
         },
         {
           "icon": "activity",
@@ -89,25 +89,25 @@
         {
           "icon": "satellite",
           "title": "ActiSky Telemetria",
-          "description": "Módulos IoT com CAN J1939 para equipamentos pesados — RPM, consumo, temperatura e GPS, conforme os sinais disponíveis em cada equipamento. Dados na sua tela em tempo real.",
+          "description": "Módulos IoT com CAN J1939 para equipamentos pesados — RPM, consumo, temperatura e GPS, conforme os sinais disponíveis em cada equipamento. Pressão e temperatura do óleo: integração em desenvolvimento, ativada após validação do sinal por equipamento. Temperatura de freios e alertas de superaquecimento: integração a desenvolver e homologar por equipamento. Dados na sua tela em tempo real.",
           "badge": "IoT"
         },
         {
           "icon": "chart",
           "title": "Minefy Analytics",
-          "description": "Dashboards operacionais em tempo real para minas. KPIs de produção, relatórios exportáveis — CSV, XLSX e PDF no RDO — e análise de tendências para decisões data-driven.",
+          "description": "Dashboards operacionais em tempo real para minas. KPIs de produção, relatórios exportáveis — CSV, XLSX e PDF no RDO — e análise de tendências para decisões data-driven. Distribuição automática programada (diária, semanal e mensal) em desenvolvimento.",
           "badge": "SOFTWARE"
         },
         {
           "icon": "truck",
           "title": "Fleet 360",
-          "description": "Monitoramento de condição e gestão de frota pesada: caminhões fora de estrada, escavadeiras, carregadeiras. Alertas por regras configuradas sobre os sinais de telemetria — a evolução preditiva por IA está em desenvolvimento.",
+          "description": "Gestão e monitoramento de condição de frota pesada: caminhões fora de estrada, escavadeiras, carregadeiras. Alertas por regras configuradas sobre os sinais de telemetria já disponíveis — manutenção preditiva por IA em desenvolvimento.",
           "badge": "GESTÃO"
         },
         {
           "icon": "shield",
           "title": "Minefy Safety",
-          "description": "Segurança operacional para mineração: monitoramento de fadiga e distração (ADAS/DMS) conforme instalação, alertas de zona de risco e apoio aos procedimentos de segurança da operação.",
+          "description": "Segurança operacional para mineração: monitoramento de fadiga e distração (ADAS/DMS) conforme instalação, proximidade entre equipamentos — integração e homologação de campo pendentes —, alertas de zona de risco e apoio aos procedimentos de segurança da operação.",
           "badge": "SEGURANÇA"
         },
         {
@@ -143,12 +143,12 @@
         {
           "icon": "wrench",
           "title": "Menos parada não planejada",
-          "text": "Temperatura e RPM monitorados disparam alertas por regras configuradas: o acompanhamento de condição do Fleet 360 ajuda a operação a agir antes da quebra no meio do pit."
+          "text": "Temperatura e RPM monitorados disparam alertas por regras configuradas hoje; a manutenção preditiva do Fleet 360, em desenvolvimento, busca antecipar a falha antes da quebra no meio do pit."
         },
         {
           "icon": "shield",
           "title": "Segurança que age antes",
-          "text": "Alertas de fadiga e distração, zonas de risco e condição do equipamento — disponíveis conforme instalação e configuração — apoiam os procedimentos de segurança da operação para agir a tempo."
+          "text": "Alertas de fadiga e distração (conforme instalação e habilitação), proximidade entre equipamentos — integração e homologação de campo pendentes —, zonas de risco e condição do equipamento conforme configuração apoiam os procedimentos de segurança da operação para agir a tempo."
         },
         {
           "icon": "chart",
@@ -194,7 +194,7 @@
       "items": [
         {
           "q": "O que é a telemetria ActiSky?",
-          "a": "São módulos IoT embarcados no equipamento que leem o barramento CAN J1939 e transmitem em tempo real — RPM, combustível, temperatura e GPS, conforme os sinais disponíveis em cada máquina — direto para a plataforma Minefy, onde viram dashboards, ciclos e alertas."
+          "a": "São módulos IoT embarcados no equipamento que leem o barramento CAN J1939 e transmitem em tempo real — RPM, combustível, temperatura e GPS, conforme os sinais disponíveis em cada máquina — direto para a plataforma Minefy, onde viram dashboards, ciclos e alertas. Pressão e temperatura do óleo: integração em desenvolvimento, ativada após validação do sinal por equipamento."
         },
         {
           "q": "Como é a instalação na minha frota?",
@@ -346,9 +346,9 @@
             "image": "/images/products/tablet-comercial.png",
             "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte veicular e película de proteção. Custo-benefício para cabines e operações de apoio, onde a robustez vem da proteção externa.",
             "specs": [
-              "Tablet de última geração — tela e memória conforme modelo vigente",
-              "Kit veicular robusto: case anti-impacto + suporte veicular",
-              "Carregamento no berço veicular robusto",
+              "Tablet de última geração — tela, memória e armazenamento a confirmar no modelo fornecido",
+              "Kit veicular robusto: case anti-impacto + suporte veicular — proteção a confirmar no kit fornecido e homologado",
+              "Carregamento no berço veicular robusto — magnético opcional, a confirmar no modelo fornecido",
               "Integração à plataforma Minefy configurada por projeto"
             ]
           },
@@ -358,9 +358,9 @@
             "image": "/images/products/tablet-semi.png",
             "description": "Robustez de fábrica para quem precisa de mobilidade em campo — vedação, resistência e tela que responde com luva, sem depender de case externo. Graus de proteção variam por modelo e são confirmados na proposta.",
             "specs": [
-              "Vedação e resistência de fábrica — grau IP e norma MIL conforme modelo",
-              "Tela de alta resolução com toque por luva — tamanho conforme modelo",
-              "Bateria para turnos longos",
+              "Vedação e resistência de fábrica — grau IP e norma MIL a confirmar no modelo fornecido e homologado",
+              "Tela de alta resolução com toque por luva — tamanho e brilho a confirmar no modelo fornecido",
+              "Bateria para turnos longos — removível opcional, a confirmar no modelo fornecido",
               "Gestão remota via MDM corporativo"
             ]
           },
@@ -387,20 +387,20 @@
         "id": "actisky",
         "badge": "IoT / TELEMETRIA",
         "title": "ActiSky Telemetria",
-        "description": "Módulos IoT de telemetria com protocolo CAN J1939 para equipamentos pesados de mineração. Os sinais disponíveis dependem do barramento, dos sensores, da instalação e da homologação por modelo — definidos no escopo de cada projeto.",
+        "description": "Módulos IoT de telemetria com protocolo CAN J1939 para equipamentos pesados de mineração. Os sinais disponíveis dependem do barramento, dos sensores, da instalação e da homologação por modelo — definidos no escopo de cada projeto. Monitoramento de emissões: capacidade planejada, dependente de fonte e metodologia validadas. Estados de freio de serviço e de estacionamento permanecem disponíveis como informação distinta e não indicam temperatura.",
         "safetyFeatures": [
           "Temperatura do motor e do sistema de arrefecimento",
-          "Caçamba alta em deslocamento (conforme sinais instalados)",
-          "Basculamento fora de zona autorizada (conforme configuração)",
-          "Estados de freio de serviço e de estacionamento",
-          "Alertas de zona de risco (geofencing)"
+          "Em desenvolvimento: pressão e temperatura do óleo — ativação após validação do sinal por equipamento",
+          "A desenvolver e homologar por equipamento: temperatura de freios e alertas de superaquecimento",
+          "Caçamba alta em deslocamento e basculamento fora de zona autorizada (conforme sinais instalados e configuração)",
+          "Alertas de zona de risco (geofencing, conforme configuração)"
         ],
         "operationalFeatures": [
           "Ciclos de carga e basculamento (conforme configuração)",
           "Velocidade e RPM do motor",
           "Consumo de combustível (canal e unidade conforme instalação)",
           "Horímetro digital",
-          "Posição por GPS (precisão conforme módulo)",
+          "Posição por GPS — alta precisão/RTK como configuração opcional, dependente de módulo, instalação e ensaio",
           "Detecção de ociosidade (idle)"
         ],
         "image": "/images/mining/komatsu-closeup.jpg",
@@ -420,7 +420,7 @@
           "RDO e suas revisões com exportação CSV, XLSX e PDF",
           "Análise estatística de tendências e anomalias",
           "Multi-tenancy com isolamento de dados por operação",
-          "Distribuição programada automática e integrações com ERP — evolução sob projeto"
+          "Em desenvolvimento: distribuição automática programada de relatórios (diária, semanal e mensal); integrações API/ERP com escopo e validação por projeto"
         ],
         "image": "/images/solutions/9864-1.jpg",
         "metric": {
@@ -430,31 +430,31 @@
       },
       {
         "id": "fleet360",
-        "badge": "CONDIÇÃO DA FROTA",
+        "badge": "GESTÃO PREDITIVA · EM DESENVOLVIMENTO",
         "title": "Fleet 360",
-        "description": "Monitoramento de condição e gestão da frota pesada de mineração — caminhões fora de estrada, escavadeiras e carregadeiras. Alertas por regras configuradas sobre os sinais de telemetria; a evolução preditiva por IA está em desenvolvimento.",
+        "description": "Gestão e monitoramento de condição da frota pesada de mineração — caminhões fora de estrada, escavadeiras e carregadeiras. Alertas por regras configuradas sobre os sinais de telemetria já disponíveis; manutenção preditiva por IA em desenvolvimento. Meta: -35% de paradas não planejadas — meta de desenvolvimento; ainda sem estudo ou piloto que comprove essa redução.",
         "features": [
-          "Monitoramento de condição por telemetria",
-          "Análise de ciclos de carga e transporte",
+          "Monitoramento de condição por telemetria e manutenção preditiva — preditiva em desenvolvimento, ainda sem modelo validado",
+          "Análise de ciclos de carga e transporte; otimização de ciclos — em desenvolvimento",
           "Acompanhamento de consumo por equipamento (conforme canal instalado)",
-          "Alertas por regras e limites configurados",
-          "Histórico de telemetria de cada máquina",
-          "Evolução preditiva por IA em desenvolvimento"
+          "Alertas de manutenção preventiva por regras e limites configurados",
+          "Histórico de telemetria registrada de cada máquina",
+          "Integração com sistemas de despacho e ERP — escopo e validação por projeto"
         ],
         "image": "/images/mining/haul-truck-road.jpg",
         "metric": {
-          "value": "Telemetria",
-          "label": "Condição da frota"
+          "value": "Meta: -35%",
+          "label": "Paradas não planejadas · a validar"
         }
       },
       {
         "id": "safety",
         "badge": "SEGURANÇA",
         "title": "Minefy Safety",
-        "description": "Sistema de segurança para operações de mineração. Monitoramento de fadiga e distração do operador (ADAS/DMS), com alertas disponíveis conforme instalação e habilitação; proximidade entre equipamentos e zonas de risco dependem da solução implantada e de validação de campo.",
+        "description": "Sistema de segurança para operações de mineração. Monitoramento de fadiga e distração do operador (ADAS/DMS), com alertas disponíveis conforme instalação e habilitação; proximidade entre equipamentos — integração e homologação de campo pendentes — e zonas de risco conforme configuração da solução implantada.",
         "features": [
           "Monitoramento de fadiga e distração (ADAS/DMS) — conforme instalação e habilitação",
-          "Proximidade entre equipamentos — sob solução dedicada e validação de campo",
+          "Integração e homologação de campo pendentes: proximidade entre equipamentos, na solução correspondente",
           "Geofencing e alertas de zona de risco — conforme configuração",
           "Apoio aos procedimentos de segurança da operação (NR-22 e normas ANM)",
           "Registro de incidentes e near-misses",
@@ -476,7 +476,7 @@
           "Implantação de telemetria em equipamentos pesados",
           "Integração com sistemas de despacho de frota",
           "Treinamento de operadores e despachantes",
-          "Suporte técnico em campo, com cobertura e prazos definidos em contrato",
+          "Suporte técnico em campo, com cobertura e prazos definidos em contrato; modalidade 24/7 a dimensionar",
           "Relatórios de performance operacional"
         ],
         "image": "/images/mining/fleet-d11-operation.jpg",

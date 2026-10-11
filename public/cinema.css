@@ -64,6 +64,25 @@
 @media(max-height:720px) and (max-width:700px){.story-sticky{min-height:600px;padding-top:80px}.story-copy h2{font-size:9.6vw}.story-copy p{font-size:10px;margin-top:12px}.story-copy{margin-bottom:15px}.story-tags{margin-top:12px}.story-hud,.story-alert{top:150px}.story-scene-caption{top:124px}}
 @media(prefers-reduced-motion:reduce){.film-frame{transition:none;will-change:auto}.film-frame img{animation:none}}
 .motion-paused .film-frame{transition:none;will-change:auto}
+.motion-paused .story-visible .film-frame.is-active.is-ready img{animation-play-state:paused}
+/* Loading policy (QA 2026-10-11): the 48 px preview is only a colour field — dimmed, never presented as the finished plate.
+   A staging element stays invisible until it has decoded; the previous plate remains painted during the handoff. */
+.film-frame.is-preview{filter:saturate(.7) brightness(.78)}
+.film-frame img{transition:opacity .45s ease}
+.film-frame img.is-staging{opacity:0}
+.story-media-status{position:absolute;z-index:6;right:var(--gutter);bottom:175px;display:flex;align-items:center;gap:10px;color:#c9d2d8;font-size:8px;letter-spacing:.16em;pointer-events:none}
+.story-media-status[hidden]{display:none}
+.story-media-status>span{position:relative;width:56px;height:1px;background:#ffffff26;overflow:hidden}
+.story-media-status>span:after{content:'';position:absolute;inset:0;width:40%;background:#d4af57;animation:story-status-sweep 1.2s linear infinite}
+@keyframes story-status-sweep{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@media(prefers-reduced-motion:reduce){.story-media-status>span:after{animation:none;width:100%}.film-frame img{transition:none}}
+.motion-paused .story-media-status>span:after{animation:none;width:100%}
+@media(max-width:700px){
+ .story-media-status{right:24px;bottom:auto;top:158px;font-size:7px;gap:8px}.story-media-status>span{width:40px}
+ .story-media-error{right:24px;bottom:auto;top:156px;max-width:230px;font-size:10px;line-height:1.6;padding:10px 12px}
+ /* Touch targets: 34 px controls, dots at 18 px, and room on the right so "Próximo" never meets the pause toggle. */
+ .story-navigation{padding-right:48px}.story-navigation>button{width:34px;height:34px}.story-dots{gap:5px}.story-dots button{width:18px;height:34px}.story-dots button:before{top:16px}
+}
 
 .hero-image{background-image:url(data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAACQBgCdASowABwAPymIuFQuKaUjKrgMAcAlCWUAzJiRMaIN/jZgSt5t9ePl8p2o5rUY8l565JS23BaiDLXAAP7N8uA0foHcMCTEy1iOI5wr1zSv0EirCYyO80jAzIPIG2IeOZJzlgUAZjw2kqPEnAUQ8daFuiZm34C7fcg0dw2qHaW59643aVMtV9RmGBrF4mUmvJuSR4KmbjTvscf9fkJQiSFcEfCNhaCOQc1+FhxuuCTcl4T5ORdajJX0FnEmfZKCAAAA)}
 .hero-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:65% center}

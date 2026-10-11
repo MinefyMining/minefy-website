@@ -1,4 +1,4 @@
-import {swapImage,warmImage} from './media.js?v=4152dfe81a';
+import {swapImage,warmImage} from './media.js?v=20261011-scene';
 import {equipmentIcon} from './equipment-icons.js?v=4152dfe81a';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -18,7 +18,15 @@ const format=(n,d=1)=>n.toFixed(d).replace('.',',');
 const last=arr=>arr[arr.length-1];
 const speedText=value=>Number.isInteger(value)?String(value):format(value);
 const mean=values=>values.reduce((total,v)=>total+v,0)/values.length;
-function motion(element,frames,options){if(paused||document.hidden)return;const rect=element.getBoundingClientRect();if(rect.bottom<0||rect.top>innerHeight)return;animations=animations.filter(a=>a.playState==='running');animations.push(element.animate(frames,options));}
+// One animation per element: a new effect replaces the running one instead of stacking on it.
+const running=new WeakMap();
+function motion(element,frames,options){
+ if(!element||paused||document.hidden)return;const rect=element.getBoundingClientRect();if(rect.bottom<0||rect.top>innerHeight)return;
+ running.get(element)?.cancel();
+ const animation=element.animate(frames,{fill:'backwards',...options});running.set(element,animation);
+ animations=animations.filter(a=>a.playState==='running');animations.push(animation);return animation;
+}
+function cancelMotion(){animations.forEach(a=>{try{a.cancel();}catch{/* already settled */}});animations=[];}
 
 assets.forEach(asset=>{
  const button=document.createElement('button');button.className=`equipment-marker${asset.alert?' warning':''}`;button.dataset.asset=asset.id;button.style.left=`${asset.x}%`;button.style.top=`${asset.y}%`;button.setAttribute('aria-label',`Selecionar ${asset.id}, ${asset.type}${asset.alert?', em alerta':''}`);button.setAttribute('aria-pressed',String(asset.id===selected));button.title=`${asset.type} · ${asset.id}`;button.innerHTML=`<span class="marker-symbol">${equipmentIcon(asset.icon)}<i class="marker-condition" aria-hidden="true"></i></span><span class="marker-name">${asset.id}</span><span class="marker-telemetry">${asset.alert?`${last(asset.oil)} °C`:`${speedText(last(asset.speed))} km/h`}</span>`;button.addEventListener('click',()=>selectAsset(asset.id));$('#command-markers').append(button);
@@ -51,14 +59,21 @@ function drawTrend(selector,values,{width,min,max,ticks,unit,color,threshold,thr
  if(threshold!==undefined)markup+=`<line class="chart-threshold" x1="${left}" x2="${right}" y1="${y(threshold)}" y2="${y(threshold)}"/><text class="chart-threshold-label" x="${right-3}" y="${y(threshold)-6}" text-anchor="end">${thresholdLabel}</text>`;
  markup+=`<path class="trend-area" d="${path} L${right} ${bottom} L${left} ${bottom}Z" fill="url(#${gradient})"/><path class="trend-line" d="${path}" pathLength="1" fill="none" stroke="${color}"/><circle class="trend-end-glow" cx="${end[0]}" cy="${end[1]}" r="8" fill="${color}"/><circle cx="${end[0]}" cy="${end[1]}" r="3" fill="${color}"/>`;
  svg.innerHTML=markup;svg.setAttribute('aria-label',`${selected}: histórico demonstrativo de ${unit}, de ${format(values[0])} a ${format(last(values))}, janela de ${windowMinutes} minutos.`);
- const trace=svg.querySelector('.trend-line');motion(trace,[{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:1300,easing:'cubic-bezier(.2,.7,.2,1)'});
+ animateTrend(svg);
+}
+// Presentation of charts is separate from their data: it can replay over nodes that already exist.
+function animateTrend(svg){
+ motion(svg.querySelector('.trend-line'),[{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:1300,easing:'cubic-bezier(.2,.7,.2,1)'});
  motion(svg.querySelector('.trend-area'),[{opacity:0},{opacity:1}],{duration:1100,easing:'ease-out'});
+}
+function animateCycles(){
+ $$('#cycles-chart .cycle-bar').forEach((bar,i)=>motion(bar,[{opacity:0,transform:'scaleY(.1)'},{opacity:1,transform:'scaleY(1)'}],{duration:800,delay:i*65,easing:'cubic-bezier(.2,.7,.2,1)'}));
 }
 function drawCycles(){
  const svg=$('#cycles-chart'),left=27,right=340,top=17,bottom=141,w=(right-left)/cycles.length;
  let markup='';[0,10,20].forEach(v=>{const y=bottom-v/24*(bottom-top);markup+=`<line class="chart-grid" x1="${left}" x2="${right}" y1="${y}" y2="${y}"/><text class="chart-axis" x="${left-8}" y="${y+3}" text-anchor="end">${v}</text>`;});
  cycles.forEach((v,i)=>{const height=v/24*(bottom-top),x=left+i*w+8,y=bottom-height;markup+=`<rect class="cycle-bar" x="${x}" y="${y}" width="${w-16}" height="${height}" rx="2" fill="${i===4?'#dfbd75':'#81949a'}"/><text class="bar-value" x="${x+(w-16)/2}" y="${y-7}" text-anchor="middle">${v}</text><text class="chart-axis" x="${x+(w-16)/2}" y="165" text-anchor="middle">${String(i+6).padStart(2,'0')}h</text>`;});svg.innerHTML=markup;
- svg.querySelectorAll('.cycle-bar').forEach((bar,i)=>motion(bar,[{opacity:0,transform:'scaleY(.1)'},{opacity:1,transform:'scaleY(1)'}],{duration:800,delay:i*65,easing:'cubic-bezier(.2,.7,.2,1)'}));
+ animateCycles();
 }
 function renderSpeed(asset){
  const current=last(asset.speed),values=samples(asset,'speed'),max=asset.speedScale;
@@ -117,16 +132,22 @@ $('#map-zoom-in').addEventListener('click',()=>{zoom=Math.min(1.8,zoom+.2);frame
 $('#map-zoom-out').addEventListener('click',()=>{zoom=Math.max(1,zoom-.2);frameMap();});
 $('#map-reset').addEventListener('click',()=>{zoom=1.05;selectAsset('TR-001');});
 
+// Data is rendered once at start-up; the presentation only animates nodes that already exist.
+// Values never start from fully transparent: numbers that are on screen are revealed, not blanked.
 function presentation(){
- renderCharts();drawCycles();if(paused)return;
+ if(paused)return;
+ animateCharts();
  motion($('.command-frame'),[{opacity:.7,transform:'translateY(38px) rotateX(4deg) scale(.975)'},{opacity:1,transform:'translateY(0) rotateX(0) scale(1)'}],{duration:1400,easing:'cubic-bezier(.16,1,.3,1)'});
  motion($('.command-terrain'),[{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:2600,easing:'cubic-bezier(.16,1,.3,1)'});
- $$('.command-kpis>div').forEach((el,i)=>motion(el,[{opacity:0,transform:'translateY(9px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,delay:150+i*100,easing:'ease-out'}));
- motion($('#map-selection'),[{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:850,delay:500,easing:'ease-out'});
+ $$('.command-kpis>div').forEach((el,i)=>motion(el,[{opacity:.35,transform:'translateY(9px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,delay:150+i*100,easing:'ease-out'}));
+ motion($('#map-selection'),[{opacity:.35,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:850,delay:500,easing:'ease-out'});
 }
-$('#command-replay').addEventListener('click',presentation);
-const entrance=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){presentation();entrance.disconnect();}},{threshold:.15});entrance.observe($('.command-frame'));
-selectAsset(selected);drawCycles();
+function animateCharts(){['#temperature-chart','#pressure-chart','#fuel-chart'].forEach(selector=>{const svg=$(selector);if(svg?.querySelector('.trend-line'))animateTrend(svg);});animateCycles();}
+// An explicit replay finishes everything still running before it starts again, so effects never overlap.
+function replay(){cancelMotion();presentation();}
+$('#command-replay').addEventListener('click',replay);
+const entrance=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){presentation();entrance.disconnect();}},{threshold:.15});
+selectAsset(selected);drawCycles();entrance.observe($('.command-frame'));
 
 // Commercial close: current offers confirmed by Minefy's CEO in this revision.
 const products=[
