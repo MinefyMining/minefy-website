@@ -542,7 +542,7 @@
     "hero": {
       "badge": "Agrofy — uma divisão Minefy",
       "title": "A mesma tecnologia que lê o barramento de uma frota de mineração, agora no seu trator.",
-      "subtitle": "A Agrofy leva a telemetria ActiSky — validada em operação pesada de mineração — para tratores, colheitadeiras e pulverizadores. Consumo, ociosidade e saúde do motor em tempo real, direto do barramento CAN J1939, qualquer que seja a marca da máquina.",
+      "subtitle": "A Agrofy leva a telemetria ActiSky — validada em operação pesada de mineração — para tratores, colheitadeiras e pulverizadores. Consumo, ociosidade e condição do motor em tempo real, conforme os sinais de cada máquina, direto do barramento CAN J1939, qualquer que seja a marca da máquina.",
       "trust": "Tecnologia validada em operação real de mineração pesada — agora no agro",
       "cta": "Falar com um especialista Agrofy",
       "ctaSecondary": "Acessar Plataforma"
@@ -582,22 +582,22 @@
         {
           "icon": "chart",
           "title": "Consumo sob controle, furto sob vigilância",
-          "text": "Consumo de diesel lido direto do motor via CAN J1939, hora a hora e por hectare — sinalizando quando o abastecimento registrado destoa do consumo real da máquina."
+          "text": "Consumo de diesel lido do motor via CAN J1939, conforme os sinais disponíveis em cada máquina. Consumo por hectare e cruzamento com o abastecimento registrado: em desenvolvimento."
         },
         {
           "icon": "timer",
           "title": "Mais hectares por dia",
-          "text": "Separar horas de motor de horas efetivamente trabalhadas mostra quanto da janela de safra sua frota realmente aproveita — com rastreamento e geofencing contra desvio de rota e furto de máquina."
+          "text": "Separar horas de motor de horas efetivamente trabalhadas mostra quanto da janela de safra sua frota aproveita — com rastreamento e geofencing de talhão. Detecção de desvio de rota contra furto: em desenvolvimento."
         },
         {
           "icon": "wrench",
           "title": "Menos máquina parada na safra",
-          "text": "Manutenção preditiva por horímetro e leitura de códigos de falha do motor (DTCs) antecipa o problema antes da quebra — a mesma lógica que já reduz downtime em frota pesada de mineração."
+          "text": "Alertas por regras configuradas sobre horímetro, temperatura e RPM já disponíveis. Leitura de códigos de falha do motor (DTCs) e manutenção preditiva: em desenvolvimento."
         },
         {
           "icon": "shield",
           "title": "Decisão por dado, não por planilha",
-          "text": "Dashboards por talhão substituem a planilha de abastecimento manual: consumo, ociosidade e hectares trabalhados em tempo real, de qualquer marca de máquina."
+          "text": "Dashboards de consumo, ociosidade e horas trabalhadas, de qualquer marca de máquina com CAN J1939 — conforme os sinais disponíveis. Indicadores por talhão e hectares trabalhados: em desenvolvimento."
         }
       ]
     },
@@ -622,7 +622,7 @@
           "icon": "gauge",
           "step": "03",
           "title": "Decidir",
-          "text": "Dashboard único: consumo, ociosidade, hectares trabalhados e alertas de manutenção — para decidir na hora, não no fim do mês."
+          "text": "Painel único com consumo, ociosidade, horas trabalhadas e alertas por regras configuradas. Hectares trabalhados por talhão: em desenvolvimento."
         }
       ]
     },
@@ -649,7 +649,7 @@
     },
     "testDrive": {
       "title": "Veja a telemetria funcionando",
-      "subtitle": "Explore dashboards de consumo, ociosidade e alertas de manutenção com dados reais de operação agrícola.",
+      "subtitle": "Agende uma demonstração guiada dos dashboards de consumo, ociosidade e alertas. Ambiente de teste com dados da sua operação: em preparação.",
       "cta": "Acessar Plataforma",
       "ctaSecondary": "Falar com Especialista"
     },
@@ -664,7 +664,7 @@
       "items": [
         {
           "q": "O que é a telemetria ActiSky aplicada ao agro?",
-          "a": "São módulos IoT embarcados na máquina que leem o barramento CAN J1939 — RPM, consumo de combustível, temperatura do motor, pressão e GPS — direto para a plataforma Agrofy, onde viram dashboards, alertas e relatórios por talhão."
+          "a": "São módulos IoT embarcados na máquina que leem o barramento CAN J1939 — RPM, combustível, temperatura do motor e GPS, conforme os sinais disponíveis em cada máquina — e enviam para a plataforma, onde viram dashboards, alertas e relatórios. Pressão do óleo: integração em desenvolvimento, ativada após validação do sinal por equipamento."
         },
         {
           "q": "Como é a instalação na minha frota?",
@@ -680,7 +680,7 @@
         },
         {
           "q": "Funciona em áreas de sinal instável no campo?",
-          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — os dados são armazenados no módulo e reenviados quando o sinal retorna."
+          "a": "Em áreas de conectividade intermitente, o módulo ActiSky armazena os dados e os reenvia quando o sinal retorna. A exibição desses dados com o horário original na plataforma está em desenvolvimento."
         },
         {
           "q": "Qual é o modelo comercial?",
@@ -712,25 +712,25 @@
         {
           "icon": "satellite",
           "title": "ActiSky Telemetria",
-          "description": "Módulo IoT com CAN J1939 para tratores, colheitadeiras e pulverizadores de qualquer fabricante — GPS de alta precisão e dados em tempo real.",
+          "description": "Módulo IoT com CAN J1939 para tratores, colheitadeiras e pulverizadores de qualquer fabricante — sinais conforme cada máquina, GPS e dados em tempo real.",
           "badge": "IoT / TELEMETRIA"
         },
         {
           "icon": "chart",
           "title": "Agrofy Analytics",
-          "description": "Dashboards de produtividade, consumo e janela de safra em tempo real, com relatórios automáticos por talhão.",
+          "description": "Dashboards de consumo, ociosidade e horas trabalhadas em tempo real. Relatórios automáticos por talhão e por safra: em desenvolvimento.",
           "badge": "SOFTWARE"
         },
         {
           "icon": "truck",
           "title": "Fleet 360",
-          "description": "Gestão preditiva da frota agrícola pesada — manutenção antecipada para não perder um dia de janela de safra.",
+          "description": "Condição da frota agrícola por regras configuradas sobre os sinais disponíveis. Manutenção preditiva: em desenvolvimento.",
           "badge": "GESTÃO PREDITIVA"
         },
         {
           "icon": "shield",
           "title": "Agrofy Safety",
-          "description": "Monitoramento de fadiga, proximidade entre máquinas e zonas de risco no talhão — compliance NR-31.",
+          "description": "Zonas de risco no talhão por geofencing. Fadiga (conforme instalação), proximidade entre máquinas e apoio à NR-31: em desenvolvimento.",
           "badge": "SEGURANÇA"
         },
         {
@@ -780,7 +780,7 @@
               "IP68 + MIL-STD-810H (água, poeira e queda)",
               "Tela 8\" 1920×1200 · toque com luva",
               "Bateria removível para jornadas longas de safra",
-              "Gestão remota via MDM corporativo"
+              "Gestão remota via MDM corporativo (em implantação)"
             ]
           },
           {
@@ -792,7 +792,7 @@
               "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto do campo)",
               "IP66 + MIL-STD-810G · processador automotivo",
               "2×CAN, RS232/RS485 e até 4 câmeras",
-              "Alimentação 9–36 V · RTK opcional · Android/Linux"
+              "Alimentação 9–36 V · RTK opcional (sob escopo) · Android/Linux"
             ]
           }
         ],
@@ -806,20 +806,20 @@
         "id": "actisky",
         "badge": "IoT / TELEMETRIA",
         "title": "ActiSky Telemetria",
-        "description": "Módulo IoT de telemetria avançada com protocolo CAN J1939 para tratores, colheitadeiras e pulverizadores — qualquer fabricante. GPS de alta precisão e comunicação em tempo real, resiliente ao sinal instável do campo.",
+        "description": "Módulo IoT de telemetria avançada com protocolo CAN J1939 para tratores, colheitadeiras e pulverizadores — qualquer fabricante. GPS (alta precisão/RTK sob escopo), sinais conforme cada máquina e comunicação em tempo real, resiliente ao sinal instável do campo.",
         "safetyFeatures": [
           "Geofencing e alerta de saída do talhão/fazenda",
-          "Detecção de desvio de rota (furto de máquina)",
+          "Detecção de desvio de rota (furto de máquina) — em desenvolvimento",
           "Superaquecimento do motor",
-          "Pressão de óleo fora da faixa"
+          "Pressão de óleo fora da faixa — integração em desenvolvimento"
         ],
         "operationalFeatures": [
-          "Consumo de diesel em tempo real (L/h e L/ha)",
+          "Consumo de diesel (canal e unidade conforme instalação); L/ha — em desenvolvimento",
           "Horímetro digital",
           "Detecção de ociosidade (idle)",
           "Velocidade e RPM do motor",
-          "GPS de alta precisão",
-          "Ciclo de operação — semeadura, colheita, pulverização"
+          "GPS; alta precisão (RTK) sob escopo",
+          "Ciclo de operação — semeadura, colheita, pulverização — em desenvolvimento"
         ],
         "image": "/images/agro/aerea-colheitadeira-linhas-precisao.jpg",
         "metric": {
@@ -833,9 +833,9 @@
         "title": "Agrofy Analytics",
         "description": "Plataforma de Business Intelligence construída para operações agrícolas de grande porte. Dashboards de produtividade, consumo e janela de safra em tempo real.",
         "features": [
-          "Dashboards real-time via WebSocket",
-          "KPIs de hectares/dia, L/ha e horímetro por talhão",
-          "Relatórios automáticos (diário/semanal/por safra)",
+          "Dashboards em tempo real",
+          "KPIs de horas trabalhadas e consumo; hectares/dia, L/ha e horímetro por talhão — em desenvolvimento",
+          "Relatórios exportáveis; relatórios automáticos por safra — em desenvolvimento",
           "Análise de tendências e anomalias de consumo",
           "Multi-tenancy com isolamento de dados por fazenda/unidade",
           "Exportação PDF, Excel e integração API"
@@ -852,36 +852,36 @@
         "title": "Fleet 360",
         "description": "Gestão preditiva para frota agrícola pesada — tratores, colheitadeiras e pulverizadores autopropelidos. Manutenção antecipada para não perder um dia de janela de safra.",
         "features": [
-          "Manutenção preditiva por horímetro, temperatura, pressão e RPM",
-          "Leitura de códigos de falha do motor (DTCs)",
+          "Alertas por regras sobre horímetro, temperatura e RPM; manutenção preditiva — em desenvolvimento",
+          "Leitura de códigos de falha do motor (DTCs) — em desenvolvimento",
           "Alertas de manutenção preventiva antes da quebra em plena colheita",
           "Histórico completo de cada máquina da frota",
-          "Otimização de janela de uso por talhão e por turno",
-          "Integração com sistemas de gestão agrícola e ERP"
+          "Otimização de janela de uso por talhão e por turno — em desenvolvimento",
+          "Integração com sistemas de gestão agrícola e ERP — sob escopo"
         ],
         "image": "/images/agro/fleet360-manutencao-colheitadeira.jpg",
         "metric": {
           "value": "DTC",
-          "label": "Alerta antes da quebra"
+          "label": "Alertas por regras"
         }
       },
       {
         "id": "safety",
         "badge": "SEGURANÇA",
         "title": "Agrofy Safety",
-        "description": "Sistema de segurança para operações agrícolas de grande porte. Monitoramento de fadiga de operadores, proximidade entre máquinas pesadas e controle de zonas de risco no talhão.",
+        "description": "Segurança para operações agrícolas de grande porte: zonas de risco no talhão por geofencing; monitoramento de fadiga conforme instalação; proximidade entre máquinas — integração e homologação de campo pendentes.",
         "features": [
-          "Monitoramento de fadiga de operadores em jornadas longas de safra",
-          "Detecção de proximidade entre tratores, colheitadeiras e implementos",
+          "Monitoramento de fadiga de operadores — conforme instalação e habilitação",
+          "Detecção de proximidade entre máquinas — integração e homologação de campo pendentes",
           "Geofencing e alertas de zona de risco (barrancos, várzea, estradas internas)",
-          "Compliance NR-31 (segurança e saúde no trabalho rural)",
+          "Apoio à NR-31 (segurança e saúde no trabalho rural) — em desenvolvimento",
           "Registro de incidentes e near-misses",
-          "Dashboard de segurança da operação"
+          "Dashboard de segurança da operação — em desenvolvimento"
         ],
         "image": "/images/agro/safety-colheitadeiras-proximidade.jpg",
         "metric": {
           "value": "NR-31",
-          "label": "Compliance"
+          "label": "Apoio (em desenvolvimento)"
         }
       },
       {
@@ -990,7 +990,7 @@
         },
         {
           "title": "Medição de ROI no ciclo de safra",
-          "text": "Acompanhamos ociosidade, consumo, hora-máquina e sinais de manutenção preditiva ao longo de um ciclo de safra completo — o prazo mínimo pra um número ser confiável."
+          "text": "Acompanhamos ociosidade, consumo, hora-máquina e alertas de manutenção ao longo de um ciclo de safra completo — o prazo mínimo pra um número ser confiável."
         },
         {
           "title": "Decisão de escala com dado real",
@@ -1003,19 +1003,19 @@
       "items": [
         {
           "title": "Hectares por dia",
-          "text": "Produtividade real de campo por máquina e por operador, direto da telemetria."
+          "text": "Produtividade de campo por máquina e por operador — indicador em desenvolvimento; no piloto, medido com apoio da equipe a partir da telemetria e dos registros de campo."
         },
         {
           "title": "L/h e L/ha",
-          "text": "Consumo de combustível por hora de operação e por hectare trabalhado."
+          "text": "Consumo por hora, conforme o canal e a unidade disponíveis em cada máquina. Consumo por hectare: em desenvolvimento, medido no piloto com apoio da equipe."
         },
         {
           "title": "Horímetro real vs. faturado",
           "text": "Confronto entre o horímetro lido do barramento da máquina e o horímetro usado em locação/faturamento."
         },
         {
-          "title": "DTCs e manutenção preditiva",
-          "text": "Códigos de falha (DTC) do motor e sinais de desgaste antes da parada não planejada."
+          "title": "Alertas de manutenção",
+          "text": "Alertas por regras sobre horímetro, temperatura e RPM disponíveis. Leitura de códigos de falha (DTC) e manutenção preditiva: em desenvolvimento."
         }
       ]
     },
