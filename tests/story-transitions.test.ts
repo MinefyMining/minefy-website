@@ -303,14 +303,12 @@ describe("resolução e promoção", () => {
     expect(FakeImage.instances).toHaveLength(2); // nenhum download para rebaixar
   });
 
-  it("a câmera contém a aproximação quando a fonte tem menos pixels do que a tela pede", async () => {
+  it("rolar o mouse não amplia a cena: o quadro fica fixo em 1,025 em qualquer capítulo e fase", async () => {
     vi.stubGlobal("devicePixelRatio", 3);
-    await enter(3, 0.95); await resolveLast();
-    const frame = frameOf(3)!;
-    expect(Number(frame.dataset.detail)).toBeLessThan(1);
-    const push = Number(frame.style["--push"]);
-    expect(push).toBeGreaterThan(1.025);
-    expect(push).toBeLessThan(1.025 + 0.27); // caminhão: 0,27 cheio só com detalhe suficiente
+    for (const [index, phase] of [[0, 0.1], [0, 0.95], [3, 0.05], [3, 0.95], [4, 0.95]] as const) {
+      await enter(index, phase); await resolveLast();
+      expect(Number(frameOf(index)!.style["--push"])).toBe(1.025);
+    }
   });
 });
 

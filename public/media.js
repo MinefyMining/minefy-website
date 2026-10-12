@@ -24,18 +24,26 @@ export function selectVariant(spec,{width=0,height=0,aspect=16/9,dpr=1,zoom=1,ec
 
 // Deduplicate in-flight work only. Every handoff decodes again; the browser caches bytes.
 // A deadline settles only its own entry: a late callback never clears a newer attempt.
+// After a deadline the stalled transfer is cancelled and the next attempt for the same plate gets a
+// `retry` query: browsers coalesce identical in-flight URLs, so without it "Tentar novamente" would
+// wait on the very transfer that hung (QA hospedada, 12/10/2026). The normal path never changes the URL.
+const retries=new Map();
+const withRetry=(url,n)=>n?`${url}${url.includes('?')?'&':'?'}retry=${n}`:url;
+const cancel=image=>{if(typeof image.removeAttribute==='function'){image.removeAttribute('srcset');image.removeAttribute('src');}else{image.srcset='';image.src='';}};
 function load(src,{srcset='',sizes='',priority='auto',timeout=sceneTimeout}={}){
  const cacheKey=srcset?`${src}|${srcset}|${sizes}|${innerWidth}|${devicePixelRatio}`:src;
  const existing=pending.get(cacheKey);
  if(existing){if(priority==='high'&&existing.image)existing.image.fetchPriority='high';return existing.promise;}
+ const attempt=retries.get(cacheKey)||0;
  const image=new Image();image.decoding='async';image.fetchPriority=priority;if(sizes)image.sizes=sizes;
  const entry={image,promise:null,timer:0};
  const settle=()=>{if(pending.get(cacheKey)===entry)pending.delete(cacheKey);clearTimeout(entry.timer);entry.image=null;image.onload=image.onerror=null;};
  entry.promise=new Promise((resolve,reject)=>{
-  image.onload=async()=>{try{if(typeof image.decode==='function')await image.decode();if(!image.naturalWidth)throw new Error('Empty image');settle();resolve(image.currentSrc||image.src);}catch(error){settle();reject(error);}};
+  image.onload=async()=>{try{if(typeof image.decode==='function')await image.decode();if(!image.naturalWidth)throw new Error('Empty image');settle();retries.delete(cacheKey);resolve(image.currentSrc||image.src);}catch(error){settle();reject(error);}};
   image.onerror=()=>{settle();reject(new Error(`Image unavailable: ${src}`));};
-  if(timeout>0)entry.timer=setTimeout(()=>{settle();reject(timeoutError(src));},timeout);
-  if(srcset)image.srcset=srcset;image.src=src;
+  if(timeout>0)entry.timer=setTimeout(()=>{settle();retries.set(cacheKey,attempt+1);cancel(image);reject(timeoutError(src));},timeout);
+  if(srcset)image.srcset=attempt?srcset.split(',').map(part=>{const [u,...d]=part.trim().split(/\s+/);return [withRetry(u,attempt),...d].join(' ');}).join(', '):srcset;
+  image.src=withRetry(src,attempt);
  });
  pending.set(cacheKey,entry);
  return entry.promise;

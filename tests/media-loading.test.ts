@@ -87,9 +87,13 @@ describe("prepareImage — deadline, limpeza e deduplicação", () => {
     expect(rejected).toHaveBeenCalledOnce();
     expect(rejected.mock.calls[0][0].name).toBe("TimeoutError");
     expect(FakeImage.instances).toHaveLength(1);
+    // O download travado é cancelado no prazo (sem src), para não segurar a conexão.
+    expect(FakeImage.instances[0].src).toBe("");
 
     const second = media.prepareImage(key, { variant, timeout: media.sceneTimeout });
     expect(FakeImage.instances).toHaveLength(2);
+    // A nova tentativa usa outra URL: o navegador não reaproveita a transferência que travou.
+    expect(FakeImage.instances[1].src).toBe(`${variant.url}?retry=1`);
     // Callback tardio do primeiro download não resolve nem apaga a tentativa nova.
     FakeImage.instances[0].load();
     await flush(0);
@@ -99,7 +103,7 @@ describe("prepareImage — deadline, limpeza e deduplicação", () => {
     expect(settled).not.toHaveBeenCalled();
     FakeImage.instances[1].load();
     await flush(0);
-    expect(settled).toHaveBeenCalledWith(variant.url);
+    expect(settled).toHaveBeenCalledWith(`${variant.url}?retry=1`);
   });
 
   it("rejeita em erro de download e permite repetir; sucesso resolve com a URL decodificada", async () => {

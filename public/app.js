@@ -105,7 +105,7 @@ function updateScroll(){
   $('#chapter-progress').style.width=`${fleetProgress*100}%`;
   const hero=$('.hero-image'),heroVisible=!motionPaused&&scroll<innerHeight*1.3;
   hero.style.willChange=heroVisible?'transform':'auto';
-  if(heroVisible)hero.style.transform=`translateY(${scroll*.17}px) scale(${1+scroll*.00005})`;
+  if(heroVisible)hero.style.transform=`translateY(${scroll*.17}px)`; // sem zoom ao rolar (CEO 12/10/2026)
 }
 function queueScroll(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll);}}
 window.addEventListener('scroll',queueScroll,{passive:true});window.addEventListener('resize',queueScroll);updateScroll();

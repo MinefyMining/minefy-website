@@ -20,7 +20,9 @@ const chapters=[
 const section=$('#jornada'),container=$('#story-canvas'),frames=new Map();
 const sceneAspect=1672/941; // every cinema plate shares this frame; the manifest only carries widths.
 const sceneKey=index=>`cinema/${chapters[index].type==='control'?'control-v2':chapters[index].type}`;
-const pushFor=index=>index===3?.27:index===4?.14:.075;
+// Sem aproximação ligada à rolagem (CEO 12/10/2026: a rodinha do mouse dava zoom na cena e estourava a imagem).
+// O quadro fica fixo em 1,025 — só a margem que cobre o deslocamento suave; o avanço de capítulo continua na rolagem.
+const pushFor=()=>0;
 let activeFrame,pointerX=0,pointerY=0,desiredIndex=-1,failedIndex=-1,visible=false,request=0,cameraKey='',hud={temp:-1,critical:false};
 let selectionTimer,warmTimer,pruneTimer,statusTimer,resizeTimer;
 const errorNote=document.createElement('div');errorNote.className='story-media-error';errorNote.hidden=true;
