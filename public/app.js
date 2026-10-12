@@ -1,6 +1,6 @@
 import {deferEnhancement} from './enhancements.js?v=20261010-fast';
-const swapImage=(...args)=>import('./media.js?v=4152dfe81a').then(module=>module.swapImage(...args));
-const warmImage=(...args)=>import('./media.js?v=4152dfe81a').then(module=>module.warmImage(...args)).catch(()=>{});
+const swapImage=(...args)=>import('./media.js?v=20261011-scene').then(module=>module.swapImage(...args));
+const warmImage=(...args)=>import('./media.js?v=20261011-scene').then(module=>module.warmImage(...args)).catch(()=>{});
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
@@ -105,7 +105,7 @@ function updateScroll(){
   $('#chapter-progress').style.width=`${fleetProgress*100}%`;
   const hero=$('.hero-image'),heroVisible=!motionPaused&&scroll<innerHeight*1.3;
   hero.style.willChange=heroVisible?'transform':'auto';
-  if(heroVisible)hero.style.transform=`translateY(${scroll*.17}px) scale(${1+scroll*.00005})`;
+  if(heroVisible)hero.style.transform=`translateY(${scroll*.17}px)`; // sem zoom ao rolar (CEO 12/10/2026)
 }
 function queueScroll(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll);}}
 window.addEventListener('scroll',queueScroll,{passive:true});window.addEventListener('resize',queueScroll);updateScroll();
@@ -120,6 +120,6 @@ const reveals=new IntersectionObserver(entries=>{
 $$('.reveal').forEach(element=>reveals.observe(element));
 
 // Load only the destination's interaction code. Direct links and fast taps also work.
-deferEnhancement('#jornada,#preditiva',()=>import('./story.js?v=20261010-fast'));
-deferEnhancement('#inteligencia,#solucoes',()=>import('./command.js?v=4152dfe81a'));
+deferEnhancement('#jornada,#preditiva',()=>import('./story.js?v=20261011-scene'));
+deferEnhancement('#inteligencia,#solucoes',()=>import('./command.js?v=20261011-scene'));
 document.documentElement.dataset.ready='true';

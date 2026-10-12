@@ -1,4 +1,4 @@
-import {media, prepareImage, warmImage, warmOnApproach, sceneSizes} from './media.js?v=4152dfe81a';
+import {media, prepareImage, decodeElement, selectVariant, warmImage, sceneTimeout, constrained} from './media.js?v=20261011-scene';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=t=>t*t*(3-2*t);
@@ -16,28 +16,49 @@ const chapters=[
  {type:'control',kicker:'09 / A VISÃO DE TODA A OPERAÇÃO',title:'UMA FROTA. <br>UM ALERTA. <br><em>UMA DECISÃO.</em>',description:'Na sala de controle, o TR-001 se destaca no mapa. Posição, sinais e histórico ajudam a equipe a priorizar a análise e conduzir a decisão operacional.',tags:['CONTROLE DE FROTA','ALERTAS','HISTÓRICO'],fact:'SIGA PARA EXPLORAR A COMBINAÇÃO DOS SINAIS.',label:'CAMPO → SALA DE CONTROLE',name:'DA MÁQUINA À DECISÃO'}
 ];
 
-// Decode incoming scenes before crossing over; retain only the visible pair and target.
+// Decode the incoming plate, then the element that is painted, before crossing over; retain only the visible pair and target.
 const section=$('#jornada'),container=$('#story-canvas'),frames=new Map();
+const sceneAspect=1672/941; // every cinema plate shares this frame; the manifest only carries widths.
 const sceneKey=index=>`cinema/${chapters[index].type==='control'?'control-v2':chapters[index].type}`;
-let activeFrame,pointerX=0,pointerY=0,desiredIndex=-1,failedIndex=-1,visible=false;
-let selectionTimer,warmTimer,pruneTimer;
+// Sem aproximação ligada à rolagem (CEO 12/10/2026: a rodinha do mouse dava zoom na cena e estourava a imagem).
+// O quadro fica fixo em 1,025 — só a margem que cobre o deslocamento suave; o avanço de capítulo continua na rolagem.
+const pushFor=()=>0;
+let activeFrame,pointerX=0,pointerY=0,desiredIndex=-1,failedIndex=-1,visible=false,request=0,cameraKey='',hud={temp:-1,critical:false};
+let selectionTimer,warmTimer,pruneTimer,statusTimer,resizeTimer;
 const errorNote=document.createElement('div');errorNote.className='story-media-error';errorNote.hidden=true;
-errorNote.innerHTML='A conexão interrompeu esta cena.<button type="button">Tentar novamente</button>';
+errorNote.innerHTML='<span>A conexão interrompeu esta cena.</span><button type="button">Tentar novamente</button>';
 errorNote.setAttribute('role','status');$('.story-sticky').append(errorNote);
 errorNote.querySelector('button').addEventListener('click',()=>{failedIndex=-1;showChapter(desiredIndex);});
+// Discreet loading state: appears only when a plate takes longer than a glance, never pretends the preview is final.
+const status=document.createElement('div');status.className='story-media-status';status.hidden=true;
+status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.innerHTML='<span></span><b></b>';
+$('.story-sticky').append(status);
+function showStatus(index){clearTimeout(statusTimer);statusTimer=setTimeout(()=>{status.querySelector('b').textContent=`CENA ${String(index+1).padStart(2,'0')} · CARREGANDO`;status.hidden=false;},300);}
+function hideStatus(){clearTimeout(statusTimer);status.hidden=true;}
+// The painted frame can differ from stageIndex after a failed chapter (copy advances, plate stays): never prune it.
+function paintedIndex(){return activeFrame&&frames.get(Number(activeFrame.dataset.scene))===activeFrame?Number(activeFrame.dataset.scene):-1;}
 function pruneFrames(keep){
- for(const [index,frame] of frames){if(!keep.has(index)){frame.remove();frames.delete(index);}}
+ for(const [index,frame] of frames){if(!keep.has(index)&&frame!==activeFrame){frame.remove();frames.delete(index);}}
 }
 function getFrame(index){
  if(frames.has(index))return frames.get(index);
- // An embedded preview preserves the composition while the first full scene arrives.
+ // The embedded preview only preserves the composition's colour field while the plate arrives; it is never marked ready.
  const frame=document.createElement('div');frame.className='film-frame';frame.dataset.scene=String(index);
  frame.style.backgroundImage=`url("${media[sceneKey(index)].preview}")`;
- const img=document.createElement('img');img.alt='';img.decoding='async';img.draggable=false;
- frame.append(img);container.append(frame);frames.set(index,frame);
- pruneFrames(new Set([stageIndex,index,...[...frames.keys()].slice(-2)]));
+ container.append(frame);frames.set(index,frame);
+ pruneFrames(new Set([paintedIndex(),index,...[...frames.keys()].slice(-2)]));
  return frame;
 }
+// Plate choice follows the real cover box, display density and the deepest camera push of the chapter.
+function sceneBox(index){
+ const frame=frames.get(index)||activeFrame;
+ const width=frame?.offsetWidth||container.offsetWidth||innerWidth*1.04,height=frame?.offsetHeight||container.offsetHeight||innerHeight*1.04;
+ return {width,height};
+}
+function sceneVariant(index){
+ return selectVariant(media[sceneKey(index)],{...sceneBox(index),aspect:sceneAspect,dpr:devicePixelRatio||1,zoom:(1.025+pushFor(index))*1.035,economy:constrained()});
+}
+function warmScene(index){if(index<0||index>8)return;warmImage(sceneKey(index),{variant:sceneVariant(index)});}
 function updateChapter(index){
  const changed=stageIndex!==index;stageIndex=index;const c=chapters[index];
  section.dataset.chapter=c.type;
@@ -49,44 +70,96 @@ function updateChapter(index){
  $('#story-hud').hidden=!(index===4||index===5);$('#story-alert').hidden=!(index===6||index===7||index===8);
  if(changed&&!paused&&$('.story-copy').animate){copyAnimation?.cancel();copyAnimation=$('.story-copy').animate([{opacity:.3,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:500,easing:'ease-out'});}
 }
+// Mount a staging element and resolve only after it has decoded; the previous plate stays painted meanwhile.
+async function mountImage(frame,url){
+ const img=document.createElement('img');img.className='is-staging';img.alt='';img.decoding='async';img.draggable=false;img.src=url;
+ frame.append(img);
+ try{await decodeElement(img,sceneTimeout);}catch(error){img.remove();throw error;}
+ return img;
+}
+function settlePlate(frame,img,variant){
+ frame.querySelectorAll('img').forEach(old=>{if(old!==img)old.remove();});
+ img.classList.remove('is-staging');frame.dataset.width=String(variant.width);frame.dataset.detail=variant.detail.toFixed(3);
+}
 async function showChapter(index){
  if(!visible||index!==desiredIndex||index===failedIndex)return;
- const incoming=getFrame(index),img=incoming.querySelector('img');
- errorNote.hidden=true;container.setAttribute('aria-busy','true');
- if(!activeFrame){activeFrame=incoming;incoming.classList.add('is-active');updateChapter(index);}
+ const id=++request,incoming=getFrame(index),key=sceneKey(index);
+ errorNote.hidden=true;container.setAttribute('aria-busy','true');showStatus(index);
+ // First arrival: copy is readable at once, the backdrop is marked as a preview and the busy state is explicit.
+ if(!activeFrame){activeFrame=incoming;incoming.classList.add('is-active','is-preview');updateChapter(index);}
+ const live=()=>id===request&&visible&&index===desiredIndex&&frames.get(index)===incoming;
  try{
-  const url=await prepareImage(sceneKey(index),{sizes:sceneSizes,priority:'high'});
-  if(index!==desiredIndex||!visible||frames.get(index)!==incoming)return;
-  img.src=url;incoming.classList.add('is-ready');activeFrame=incoming;
-  frames.forEach(frame=>frame.classList.toggle('is-active',frame===incoming));
-  updateChapter(index);frameCamera();updateHud();container.setAttribute('aria-busy','false');
-  clearTimeout(pruneTimer);pruneTimer=setTimeout(()=>pruneFrames(new Set([stageIndex,desiredIndex])),850);
+  const variant=sceneVariant(index);
+  const url=await prepareImage(key,{variant,priority:'high',timeout:sceneTimeout});
+  if(!live())return;
+  const img=await mountImage(incoming,url);
+  if(!live()){img.remove();return;}
+  // Atomic commit: plate, copy, HUD and busy state change together, after the painted element decoded.
+  settlePlate(incoming,img,variant);incoming.classList.add('is-ready');incoming.classList.remove('is-preview');
+  activeFrame=incoming;frames.forEach(frame=>frame.classList.toggle('is-active',frame===incoming));
+  hideStatus();updateChapter(index);frameCamera();updateHud();container.setAttribute('aria-busy','false');
+  clearTimeout(pruneTimer);pruneTimer=setTimeout(()=>pruneFrames(new Set([paintedIndex(),desiredIndex])),850);
   clearTimeout(warmTimer);
-  if(index<8)warmTimer=setTimeout(()=>{if(visible&&desiredIndex===index)warmImage(sceneKey(index+1),sceneSizes);},650);
- }catch{
-  if(index!==desiredIndex||!visible)return;
-  failedIndex=index;errorNote.hidden=false;container.setAttribute('aria-busy','false');
+  if(index<8)warmTimer=setTimeout(()=>{if(visible&&desiredIndex===index)warmScene(index+1);},650);
+ }catch(error){
+  if(!live())return;
+  failedIndex=index;hideStatus();container.setAttribute('aria-busy','false');
+  errorNote.querySelector('span').textContent=error?.name==='TimeoutError'?'A conexão está lenta e esta cena não chegou a tempo.':'A conexão interrompeu esta cena.';
+  errorNote.hidden=false;
+  // The narrative stays readable on the chapter the visitor is in, even while its plate is unavailable.
+  updateChapter(index);frameCamera();updateHud();
  }
 }
-function frameCamera(){
- if(!activeFrame||!visible||stageIndex!==desiredIndex)return;
- const travel=paused?0:ease(phase),push=stageIndex===3?.27:stageIndex===4?.14:.075;
- activeFrame.style.setProperty('--push',1.025+travel*push);
- activeFrame.style.setProperty('--pan-x',`${paused?0:(.5-travel)*1.8+pointerX*.55}%`);
- activeFrame.style.setProperty('--pan-y',`${paused?0:(travel-.5)*1.1+pointerY*.35}%`);
- container.style.setProperty('--heat',stageIndex===4?clamp((phase-.35)*1.35):0);
+// A larger viewport or density promotes the plate of the current chapter; a smaller one never downgrades it.
+function promoteScene(){
+ if(!visible||stageIndex<0||stageIndex!==desiredIndex||paintedIndex()!==stageIndex||!activeFrame?.classList.contains('is-ready'))return;
+ const index=stageIndex,frame=activeFrame,key=sceneKey(index),variant=sceneVariant(index);
+ if(variant.width<=Number(frame.dataset.width||0)||frame.dataset.pending===variant.url)return;
+ const id=request;frame.dataset.pending=variant.url;
+ (async()=>{
+  try{
+   const url=await prepareImage(key,{variant,priority:'auto',timeout:sceneTimeout});
+   if(id!==request||frames.get(index)!==frame)return;
+   const img=await mountImage(frame,url);
+   if(id!==request||frames.get(index)!==frame){img.remove();return;}
+   settlePlate(frame,img,variant);frameCamera();
+  }catch{/* The current plate stays; the next resize evaluates again. */}
+  finally{if(frame.dataset.pending===variant.url)delete frame.dataset.pending;}
+ })();
 }
+function frameCamera(){
+ // After a failed chapter the previous plate keeps its own camera until a new commit.
+ if(!activeFrame||!visible||stageIndex!==desiredIndex||paintedIndex()!==stageIndex)return;
+ // Camera travel is capped where the plate has fewer pixels than the display asks for.
+ const detail=Number(activeFrame.dataset.detail||1),allowance=detail>=1?1:Math.max(.6,detail);
+ const travel=paused?0:ease(phase),push=pushFor(stageIndex)*allowance;
+ const values=[1.025+travel*push,paused?0:(.5-travel)*1.8+pointerX*.55,paused?0:(travel-.5)*1.1+pointerY*.35,stageIndex===4?clamp((phase-.35)*1.35):0];
+ const key=`${activeFrame.dataset.scene}|${values.map(v=>v.toFixed(4)).join('|')}`;if(key===cameraKey)return;cameraKey=key;
+ activeFrame.style.setProperty('--push',values[0]);
+ activeFrame.style.setProperty('--pan-x',`${values[1]}%`);
+ activeFrame.style.setProperty('--pan-y',`${values[2]}%`);
+ container.style.setProperty('--heat',values[3]);
+}
+// HUD writes happen only when the displayed value or state changes; a 2 °C band keeps the threshold from chattering.
 function updateHud(){
- if(stageIndex!==desiredIndex)return;
+ if(stageIndex!==desiredIndex||!(stageIndex===4||stageIndex===5))return;
  const temp=stageIndex===4?Math.round(82+26*ease(clamp(phase*1.45))):108;
- $('#story-temperature').textContent=String(temp);$('#story-hud').classList.toggle('critical',temp>=100);$('.hud-bar>span').style.width=`${(temp-70)/45*100}%`;$('#story-signal-state').textContent=temp>=100?'DESVIO IDENTIFICADO · SIMULAÇÃO':'LEITURA ILUSTRATIVA';
+ const critical=temp>=100||(hud.critical&&temp>=98);
+ if(temp===hud.temp&&critical===hud.critical)return;
+ if(temp!==hud.temp){$('#story-temperature').textContent=String(temp);$('.hud-bar>span').style.width=`${(temp-70)/45*100}%`;}
+ if(critical!==hud.critical){$('#story-hud').classList.toggle('critical',critical);$('#story-signal-state').textContent=critical?'DESVIO IDENTIFICADO · SIMULAÇÃO':'LEITURA ILUSTRATIVA';}
+ hud={temp,critical};
 }
 function syncStory(){
  const r=section.getBoundingClientRect(),wasVisible=visible;
  visible=r.top<innerHeight&&r.bottom>0&&!document.hidden;
  section.classList.toggle('story-visible',visible);
- if(!visible){clearTimeout(selectionTimer);clearTimeout(warmTimer);return;}
- const p=clamp(-r.top/(r.height-innerHeight)),n=Math.min(8,Math.floor(p*9));phase=clamp(p*9-n);
+ if(!visible){clearTimeout(selectionTimer);clearTimeout(warmTimer);hideStatus();return;}
+ const p=clamp(-r.top/(r.height-innerHeight)),position=p*9;
+ let n=Math.min(8,Math.floor(position));
+ // 3 % of a chapter of hysteresis on the adjacent boundary only: resting on it does not alternate chapters; distant jumps land at once.
+ if(desiredIndex>=0&&Math.abs(n-desiredIndex)===1){if(n>desiredIndex&&position<n+.03)n=desiredIndex;else if(n<desiredIndex&&position>n+.97)n=desiredIndex;}
+ phase=clamp(position-n);
  if(n!==desiredIndex||!wasVisible){
   desiredIndex=n;failedIndex=-1;clearTimeout(selectionTimer);clearTimeout(warmTimer);
   // Ignore transient chapters crossed by a fast fling or keyboard navigation.
@@ -101,17 +174,20 @@ function gotoChapter(index){
 }
 $$('[data-story]').forEach(b=>{
  const index=Number(b.dataset.story);b.addEventListener('click',()=>gotoChapter(index));
- for(const event of ['pointerenter','focus'])b.addEventListener(event,()=>warmImage(sceneKey(index),sceneSizes));
+ for(const event of ['pointerenter','focus'])b.addEventListener(event,()=>warmScene(index));
 });
 $('#story-prev').addEventListener('click',()=>gotoChapter(Math.max(0,desiredIndex)-1));$('#story-next').addEventListener('click',()=>gotoChapter(Math.max(0,desiredIndex)+1));
 let queued=false;
 function queueSync(){if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;syncStory();});}}
-window.addEventListener('scroll',queueSync,{passive:true});window.addEventListener('resize',queueSync);
+window.addEventListener('scroll',queueSync,{passive:true});
+window.addEventListener('resize',()=>{queueSync();clearTimeout(resizeTimer);resizeTimer=setTimeout(promoteScene,250);});
 document.addEventListener('visibilitychange',queueSync);
 $('.story-sticky').addEventListener('pointermove',e=>{if(e.pointerType==='touch'||paused||!visible)return;pointerX=e.clientX/innerWidth-.5;pointerY=e.clientY/innerHeight-.5;queueSync();});
 $('.story-sticky').addEventListener('pointerleave',()=>{pointerX=pointerY=0;queueSync();});
 window.addEventListener('minefy-motion',e=>{paused=e.detail.paused;if(paused&&copyAnimation)copyAnimation.finish();queueSync();});
-warmOnApproach(section,sceneKey(0),sceneSizes);syncStory();
+// Prepare the opening plate one viewport ahead of the journey, without fetching the other chapters.
+const approach=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){warmScene(0);approach.disconnect();}},{rootMargin:'100% 0px'});approach.observe(section);
+syncStory();
 
 // This lab demonstrates configurable compound rules; it is not a trained ML model.
 const temp=$('#oil-temp'),pressure=$('#oil-pressure'),vibration=$('#engine-vibration');

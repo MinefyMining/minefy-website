@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { MiningBrand } from "@/components/mining-brand";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ExternalLink } from "lucide-react";
@@ -49,8 +49,9 @@ export function MiningFooter({ year }: MiningFooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href={homeHref}>
-              <Image id="footer-logo" src="/images/logo-transparente.png" alt="Minefy" width={800} height={570} className="w-[100px] h-auto" />
+            <Link href={homeHref} aria-label="Minefy, início">
+              {/* Wordmark aprovada (WEBSITE-QA-20261011); o rodapé é `bg-card`, então segue o tema. */}
+              <MiningBrand id="footer-logo" surface="theme" sizes="200px" className="w-[180px]" />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">{t("tagline")}</p>
 

@@ -3,7 +3,6 @@ import { MiningHeader } from "@/components/mining-header";
 import { MiningFooter } from "@/components/mining-footer";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { CursorGlow } from "@/components/cursor-glow";
-import { LogoIntro } from "@/components/logo-intro";
 import { SITE_ORIGIN } from "@/lib/site";
 import type { Metadata } from "next";
 
@@ -13,8 +12,10 @@ import type { Metadata } from "next";
  * `(mineracao)` keeps this scoped to the mining-world routes without
  * affecting URLs.
  *
- * `<LogoIntro blocking landing="header" targetId="site-logo" />` plays a once-per-real-page-load,
- * opaque brand opening; the logo moves into the header before the page is revealed.
+ * No brand intro overlay here (WEBSITE-QA-20261011): the institutional pages
+ * must be readable and scrollable from the first paint — no opaque cover, no
+ * fixed 1650 ms wait, no scroll lock on content that is already in the DOM.
+ * `LogoIntro` itself is untouched and keeps serving the Agrofy layout.
  *
  * The `NextIntlClientProvider` here delivers ONLY the namespaces this
  * world's Client Components consume (`pick` — MIKE-ARQUITETURA 2.3): the
@@ -57,8 +58,6 @@ export default async function MineracaoLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      {/* Opaque opening, then a logo transition into the header reveals the page. */}
-      <LogoIntro blocking landing="header" targetId="site-logo" />
       <ScrollProgress variant="gold" />
       <CursorGlow variant="gold" />
       <MiningHeader />

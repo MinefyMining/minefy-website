@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { MiningBrand } from "@/components/mining-brand";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, ExternalLink } from "lucide-react";
@@ -22,6 +22,11 @@ import {
  * and "Home" link point at `/`, not `/mineracao`.
  * See `agro-header.tsx` for the Agrofy counterpart; the two never share nav
  * items.
+ *
+ * Brand (WEBSITE-QA-20261011): the wordmark approved for the cinematic home
+ * replaces the retired circular emblem. `MiningBrand` swaps the on-dark /
+ * on-light asset by theme and by hero surface; the header top sits on a dark
+ * photo by default, so it is forced dark until the page is scrolled.
  */
 export function MiningHeader() {
   const t = useTranslations("nav");
@@ -77,15 +82,13 @@ export function MiningHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href={homeHref} className="shrink-0">
-          <Image
+        <Link href={homeHref} className="shrink-0" aria-label="Minefy, início">
+          <MiningBrand
             id="site-logo"
-            src="/images/logo-transparente.png"
-            alt="Minefy"
-            width={800}
-            height={570}
+            surface={scrolled ? "theme" : "header"}
             priority
-            className={`header-logo object-contain h-auto transition-all duration-200 ${scrolled ? "w-[60px]" : "w-[80px]"}`}
+            sizes="160px"
+            className={`transition-all duration-200 ${scrolled ? "w-[136px]" : "w-[156px]"}`}
           />
         </Link>
 
@@ -130,7 +133,7 @@ export function MiningHeader() {
             <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
               <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="pb-6 border-b border-border">
-                <Image src="/images/logo-transparente.png" alt="Minefy" width={800} height={570} className="w-[70px] h-auto" />
+                <MiningBrand surface="theme" sizes="140px" className="w-[132px]" />
               </div>
               <nav className="mt-6 flex flex-col gap-1 flex-1">
                 {navLinks.map(({ key, href }) => (

@@ -145,7 +145,9 @@ describe("bundle estático — integridade dos recursos locais", () => {
 
 describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10-10: um log de hook entrou em public/)", () => {
   /** Inventário exato do bundle publicado: 65 arquivos vindos verbatim do
-   * pacote + `home.html` + o PNG og + 2 variantes do celular com logo novo + o carregador de melhorias progressivas.
+   * pacote + `home.html` + o PNG og + 2 variantes do celular com logo novo + o carregador de melhorias progressivas
+   * + `assets/brand/minefy-wordmark-on-light.webp` (wordmark para composição clara das páginas
+   * institucionais, WEBSITE-QA-20261011 — derivada pixel a pixel da wordmark aprovada da home).
    * As variantes anteriores ficam disponíveis para páginas já abertas. Arquivo a mais (log, temporário,
    * dotfile) ou a menos QUEBRA este teste — é a trava. Mudou o bundle de
    * propósito? Regere `tests/fixtures/static-home-files.json` conscientemente. */
@@ -172,7 +174,7 @@ describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10
   });
 
   it("o conjunto de arquivos do bundle é exatamente o inventário esperado", () => {
-    expect(EXPECTED.length).toBe(70);
+    expect(EXPECTED.length).toBe(71);
     expect(bundleFiles()).toEqual([...EXPECTED].sort());
   });
 });
