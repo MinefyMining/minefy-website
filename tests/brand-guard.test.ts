@@ -100,6 +100,12 @@ describe("card #compressores usa fotografia real AUTORIZADA (direção de arte C
   const AUTHORIZED_PREMIUM = [
     "agent-portrait.jpg",
     "compressor-studio.jpg",
+    // Rodada 2026-09-20: os derivados imagegen do Scroller (cinematic/
+    // isolated/project) SAÍRAM — a autorização escrita da McCosker só
+    // cobre a fotografia já publicada em mccoskers.com.au, que vive em
+    // public/images/scroller/scroller-mccosker.jpg (fora deste diretório,
+    // proveniência: PROVENIENCIA.md interno, byte-idêntica ao asset do
+    // site da McCosker). Guard de marcas segue integral sobre tudo.
   ];
 
   it("a imagem do card é a fotografia tratada autorizada", () => {

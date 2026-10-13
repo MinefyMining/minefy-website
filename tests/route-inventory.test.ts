@@ -58,6 +58,7 @@ describe("inventário de rotas (MIKE-ARQUITETURA 2.4)", () => {
       "/quem-somos",
       "/solucoes",
       "/solucoes/agentes-autonomos",
+      "/solucoes/scroller",
       "/solucoes/ia-corporativa",
       "/solucoes/servicos-ti",
     ].sort();

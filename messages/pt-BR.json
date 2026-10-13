@@ -309,7 +309,7 @@
           "id": "mineracao",
           "badge": "DIVISÃO 01",
           "title": "Equipamentos e soluções para mineração",
-          "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança e locações — o catálogo industrial completo.",
+          "text": "Scroller — tecnologia McCosker —, tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança e locações: o catálogo industrial completo.",
           "href": "#mineracao",
           "ctaLabel": "Ver a divisão de mineração"
         },
@@ -325,12 +325,22 @@
       "mineracao": {
         "kicker": "Divisão 01 · Mineração",
         "title": "Equipamentos e soluções para mineração",
-        "lede": "Hardware, telemetria, software e locações — o catálogo industrial completo que sustenta a operação."
+        "lede": "O Scroller — tecnologia McCosker, representada no Brasil pela Minefy — abre a frente de rejeitos; o catálogo industrial completo sustenta a operação."
       },
       "iaTi": {
         "kicker": "Divisão 02 · IA & TI",
         "title": "Inteligência artificial e TI",
         "lede": "Modelos de IA conectados aos seus dados, agentes que executam com aprovação humana e engenharia de software sob escopo — a mesma engenharia da mina, aplicada aos fluxos digitais da sua empresa."
+      },
+      "scrollerFeature": {
+        "badge": "TECNOLOGIA McCOSKER",
+        "title": "Scroller",
+        "attribution": "Tecnologia e fabricação: McCosker Contracting (Austrália) · Representante no Brasil: Minefy",
+        "text": "Equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos (mud farming) — opera sobre superfícies de baixa capacidade de suporte, com aplicabilidade definida por estudo de engenharia.",
+        "cta": "Conhecer o Scroller",
+        "ctaSecondary": "Falar com a engenharia",
+        "imageAlt": "Scroller da McCosker operando sobre depósito de rejeitos, com os rolos helicoidais parcialmente submersos na lama",
+        "mediaNote": "Fotografia: McCosker Contracting — publicada em mccoskers.com.au"
       }
     },
     "items": [
@@ -1171,6 +1181,7 @@
       "service": "Serviço / interesse",
       "serviceOptions": {
         "mineracao-telemetria": "Operação industrial e telemetria",
+        "scroller": "Scroller — equipamento anfíbio (tecnologia McCosker)",
         "ia-corporativa": "IA corporativa",
         "agentes-autonomos": "Agentes autônomos",
         "servicos-ti": "Serviços de TI",
@@ -1226,6 +1237,10 @@
         "href": "/solucoes#consulting"
       },
       {
+        "label": "Scroller",
+        "href": "/solucoes/scroller"
+      },
+      {
         "label": "IA Corporativa",
         "href": "/solucoes/ia-corporativa"
       },
@@ -1243,6 +1258,10 @@
         "title": "Mineração",
         "href": "/solucoes#mineracao",
         "links": [
+          {
+            "label": "Scroller",
+            "href": "/solucoes/scroller"
+          },
           {
             "label": "Tablets Industriais",
             "href": "/solucoes#tablets"
@@ -1359,7 +1378,7 @@
   "corporateHome": {
     "metadata": {
       "title": "Minefy — Equipamentos para mineração e IA corporativa",
-      "description": "Duas divisões, uma engenharia: equipamentos e soluções para mineração — telemetria ActiSky, tablets industriais e gestão de frota — e inteligência artificial e TI para conectar sistemas e decisões da sua empresa."
+      "description": "Duas divisões, uma engenharia: equipamentos e soluções para mineração — Scroller (tecnologia McCosker), telemetria ActiSky, tablets industriais e gestão de frota — e inteligência artificial e TI para conectar sistemas e decisões da sua empresa."
     },
     "hero": {
       "badge": "Engenharia · IA · Operação",
@@ -1471,7 +1490,7 @@
           "num": "01",
           "label": "Mineração",
           "title": "Equipamentos e soluções",
-          "tagline": "O catálogo industrial completo: tablets, telemetria ActiSky, gestão de frota, segurança e locações.",
+          "tagline": "Scroller — tecnologia McCosker — em destaque, e o catálogo industrial completo: tablets, telemetria ActiSky, gestão de frota, segurança e locações.",
           "cta": "Ver equipamentos e soluções"
         },
         "ia": {
@@ -1487,13 +1506,37 @@
     "miningDivision": {
       "kicker": "Divisão 01 · Mineração",
       "title": "Equipamentos e soluções para mineração",
-      "lede": "Do equipamento pesado ao dado da frota: o catálogo industrial completo sustenta a operação — hardware, telemetria, software e locações.",
+      "lede": "Do equipamento anfíbio ao dado da frota: o Scroller — tecnologia McCosker — abre a frente de rejeitos e o catálogo industrial completo sustenta a operação.",
       "catalog": {
         "kicker": "Catálogo industrial",
         "title": "Todas as soluções de mineração, em um só lugar",
         "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota, segurança, consultoria e locações — cada item detalhado na página de soluções.",
         "cta": "Ver o catálogo detalhado"
       }
+    },
+    "scrollerChapter": {
+      "kicker": "Destaque da divisão · Tecnologia McCosker",
+      "title": "Scroller",
+      "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento do material.",
+      "attribution": "Tecnologia desenvolvida e fabricada pela McCosker Contracting (Austrália). A Minefy é a representante da tecnologia no Brasil.",
+      "points": [
+        {
+          "title": "Desaguamento e adensamento",
+          "text": "Os rolos helicoidais revolvem e sulcam a superfície do depósito — o mud farming que acelera o desaguamento e a consolidação do rejeito."
+        },
+        {
+          "title": "Aplicabilidade por estudo",
+          "text": "Estudo prévio sobre o seu terreno e o seu plano define onde e como a frente entra — antes de qualquer mobilização."
+        },
+        {
+          "title": "Representação no Brasil",
+          "text": "Dimensionamento, janela de trabalho e integração à operação conduzidos com a Minefy, representante da tecnologia McCosker no país."
+        }
+      ],
+      "ctaPrimary": "Falar com a engenharia",
+      "ctaSecondary": "Ver a frente Scroller",
+      "mediaNote": "Fotografia: McCosker Contracting — publicada em mccoskers.com.au",
+      "imageAlt": "Scroller da McCosker operando sobre depósito de rejeitos, com os rolos helicoidais parcialmente submersos na lama"
     },
     "iaChapter": {
       "kicker": "Divisão 02 · IA & TI",
@@ -1605,7 +1648,7 @@
       "items": [
         {
           "q": "O que a Minefy faz hoje?",
-          "a": "Atuamos em duas divisões. Em mineração, reunimos tablets industriais, telemetria ActiSky, gestão de frota, segurança e locações. Em IA e TI, integramos inteligência artificial aos sistemas da empresa, criamos agentes autônomos sob medida e desenvolvemos aplicações, APIs e automações."
+          "a": "Atuamos em duas divisões. Em mineração, reunimos o Scroller (tecnologia McCosker, representada por nós no Brasil), tablets industriais, telemetria ActiSky, gestão de frota, segurança e locações. Em IA e TI, integramos inteligência artificial aos sistemas da empresa, criamos agentes autônomos sob medida e desenvolvemos aplicações, APIs e automações."
         },
         {
           "q": "O que é IA corporativa aplicada ao meu negócio?",
@@ -1666,6 +1709,14 @@
             "text": "Tablets industriais, telemetria ActiSky, analytics, gestão de frota e segurança — o portfólio completo está detalhado abaixo, nesta página.",
             "href": "#tablets",
             "ctaLabel": "Ver portfólio industrial"
+          },
+          {
+            "id": "scroller",
+            "badge": "TECNOLOGIA McCOSKER",
+            "title": "Scroller",
+            "text": "Equipamento anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos — tecnologia McCosker, representada no Brasil pela Minefy.",
+            "href": "/solucoes/scroller",
+            "ctaLabel": "Conhecer a frente"
           },
           {
             "id": "ia",
@@ -1796,6 +1847,42 @@
         "Manutenção e evolução"
       ],
       "cta": "Desenhar meu agente"
+    },
+    "scroller": {
+      "metadata": {
+        "title": "Scroller — tecnologia McCosker | Minefy",
+        "description": "Veículo anfíbio de propulsão helicoidal para desaguamento e adensamento de rejeitos (mud farming). Tecnologia McCosker Contracting (Austrália); a Minefy é a representante no Brasil."
+      },
+      "hero": {
+        "kicker": "Tecnologia McCosker · Representante no Brasil",
+        "title": "Scroller",
+        "lede": "Um veículo anfíbio de propulsão helicoidal para o manejo de rejeitos: opera sobre superfícies de baixa capacidade de suporte e acelera o desaguamento e a consolidação do material.",
+        "imageAlt": "Scroller da McCosker operando sobre depósito de rejeitos, com os rolos helicoidais parcialmente submersos na lama",
+        "credit": "Fotografia: McCosker Contracting — publicada em mccoskers.com.au"
+      },
+      "attribution": {
+        "label": "Fabricante e dona da tecnologia",
+        "maker": "McCosker Contracting — Austrália",
+        "repLabel": "Representante no Brasil",
+        "rep": "Minefy Mining System"
+      },
+      "sections": [
+        {
+          "title": "Desaguamento e adensamento",
+          "text": "Os rolos helicoidais flutuam sobre o depósito e revolvem a superfície em sulcos — o processo conhecido como mud farming, que acelera o desaguamento e o adensamento mecânico do rejeito."
+        },
+        {
+          "title": "Aplicabilidade por estudo",
+          "text": "Antes de qualquer mobilização, um estudo prévio de aplicabilidade sobre o seu terreno e o seu plano define onde e como a frente entra."
+        },
+        {
+          "title": "Representação no Brasil",
+          "text": "A tecnologia é desenvolvida e fabricada pela McCosker Contracting, na Austrália. No Brasil, o dimensionamento, a janela de trabalho e a integração ao plano da operação são conduzidos com a Minefy, representante da tecnologia no país."
+        }
+      ],
+      "status": "Tecnologia de propriedade da McCosker Contracting (Austrália), representada no Brasil pela Minefy — avaliação técnica caso a caso.",
+      "cta": "Falar com a engenharia",
+      "backToHub": "Todas as soluções"
     },
     "ti": {
       "metadata": {
