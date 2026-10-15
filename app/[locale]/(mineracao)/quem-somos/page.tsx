@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: Props) {
     path: "/quem-somos",
     title: t("title"),
     description: t("description"),
+    locale,
   });
 }
 

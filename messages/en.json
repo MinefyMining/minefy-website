@@ -1,0 +1,2314 @@
+{
+  "metadata": {
+    "title": "Minefy — Telemetry and Technology for Mining",
+    "description": "Advanced telemetry, industrial tablets and intelligent management for open-pit mining. Real-time monitoring of large equipment. Talk to our specialists."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "solutions": "Solutions",
+    "mining": "Mining",
+    "iaTi": "AI & IT",
+    "projects": "Projects",
+    "contact": "Contact",
+    "platform": "Access Platform",
+    "experiences": "Experiences",
+    "brandAria": "Minefy, home",
+    "menu": "Menu",
+    "localeNav": "Language selection"
+  },
+  "agroNav": {
+    "home": "Início",
+    "about": "Quem Somos",
+    "solutions": "Soluções",
+    "pilot": "Piloto",
+    "contact": "Contato",
+    "platform": "Acessar Plataforma"
+  },
+  "home": {
+    "hero": {
+      "badge": "Smart mining",
+      "title": "Advanced telemetry for large-scale mining",
+      "subtitle": "Real-time telemetry for large equipment: cycles, fuel and safety on your dispatch control room screen. Our own technology, proven in a large-scale mining operation.",
+      "trust": "Technology proven in a real large-scale mining operation",
+      "cta": "Request a Demo",
+      "ctaSecondary": "Access Platform"
+    },
+    "stats": {
+      "items": [
+        {
+          "value": "CAN J1939",
+          "label": "Telemetry directly from the equipment data bus"
+        },
+        {
+          "value": "24/7",
+          "label": "Real-time monitoring"
+        },
+        {
+          "value": "GRM",
+          "label": "Mine dispatch integration"
+        },
+        {
+          "value": "Dams",
+          "label": "Telemetry for a dam decommissioning project"
+        }
+      ]
+    },
+    "howItWorks": {
+      "kicker": "How it works",
+      "title": "From equipment to decisions in three steps",
+      "subtitle": "Mining telemetry made simple: from the equipment data bus to your dispatch control room screen.",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "Connect",
+          "text": "The ActiSky module is installed on the equipment and reads the CAN J1939 bus — RPM, fuel, temperature and GPS position, depending on the signals available on each machine. Oil pressure and temperature: integration under development, enabled after signal validation for each machine."
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "Transmit",
+          "text": "Telemetry is sent to the Minefy platform in real time. In areas with an unstable signal, data can be stored on the module and retransmitted when connectivity returns, depending on the module and configuration deployed."
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "Decide",
+          "text": "Dashboards, cycles and alerts reach the dispatch control room — giving your operation time to act, with decisions grounded in data."
+        }
+      ]
+    },
+    "products": {
+      "title": "Our Solutions",
+      "subtitle": "Technology designed for open-pit mining operations and large equipment.",
+      "items": [
+        {
+          "icon": "tablet",
+          "title": "Tablets for Mining",
+          "description": "Three product lines for every operation: commercial (rugged field kit), semi-industrial (factory-ruggedized) and industrial (onboard vehicle computer). The right level of ruggedness — each configuration is tailored to the operation and confirmed in the proposal and during validation.",
+          "badge": "HARDWARE"
+        },
+        {
+          "icon": "satellite",
+          "title": "ActiSky Telemetry",
+          "description": "IoT modules with CAN J1939 for heavy equipment — RPM, fuel consumption, temperature and GPS, depending on the signals available on each machine. Oil pressure and temperature: integration under development, enabled after signal validation for each machine. Brake temperature and overheating alerts: integration to be developed and validated for each machine. Data on your screen in real time.",
+          "badge": "IoT"
+        },
+        {
+          "icon": "chart",
+          "title": "Minefy Analytics",
+          "description": "Real-time operational dashboards for mines. Production KPIs, exportable reports — CSV, XLSX and PDF in the Daily Operations Report (RDO) — and trend analysis for data-driven decisions. Scheduled automatic distribution (daily, weekly and monthly) is under development.",
+          "badge": "SOFTWARE"
+        },
+        {
+          "icon": "truck",
+          "title": "Fleet 360",
+          "description": "Heavy fleet management and condition monitoring: haul trucks, excavators and loaders. Alerts based on configured rules using telemetry signals already available — AI-based predictive maintenance is under development.",
+          "badge": "MANAGEMENT"
+        },
+        {
+          "icon": "shield",
+          "title": "Minefy Safety",
+          "description": "Operational safety for mining: fatigue and distraction monitoring (ADAS/DMS), depending on installation; equipment proximity — integration and field validation pending; risk-zone alerts; and support for the operation's safety procedures.",
+          "badge": "SAFETY"
+        },
+        {
+          "icon": "users",
+          "title": "Consulting",
+          "description": "Professionals with experience in mine operations. Telemetry deployment, operator training and process optimization.",
+          "badge": "SERVICE"
+        },
+        {
+          "icon": "car",
+          "title": "Operational Pickup Trucks",
+          "description": "Rental of 4x4 pickup trucks equipped for field operations — safety markings, warning beacons and vehicles kept in operating condition, with scheduled preventive maintenance and availability defined by contract — without tying up capital in an owned fleet.",
+          "badge": "RENTAL"
+        },
+        {
+          "icon": "wind",
+          "title": "Air Compressors",
+          "description": "Rental of high-performance portable air compressors for drilling, abrasive blasting and pneumatic tools at the mine.",
+          "badge": "EQUIPMENT"
+        }
+      ]
+    },
+    "outcomes": {
+      "kicker": "Outcomes",
+      "title": "What changes in your operation",
+      "subtitle": "Telemetry goes beyond data collection — it informs decisions that make a difference to cycles, maintenance and safety.",
+      "items": [
+        {
+          "icon": "timer",
+          "title": "More cycles per hour",
+          "text": "Real-time tracking of loading and dumping cycles reveals bottlenecks and helps you get more from every piece of equipment in your fleet."
+        },
+        {
+          "icon": "wrench",
+          "title": "Less unplanned downtime",
+          "text": "Temperature and RPM monitoring trigger alerts through configured rules today; Fleet 360 predictive maintenance, under development, aims to anticipate failures before equipment breaks down in the pit."
+        },
+        {
+          "icon": "shield",
+          "title": "Safety that acts early",
+          "text": "Alerts for fatigue and distraction (depending on installation and enablement), equipment proximity — integration and field validation pending — risk zones and equipment condition, according to configuration, support the operation's safety procedures and timely action."
+        },
+        {
+          "icon": "chart",
+          "title": "Decisions driven by data, not spreadsheets",
+          "text": "Dispatch control room dashboards replace manual reporting: production KPIs and fleet trends in real time."
+        }
+      ]
+    },
+    "authority": {
+      "title": "Why mining companies choose Minefy",
+      "items": [
+        {
+          "title": "Deployed in large-scale mining",
+          "description": "Our technology operates in a dam decommissioning project in large-scale mining, monitoring heavy equipment 24/7."
+        },
+        {
+          "title": "Our own end-to-end technology stack",
+          "description": "From the ActiSky module on the equipment to the dispatch control room dashboard. No third-party dependencies at the core of the solution."
+        },
+        {
+          "title": "Built for heavy-duty mining",
+          "description": "Every feature was built with direct feedback from excavator and haul truck operators and mine managers."
+        },
+        {
+          "title": "On-site support at the mine",
+          "description": "A technical team that goes into the pit. Equipment installation, operator training and support where the operation takes place."
+        }
+      ]
+    },
+    "testDrive": {
+      "title": "See the platform in action",
+      "subtitle": "Explore telemetry dashboards, fleet management and safety alerts with real mine operation data.",
+      "cta": "Access Platform",
+      "ctaSecondary": "Talk to a Specialist"
+    },
+    "clients": {
+      "title": "Operations that trust Minefy",
+      "subtitle": "Technology proven in the most demanding mining and heavy construction operations in Brazil."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "What mine managers and operations teams ask before getting started.",
+      "items": [
+        {
+          "q": "What is ActiSky telemetry?",
+          "a": "ActiSky IoT modules are installed on equipment to read the CAN J1939 bus and transmit in real time — RPM, fuel, temperature and GPS, depending on the signals available on each machine — directly to the Minefy platform, where the data powers dashboards, cycles and alerts. Oil pressure and temperature: integration under development, enabled after signal validation for each machine."
+        },
+        {
+          "q": "How is it installed on my fleet?",
+          "a": "Our technical team goes into the pit. Equipment installation is planned to avoid disrupting operations, with on-site module configuration and operator training. Support where mining happens, not just over the phone."
+        },
+        {
+          "q": "Does the platform integrate with my dispatch system?",
+          "a": "Yes. Minefy telemetry already operates integrated with a mine management and dispatch system at a large-scale mining operation, providing the control room with data from large equipment."
+        },
+        {
+          "q": "Is my data secure and isolated?",
+          "a": "The platform is multi-tenant, with data isolated by customer: each operation can see only its own data. Architecture and processes are aligned with Brazil's General Data Protection Law (LGPD), with role-based access control."
+        },
+        {
+          "q": "Does it work in areas with an unstable signal?",
+          "a": "Yes. Depending on the module and configuration deployed, telemetry data is handled resiliently: in areas with intermittent connectivity, it can be stored on the module and retransmitted when the signal returns."
+        },
+        {
+          "q": "What is the commercial model?",
+          "a": "Industrial tablet rental + a platform subscription (SaaS), scaling by equipment and site. No large upfront investment: increase usage as your operation grows."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to see it in practice?",
+      "subtitle": "Try the platform with data from your operation. No-obligation demo.",
+      "button": "Request a Demo"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "About Us — Minefy",
+      "description": "Technology engineering born in large-scale mining: industrial telemetry, enterprise AI, autonomous agents and IT services."
+    },
+    "hero": {
+      "title": "Technology born at the mine site"
+    },
+    "intro": {
+      "text": "Minefy Mining was founded on the conviction that Brazilian mining deserves world-class technology. Founded by professionals with direct experience in large-scale operations, we combine rugged hardware for harsh environments, real-time telemetry software and field expertise to deliver measurable results. Today, the same engineering that works at the mine site also serves the office: AI applied to business, autonomous agents and tailored IT services — our industrial heritage is the foundation, not the limit.",
+      "highlight": "Our goal: to become Brazil's benchmark mining platform by 2027."
+    },
+    "numbers": {
+      "items": [
+        {
+          "value": "2025",
+          "label": "Founded"
+        },
+        {
+          "value": "6",
+          "label": "Products"
+        },
+        {
+          "value": "Dams",
+          "label": "Decommissioning"
+        },
+        {
+          "value": "24/7",
+          "label": "Monitoring"
+        }
+      ]
+    },
+    "mission": {
+      "title": "Mission",
+      "text": "Improve the efficiency, safety and sustainability of mining operations through integrated telemetry technology — from the sensor on heavy equipment to the dispatch control room dashboard."
+    },
+    "vision": {
+      "title": "Vision",
+      "text": "To be Brazil's leading Mining Tech platform, setting the standard in advanced telemetry and operational control for open-pit mining."
+    },
+    "values": {
+      "title": "Values",
+      "items": [
+        {
+          "title": "Safety first",
+          "text": "Every product decision prioritizes the lives of mine operators."
+        },
+        {
+          "title": "Data as the source of truth",
+          "text": "Decisions based on real equipment telemetry, not intuition."
+        },
+        {
+          "title": "Built for the field",
+          "text": "Technology that works in mine dust, heat and rain."
+        },
+        {
+          "title": "Long-term partnership",
+          "text": "We work alongside our customers, from the pit to the control room."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Get a closer look at our technology",
+      "text": "Schedule a technical visit to your operation or access the platform online.",
+      "contactUs": "Contact Us",
+      "platform": "Access Platform"
+    }
+  },
+  "solutions": {
+    "metadata": {
+      "title": "Solutions — Minefy",
+      "description": "Industrial tablets, ActiSky telemetry, Analytics, Fleet 360, Safety, Consulting, operational pickup truck and air compressor rental for open-pit mining and large equipment."
+    },
+    "hero": {
+      "title": "Mining equipment. Artificial intelligence and IT."
+    },
+    "divisions": {
+      "kicker": "Two divisions",
+      "title": "Minefy Solutions",
+      "subtitle": "From the industrial engineering that shaped us to artificial intelligence and IT — choose your starting point.",
+      "entries": [
+        {
+          "id": "mineracao",
+          "badge": "DIVISION 01",
+          "title": "Mining equipment and solutions",
+          "text": "Industrial tablets, ActiSky telemetry, analytics, fleet management, safety and rentals — the complete industrial portfolio.",
+          "href": "#mineracao",
+          "ctaLabel": "Explore the mining division"
+        },
+        {
+          "id": "ia-ti",
+          "badge": "DIVISION 02",
+          "title": "Artificial intelligence and IT",
+          "text": "Enterprise AI, autonomous agents and software engineering — the digital layer connecting your systems and decisions.",
+          "href": "#ia-ti",
+          "ctaLabel": "Explore the AI & IT division"
+        }
+      ],
+      "mineracao": {
+        "kicker": "Division 01 · Mining",
+        "title": "Mining equipment and solutions",
+        "lede": "Hardware, telemetry, software and rentals — the complete industrial portfolio supporting your operation."
+      },
+      "iaTi": {
+        "kicker": "Division 02 · AI & IT",
+        "title": "Artificial intelligence and IT",
+        "lede": "AI models connected to your data, agents that act with human approval and software engineering within an agreed scope — the same mine-site engineering, applied to your company's digital workflows."
+      }
+    },
+    "items": [
+      {
+        "id": "tablets",
+        "badge": "HARDWARE",
+        "title": "Tablets for Mining",
+        "description": "Three tablet lines for every level of operational demand — from in-cab support to onboard vehicle computers. You choose the level of ruggedness; the configuration is tailored to the operation and confirmed in the proposal and during validation.",
+        "tiers": [
+          {
+            "name": "Commercial",
+            "example": "E.g.: latest-generation tablet + rugged vehicle kit",
+            "image": "/images/products/tablet-comercial.png",
+            "description": "A standard tablet protected by a rugged vehicle kit: impact-resistant case, vehicle mount and screen protector. A cost-effective option for cabs and support operations, with ruggedness provided by external protection.",
+            "specs": [
+              "Latest-generation tablet — screen, memory and storage to be confirmed for the model supplied",
+              "Rugged vehicle kit: impact-resistant case + vehicle mount — protection to be confirmed for the kit supplied and validated",
+              "Charging through the rugged vehicle cradle — optional magnetic charging, to be confirmed for the model supplied",
+              "Minefy platform integration configured for each project"
+            ]
+          },
+          {
+            "name": "Semi-industrial",
+            "example": "E.g.: latest-generation semi-industrial tablet",
+            "image": "/images/products/tablet-semi.png",
+            "description": "Factory-built ruggedness for field mobility — sealing, durability and a glove-compatible screen, without relying on an external case. Protection ratings vary by model and are confirmed in the proposal.",
+            "specs": [
+              "Factory-built sealing and durability — IP rating and MIL standard to be confirmed for the model supplied and validated",
+              "High-resolution, glove-compatible touchscreen — size and brightness to be confirmed for the model supplied",
+              "Battery for long shifts — optional removable battery, to be confirmed for the model supplied",
+              "Remote management through enterprise MDM"
+            ]
+          },
+          {
+            "name": "Industrial",
+            "example": "E.g.: onboard vehicle computer",
+            "image": "/images/products/tablet-industrial.png",
+            "description": "Fixed-installation vehicle computers powered by the equipment's own electrical system. CAN J1939 integration with ActiSky telemetry — the onboard intelligence in the cab. Interfaces and validation are defined for each equipment model.",
+            "specs": [
+              "Sunlight-readable screen — size and brightness depend on the model",
+              "Built for harsh environments — IP rating and MIL standard depend on the model",
+              "CAN and serial interfaces, with camera support — depending on the validated model",
+              "Vehicle power supply · optional RTK · Android/Linux — depending on the project"
+            ]
+          }
+        ],
+        "image": "/images/solutions/78.jpg",
+        "metric": {
+          "value": "3",
+          "label": "Ruggedness levels"
+        }
+      },
+      {
+        "id": "actisky",
+        "badge": "IoT / TELEMETRY",
+        "title": "ActiSky Telemetry",
+        "description": "IoT telemetry modules using the CAN J1939 protocol for heavy mining equipment. Available signals depend on the data bus, sensors, installation and model-specific validation — as defined in each project's scope. Emissions monitoring: planned capability, subject to a validated data source and methodology. Service brake and parking brake states remain available as separate information and do not indicate temperature.",
+        "safetyFeatures": [
+          "Engine and cooling system temperature",
+          "Under development: oil pressure and temperature — enabled after signal validation for each machine",
+          "To be developed and validated for each machine: brake temperature and overheating alerts",
+          "Raised dump body while moving and dumping outside authorized zones (depending on installed signals and configuration)",
+          "Risk-zone alerts (geofencing, depending on configuration)"
+        ],
+        "operationalFeatures": [
+          "Loading and dumping cycles (depending on configuration)",
+          "Speed and engine RPM",
+          "Fuel consumption (channel and unit depend on installation)",
+          "Digital hour meter",
+          "GPS position — high precision/RTK as an optional configuration, subject to the module, installation and testing",
+          "Idle detection"
+        ],
+        "image": "/images/mining/komatsu-closeup.jpg",
+        "metric": {
+          "value": "J1939",
+          "label": "CAN protocol"
+        }
+      },
+      {
+        "id": "analytics",
+        "badge": "SOFTWARE",
+        "title": "Minefy Analytics",
+        "description": "A Business Intelligence platform built for mining operations. Real-time production, dispatch and safety dashboards.",
+        "features": [
+          "Real-time dashboards via WebSocket",
+          "Production KPIs and loading cycles",
+          "Daily Operations Report (RDO) and its revisions, exportable as CSV, XLSX and PDF",
+          "Statistical analysis of trends and anomalies",
+          "Multi-tenancy with data isolation by operation",
+          "Under development: scheduled automatic report distribution (daily, weekly and monthly); API/ERP integrations with scope and validation defined for each project"
+        ],
+        "image": "/images/solutions/9864-1.jpg",
+        "metric": {
+          "value": "Real-time",
+          "label": "Dashboards"
+        }
+      },
+      {
+        "id": "fleet360",
+        "badge": "PREDICTIVE MANAGEMENT · UNDER DEVELOPMENT",
+        "title": "Fleet 360",
+        "description": "Heavy mining fleet management and condition monitoring — haul trucks, excavators and loaders. Alerts based on configured rules using telemetry signals already available; AI-based predictive maintenance is under development. Target: -35% unplanned downtime — a development target; no study or pilot has yet demonstrated this reduction.",
+        "features": [
+          "Telemetry-based condition monitoring and predictive maintenance — predictive capabilities under development, with no validated model yet",
+          "Loading and hauling cycle analysis; cycle optimization — under development",
+          "Fuel consumption tracking by equipment (depending on the channel installed)",
+          "Preventive maintenance alerts based on configured rules and thresholds",
+          "Recorded telemetry history for each machine",
+          "Integration with dispatch systems and ERP — scope and validation defined for each project"
+        ],
+        "image": "/images/mining/haul-truck-road.jpg",
+        "metric": {
+          "value": "Target: -35%",
+          "label": "Unplanned downtime · to be validated"
+        }
+      },
+      {
+        "id": "safety",
+        "badge": "SAFETY",
+        "title": "Minefy Safety",
+        "description": "A safety system for mining operations. Operator fatigue and distraction monitoring (ADAS/DMS), with alerts available depending on installation and enablement; equipment proximity — integration and field validation pending — and risk zones according to the configuration of the deployed solution.",
+        "features": [
+          "Fatigue and distraction monitoring (ADAS/DMS) — depending on installation and enablement",
+          "Integration and field validation pending: equipment proximity, in the corresponding solution",
+          "Geofencing and risk-zone alerts — depending on configuration",
+          "Support for the operation's safety procedures (NR-22 and ANM regulations)",
+          "Incident and near-miss logging",
+          "Operational safety dashboard"
+        ],
+        "image": "/images/mining/safety-excavator-sunset.jpg",
+        "metric": {
+          "value": "ADAS/DMS",
+          "label": "Fatigue and distraction"
+        }
+      },
+      {
+        "id": "consulting",
+        "badge": "SERVICE",
+        "title": "Operational Consulting",
+        "description": "Professionals with experience in open-pit mine operations. Telemetry deployment, integration with dispatch systems and team training.",
+        "features": [
+          "Mine operational assessment",
+          "Telemetry deployment on heavy equipment",
+          "Integration with fleet dispatch systems",
+          "Operator and dispatcher training",
+          "On-site technical support, with coverage and response times defined by contract; 24/7 service subject to scope assessment",
+          "Operational performance reports"
+        ],
+        "image": "/images/mining/fleet-d11-operation.jpg",
+        "metric": {
+          "value": "On site",
+          "label": "Support and deployment"
+        }
+      },
+      {
+        "id": "caminhonetes",
+        "badge": "RENTAL",
+        "title": "Operational Pickup Trucks",
+        "description": "Rental of 4x4 pickup trucks equipped for mining field operations — vehicle safety markings, warning beacons and preparation for daily mine work. Availability, fleet sizing and mobilization are defined by contract, without tying up capital in an owned fleet.",
+        "features": [
+          "Latest-generation 4x4 vehicles equipped for field operations",
+          "Warning beacons, safety markings and safety kit according to the operation's standards",
+          "New or low-mileage vehicles, subject to availability, with scheduled preventive maintenance",
+          "Packages tailored to your needs — unlimited mileage or plans that fit your budget",
+          "Flexible contract, without tying up capital in an owned fleet",
+          "Tracking and ActiSky telemetry can be integrated within the contracted scope"
+        ],
+        "image": "/images/products/caminhonete-operacional-cutout.png",
+        "studioImage": true,
+        "metric": {
+          "value": "4x4",
+          "label": "Equipped for the field"
+        }
+      },
+      {
+        "id": "compressores",
+        "badge": "EQUIPMENT",
+        "title": "Portable Air Compressors",
+        "description": "Rental of portable air compressors for drilling, abrasive blasting and pneumatic tools in mine operations — available on request, with availability, sizing and mobilization defined by contract.",
+        "features": [
+          "Flow ranges sized for each work area — specifications depend on the model available",
+          "Working pressure suitable for pneumatic tools — depending on the model",
+          "Rugged, impact-resistant housing built for mine environments",
+          "Diesel power sized for continuous operation",
+          "Noise levels controlled for the mine environment — depending on the model",
+          "Technical support and parts in Brazil"
+        ],
+        "image": "/images/premium/compressor-studio.jpg",
+        "metric": {
+          "value": "On request",
+          "label": "Sized for each work area"
+        }
+      }
+    ],
+    "safetyLabel": "Safety Monitoring",
+    "operationalLabel": "Operational Telemetry",
+    "cta": {
+      "title": "Which solution is right for your company?",
+      "text": "Our specialists assess your operation and recommend the best combination of products.",
+      "button": "Request a Proposal"
+    }
+  },
+  "agrofy": {
+    "metadata": {
+      "title": "Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+      "description": "Agrofy, a divisão de agronegócio da Minefy: telemetria de frota multimarca via CAN J1939, gestão de combustível, eficiência operacional e manutenção preditiva para tratores, colheitadeiras e pulverizadores."
+    },
+    "seal": "Agrofy — uma divisão Minefy",
+    "hero": {
+      "badge": "Agrofy — uma divisão Minefy",
+      "title": "A mesma tecnologia que lê o barramento de uma frota de mineração, agora no seu trator.",
+      "subtitle": "A Agrofy leva a telemetria ActiSky — validada em operação pesada de mineração — para tratores, colheitadeiras e pulverizadores. Consumo, ociosidade e saúde do motor em tempo real, direto do barramento CAN J1939, qualquer que seja a marca da máquina.",
+      "trust": "Tecnologia validada em operação real de mineração pesada — agora no agro",
+      "cta": "Falar com um especialista Agrofy",
+      "ctaSecondary": "Acessar Plataforma"
+    },
+    "stats": {
+      "items": [
+        {
+          "value": "R$ 2,72 tri",
+          "label": "PIB do agronegócio brasileiro"
+        },
+        {
+          "value": "23%",
+          "label": "participação do agro no PIB nacional"
+        },
+        {
+          "value": "+37,5%",
+          "label": "alta no roubo de máquinas agrícolas em 2025"
+        },
+        {
+          "value": "14-16m",
+          "label": "retorno típico com telemetria agrícola bem implementada"
+        }
+      ],
+      "note": "Fontes: estimativas de mercado do agronegócio brasileiro e estudos do setor sobre telemetria agrícola — não são números de tração da Agrofy."
+    },
+    "credibility": {
+      "kicker": "CREDIBILIDADE",
+      "title": "Tecnologia validada em operação real de mineração pesada",
+      "text": "A base da Agrofy é a mesma telemetria ActiSky que já opera 24/7 em frota pesada de mineração. Protocolo CAN J1939: a mesma leitura de barramento que hoje sustenta caminhões fora-de-estrada e escavadeiras, agora adaptada para tratores, colheitadeiras e pulverizadores.",
+      "badge": "ActiSky · CAN J1939"
+    },
+    "outcomes": {
+      "kicker": "RESULTADOS",
+      "title": "O que muda na sua operação",
+      "subtitle": "Telemetria não é dado pelo dado — é decisão que aparece no consumo, na manutenção e na janela de safra.",
+      "items": [
+        {
+          "icon": "chart",
+          "title": "Consumo sob controle, furto sob vigilância",
+          "text": "Consumo de diesel lido direto do motor via CAN J1939, hora a hora e por hectare — sinalizando quando o abastecimento registrado destoa do consumo real da máquina."
+        },
+        {
+          "icon": "timer",
+          "title": "Mais hectares por dia",
+          "text": "Separar horas de motor de horas efetivamente trabalhadas mostra quanto da janela de safra sua frota realmente aproveita — com rastreamento e geofencing contra desvio de rota e furto de máquina."
+        },
+        {
+          "icon": "wrench",
+          "title": "Menos máquina parada na safra",
+          "text": "Manutenção preditiva por horímetro e leitura de códigos de falha do motor (DTCs) antecipa o problema antes da quebra — a mesma lógica que já reduz downtime em frota pesada de mineração."
+        },
+        {
+          "icon": "shield",
+          "title": "Decisão por dado, não por planilha",
+          "text": "Dashboards por talhão substituem a planilha de abastecimento manual: consumo, ociosidade e hectares trabalhados em tempo real, de qualquer marca de máquina."
+        }
+      ]
+    },
+    "howItWorks": {
+      "kicker": "COMO FUNCIONA",
+      "title": "Do barramento da máquina ao painel, em 3 passos",
+      "subtitle": "A mesma arquitetura ActiSky que já roda em frota pesada de mineração — adaptada ao ritmo e às condições do campo.",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "Conectar",
+          "text": "O módulo ActiSky embarcado lê o barramento CAN J1939 direto da central eletrônica da máquina, sem depender do portal do fabricante."
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "Transmitir",
+          "text": "Telemetria em tempo real, resiliente a sinal instável no campo — sincroniza assim que a conexão volta, sem perder dado de safra."
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "Decidir",
+          "text": "Dashboard único: consumo, ociosidade, hectares trabalhados e alertas de manutenção — para decidir na hora, não no fim do mês."
+        }
+      ]
+    },
+    "authority": {
+      "title": "Por que escolher a Agrofy",
+      "items": [
+        {
+          "title": "Mesma engenharia, ambiente ainda mais exigente",
+          "description": "Se a telemetria ActiSky aguenta caminhão fora-de-estrada e escavadeira 24/7 numa mina a céu aberto, aguenta o ritmo e a poeira de uma safra."
+        },
+        {
+          "title": "Stack próprio ponta a ponta",
+          "description": "Do módulo ActiSky embarcado na máquina ao dashboard da fazenda. Sem dependência de terceiros no core da solução."
+        },
+        {
+          "title": "Multimarca por design",
+          "description": "Leitura direta do barramento CAN J1939 — a mesma telemetria funciona em máquinas de qualquer fabricante, sem depender do portal de cada montadora. Suporte nativo ao barramento ISOBUS está no roadmap."
+        },
+        {
+          "title": "Implantação e suporte técnico no campo",
+          "description": "Equipe técnica que vai até a fazenda: instalação nos equipamentos, treinamento de operadores e suporte onde a safra acontece."
+        }
+      ]
+    },
+    "testDrive": {
+      "title": "Veja a telemetria funcionando",
+      "subtitle": "Explore dashboards de consumo, ociosidade e alertas de manutenção com dados reais de operação agrícola.",
+      "cta": "Acessar Plataforma",
+      "ctaSecondary": "Falar com Especialista"
+    },
+    "cta": {
+      "title": "Estruture um piloto pago com a Agrofy",
+      "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
+      "button": "Agendar piloto Agrofy"
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "O que produtores e gestores de frota agrícola perguntam antes de começar.",
+      "items": [
+        {
+          "q": "O que é a telemetria ActiSky aplicada ao agro?",
+          "a": "São módulos IoT embarcados na máquina que leem o barramento CAN J1939 — RPM, consumo de combustível, temperatura do motor, pressão e GPS — direto para a plataforma Agrofy, onde viram dashboards, alertas e relatórios por talhão."
+        },
+        {
+          "q": "Como é a instalação na minha frota?",
+          "a": "Nossa equipe técnica vai até a fazenda. A instalação é planejada para não atrapalhar a janela de safra, com configuração dos módulos e treinamento dos operadores no local — suporte onde a operação agrícola acontece, não só por telefone."
+        },
+        {
+          "q": "A Agrofy funciona com qualquer marca de máquina?",
+          "a": "Sim. A leitura é direta do barramento CAN J1939 da máquina — não depende do portal de nenhum fabricante específico. Isso unifica tratores, colheitadeiras e pulverizadores de marcas diferentes num único painel. Suporte nativo ao barramento ISOBUS (agricultura de precisão) está no nosso roadmap."
+        },
+        {
+          "q": "Meus dados ficam seguros e isolados?",
+          "a": "A plataforma é multi-tenant com isolamento por cliente: cada operação enxerga apenas os seus próprios dados. Arquitetura e processos alinhados à LGPD, com controle de acesso por perfil."
+        },
+        {
+          "q": "Funciona em áreas de sinal instável no campo?",
+          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — os dados são armazenados no módulo e reenviados quando o sinal retorna."
+        },
+        {
+          "q": "Qual é o modelo comercial?",
+          "a": "Começamos com um piloto pago — uma frente ou unidade — com ROI medido dentro de um ciclo de safra. A partir daí, o modelo escala por equipamento e por site, com locação de tablets e assinatura da plataforma (SaaS)."
+        }
+      ]
+    },
+    "contactPage": {
+      "metadata": {
+        "title": "Contato Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+        "description": "Fale com a equipe Agrofy sobre telemetria de frota agrícola via ActiSky/CAN J1939. Estruture um piloto pago medido dentro do seu ciclo de safra."
+      },
+      "hero": {
+        "title": "Fale com a Agrofy"
+      },
+      "title": "Estruture seu piloto Agrofy",
+      "intro": "Nossa equipe de telemetria agrícola está pronta para entender sua frota — tratores, colheitadeiras, pulverizadores — e desenhar um piloto pago com ROI medido dentro do seu ciclo de safra."
+    },
+    "solutionsTeaser": {
+      "title": "Nossas Soluções",
+      "subtitle": "Hardware, telemetria, software e serviço — a mesma disciplina técnica já validada em frota pesada de mineração, hoje aplicada a tratores, colheitadeiras e pulverizadores.",
+      "items": [
+        {
+          "icon": "tablet",
+          "title": "Tablets para o Campo",
+          "description": "Três linhas de robustez — do kit veicular comercial ao computador embarcado industrial — todas homologadas para a plataforma Agrofy.",
+          "badge": "HARDWARE"
+        },
+        {
+          "icon": "satellite",
+          "title": "ActiSky Telemetria",
+          "description": "Módulo IoT com CAN J1939 para tratores, colheitadeiras e pulverizadores de qualquer fabricante — GPS de alta precisão e dados em tempo real.",
+          "badge": "IoT / TELEMETRIA"
+        },
+        {
+          "icon": "chart",
+          "title": "Agrofy Analytics",
+          "description": "Dashboards de produtividade, consumo e janela de safra em tempo real, com relatórios automáticos por talhão.",
+          "badge": "SOFTWARE"
+        },
+        {
+          "icon": "truck",
+          "title": "Fleet 360",
+          "description": "Gestão preditiva da frota agrícola pesada — manutenção antecipada para não perder um dia de janela de safra.",
+          "badge": "GESTÃO PREDITIVA"
+        },
+        {
+          "icon": "shield",
+          "title": "Agrofy Safety",
+          "description": "Monitoramento de fadiga, proximidade entre máquinas e zonas de risco no talhão — compliance NR-31.",
+          "badge": "SEGURANÇA"
+        },
+        {
+          "icon": "users",
+          "title": "Consultoria Operacional",
+          "description": "Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+          "badge": "SERVIÇO"
+        }
+      ]
+    }
+  },
+  "agrofySolutions": {
+    "metadata": {
+      "title": "Soluções — Agrofy | Minefy",
+      "description": "Tablets para o campo, telemetria ActiSky, Agrofy Analytics, Fleet 360, Agrofy Safety (NR-31) e consultoria operacional para tratores, colheitadeiras e pulverizadores de grande porte."
+    },
+    "hero": {
+      "title": "Soluções Agrofy para operações agrícolas de grande porte"
+    },
+    "safetyLabel": "Monitoramento de Segurança",
+    "operationalLabel": "Telemetria Operacional",
+    "items": [
+      {
+        "id": "tablets",
+        "badge": "HARDWARE",
+        "title": "Tablets para o Campo",
+        "description": "Três linhas de tablets para cada nível de exigência da lavoura — do apoio na cabine ao computador embarcado da colheitadeira. Você escolhe o grau de robustez; todas homologadas para a plataforma Agrofy.",
+        "tiers": [
+          {
+            "name": "Comercial",
+            "example": "Ex.: tablet de última geração + kit veicular robusto",
+            "image": "/images/products/tablet-comercial.png",
+            "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte de cabine e película de proteção. Custo-benefício para pulverizadores e operações de apoio, onde a robustez vem da proteção externa.",
+            "specs": [
+              "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
+              "Kit veicular robusto: case + suporte de cabine (MIL-STD-810G)",
+              "Carregamento magnético no berço veicular robusto",
+              "Plug-and-play com a plataforma Agrofy"
+            ]
+          },
+          {
+            "name": "Semi-industrial",
+            "example": "Ex.: tablet semi-industrial de última geração",
+            "image": "/images/products/tablet-semi.png",
+            "description": "Robustez de fábrica para quem enfrenta poeira, vibração e sol direto na cabine. Vedação IP68, certificação militar e tela que responde com luva de trabalho — sem depender de case externo.",
+            "specs": [
+              "IP68 + MIL-STD-810H (água, poeira e queda)",
+              "Tela 8\" 1920×1200 · toque com luva",
+              "Bateria removível para jornadas longas de safra",
+              "Gestão remota via MDM corporativo"
+            ]
+          },
+          {
+            "name": "Industrial",
+            "example": "Ex.: Minefy T10 e T12",
+            "image": "/images/products/tablet-industrial.png",
+            "description": "Computadores veiculares de instalação fixa, alimentados pela rede elétrica da própria máquina. Integração direta CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine do trator ou da colheitadeira.",
+            "specs": [
+              "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto do campo)",
+              "IP66 + MIL-STD-810G · processador automotivo",
+              "2×CAN, RS232/RS485 e até 4 câmeras",
+              "Alimentação 9–36 V · RTK opcional · Android/Linux"
+            ]
+          }
+        ],
+        "image": "/images/agro/cabine-trator-interior.jpg",
+        "metric": {
+          "value": "3",
+          "label": "Linhas de robustez"
+        }
+      },
+      {
+        "id": "actisky",
+        "badge": "IoT / TELEMETRIA",
+        "title": "ActiSky Telemetria",
+        "description": "Módulo IoT de telemetria avançada com protocolo CAN J1939 para tratores, colheitadeiras e pulverizadores — qualquer fabricante. GPS de alta precisão e comunicação em tempo real, resiliente ao sinal instável do campo.",
+        "safetyFeatures": [
+          "Geofencing e alerta de saída do talhão/fazenda",
+          "Detecção de desvio de rota (furto de máquina)",
+          "Superaquecimento do motor",
+          "Pressão de óleo fora da faixa"
+        ],
+        "operationalFeatures": [
+          "Consumo de diesel em tempo real (L/h e L/ha)",
+          "Horímetro digital",
+          "Detecção de ociosidade (idle)",
+          "Velocidade e RPM do motor",
+          "GPS de alta precisão",
+          "Ciclo de operação — semeadura, colheita, pulverização"
+        ],
+        "image": "/images/agro/aerea-colheitadeira-linhas-precisao.jpg",
+        "metric": {
+          "value": "J1939",
+          "label": "Protocolo CAN"
+        }
+      },
+      {
+        "id": "analytics",
+        "badge": "SOFTWARE",
+        "title": "Agrofy Analytics",
+        "description": "Plataforma de Business Intelligence construída para operações agrícolas de grande porte. Dashboards de produtividade, consumo e janela de safra em tempo real.",
+        "features": [
+          "Dashboards real-time via WebSocket",
+          "KPIs de hectares/dia, L/ha e horímetro por talhão",
+          "Relatórios automáticos (diário/semanal/por safra)",
+          "Análise de tendências e anomalias de consumo",
+          "Multi-tenancy com isolamento de dados por fazenda/unidade",
+          "Exportação PDF, Excel e integração API"
+        ],
+        "image": "/images/agro/analytics-tablet-lavoura.jpg",
+        "metric": {
+          "value": "Real-time",
+          "label": "Dashboards"
+        }
+      },
+      {
+        "id": "fleet360",
+        "badge": "GESTÃO PREDITIVA",
+        "title": "Fleet 360",
+        "description": "Gestão preditiva para frota agrícola pesada — tratores, colheitadeiras e pulverizadores autopropelidos. Manutenção antecipada para não perder um dia de janela de safra.",
+        "features": [
+          "Manutenção preditiva por horímetro, temperatura, pressão e RPM",
+          "Leitura de códigos de falha do motor (DTCs)",
+          "Alertas de manutenção preventiva antes da quebra em plena colheita",
+          "Histórico completo de cada máquina da frota",
+          "Otimização de janela de uso por talhão e por turno",
+          "Integração com sistemas de gestão agrícola e ERP"
+        ],
+        "image": "/images/agro/fleet360-manutencao-colheitadeira.jpg",
+        "metric": {
+          "value": "DTC",
+          "label": "Alerta antes da quebra"
+        }
+      },
+      {
+        "id": "safety",
+        "badge": "SEGURANÇA",
+        "title": "Agrofy Safety",
+        "description": "Sistema de segurança para operações agrícolas de grande porte. Monitoramento de fadiga de operadores, proximidade entre máquinas pesadas e controle de zonas de risco no talhão.",
+        "features": [
+          "Monitoramento de fadiga de operadores em jornadas longas de safra",
+          "Detecção de proximidade entre tratores, colheitadeiras e implementos",
+          "Geofencing e alertas de zona de risco (barrancos, várzea, estradas internas)",
+          "Compliance NR-31 (segurança e saúde no trabalho rural)",
+          "Registro de incidentes e near-misses",
+          "Dashboard de segurança da operação"
+        ],
+        "image": "/images/agro/safety-colheitadeiras-proximidade.jpg",
+        "metric": {
+          "value": "NR-31",
+          "label": "Compliance"
+        }
+      },
+      {
+        "id": "consulting",
+        "badge": "SERVIÇO",
+        "title": "Consultoria Operacional",
+        "description": "Profissionais com experiência em operação agrícola de grande porte. Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+        "features": [
+          "Diagnóstico operacional da frota e da fazenda",
+          "Implantação de telemetria em tratores, colheitadeiras e pulverizadores",
+          "Integração com sistemas de gestão agrícola já em uso",
+          "Treinamento de operadores e equipe de campo",
+          "Suporte técnico dedicado dentro do ciclo de safra",
+          "Relatórios de performance operacional por talhão"
+        ],
+        "image": "/images/agro/consultoria-agronomo-campo.jpg",
+        "metric": {
+          "value": "1 safra",
+          "label": "Piloto medido"
+        }
+      }
+    ],
+    "roadmap": {
+      "badge": "ROADMAP",
+      "title": "Agricultura de Precisão / ISOBUS",
+      "description": "Taxa variável e telemetria de implemento (pulverizador, plantadeira) via ISOBUS — a extensão agrícola do mesmo protocolo CAN J1939 que já lemos hoje. Ainda não entregue: em evolução dentro do roadmap da Agrofy, com o mesmo rigor técnico do restante do catálogo."
+    },
+    "cta": {
+      "title": "Qual solução é ideal para sua operação agrícola?",
+      "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
+      "button": "Agendar piloto Agrofy"
+    }
+  },
+  "agrofyAbout": {
+    "metadata": {
+      "title": "Quem Somos — Agrofy",
+      "description": "Agrofy é a divisão de agronegócio do Grupo Minefy — a mesma telemetria industrial ActiSky validada em mineração pesada, aplicada ao campo."
+    },
+    "hero": {
+      "title": "Tecnologia de mineração pesada, agora no campo"
+    },
+    "intro": {
+      "text": "A Agrofy é a divisão de agronegócio do Grupo Minefy. Nascemos de uma constatação simples: a telemetria industrial que já protege e otimiza frotas de mineração — leitura de barramento CAN J1939, consumo, ociosidade, saúde do motor em tempo real — resolve exatamente os mesmos problemas em um trator, uma colheitadeira ou um pulverizador autopropelido. Em vez de reinventar a tecnologia para o agro, adaptamos o que já é validado em operação pesada.",
+      "highlight": "Nossa missão: levar ao campo a mesma disciplina de dado real que a mineração já exige."
+    },
+    "mission": {
+      "title": "Missão",
+      "text": "Aumentar a eficiência, a previsibilidade e a segurança das operações agrícolas com telemetria ActiSky embarcada — do barramento CAN J1939 da máquina ao dashboard do gestor da frente."
+    },
+    "vision": {
+      "title": "Visão",
+      "text": "Ser a referência em telemetria industrial aplicada ao agronegócio brasileiro, levando ao campo o mesmo rigor técnico validado em operações de mineração de grande porte."
+    },
+    "values": {
+      "title": "Valores",
+      "items": [
+        {
+          "title": "Dado real, não estimativa",
+          "text": "Decisões baseadas em telemetria de barramento da própria máquina, não em planilha de horímetro faturado."
+        },
+        {
+          "title": "Tecnologia agnóstica de marca",
+          "text": "Leitura via CAN J1939 funciona independente do fabricante da máquina agrícola."
+        },
+        {
+          "title": "Validado em operação pesada",
+          "text": "A mesma stack ActiSky que já opera 24/7 em mineração, adaptada ao ritmo da safra."
+        },
+        {
+          "title": "Piloto antes de escala",
+          "text": "Começamos com uma frente medida, não com promessa — a decisão de escalar vem do dado do próprio piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Conheça a tecnologia Agrofy de perto",
+      "text": "Fale com um especialista Agrofy ou acesse a plataforma online.",
+      "contactUs": "Fale Conosco",
+      "platform": "Acessar Plataforma"
+    }
+  },
+  "agrofyPilot": {
+    "metadata": {
+      "title": "Piloto Agrofy — Minefy",
+      "description": "Como funciona o piloto pago Agrofy: metodologia, KPIs medidos em campo e o que você recebe — telemetria ActiSky para sua operação agrícola."
+    },
+    "hero": {
+      "title": "Piloto Agrofy",
+      "subtitle": "Comece com um piloto pago e focado"
+    },
+    "intro": {
+      "badge": "METODOLOGIA",
+      "title": "Um piloto focado, não uma promessa",
+      "text": "Antes de qualquer conversa sobre escala, medimos. O piloto Agrofy instala telemetria ActiSky embarcada em uma frente ou unidade da sua operação e mede o resultado real dentro de um ciclo de safra — sem depender de estimativa, de horímetro faturado ou de case de terceiro."
+    },
+    "steps": {
+      "title": "Como funciona",
+      "items": [
+        {
+          "title": "Discovery",
+          "text": "Entendemos a frente ou operação, o maquinário envolvido e as dores específicas — ociosidade, consumo fora da curva, manutenção reativa, horímetro sem controle."
+        },
+        {
+          "title": "Piloto pago focado",
+          "text": "Uma frente ou unidade recebe telemetria ActiSky embarcada, lendo o barramento CAN J1939 da máquina em tempo real — sem integração longa, sem trocar de fornecedor de maquinário."
+        },
+        {
+          "title": "Medição de ROI no ciclo de safra",
+          "text": "Acompanhamos ociosidade, consumo, hora-máquina e sinais de manutenção preditiva ao longo de um ciclo de safra completo — o prazo mínimo pra um número ser confiável."
+        },
+        {
+          "title": "Decisão de escala com dado real",
+          "text": "Ao final do piloto, a decisão de expandir para o restante da frota é sua — baseada no número medido na sua própria operação, não em projeção."
+        }
+      ]
+    },
+    "measured": {
+      "title": "O que é medido no piloto",
+      "items": [
+        {
+          "title": "Hectares por dia",
+          "text": "Produtividade real de campo por máquina e por operador, direto da telemetria."
+        },
+        {
+          "title": "L/h e L/ha",
+          "text": "Consumo de combustível por hora de operação e por hectare trabalhado."
+        },
+        {
+          "title": "Horímetro real vs. faturado",
+          "text": "Confronto entre o horímetro lido do barramento da máquina e o horímetro usado em locação/faturamento."
+        },
+        {
+          "title": "DTCs e manutenção preditiva",
+          "text": "Códigos de falha (DTC) do motor e sinais de desgaste antes da parada não planejada."
+        }
+      ]
+    },
+    "deliverables": {
+      "title": "O que você recebe",
+      "items": [
+        {
+          "title": "Dashboard em tempo real",
+          "text": "Painel com a telemetria da frente piloto, acessível durante toda a duração do ciclo."
+        },
+        {
+          "title": "Relatórios do ciclo",
+          "text": "Consolidado de ociosidade, consumo e hora-máquina ao final do piloto, pronto para a decisão de escala."
+        },
+        {
+          "title": "Suporte de campo",
+          "text": "Instalação e suporte técnico da telemetria embarcada durante o piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Agende seu piloto Agrofy",
+      "text": "Fale com um especialista Agrofy e defina a frente ideal para começar a medir.",
+      "button": "Falar com um especialista"
+    }
+  },
+  "projects": {
+    "metadata": {
+      "title": "Projects — Minefy",
+      "description": "Success story: telemetry integrated with a dispatch system in large-scale mining. 24/7 monitoring of heavy equipment."
+    },
+    "hero": {
+      "title": "Proven results in the field"
+    },
+    "vargemGrande": {
+      "badge": "DAM DECOMMISSIONING PROJECT — LARGE-SCALE MINING",
+      "title": "Integrated telemetry for dam decommissioning",
+      "intro": "Provision of telemetry technology integrated with the Mobile Resource Management System of a large-scale mining operation, with 24/7 monitoring of heavy equipment in a dam decommissioning operation.",
+      "metrics": [
+        {
+          "value": "CAN J1939",
+          "label": "Data bus telemetry"
+        },
+        {
+          "value": "24/7",
+          "label": "Monitoring"
+        },
+        {
+          "value": "GRM",
+          "label": "Dispatch integration"
+        },
+        {
+          "value": "CAN",
+          "label": "Onboard J1939 telemetry"
+        }
+      ],
+      "sections": [
+        {
+          "title": "Context",
+          "text": "A dam decommissioning project led by a large mining company, focused on safety and minimizing environmental impacts. Minefy provides telemetry technology integrated with the fleet dispatch system."
+        },
+        {
+          "title": "Integrated Telemetry",
+          "text": "Real-time monitoring of the heavy equipment involved in the operation — haul trucks, excavators and loaders — according to the modules installed on each machine, with data integrated into the dispatch system."
+        },
+        {
+          "title": "Operational Safety",
+          "text": "Equipment condition and safe-operation alerts — such as a raised dump body while moving and dumping outside authorized zones — configured according to the signals available on each piece of equipment and the project scope."
+        },
+        {
+          "title": "Fleet Efficiency",
+          "text": "Loading and dumping cycle tracking and monitoring of speed, RPM and fuel consumption by equipment, according to the channels installed on each machine."
+        },
+        {
+          "title": "Sustainability",
+          "text": "Tracking heavy equipment fuel efficiency, according to available channels, contributing to the operation's environmental goals."
+        }
+      ],
+      "impact": {
+        "title": "Impact on the Operation",
+        "items": [
+          {
+            "title": "Full visibility of the monitored fleet",
+            "text": "Real-time visibility of monitored equipment in the pit, with proactive condition and safety monitoring."
+          },
+          {
+            "title": "Data-driven decisions",
+            "text": "Dashboards with production, fuel consumption and cycle KPIs — available in the dispatch control room and on mobile devices."
+          },
+          {
+            "title": "Risk reduction",
+            "text": "Early heavy equipment condition alerts, so the operation can act before a shutdown."
+          }
+        ]
+      },
+      "conclusion": "This project demonstrates that our technology works in the most demanding environment in Brazilian mining — monitoring large equipment 24 hours a day."
+    },
+    "cta": {
+      "title": "Your operation could be next",
+      "text": "Schedule a technical visit and see the results in practice.",
+      "button": "Schedule a Visit"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact — Minefy",
+      "description": "Talk to Minefy: industrial telemetry, enterprise AI, autonomous agents and IT services. Request a demo."
+    },
+    "hero": {
+      "title": "Talk to Minefy"
+    },
+    "title": "Get in Touch",
+    "intro": "Tell us what you need — from industrial telemetry to our new enterprise AI, autonomous agent and IT services offerings. We will understand your operation and design the next step, with no obligation.",
+    "info": {
+      "items": [
+        {
+          "icon": "mail",
+          "label": "Email",
+          "value": "louis.litt@minefymining.com",
+          "href": "mailto:louis.litt@minefymining.com"
+        },
+        {
+          "icon": "phone",
+          "label": "Phone",
+          "value": "+55 (31) 99380-1664",
+          "href": "tel:+5531993801664"
+        },
+        {
+          "icon": "whatsapp",
+          "label": "WhatsApp",
+          "value": "Send a message",
+          "href": "https://api.whatsapp.com/send?phone=5531993801664"
+        },
+        {
+          "icon": "location",
+          "label": "Location",
+          "value": "Nova Lima, MG — Brazil",
+          "href": ""
+        }
+      ]
+    },
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send",
+      "sending": "Sending...",
+      "success": "Message sent! We will respond within 24 hours.",
+      "error": "Unable to send. Please try WhatsApp.",
+      "company": "Company (optional)",
+      "service": "Service / area of interest",
+      "serviceOptions": {
+        "mineracao-telemetria": "Industrial operations and telemetry",
+        "ia-corporativa": "Enterprise AI",
+        "agentes-autonomos": "Autonomous agents",
+        "servicos-ti": "IT services",
+        "agro-telemetria": "Agricultural telemetry",
+        "outro": "Other inquiry"
+      },
+      "fallback": "Your message is not lost: send it via <whatsapp>WhatsApp</whatsapp> or <email>email</email> — both are prefilled with what you entered.",
+      "errorUnavailable": "We could not send your message right now.",
+      "errorRateLimit": "Too many attempts. Try again in a few minutes, or contact us directly on WhatsApp.",
+      "honeypot": "Do not fill this field"
+    },
+    "validation": {
+      "nameRequired": "Enter your name",
+      "phoneRequired": "Enter your phone number",
+      "emailRequired": "Enter your email address",
+      "emailInvalid": "Invalid email address",
+      "subjectRequired": "Enter a subject"
+    }
+  },
+  "footer": {
+    "tagline": "Engineering, AI and operations — connecting data, systems and people, from the mine to the office.",
+    "copyright": "Minefy Mining System. All rights reserved.",
+    "phone": "+55 (31) 99380-1664",
+    "email": "louis.litt@minefymining.com",
+    "platformUrl": "https://app.minefymining.com",
+    "columns": {
+      "solutions": "Solutions",
+      "company": "Company",
+      "contact": "Contact"
+    },
+    "solutionLinks": [
+      {
+        "label": "Industrial Tablets",
+        "href": "/solucoes#tablets"
+      },
+      {
+        "label": "ActiSky Telemetry",
+        "href": "/solucoes#actisky"
+      },
+      {
+        "label": "Minefy Analytics",
+        "href": "/solucoes#analytics"
+      },
+      {
+        "label": "Fleet 360",
+        "href": "/solucoes#fleet360"
+      },
+      {
+        "label": "Minefy Safety",
+        "href": "/solucoes#safety"
+      },
+      {
+        "label": "Consulting",
+        "href": "/solucoes#consulting"
+      },
+      {
+        "label": "Enterprise AI",
+        "href": "/solucoes/ia-corporativa"
+      },
+      {
+        "label": "Autonomous Agents",
+        "href": "/solucoes/agentes-autonomos"
+      },
+      {
+        "label": "IT Services",
+        "href": "/solucoes/servicos-ti"
+      }
+    ],
+    "divisions": [
+      {
+        "title": "Mining",
+        "href": "/solucoes#mineracao",
+        "links": [
+          {
+            "label": "Industrial Tablets",
+            "href": "/solucoes#tablets"
+          },
+          {
+            "label": "ActiSky Telemetry",
+            "href": "/solucoes#actisky"
+          },
+          {
+            "label": "Minefy Analytics",
+            "href": "/solucoes#analytics"
+          },
+          {
+            "label": "Fleet 360",
+            "href": "/solucoes#fleet360"
+          },
+          {
+            "label": "Minefy Safety",
+            "href": "/solucoes#safety"
+          },
+          {
+            "label": "Consulting",
+            "href": "/solucoes#consulting"
+          },
+          {
+            "label": "Operational Pickup Trucks",
+            "href": "/solucoes#caminhonetes"
+          },
+          {
+            "label": "Air Compressors",
+            "href": "/solucoes#compressores"
+          }
+        ]
+      },
+      {
+        "title": "AI & IT",
+        "href": "/solucoes#ia-ti",
+        "links": [
+          {
+            "label": "Enterprise AI",
+            "href": "/solucoes/ia-corporativa"
+          },
+          {
+            "label": "Autonomous Agents",
+            "href": "/solucoes/agentes-autonomos"
+          },
+          {
+            "label": "IT Services",
+            "href": "/solucoes/servicos-ti"
+          },
+          {
+            "label": "AI Experiences",
+            "href": "/experiencias"
+          }
+        ]
+      }
+    ],
+    "social": {
+      "instagram": "https://www.instagram.com/MinefyMiningSystem",
+      "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
+      "whatsapp": "https://api.whatsapp.com/send?phone=5531993801664"
+    },
+    "dpo": {
+      "label": "Data Protection Officer (DPO)",
+      "name": "Patryck Giovani — Interim Data Protection Officer",
+      "email": "privacidade@minefymining.com"
+    },
+    "privacyLink": "Privacy Policy"
+  },
+  "agroFooter": {
+    "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
+    "copyright": "Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
+    "phone": "+55 (31) 99380-1664",
+    "email": "katrina.bennett@minefymining.com",
+    "platform": "Acessar Plataforma",
+    "columns": {
+      "solutions": "Soluções",
+      "company": "Empresa",
+      "contact": "Contato"
+    },
+    "solutionLinks": [
+      {
+        "label": "Tablets para o Campo",
+        "href": "/solucoes#tablets"
+      },
+      {
+        "label": "ActiSky Telemetria",
+        "href": "/solucoes#actisky"
+      },
+      {
+        "label": "Agrofy Analytics",
+        "href": "/solucoes#analytics"
+      },
+      {
+        "label": "Fleet 360",
+        "href": "/solucoes#fleet360"
+      },
+      {
+        "label": "Agrofy Safety",
+        "href": "/solucoes#safety"
+      },
+      {
+        "label": "Consultoria Operacional",
+        "href": "/solucoes#consulting"
+      }
+    ]
+  },
+  "privacy": {
+    "metadata": {
+      "title": "Privacy Policy — Minefy Mining System",
+      "description": "How Minefy processes personal data under Brazil's General Data Protection Law (LGPD): purposes, legal bases, biometric data from the driver safety module, retention and data subject rights."
+    }
+  },
+  "corporateHome": {
+    "metadata": {
+      "title": "Minefy — Mining equipment and enterprise AI",
+      "description": "Two divisions, one engineering foundation: mining equipment and solutions — ActiSky telemetry, industrial tablets and fleet management — plus artificial intelligence and IT to connect your company's systems and decisions."
+    },
+    "hero": {
+      "badge": "Engineering · AI · Operations",
+      "title": "Intelligence that connects. Technology that delivers.",
+      "subtitle": "We integrate artificial intelligence, create autonomous agents and develop IT solutions to connect data, systems and operations.",
+      "cta": "Let's design your solution",
+      "ctaSecondary": "Explore it in action",
+      "trust": "Engineering proven in large-scale industrial operations"
+    },
+    "doors": {
+      "kicker": "Where to start",
+      "title": "Four starting points",
+      "subtitle": "Every company comes with a different need. Choose yours — we will design the technical approach together.",
+      "items": [
+        {
+          "icon": "mountain",
+          "title": "Industrial operations",
+          "text": "Equipment telemetry, field tablets, fleet management and safety for mining and heavy-duty operations.",
+          "href": "/solucoes#tablets",
+          "ctaLabel": "View mining solutions"
+        },
+        {
+          "icon": "brain",
+          "title": "Bring AI into your business",
+          "text": "Turn knowledge, data and processes into assistance and automation for your operation.",
+          "href": "/solucoes/ia-corporativa",
+          "ctaLabel": "Enterprise AI"
+        },
+        {
+          "icon": "bot",
+          "title": "Create autonomous agents",
+          "text": "AI agents with roles, knowledge and tools designed for your process — with human approval wherever you specify.",
+          "href": "/solucoes/agentes-autonomos",
+          "ctaLabel": "Autonomous agents"
+        },
+        {
+          "icon": "code",
+          "title": "Develop and integrate systems",
+          "text": "Web systems, APIs, integrations, dashboards and modernization — software engineering to connect and improve your operation.",
+          "href": "/solucoes/servicos-ti",
+          "ctaLabel": "IT services"
+        }
+      ]
+    },
+    "lab": {
+      "kicker": "Explore a workflow execution",
+      "title": "Watch an agent work, step by step",
+      "subtitle": "Choose a scenario and follow the flow: Input → Knowledge → Agent → Approval → Result. Everything here is a demonstration using simulated data.",
+      "fullCta": "Open the full lab"
+    },
+    "engineering": {
+      "kicker": "Engineering capabilities",
+      "title": "What supports every delivery",
+      "items": [
+        {
+          "icon": "plug",
+          "title": "Integration",
+          "text": "We connect existing systems, APIs and databases — the solution is built to work with what your company already uses."
+        },
+        {
+          "icon": "rocket",
+          "title": "Deployment",
+          "text": "From a controlled pilot to production, with quality criteria defined before scaling."
+        },
+        {
+          "icon": "activity",
+          "title": "Monitoring",
+          "text": "Execution logs, dashboards and alerts: what the system does is visible and auditable."
+        },
+        {
+          "icon": "refresh",
+          "title": "Continuous improvement",
+          "text": "Ongoing monitoring, adjustments based on real user feedback and phased scope expansion."
+        }
+      ]
+    },
+    "method": {
+      "kicker": "How we deliver",
+      "title": "Discover → Validate → Integrate → Operate and improve",
+      "steps": [
+        {
+          "step": "01",
+          "title": "Discover",
+          "text": "We understand the process, systems and data. We map opportunities and prioritize what delivers value first."
+        },
+        {
+          "step": "02",
+          "title": "Validate",
+          "text": "A pilot with a defined scope and agreed quality criteria — before any major investment."
+        },
+        {
+          "step": "03",
+          "title": "Integrate",
+          "text": "The solution becomes part of the real workflow, connected to systems and operating within defined permissions and limits."
+        },
+        {
+          "step": "04",
+          "title": "Operate and improve",
+          "text": "Monitoring, maintenance and continuous improvement, with records of every execution."
+        }
+      ]
+    },
+    "heroDual": {
+      "badge": "Two divisions · one engineering foundation",
+      "title": "Equipment for the <gold>mine</gold>. Intelligence for your business.",
+      "subtitle": "Mining equipment and solutions — from fleet telemetry to industrial tablets — and an artificial intelligence and IT division that connects your systems and decisions, with human approval.",
+      "scenes": {
+        "mineracao": {
+          "num": "01",
+          "label": "Mining",
+          "title": "Equipment and solutions",
+          "tagline": "The complete industrial portfolio: tablets, ActiSky telemetry, fleet management, safety and rentals.",
+          "cta": "View equipment and solutions"
+        },
+        "ia": {
+          "num": "02",
+          "label": "AI & IT",
+          "tagline": "Enterprise AI, autonomous agents and software engineering.",
+          "cta": "Explore AI & IT"
+        }
+      },
+      "imageAlt": "Large excavator loading a haul truck in an open-pit mine",
+      "mediaNote": "Illustrative image."
+    },
+    "miningDivision": {
+      "kicker": "Division 01 · Mining",
+      "title": "Mining equipment and solutions",
+      "lede": "From heavy equipment to fleet data: the complete industrial portfolio supports your operation — hardware, telemetry, software and rentals.",
+      "catalog": {
+        "kicker": "Industrial portfolio",
+        "title": "All mining solutions in one place",
+        "text": "Industrial tablets, ActiSky telemetry, analytics, fleet management, safety, consulting and rentals — every offering detailed on the solutions page.",
+        "cta": "View the detailed portfolio"
+      }
+    },
+    "iaChapter": {
+      "kicker": "Division 02 · AI & IT",
+      "title": "From physical terrain to digital workflows",
+      "lede": "The same engineering that reads the data bus on heavy equipment now connects your company's systems to AI models — within a defined scope and with human approval wherever you decide.",
+      "operation": {
+        "kicker": "Applied in our own operation",
+        "title": "The AI already working in our operation can transform yours.",
+        "text": "At Minefy, AI agents support management, finance, sales, content and engineering in our day-to-day work. We turn that experience into tailored projects: connected to your systems, with clear responsibilities and human oversight."
+      },
+      "areas": {
+        "kicker": "Use cases by department",
+        "title": "Where AI fits into your company",
+        "note": "Illustrative examples of applications by function — every project starts with an assessment of your context, and integrations are designed and validated case by case.",
+        "items": [
+          {
+            "title": "Sales",
+            "automate": "Research and organize opportunities, prepare outreach and proposals, track follow-ups and consolidate the pipeline.",
+            "deliver": "A sales assistant with sources and history, integrated with your CRM and approved channels."
+          },
+          {
+            "title": "Finance",
+            "automate": "Consolidate cash flow information, support document checks, prepare reports and flag outstanding items.",
+            "deliver": "Documents → verification → exceptions → approval → report. Decisions and payments remain with the people responsible."
+          },
+          {
+            "title": "Operations and management",
+            "automate": "Gather KPIs and deliverables, summarize blockers, prepare executive briefings and maintain regular follow-up.",
+            "deliver": "A management agent with a dashboard, notifications and an execution trail."
+          },
+          {
+            "title": "Marketing",
+            "automate": "Research topics, maintain the calendar, prepare drafts and content variations, and track publication.",
+            "deliver": "An editorial workflow with brand consistency and human approval before publication on authorized channels."
+          },
+          {
+            "title": "Knowledge and documents",
+            "automate": "Consult policies and manuals, summarize and classify documents, trace sources and route content for review.",
+            "deliver": "Enterprise search with permissions and source-linked answers. Does not replace legal advice."
+          },
+          {
+            "title": "Engineering and support",
+            "automate": "Support development, triage and diagnose support tickets, and maintain documentation and integrations.",
+            "deliver": "Web systems, APIs, dashboards, automations and maintenance within an agreed scope."
+          }
+        ]
+      },
+      "offers": [
+        {
+          "title": "Enterprise AI",
+          "text": "AI models connected to your real data and systems — to answer, classify, summarize and support decisions in your business context.",
+          "href": "/solucoes/ia-corporativa",
+          "cta": "Enterprise AI"
+        },
+        {
+          "title": "Autonomous agents",
+          "text": "Agents that execute tasks from end to end within an authorized scope — querying systems, preparing documents and recording everything.",
+          "href": "/solucoes/agentes-autonomos",
+          "cta": "Autonomous agents"
+        },
+        {
+          "title": "IT services",
+          "text": "Web applications, portals and dashboards, APIs and ERP/CRM integrations, data and planned migrations, cloud and ongoing support — the integrated foundation AI needs to work in practice.",
+          "href": "/solucoes/servicos-ti",
+          "cta": "IT services"
+        }
+      ],
+      "process": {
+        "kicker": "How we deploy",
+        "title": "From assessment to continuous improvement",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Assessment",
+            "text": "We understand processes, systems and data; select initiatives with measurable outcomes; and define scope and access limits."
+          },
+          {
+            "step": "02",
+            "title": "Measured pilot",
+            "text": "One initiative goes live with quality criteria defined before launch — the results determine whether to scale."
+          },
+          {
+            "step": "03",
+            "title": "Integration",
+            "text": "Connection to the systems used in the real workflow, segregated permissions, human approval at defined points and auditable records."
+          },
+          {
+            "step": "04",
+            "title": "Continuous improvement",
+            "text": "Ongoing monitoring, measurement and improvement of what is in production, within the contracted scope."
+          }
+        ]
+      },
+      "diagnosis": {
+        "title": "Want to know where AI can create value in your operation?",
+        "text": "An initial assessment maps opportunities in your context — without committing to a tool or vendor.",
+        "button": "Map AI opportunities"
+      }
+    },
+    "industrial": {
+      "kicker": "Our industrial foundation",
+      "title": "The engineering that shaped us is still in operation",
+      "text": "ActiSky telemetry, industrial tablets, Analytics, Fleet 360, Safety and rentals — the complete mining portfolio remains in operation and available for your fleet.",
+      "cta": "View mining solutions"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "What operations, data and IT teams ask before getting started with Minefy.",
+      "items": [
+        {
+          "q": "What does Minefy do today?",
+          "a": "We operate through two divisions. In mining, we bring together industrial tablets, ActiSky telemetry, fleet management, safety and rentals. In AI and IT, we integrate artificial intelligence with business systems, create tailored autonomous agents and develop applications, APIs and automations."
+        },
+        {
+          "q": "What is enterprise AI applied to my business?",
+          "a": "It means connecting AI models to your real data and systems — ERP, spreadsheets, email and documents — to answer, classify, summarize and support decisions in your context, with scope and access defined by you. This is not a generic chatbot: it is AI with knowledge of your operation."
+        },
+        {
+          "q": "What can an autonomous agent do — and what does it not do?",
+          "a": "An agent executes tasks from end to end within an authorized scope: it queries systems, prepares documents, triggers workflows and records everything. It does not have unrestricted access, does not fully replace a team, and requires human approval at the points you specify."
+        },
+        {
+          "q": "How does integration with my existing systems work?",
+          "a": "We work with what is already there: APIs where available, and custom connectors built case by case where they are not — databases, spreadsheets, email and legacy systems. Integration design is part of the initial assessment, before any development begins."
+        },
+        {
+          "q": "How is my data protected?",
+          "a": "Access scope defined by contract, credentials segregated by customer, auditable records of what each agent executes, and personal data processing in accordance with Brazil's General Data Protection Law (LGPD). The limits on what AI can read and do are defined with you — and documented."
+        },
+        {
+          "q": "How does a project start?",
+          "a": "With an initial assessment: we understand the process, select an initiative with measurable outcomes and deliver a measured pilot. The pilot's own results determine whether to scale — not promises."
+        }
+      ]
+    },
+    "evidence": {
+      "kicker": "Industrial track record",
+      "title": "The engineering behind it: proven in mining",
+      "note": "Experience in telemetry and fleet management for industrial operations."
+    },
+    "cta": {
+      "title": "Let's design your solution",
+      "subtitle": "Tell us about your context — industrial operations, AI, agents or development — and we will respond with a concrete technical approach.",
+      "button": "Start a conversation"
+    }
+  },
+  "services": {
+    "labels": {
+      "scope": "What we do",
+      "deliverables": "Deliverables",
+      "examples": "Illustrative examples",
+      "backToHub": "All solutions",
+      "departments": "Use cases by department",
+      "process": "How we deploy"
+    },
+    "hub": {
+      "metadata": {
+        "title": "Solutions — Minefy",
+        "description": "Four areas: industrial operations and telemetry, enterprise AI, autonomous agents and IT services. Minefy engineering applied to your context."
+      },
+      "fronts": {
+        "kicker": "Four areas",
+        "title": "Minefy Solutions",
+        "subtitle": "From the industrial telemetry that shaped us to new areas in AI, agents and software engineering.",
+        "items": [
+          {
+            "id": "mineracao",
+            "badge": "INDUSTRIAL OPERATIONS",
+            "title": "Mining and telemetry",
+            "text": "Industrial tablets, ActiSky telemetry, analytics, fleet management and safety — the complete portfolio is detailed below on this page.",
+            "href": "#tablets",
+            "ctaLabel": "View the industrial portfolio"
+          },
+          {
+            "id": "ia",
+            "badge": "ENTERPRISE AI",
+            "title": "AI integrated into your company's work",
+            "text": "Use-case assessment, system integration, knowledge search, internal copilots and deployment with evaluation.",
+            "href": "/solucoes/ia-corporativa",
+            "ctaLabel": "Explore enterprise AI"
+          },
+          {
+            "id": "agentes",
+            "badge": "AUTONOMOUS AGENTS",
+            "title": "AI agents designed for your process",
+            "text": "Tailored roles, knowledge, tools, memory and limits — with human approval at the steps you specify.",
+            "href": "/solucoes/agentes-autonomos",
+            "ctaLabel": "Explore agents"
+          },
+          {
+            "id": "ti",
+            "badge": "IT SERVICES",
+            "title": "Software engineering for your operation",
+            "text": "Web systems and applications, APIs and integrations, dashboards and data, modernization and technical support within an agreed scope.",
+            "href": "/solucoes/servicos-ti",
+            "ctaLabel": "Explore IT services"
+          }
+        ]
+      }
+    },
+    "ia": {
+      "metadata": {
+        "title": "Enterprise AI — Minefy",
+        "description": "AI integrated into your company's work: use-case assessment, system and API integration, knowledge-base search, internal copilots and deployment with continuous evaluation."
+      },
+      "badge": "ENTERPRISE AI",
+      "title": "AI integrated into your company's work.",
+      "benefit": "We turn knowledge, data and processes into assistance and automation for your operation — AI that works within your workflow, not alongside it.",
+      "scope": [
+        {
+          "title": "Use-case assessment",
+          "text": "We identify where AI creates value in your context and prioritize by impact and feasibility."
+        },
+        {
+          "title": "System and API integration",
+          "text": "AI connects with what your company already uses — internal systems, spreadsheets, databases and services — through integrations designed case by case."
+        },
+        {
+          "title": "Knowledge-base search",
+          "text": "Natural-language questions answered using YOUR documents, with source references."
+        },
+        {
+          "title": "Document extraction and organization",
+          "text": "Contracts, technical assessments, reports and forms become structured, searchable data."
+        },
+        {
+          "title": "Internal copilots",
+          "text": "Assistants for each function — operations, sales and administration — trained in your company's vocabulary and processes."
+        },
+        {
+          "title": "Deployment, evaluation and improvement",
+          "text": "Quality criteria defined before go-live, outcome measurement and continuous improvement."
+        }
+      ],
+      "examples": [
+        "Consult internal documents and receive answers with source references",
+        "Classify and route requests received by email or form",
+        "Consolidate scattered operational information into actionable summaries"
+      ],
+      "examplesNote": "Illustrative examples of applications — every project starts with an assessment of your context. Integrations with specific systems are designed and validated case by case.",
+      "deliverables": [
+        "Prioritized opportunity map",
+        "Integration design for your systems",
+        "Pilot with quality criteria",
+        "Assisted deployment",
+        "Monitoring and improvement"
+      ],
+      "cta": "Plan an AI application"
+    },
+    "agentes": {
+      "metadata": {
+        "title": "Autonomous Agents — Minefy",
+        "description": "AI agents designed for your process: tailored roles and knowledge, tool connections, permissions and limits, human approval and execution records."
+      },
+      "badge": "AUTONOMOUS AGENTS",
+      "title": "AI agents designed for your process.",
+      "benefit": "Here, autonomy means execution within an authorized scope: the agent works, records what it has done and stops at the points where you require human approval.",
+      "scope": [
+        {
+          "title": "Tailored roles and knowledge",
+          "text": "Each agent is built with a defined role and knowledge of your business — it is not a generic chatbot."
+        },
+        {
+          "title": "Tool connections",
+          "text": "The agent uses the systems in the real workflow: email, calendars, spreadsheets and internal APIs — according to the project design."
+        },
+        {
+          "title": "Relevant memory",
+          "text": "Context persists between executions to the extent defined by the process — neither forgotten nor accumulated indiscriminately."
+        },
+        {
+          "title": "Workflow execution",
+          "text": "Multi-step routines executed from end to end, with the status of each step recorded."
+        },
+        {
+          "title": "Permissions and limits",
+          "text": "An explicit scope of action: what the agent can do independently, what requires approval and what is prohibited."
+        },
+        {
+          "title": "Human approval",
+          "text": "At the steps specified by the customer, the agent prepares and WAITS — the decision belongs to the approver."
+        },
+        {
+          "title": "Logging and monitoring",
+          "text": "Every action is logged and auditable; dashboards show what agents have done and what they will do next."
+        }
+      ],
+      "examples": [
+        "Sales qualification of incoming leads",
+        "Answering recurring internal questions",
+        "Tracking operational routines",
+        "Organizing administrative routines"
+      ],
+      "examplesNote": "Illustrative examples of agent roles. An agent does not have unrestricted access or fully replace a team — it operates within an authorized scope, with human oversight and reviewable decisions.",
+      "deliverables": [
+        "Agent specification (role, knowledge, limits)",
+        "Tools connected to the real workflow",
+        "Scenario evaluations before go-live",
+        "Execution dashboard and log",
+        "Maintenance and improvement"
+      ],
+      "cta": "Design my agent"
+    },
+    "ti": {
+      "metadata": {
+        "title": "IT Services — Minefy",
+        "description": "Software engineering to connect and improve your operation: web systems and applications, APIs and integrations, dashboards and data, modernization and technical support within an agreed scope."
+      },
+      "badge": "IT SERVICES",
+      "title": "Software engineering to connect and improve your operation.",
+      "benefit": "The same team that builds and operates Minefy's industrial platform — backend, frontend, data and infrastructure — available for your project.",
+      "scope": [
+        {
+          "title": "Web systems and applications",
+          "text": "Complete applications, from interface design to the backend and database."
+        },
+        {
+          "title": "APIs and integrations",
+          "text": "Services that connect systems — internal, partner and third-party systems."
+        },
+        {
+          "title": "Dashboards and data",
+          "text": "Operational and management dashboards built on the data your company already has."
+        },
+        {
+          "title": "System modernization",
+          "text": "Phased improvements to legacy systems without stopping operations."
+        },
+        {
+          "title": "Application infrastructure",
+          "text": "Containers, deployment, environments and observability for the applications delivered."
+        },
+        {
+          "title": "Technical support",
+          "text": "Fixes, improvements and ongoing support within the contracted scope."
+        }
+      ],
+      "scopeNote": "We work within a contracted scope, with phased delivery. Service-level commitments are defined in the contract for each project.",
+      "deliverables": [
+        "Technical assessment",
+        "Phased scope",
+        "Implementation with testing",
+        "Documentation of the delivered solution",
+        "Contracted ongoing support"
+      ],
+      "cta": "Discuss my project"
+    }
+  },
+  "experiences": {
+    "metadata": {
+      "title": "Experiences — Minefy Interactive Lab",
+      "description": "Explore, step by step, how a Minefy AI agent executes a real workflow: Input, Knowledge, Agent, Approval and Result. An interactive demonstration using simulated data."
+    },
+    "hero": {
+      "kicker": "Interactive lab",
+      "title": "Explore a workflow execution",
+      "subtitle": "Choose a scenario — Support, Documents or Operations — and follow what happens at each step of the workflow. An interactive demonstration using simulated data: nothing here is connected to real systems."
+    },
+    "cta": {
+      "title": "Want this workflow running in your process?",
+      "subtitle": "The lab shows the mechanics; designing the real agent starts with your context, your systems and your approval limits.",
+      "button": "Design my agent"
+    }
+  },
+  "chrome": {
+    "aiIntro": {
+      "kicker": "Division 02 · AI & IT",
+      "titleA": "A new",
+      "titleB": "intelligence.",
+      "titleAccent": "For your business.",
+      "text": "From the engineering that moves mining to the intelligence that transforms companies. We create AI agents, connect systems and develop the technology that moves your operation forward.",
+      "ctaPrimary": "Discover your company's potential",
+      "ctaSecondary": "See AI in action",
+      "imageAlt": "Minefy robot in metallic finish, visual representation of the artificial intelligence division",
+      "cards": [
+        {
+          "title": "Corporate AI",
+          "text": "Your knowledge connected to decisions.",
+          "href": "/solucoes/ia-corporativa"
+        },
+        {
+          "title": "Autonomous agents",
+          "text": "Processes executed with purpose and control.",
+          "href": "/solucoes/agentes-autonomos"
+        },
+        {
+          "title": "Technology & integration",
+          "text": "Systems working together for your company.",
+          "href": "/solucoes/servicos-ti"
+        }
+      ]
+    },
+    "agentFlow": {
+      "kicker": "Multi-agent organization · Illustrative demonstration",
+      "titleA": "An AI team.",
+      "titleAccent": "Several specialties. One goal.",
+      "text": "We structure agents with different roles, accesses and responsibilities. They share context, delegate tasks and coordinate deliveries across departments, with human review at the points defined by the company.",
+      "agents": [
+        {
+          "name": "Strategy",
+          "role": "Sets priorities"
+        },
+        {
+          "name": "Sales",
+          "role": "Qualifies opportunities"
+        },
+        {
+          "name": "Finance",
+          "role": "Analyzes feasibility"
+        },
+        {
+          "name": "Operations",
+          "role": "Plans execution"
+        },
+        {
+          "name": "Engineering",
+          "role": "Designs the solution"
+        },
+        {
+          "name": "Management",
+          "role": "Consolidates and follows up"
+        }
+      ],
+      "steps": [
+        {
+          "message": "Shared priority: structuring a new business opportunity.",
+          "result": "Goal and criteria defined."
+        },
+        {
+          "message": "Sales sends customer requirements to Engineering to assess integrations.",
+          "result": "Requirements organized and context transferred."
+        },
+        {
+          "message": "Engineering shares the technical scope for cost and feasibility analysis.",
+          "result": "Solution proposed and effort estimated."
+        },
+        {
+          "message": "Finance forwards the assumptions to Operations to plan resources and deadlines.",
+          "result": "Financial assumptions available for planning."
+        },
+        {
+          "message": "Operations aligns the deployment sequence and dependencies with Engineering.",
+          "result": "Execution plan aligned across areas."
+        },
+        {
+          "message": "Engineering sends the validated solution to Management, with context from the other areas.",
+          "result": "Proposal and plan gathered for human review."
+        },
+        {
+          "message": "After the owner's review, Management returns priorities and next steps to Strategy.",
+          "result": "Cycle complete. Decision recorded and next steps defined."
+        }
+      ],
+      "statusFrom": "Shares context",
+      "statusTo": "Receives and contributes",
+      "statusIdle": "Specialist available",
+      "pause": "Pause",
+      "play": "Run flow",
+      "next": "Next step",
+      "restartAria": "Restart flow",
+      "progressAria": "Step {step} of {total}",
+      "stepAria": "View step {step}",
+      "footnote": "Demonstration scenario, with no connection to real systems. Roles, integrations and autonomy levels are defined for each project."
+    },
+    "experienceLab": {
+      "honestyLabel": "Interactive demonstration · simulated data",
+      "tablistAria": "Demonstration scenario",
+      "stepWord": "step",
+      "ofWord": "of",
+      "pause": "Pause",
+      "play": "Play",
+      "restart": "Restart",
+      "reducedMotionTitle": "Auto-advance disabled (reduced motion) — browse the steps",
+      "approve": "Approve (simulation)",
+      "docRefLabel": "referenced document",
+      "decisionLabel": "decision",
+      "logLabel": "action log (simulated)",
+      "steps": {
+        "entrada": "Intake",
+        "conhecimento": "Knowledge",
+        "agente": "Agent",
+        "aprovacao": "Approval",
+        "resultado": "Result"
+      },
+      "scenarios": [
+        {
+          "id": "atendimento",
+          "label": "Support",
+          "steps": {
+            "entrada": {
+              "heading": "A request arrives",
+              "text": "An employee of Empresa Exemplo S.A. (fictitious) opens a ticket asking for guidance about the shift change.",
+              "artifact": [
+                {
+                  "k": "channel",
+                  "v": "internal ticket #4821"
+                },
+                {
+                  "k": "from",
+                  "v": "employee (simulated)"
+                },
+                {
+                  "k": "subject",
+                  "v": "Question about the shift-change procedure"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "The agent searches the right sources",
+              "text": "The question is compared with the company's knowledge base — policies, procedures and announcements — and the relevant sources are retrieved with references.",
+              "artifact": [
+                {
+                  "k": "source 1",
+                  "v": "POP-017 · Shift-Change Procedure (fictitious doc)"
+                },
+                {
+                  "k": "source 2",
+                  "v": "HR Announcement 2026-03 (fictitious doc)"
+                },
+                {
+                  "k": "similarity",
+                  "v": "0.91 · 0.84"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "The answer is built with citations",
+              "text": "The agent drafts the answer from the retrieved sources, cites every excerpt used and classifies the ticket by topic and urgency.",
+              "artifact": [
+                {
+                  "k": "draft",
+                  "v": "Answer with 2 citations to POP-017"
+                },
+                {
+                  "k": "classification",
+                  "v": "HR · routine · low urgency"
+                },
+                {
+                  "k": "confidence",
+                  "v": "high (direct sources)"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "A human approves before sending",
+              "text": "Because the customer defined human approval for replies external to the team, the agent prepares everything and WAITS. Nothing goes out without the approver's sign-off.",
+              "artifact": [
+                {
+                  "k": "status",
+                  "v": "awaiting approval"
+                },
+                {
+                  "k": "approver",
+                  "v": "HR supervisor (simulated)"
+                },
+                {
+                  "k": "pending action",
+                  "v": "send reply to ticket #4821"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "Answer sent and recorded",
+              "text": "With the approval, the answer goes to the employee and the whole flow is recorded — who asked, what was consulted, who approved.",
+              "artifact": [
+                {
+                  "k": "ticket",
+                  "v": "#4821 answered (simulation)"
+                },
+                {
+                  "k": "flow time",
+                  "v": "2 min (simulated)"
+                },
+                {
+                  "k": "audit",
+                  "v": "full trail available"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "POP-017 · Shift-Change Procedure — fictitious document",
+            "decision": "Sending the reply: approved by the supervisor (simulated)",
+            "log": [
+              "09:14 · ticket #4821 received",
+              "09:14 · 2 sources retrieved from the knowledge base",
+              "09:15 · draft generated with citations",
+              "09:15 · approval requested from the supervisor",
+              "09:16 · approved · reply sent · trail recorded"
+            ]
+          }
+        },
+        {
+          "id": "documentos",
+          "label": "Documents",
+          "steps": {
+            "entrada": {
+              "heading": "A batch of documents arrives",
+              "text": "The finance team of Empresa Exemplo S.A. (fictitious) receives contracts and invoices in PDF that must become organized data.",
+              "artifact": [
+                {
+                  "k": "batch",
+                  "v": "12 PDFs (simulated)"
+                },
+                {
+                  "k": "types",
+                  "v": "contracts · invoices · amendments"
+                },
+                {
+                  "k": "origin",
+                  "v": "shared folder (simulated)"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "The agent understands each document",
+              "text": "Each file is read and compared with the models the company uses — the agent knows what to look for in a contract and what to look for in an invoice.",
+              "artifact": [
+                {
+                  "k": "model",
+                  "v": "Rental contract · internal standard (fictitious)"
+                },
+                {
+                  "k": "target fields",
+                  "v": "parties · term · value · adjustment"
+                },
+                {
+                  "k": "reference",
+                  "v": "CT-2026/044 (fictitious doc)"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "Extraction and organization",
+              "text": "The agent extracts the fields, cross-checks them with the control spreadsheet and flags discrepancies — such as a term that does not match the amendment.",
+              "artifact": [
+                {
+                  "k": "extracted",
+                  "v": "11 of 12 documents"
+                },
+                {
+                  "k": "discrepancy",
+                  "v": "CT-2026/044: term ≠ amendment"
+                },
+                {
+                  "k": "spreadsheet",
+                  "v": "contracts-control.xlsx (simulated)"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "The discrepancy waits for a human decision",
+              "text": "The 11 consistent documents move forward; the discrepancy becomes a clear pending item for the manager to decide. The agent does not 'resolve' ambiguity on its own.",
+              "artifact": [
+                {
+                  "k": "status",
+                  "v": "1 pending item awaiting manager"
+                },
+                {
+                  "k": "detail",
+                  "v": "24m term in contract · 36m in amendment"
+                },
+                {
+                  "k": "options",
+                  "v": "use amendment · use contract · request review"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "Organized base, exception decided",
+              "text": "With the decision recorded, the base is complete and auditable: every data point points back to the document and page it came from.",
+              "artifact": [
+                {
+                  "k": "records",
+                  "v": "12 of 12 in the base (simulation)"
+                },
+                {
+                  "k": "traceability",
+                  "v": "each field → source document"
+                },
+                {
+                  "k": "batch time",
+                  "v": "8 min (simulated)"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "CT-2026/044 · Rental contract + Amendment 01 — fictitious documents",
+            "decision": "Term discrepancy: manager chose the amendment (simulated)",
+            "log": [
+              "14:02 · batch of 12 PDFs received",
+              "14:03 · 11 documents extracted with no pending items",
+              "14:03 · discrepancy detected in CT-2026/044",
+              "14:10 · manager decided: the amendment prevails",
+              "14:10 · base updated · trail recorded"
+            ]
+          }
+        },
+        {
+          "id": "operacoes",
+          "label": "Operations",
+          "steps": {
+            "entrada": {
+              "heading": "An indicator leaves the range",
+              "text": "On the operations panel (simulated), the queue time of a stage passes the agreed limit — the kind of signal that usually gets lost mid-shift.",
+              "artifact": [
+                {
+                  "k": "event",
+                  "v": "stage B queue > 25 min"
+                },
+                {
+                  "k": "source",
+                  "v": "operations panel (simulated data)"
+                },
+                {
+                  "k": "window",
+                  "v": "last 40 min"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "Context before opinion",
+              "text": "The agent gathers the context: recent stage history, occurrences recorded in the shift and the operating procedure that covers this deviation.",
+              "artifact": [
+                {
+                  "k": "history",
+                  "v": "3 similar occurrences this month (simulated)"
+                },
+                {
+                  "k": "shift",
+                  "v": "partial-stop record at 10:20"
+                },
+                {
+                  "k": "procedure",
+                  "v": "POP-031 · Queue deviation (fictitious doc)"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "Diagnosis and proposal",
+              "text": "Cross-checking the data, the agent builds a summary of the likely bottleneck and proposes the action foreseen in the procedure — with the numbers that justify it.",
+              "artifact": [
+                {
+                  "k": "hypothesis",
+                  "v": "bottleneck after the 10:20 partial stop"
+                },
+                {
+                  "k": "proposal",
+                  "v": "redistribute 2 resources for 1h (POP-031)"
+                },
+                {
+                  "k": "estimated impact",
+                  "v": "queue back in range in ~30 min (simulation)"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "The coordinator decides",
+              "text": "Changing the operation's allocation is a human decision: the agent delivers the ready diagnosis and waits for the coordinator to approve, adjust or reject.",
+              "artifact": [
+                {
+                  "k": "status",
+                  "v": "awaiting coordinator"
+                },
+                {
+                  "k": "pending decision",
+                  "v": "apply proposed redistribution"
+                },
+                {
+                  "k": "alternative",
+                  "v": "keep and reassess in 20 min"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "Action recorded, cycle closed",
+              "text": "Once the action is approved, the agent records the outcome and follows the indicator — if the queue does not return to range, the cycle reopens with the new context.",
+              "artifact": [
+                {
+                  "k": "action",
+                  "v": "redistribution applied (simulation)"
+                },
+                {
+                  "k": "follow-up",
+                  "v": "indicator monitored for 1h"
+                },
+                {
+                  "k": "record",
+                  "v": "occurrence + decision + outcome"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "POP-031 · Queue-deviation handling — fictitious document",
+            "decision": "Resource redistribution: approved by the coordinator (simulated)",
+            "log": [
+              "10:47 · deviation detected (queue > 25 min)",
+              "10:47 · context gathered: history + shift + POP-031",
+              "10:48 · diagnosis and proposal presented",
+              "10:52 · coordinator approved the redistribution",
+              "11:25 · queue back in range · cycle closed (simulation)"
+            ]
+          }
+        }
+      ],
+      "telemetrySrNote": "Illustrative values, they do not correspond to a real operation.",
+      "telemetryChip": "simulation",
+      "telemetryUnit": "cycles / h",
+      "telemetrySafety": "safety"
+    }
+  }
+}

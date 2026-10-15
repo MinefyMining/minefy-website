@@ -377,7 +377,7 @@ export function ContactForm({
               fora de tela, fora da ordem de tab, autocomplete off. Bot que o
               preencher recebe 200 e nada é enviado. */}
           <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
-            <label htmlFor="contact-hp">Não preencha este campo</label>
+            <label htmlFor="contact-hp">{t("form.honeypot")}</label>
             <input
               id="contact-hp"
               type="text"

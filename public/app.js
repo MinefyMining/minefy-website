@@ -1,4 +1,6 @@
 import {deferEnhancement} from './enhancements.js?v=20261010-fast';
+import {loadI18n} from './home-i18n.js';
+const {t, tRaw} = await loadI18n();
 const swapImage=(...args)=>import('./media.js?v=20261011-scene').then(module=>module.swapImage(...args));
 const warmImage=(...args)=>import('./media.js?v=20261011-scene').then(module=>module.warmImage(...args)).catch(()=>{});
 const $ = (selector) => document.querySelector(selector);
@@ -13,24 +15,19 @@ function animate(element,keyframes,options){
  animation.finished.catch(()=>{}).finally(()=>transitions.delete(animation));
 }
 let activeStage = -1, fleetProgress = 0;
-const stages = [
-  { type:'haul', category:'TRANSPORTE DE GRANDE PORTE', title:'POTÊNCIA <br>COM <br><em>INTELIGÊNCIA.</em>', description:'Cada ciclo conta. Conecte o transporte de material à leitura de posição, condição do equipamento e alertas da operação.', features:['LOCALIZAÇÃO','TELEMETRIA','ALERTAS'], name:'CAMINHÃO FORA DE ESTRADA', context:'DA MÁQUINA À DECISÃO' },
-  { type:'excavator', category:'ESCAVAÇÃO E CARREGAMENTO', title:'CADA <br>MOVIMENTO <br><em>IMPORTA.</em>', description:'Mais contexto para acompanhar a escavação. Visualize atividade, horas de operação e informações disponíveis nos sensores do equipamento.', features:['ATIVIDADE','HORÍMETRO','SENSORES'], name:'ESCAVADEIRA', context:'VISIBILIDADE NA FRENTE DE LAVRA' },
-  { type:'drill', category:'PERFURAÇÃO EM CAMPO', title:'PRECISÃO <br>DESDE <br><em>A BASE.</em>', description:'A operação começa antes do carregamento. Reúna posição, eventos e condições da perfuratriz para apoiar o acompanhamento em campo.', features:['POSIÇÃO','EVENTOS','CONDIÇÃO'], name:'PERFURATRIZ', context:'CONTEXTO EM CADA ETAPA' },
-  { type:'pickup', category:'APOIO À OPERAÇÃO', title:'CONEXÃO <br>POR TODA <br><em>A MINA.</em>', description:'A frota de apoio também faz parte do todo. Acompanhe deslocamentos e eventos das caminhonetes que conectam as equipes de campo.', features:['DESLOCAMENTOS','FROTA LEVE','EVENTOS'], name:'CAMINHONETE DE MINA', context:'PESSOAS E EQUIPAMENTOS CONECTADOS' },
-  { type:'scroller', category:'OPERAÇÃO ANFÍBIA EM REJEITOS', title:'NOVOS <br>TERRENOS. <br><em>MAIS VISÃO.</em>', description:'Gestão de rejeitos e recuperação de água em barragens com Scroller. Uma frente de serviços Minefy que conecta o manejo do material às necessidades da operação.', features:['SCROLLER','GESTÃO DE REJEITOS','RECUPERAÇÃO DE ÁGUA'], name:'SCROLLER · GESTÃO DE REJEITOS', context:'REJEITOS E ÁGUA · SERVIÇOS MINEFY' }
-];
+const stageTypes=['haul','excavator','drill','pickup','scroller'];
+const stages=tRaw('fleet.stages').map((s,i)=>({...s,type:stageTypes[i]}));
 
 // Navigation and controls remain independent of cinematic asset loading.
 const menuButton = $('.menu-button');
-function closeMenu() { $('#mobile-menu').hidden = true; menuButton.setAttribute('aria-expanded','false'); menuButton.setAttribute('aria-label','Abrir menu'); document.body.classList.remove('menu-open'); }
-menuButton.addEventListener('click', () => { const expanded = menuButton.getAttribute('aria-expanded') === 'true'; $('#mobile-menu').hidden = expanded; menuButton.setAttribute('aria-expanded', String(!expanded)); menuButton.setAttribute('aria-label', expanded ? 'Abrir menu' : 'Fechar menu'); document.body.classList.toggle('menu-open', !expanded); });
+function closeMenu() { $('#mobile-menu').hidden = true; menuButton.setAttribute('aria-expanded','false'); menuButton.setAttribute('aria-label',t('header.menuOpen')); document.body.classList.remove('menu-open'); }
+menuButton.addEventListener('click', () => { const expanded = menuButton.getAttribute('aria-expanded') === 'true'; $('#mobile-menu').hidden = expanded; menuButton.setAttribute('aria-expanded', String(!expanded)); menuButton.setAttribute('aria-label', expanded ? t('header.menuOpen') : t('header.menuClose')); document.body.classList.toggle('menu-open', !expanded); });
 $$('#mobile-menu a').forEach(a => a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',e => { if(e.key==='Escape'){closeMenu();menuButton.blur();} });
 
 const motionButton = document.createElement('button');
 motionButton.className = 'motion-toggle';
-function syncMotion(){ if(motionPaused)transitions.forEach(animation=>{try{animation.finish();}catch{animation.cancel();}});document.body.classList.toggle('motion-paused',motionPaused);window.dispatchEvent(new CustomEvent('minefy-motion',{detail:{paused:motionPaused}})); motionButton.textContent=motionPaused?'▶':'Ⅱ'; motionButton.setAttribute('aria-label',motionPaused?'Ativar animações':'Pausar animações');motionButton.setAttribute('aria-pressed',String(motionPaused)); }
+function syncMotion(){ if(motionPaused)transitions.forEach(animation=>{try{animation.finish();}catch{animation.cancel();}});document.body.classList.toggle('motion-paused',motionPaused);window.dispatchEvent(new CustomEvent('minefy-motion',{detail:{paused:motionPaused}})); motionButton.textContent=motionPaused?'▶':'Ⅱ'; motionButton.setAttribute('aria-label',motionPaused?t('js.motion.play'):t('js.motion.pause'));motionButton.setAttribute('aria-pressed',String(motionPaused)); }
 motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;syncMotion();});
 document.body.append(motionButton);syncMotion();
 reducedMedia.addEventListener('change', e=>{motionPaused=e.matches;syncMotion();});
@@ -56,10 +53,10 @@ async function chooseStage(index) {
   $('#fleet-number').textContent=String(index+1).padStart(2,'0');
   $('#model-label').textContent=data.name;
   $('#fleet-context').textContent=data.context;
-  $('#fleet-canvas').setAttribute('aria-label',`Cena cinematográfica: ${data.name.toLowerCase()}`);
+  $('#fleet-canvas').setAttribute('aria-label',t('fleet.sceneAriaPrefix')+data.name.toLowerCase());
   $('#fleet-panel').setAttribute('aria-labelledby',`tab-${data.type}`);
   $$('.fleet-tabs button').forEach((button,i)=>{button.setAttribute('aria-selected',String(i===index));button.tabIndex=i===index?0:-1;});
-  image.alt=`${data.name.toLowerCase()} — cena conceitual`;
+  image.alt=`${data.name.toLowerCase()}${t('fleet.imageAltSuffix')}`;
   animate(image,[{opacity:.35,transform:'scale(1.05)'},{opacity:1,transform:'scale(1)'}],{duration:700,easing:'ease-out'});
   animate($('.fleet-copy'),[{opacity:.2,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:500,easing:'ease-out'});
 }

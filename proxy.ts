@@ -6,6 +6,7 @@ import {
   mapPathnameForSite,
   resolveSiteFromHost,
   staticHomeFor,
+  stripLocalePrefix,
   type Site,
 } from "./lib/site";
 
@@ -50,17 +51,43 @@ export default async function proxy(request: NextRequest) {
   const site = resolveSite(request);
   const externalPathname = request.nextUrl.pathname;
 
+  // SITE-I18N (CEO 2026-10-13): a tradução cobre o mundo Minefy. O mundo
+  // Agrofy permanece PT-only — um prefixo de locale no domínio agro NÃO pode
+  // renderizar uma versão falsa/incompleta: redireciona para a rota PT.
+  if (site === "agro") {
+    const { locale, path } = stripLocalePrefix(externalPathname);
+    if (locale) {
+      const url = request.nextUrl.clone();
+      url.pathname = path;
+      return NextResponse.redirect(url, 308);
+    }
+  }
+
   // Static home (CEO 2026-10-09): on the mineração world `/` serves the
   // self-contained cinematic experience from `public/home.html`. Rewrite
   // (never redirect) so the address bar stays `/`; next-intl is skipped —
   // the static page carries its own `lang`, metadata and canonical.
   // Agrofy (`staticHomeFor` → null) keeps its Next.js home untouched.
+  // SITE-I18N: `/en`, `/es` e `/zh-CN` servem as homes localizadas geradas
+  // em build (`/home-<locale>.html`), com o mesmo comportamento de rewrite.
   const staticHome = staticHomeFor(site, externalPathname);
   if (staticHome) {
     return NextResponse.rewrite(new URL(staticHome, request.url));
   }
 
-  const internalPathname = mapPathnameForSite(site, externalPathname);
+  // SITE-I18N: o mapa de marca opera no path SEM prefixo de locale (senão
+  // `/en/agrofy` furaria o isolamento de mundos). O prefixo é devolvido
+  // depois, para o next-intl resolver o locale da rota mapeada — EXCETO na
+  // rota de bloqueio cross-world: a mutação para caminho com prefixo não é
+  // honrada pelo middleware do next-intl (verificado em QA), então o
+  // bloqueio usa o caminho sem prefixo e o 404 sai no chrome pt-BR, como já
+  // acontece para `/agrofy` sem prefixo.
+  const { locale: pathLocale, path: unprefixed } = stripLocalePrefix(externalPathname);
+  const mapped = mapPathnameForSite(site, unprefixed);
+  const internalPathname =
+    pathLocale && mapped !== "/mineracao-cross-world-blocked"
+      ? `/${pathLocale}${mapped === "/" ? "" : mapped}`
+      : mapped;
 
   // Rewrite the request's own pathname BEFORE handing off to next-intl's
   // middleware, so its locale-prefixing logic operates on the already-mapped
@@ -79,7 +106,7 @@ export default async function proxy(request: NextRequest) {
   // estática) — conteúdo legado, alcançável mas não indexável.
   // Decisão de arquitetura: noindex declarativo, NUNCA redirect aqui.
   if (
-    (site === "mineracao" && externalPathname === "/mineracao") ||
+    (site === "mineracao" && unprefixed === "/mineracao") ||
     (site === "agro" &&
       (externalPathname === "/agrofy" || externalPathname.startsWith("/agrofy/")))
   ) {

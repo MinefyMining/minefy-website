@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { MiningBrand } from "@/components/mining-brand";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, ExternalLink } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LocaleFlags } from "@/components/locale-flags";
 import {
   Sheet,
   SheetTrigger,
@@ -80,20 +81,20 @@ export function MiningHeader() {
         scrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
         {/* Logo */}
-        <Link href={homeHref} className="shrink-0" aria-label="Minefy, início">
+        <Link href={homeHref} className="shrink-0" aria-label={t("brandAria")}>
           <MiningBrand
             id="site-logo"
             surface={scrolled ? "theme" : "header"}
             priority
             sizes="160px"
-            className={`transition-all duration-200 ${scrolled ? "w-[136px]" : "w-[156px]"}`}
+            className={`transition-all duration-200 ${scrolled ? "w-[112px] sm:w-[136px]" : "w-[112px] sm:w-[156px]"}`}
           />
         </Link>
 
         {/* Desktop nav — centered */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-8">
           {navLinks.map(({ key, href }) => (
             <Link
               key={key}
@@ -111,9 +112,18 @@ export function MiningHeader() {
           ))}
         </nav>
 
-        {/* Right side — theme toggle + Platform button + Mobile menu */}
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
+        {/* Right side — idiomas (SITE-I18N) + theme toggle + Platform + Mobile menu */}
+        <div className="flex items-center gap-1.5 sm:gap-3">
+          {/* Bandeiras de idioma SEMPRE visíveis no canto superior direito —
+              inclusive no celular; a troca não fica escondida dentro do menu.
+              Suspense: o componente lê useSearchParams (CSR bailout). */}
+          <Suspense fallback={null}>
+            <LocaleFlags />
+          </Suspense>
+          {/* No celular o tema vai para o menu (não cabe ao lado das bandeiras). */}
+          <div className="hidden sm:block">
+            <ThemeToggle />
+          </div>
           {/* Platform access — THE KEY BUTTON */}
           <a
             href="https://app.minefymining.com"
@@ -127,17 +137,17 @@ export function MiningHeader() {
 
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger className="lg:hidden" aria-label="Menu">
+            <SheetTrigger className="xl:hidden" aria-label={t("menu")}>
               <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-[var(--header-fg)]"}`} />
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
-              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <SheetTitle className="sr-only">{t("menu")}</SheetTitle>
               <div className="pb-6 border-b border-border">
                 <MiningBrand surface="theme" sizes="140px" className="w-[132px]" />
               </div>
               <nav className="mt-6 flex flex-col gap-1 flex-1">
                 {navLinks.map(({ key, href }) => (
-                  <a
+                  <Link
                     key={key}
                     href={href}
                     onClick={() => setOpen(false)}
@@ -148,10 +158,13 @@ export function MiningHeader() {
                     }`}
                   >
                     {t(key)}
-                  </a>
+                  </Link>
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">
+                <div className="flex justify-center sm:hidden">
+                  <ThemeToggle />
+                </div>
                 <a
                   href="https://app.minefymining.com"
                   target="_blank"

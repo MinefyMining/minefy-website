@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 interface TelemetryCardProps {
   className?: string;
@@ -30,6 +31,7 @@ function sparkPath(values: number[], w: number, h: number) {
  * via the CSS-gated `.flow-dash` / pulse utilities.
  */
 export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCardProps) {
+  const t = useTranslations("chrome.experienceLab");
   const [cycles, setCycles] = useState(24.7);
   const [fuel, setFuel] = useState(82);
   const [temp, setTemp] = useState(71);
@@ -72,7 +74,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
             className="h-1.5 w-1.5 rounded-full bg-[#D4A847] motion-safe:animate-pulse"
             aria-hidden="true"
           />
-          simulação
+          {t("telemetryChip")}
         </span>
       </div>
 
@@ -81,7 +83,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
         <span className="font-mono text-4xl font-bold tabular-nums text-foreground">
           {cycles.toFixed(1)}
         </span>
-        <span className="mb-1 font-mono text-xs text-[#D4A847]">ciclos / h</span>
+        <span className="mb-1 font-mono text-xs text-[#D4A847]">{t("telemetryUnit")}</span>
       </div>
 
       {/* sparkline */}
@@ -102,7 +104,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
         {[
           { l: "fuel", v: `${fuel}%` },
           { l: "temp", v: `${temp}°` },
-          { l: "seg", v: "ok" },
+          { l: t("telemetrySafety"), v: "ok" },
         ].map((c) => (
           <div key={c.l} className="rounded-lg border border-border bg-[#0D0D0D] px-2 py-2 text-center">
             <p className="font-mono text-sm font-semibold uppercase tabular-nums text-[#D4A847]">
@@ -121,10 +123,10 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
       {/* Persistent honesty label — this panel illustrates the product with
           simulated values; it is NOT connected to a live operation. */}
       <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-        Demonstração interativa · dados simulados
+        {t("honestyLabel")}
       </p>
       <span className="sr-only">
-        Valores ilustrativos, não correspondem a uma operação real.
+        {t("telemetrySrNote")}
       </span>
     </motion.div>
   );

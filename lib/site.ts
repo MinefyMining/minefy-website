@@ -89,18 +89,54 @@ export function mapPathnameForSite(site: Site, pathname: string): string {
  * It is served by a middleware rewrite of `/` → `/home.html` so the address
  * bar stays `/`; the React tree (`app/`) is never involved for that request.
  * Agrofy keeps its Next.js home (`null` = no static home).
+ *
+ * SITE-I18N (CEO 2026-10-13): the cinematic home also exists in EN/ES/zh-CN,
+ * generated at build time (`scripts/build-home-i18n.mjs`) as
+ * `home-<locale>.html`, served by rewrite of `/<locale>` — stable,
+ * shareable prefixes, initial HTML already in the right language.
  */
 export const STATIC_HOME: Record<Site, string | null> = {
   mineracao: "/home.html",
   agro: null,
 };
 
+/** Locales da home cinematográfica localizada (PT é o arquivo original). */
+export const STATIC_HOME_LOCALES = ["en", "es", "zh-CN"] as const;
+export type StaticHomeLocale = (typeof STATIC_HOME_LOCALES)[number];
+
 /** Pure helper used by `proxy.ts`: the static file to rewrite to when
  * `pathname` is the public home of a world that has one; otherwise `null`
  * (fall through to `mapPathnameForSite` + next-intl). Only the exact `/`
- * matches — `/mineracao` (previous corporate home, now linked as
- * "Website institucional") and every other route are untouched. */
+ * matches for PT — plus the exact locale prefixes for the localized homes.
+ * `/mineracao` (previous corporate home, noindex) and every other route are
+ * untouched. */
 export function staticHomeFor(site: Site, pathname: string): string | null {
-  if (pathname !== "/") return null;
-  return STATIC_HOME[site];
+  const clean = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  if (clean === "/") return STATIC_HOME[site];
+  if (site === "mineracao") {
+    const locale = clean.slice(1) as StaticHomeLocale;
+    if (STATIC_HOME_LOCALES.includes(locale)) return `/home-${locale}.html`;
+  }
+  return null;
+}
+
+/** Separa o prefixo de locale não-padrão de um pathname externo.
+ * `/en/solucoes` → { locale: "en", path: "/solucoes" }; sem prefixo → locale null. */
+export function stripLocalePrefix(
+  pathname: string,
+): { locale: StaticHomeLocale | null; path: string } {
+  for (const locale of STATIC_HOME_LOCALES) {
+    if (pathname === `/${locale}`) return { locale, path: "/" };
+    if (pathname.startsWith(`/${locale}/`)) {
+      return { locale, path: pathname.slice(locale.length + 1) };
+    }
+  }
+  return { locale: null, path: pathname };
+}
+
+/** Canonical localizado: PT sem prefixo; demais com prefixo estável.
+ * `path` é sempre o EXTERNO já sem prefixo de locale. */
+export function localizedCanonicalFor(site: Site, path: string, locale: string): string {
+  const prefix = locale === "pt-BR" ? "" : `/${locale}`;
+  return canonicalFor(site, `${prefix}${path === "/" ? (prefix ? "" : "/") : path}`) ;
 }

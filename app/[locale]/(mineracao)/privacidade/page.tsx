@@ -11,6 +11,7 @@ export async function generateMetadata({ params }: Props) {
     path: "/privacidade",
     title: t("title"),
     description: t("description"),
+    locale,
   });
 }
 

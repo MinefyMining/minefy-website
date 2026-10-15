@@ -1,5 +1,6 @@
 // Keep navigation usable before optional scenes and charts have downloaded.
 // A first interaction is replayed after initialization, including on a slow link.
+import {loadI18n} from './home-i18n.js';
 export function deferEnhancement(selectors, load) {
  const sections=[...document.querySelectorAll(selectors)];
  let pending,ready=false,latestAction=0;
@@ -9,12 +10,13 @@ export function deferEnhancement(selectors, load) {
  });
  function state(value){sections.forEach(section=>{section.dataset.enhancement=value;});}
  function clearNotices(){notices.splice(0).forEach(note=>note.remove());}
- function showRetry(){
+ async function showRetry(){
+  const {t}=await loadI18n();
   clearNotices();
   sections.forEach(section=>{
    const note=document.createElement('p');note.className='enhancement-retry';note.setAttribute('role','status');
-   note.textContent='A conexão interrompeu esta parte da experiência. ';
-   const button=document.createElement('button');button.type='button';button.textContent='Tentar novamente';button.dataset.enhancementRetry='true';
+   note.textContent=t('js.enh.retry');
+   const button=document.createElement('button');button.type='button';button.textContent=t('js.enh.retryButton');button.dataset.enhancementRetry='true';
    button.addEventListener('click',start);note.append(button);section.prepend(note);notices.push(note);
   });
  }
@@ -31,7 +33,7 @@ export function deferEnhancement(selectors, load) {
     for(const type of ['click','input','change'])section.removeEventListener(type,onInteraction,true);
    });
    return true;
-  },()=>{pending=null;state('error');showRetry();return false;});
+  },async()=>{pending=null;state('error');await showRetry();return false;});
   return pending;
  }
  async function onInteraction(event){

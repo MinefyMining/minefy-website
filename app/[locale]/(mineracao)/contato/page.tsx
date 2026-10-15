@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: Props) {
     path: "/contato",
     title: t("title"),
     description: t("description"),
+    locale,
   });
 }
 
