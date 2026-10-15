@@ -82,9 +82,12 @@ export function LocaleFlags({ className = "" }: { className?: string }) {
   const searchParams = useSearchParams();
   const query = searchParams.toString();
   // A âncora (#) não chega ao servidor. Lida no cliente e acompanhada ao
-  // vivo (hashchange/popstate): um clique num link interno depois do
-  // primeiro render também precisa ir junto na troca de idioma.
+  // vivo: hashchange/popstate, troca de rota (pathname/query) e, porque o
+  // Link do Next muda a âncora via pushState sem disparar hashchange, uma
+  // releitura no pointerdown/foco da bandeira — antes do clique (inclusive
+  // clique do meio e Ctrl+clique) o href já carrega a âncora atual.
   const [hash, setHash] = useState("");
+  const syncHash = () => setHash(window.location.hash);
   useEffect(() => {
     const sync = () => setHash(window.location.hash);
     sync();
@@ -94,11 +97,16 @@ export function LocaleFlags({ className = "" }: { className?: string }) {
       window.removeEventListener("hashchange", sync);
       window.removeEventListener("popstate", sync);
     };
-  }, []);
+  }, [pathname, query]);
   const target = `${pathname}${query ? `?${query}` : ""}${hash}`;
 
   return (
-    <nav aria-label={t("localeNav")} className={`flex items-center gap-0.5 sm:gap-1 ${className}`}>
+    <nav
+      aria-label={t("localeNav")}
+      onPointerDownCapture={syncHash}
+      onFocusCapture={syncHash}
+      className={`flex items-center gap-0.5 sm:gap-1 ${className}`}
+    >
       {FLAGS.map(({ locale, label, svg }) => {
         const isActive = locale === active;
         // Português (padrão, sem prefixo): link direto para o caminho sem
