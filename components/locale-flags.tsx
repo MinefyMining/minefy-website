@@ -1,9 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import NextLink from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
-import { useLocale } from "next-intl";
 
 /**
  * SITE-I18N (CEO 2026-10-13): seletor de idioma por QUATRO BANDEIRAS
@@ -79,20 +81,44 @@ export function LocaleFlags({ className = "" }: { className?: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.toString();
-  // A âncora (#) não chega ao servidor: o componente está sob Suspense com
-  // CSR bailout (renderiza só no cliente), então o hash é lido direto do
-  // window no primeiro render — preservando página + query + âncora (brief).
-  const hash = typeof window !== "undefined" ? window.location.hash : "";
+  // A âncora (#) não chega ao servidor. Lida no cliente e acompanhada ao
+  // vivo: hashchange/popstate, troca de rota (pathname/query) e, porque o
+  // Link do Next muda a âncora via pushState sem disparar hashchange, uma
+  // releitura no pointerdown/foco da bandeira — antes do clique (inclusive
+  // clique do meio e Ctrl+clique) o href já carrega a âncora atual.
+  const [hash, setHash] = useState("");
+  const syncHash = () => setHash(window.location.hash);
+  useEffect(() => {
+    const sync = () => setHash(window.location.hash);
+    sync();
+    window.addEventListener("hashchange", sync);
+    window.addEventListener("popstate", sync);
+    return () => {
+      window.removeEventListener("hashchange", sync);
+      window.removeEventListener("popstate", sync);
+    };
+  }, [pathname, query]);
+  const target = `${pathname}${query ? `?${query}` : ""}${hash}`;
 
   return (
-    <nav aria-label={t("localeNav")} className={`flex items-center gap-0.5 sm:gap-1 ${className}`}>
+    <nav
+      aria-label={t("localeNav")}
+      onPointerDownCapture={syncHash}
+      onFocusCapture={syncHash}
+      className={`flex items-center gap-0.5 sm:gap-1 ${className}`}
+    >
       {FLAGS.map(({ locale, label, svg }) => {
         const isActive = locale === active;
+        // Português (padrão, sem prefixo): link direto para o caminho sem
+        // prefixo. O Link do next-intl passaria por /pt-BR/… → redirect, e
+        // esse salto perdia a âncora (#contato) na navegação client.
+        const LinkTag = locale === routing.defaultLocale ? NextLink : Link;
+        const localeProps = locale === routing.defaultLocale ? {} : { locale };
         return (
-          <Link
+          <LinkTag
             key={locale}
-            href={`${pathname}${query ? `?${query}` : ""}${hash}`}
-            locale={locale}
+            href={target}
+            {...localeProps}
             aria-label={label}
             aria-current={isActive ? "true" : undefined}
             className={`inline-flex min-h-[28px] min-w-[28px] items-center justify-center rounded-md p-1 sm:min-h-[36px] sm:min-w-[36px] sm:p-1.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847] ${
@@ -102,7 +128,7 @@ export function LocaleFlags({ className = "" }: { className?: string }) {
             }`}
           >
             {svg}
-          </Link>
+          </LinkTag>
         );
       })}
     </nav>

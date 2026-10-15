@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
@@ -78,6 +78,7 @@ export function ContactForm({
   initialService,
 }: ContactFormProps) {
   const t = useTranslations("contact");
+  const locale = useLocale();
   const [status, setStatus] = useState<Status>("idle");
 
   /**
@@ -177,7 +178,7 @@ export function ContactForm({
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...data, t: token ?? undefined }),
+            body: JSON.stringify({ ...data, locale, t: token ?? undefined }),
           },
           15_000,
         );

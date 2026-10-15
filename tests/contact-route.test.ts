@@ -89,6 +89,20 @@ describe("POST /api/contact", () => {
     expect(arg.html).toContain("Empresa Exemplo S.A.");
   });
 
+  it("(b2) lead de página em outro idioma: idioma marcado no assunto e no corpo; PT sem marcação; idioma inválido → 400", async () => {
+    sendMock.mockResolvedValue({ data: { id: "mock-id" }, error: null });
+    const { POST } = await loadRoute(true);
+    expect((await POST(jsonRequest({ ...valid, locale: "en" }))).status).toBe(200);
+    const en = sendMock.mock.calls[0][0];
+    expect(en.subject).toContain("· EN]");
+    expect(en.html).toContain("responder em inglês");
+    expect((await POST(jsonRequest({ ...valid, locale: "pt-BR" }))).status).toBe(200);
+    const pt = sendMock.mock.calls[1][0];
+    expect(pt.html).not.toContain("Idioma do visitante");
+    expect((await POST(jsonRequest({ ...valid, locale: "fr" }))).status).toBe(400);
+    expect(sendMock).toHaveBeenCalledTimes(2);
+  });
+
   it("(c) provedor devolve error → 502", async () => {
     sendMock.mockResolvedValue({ data: null, error: { message: "rejected" } });
     const { POST } = await loadRoute(true);

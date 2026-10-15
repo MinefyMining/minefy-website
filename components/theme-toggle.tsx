@@ -4,7 +4,14 @@ import { Sun, Moon } from "lucide-react";
 import { useIsLight, useMounted } from "@/lib/use-theme-store";
 
 /** Dark/light theme toggle — flips `html.light` and persists in localStorage. */
-export function ThemeToggle({ className = "" }: { className?: string }) {
+export function ThemeToggle({
+  className = "",
+  labels = { toDark: "Mudar para tema escuro", toLight: "Mudar para tema claro" },
+}: {
+  className?: string;
+  /** Rótulos para leitor de tela no idioma da página (padrão PT: Agrofy). */
+  labels?: { toDark: string; toLight: string };
+}) {
   const light = useIsLight();
   const mounted = useMounted();
 
@@ -23,7 +30,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       type="button"
       onClick={toggle}
-      aria-label={light ? "Mudar para tema escuro" : "Mudar para tema claro"}
+      aria-label={light ? labels.toDark : labels.toLight}
       className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-foreground/70 transition-colors hover:border-primary/50 hover:text-primary ${className}`}
     >
       {mounted && light ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}

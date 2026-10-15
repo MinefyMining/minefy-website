@@ -15,7 +15,9 @@
     "experiences": "互动体验",
     "brandAria": "Minefy，首页",
     "menu": "菜单",
-    "localeNav": "语言选择"
+    "localeNav": "语言选择",
+    "themeToDark": "切换到深色主题",
+    "themeToLight": "切换到浅色主题"
   },
   "agroNav": {
     "home": "Início",
