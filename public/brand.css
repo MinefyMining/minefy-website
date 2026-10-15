@@ -45,3 +45,8 @@
 
 .enhancement-retry{position:relative;z-index:5;padding:16px 24px;background:#191d20;color:#f6f3eb;font:500 13px Manrope,Arial,sans-serif}
 .enhancement-retry button{border:0;background:none;color:var(--gold);text-decoration:underline;font:inherit;cursor:pointer;padding:8px}
+
+/* SITE-I18N: logo + 4 bandeiras + menu cabem em 320-480 px; título zh-CN cabe na tela */
+@media (max-width:480px){.site-header{gap:10px}.site-header .brand-logo{width:128px}.locale-flags{gap:0;margin-left:auto}.locale-flag{min-width:28px;min-height:28px;padding:4px}}
+@media (max-width:360px){.site-header{padding-inline:16px;gap:6px}.site-header .brand-logo{width:108px}.locale-flag{min-width:26px;min-height:26px;padding:3px}}
+@media (max-width:700px){html[lang="zh-CN"] .hero h1{font-size:clamp(48px,14vw,96px)}}

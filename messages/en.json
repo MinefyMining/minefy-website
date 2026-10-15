@@ -14,7 +14,8 @@
     "platform": "Access Platform",
     "experiences": "Experiences",
     "brandAria": "Minefy, home",
-    "menu": "Menu"
+    "menu": "Menu",
+    "localeNav": "Language selection"
   },
   "agroNav": {
     "home": "Início",
@@ -2305,7 +2306,9 @@
         }
       ],
       "telemetrySrNote": "Illustrative values, they do not correspond to a real operation.",
-      "telemetryChip": "simulation"
+      "telemetryChip": "simulation",
+      "telemetryUnit": "cycles / h",
+      "telemetrySafety": "safety"
     }
   }
 }

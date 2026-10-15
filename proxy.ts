@@ -106,7 +106,7 @@ export default async function proxy(request: NextRequest) {
   // estática) — conteúdo legado, alcançável mas não indexável.
   // Decisão de arquitetura: noindex declarativo, NUNCA redirect aqui.
   if (
-    (site === "mineracao" && externalPathname === "/mineracao") ||
+    (site === "mineracao" && unprefixed === "/mineracao") ||
     (site === "agro" &&
       (externalPathname === "/agrofy" || externalPathname.startsWith("/agrofy/")))
   ) {

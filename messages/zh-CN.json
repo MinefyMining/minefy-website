@@ -14,7 +14,8 @@
     "platform": "进入平台",
     "experiences": "互动体验",
     "brandAria": "Minefy，首页",
-    "menu": "菜单"
+    "menu": "菜单",
+    "localeNav": "语言选择"
   },
   "agroNav": {
     "home": "Início",
@@ -2305,7 +2306,9 @@
         }
       ],
       "telemetrySrNote": "数值仅为示意，不对应真实运营。",
-      "telemetryChip": "模拟"
+      "telemetryChip": "模拟",
+      "telemetryUnit": "循环 / 小时",
+      "telemetrySafety": "安全"
     }
   }
 }

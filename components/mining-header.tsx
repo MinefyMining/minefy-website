@@ -81,7 +81,7 @@ export function MiningHeader() {
         scrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
         {/* Logo */}
         <Link href={homeHref} className="shrink-0" aria-label={t("brandAria")}>
           <MiningBrand
@@ -89,7 +89,7 @@ export function MiningHeader() {
             surface={scrolled ? "theme" : "header"}
             priority
             sizes="160px"
-            className={`transition-all duration-200 ${scrolled ? "w-[136px]" : "w-[156px]"}`}
+            className={`transition-all duration-200 ${scrolled ? "w-[112px] sm:w-[136px]" : "w-[112px] sm:w-[156px]"}`}
           />
         </Link>
 
@@ -113,14 +113,17 @@ export function MiningHeader() {
         </nav>
 
         {/* Right side — idiomas (SITE-I18N) + theme toggle + Platform + Mobile menu */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* Bandeiras de idioma SEMPRE visíveis no canto superior direito —
               inclusive no celular; a troca não fica escondida dentro do menu.
               Suspense: o componente lê useSearchParams (CSR bailout). */}
           <Suspense fallback={null}>
             <LocaleFlags />
           </Suspense>
-          <ThemeToggle />
+          {/* No celular o tema vai para o menu (não cabe ao lado das bandeiras). */}
+          <div className="hidden sm:block">
+            <ThemeToggle />
+          </div>
           {/* Platform access — THE KEY BUTTON */}
           <a
             href="https://app.minefymining.com"
@@ -159,6 +162,9 @@ export function MiningHeader() {
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">
+                <div className="flex justify-center sm:hidden">
+                  <ThemeToggle />
+                </div>
                 <a
                   href="https://app.minefymining.com"
                   target="_blank"

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
@@ -74,6 +75,7 @@ function FlagCN() {
 
 export function LocaleFlags({ className = "" }: { className?: string }) {
   const active = useLocale();
+  const t = useTranslations("nav");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.toString();
@@ -83,7 +85,7 @@ export function LocaleFlags({ className = "" }: { className?: string }) {
   const hash = typeof window !== "undefined" ? window.location.hash : "";
 
   return (
-    <nav aria-label="Seleção de idioma" className={`flex items-center gap-1 ${className}`}>
+    <nav aria-label={t("localeNav")} className={`flex items-center gap-0.5 sm:gap-1 ${className}`}>
       {FLAGS.map(({ locale, label, svg }) => {
         const isActive = locale === active;
         return (
@@ -93,7 +95,7 @@ export function LocaleFlags({ className = "" }: { className?: string }) {
             locale={locale}
             aria-label={label}
             aria-current={isActive ? "true" : undefined}
-            className={`inline-flex min-h-[36px] min-w-[36px] items-center justify-center rounded-md p-1.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847] ${
+            className={`inline-flex min-h-[28px] min-w-[28px] items-center justify-center rounded-md p-1 sm:min-h-[36px] sm:min-w-[36px] sm:p-1.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A847] ${
               isActive
                 ? "ring-2 ring-[#D4A847] ring-offset-1 ring-offset-transparent scale-105"
                 : "opacity-70 hover:opacity-100"

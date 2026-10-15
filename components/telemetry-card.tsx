@@ -83,7 +83,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
         <span className="font-mono text-4xl font-bold tabular-nums text-foreground">
           {cycles.toFixed(1)}
         </span>
-        <span className="mb-1 font-mono text-xs text-[#D4A847]">ciclos / h</span>
+        <span className="mb-1 font-mono text-xs text-[#D4A847]">{t("telemetryUnit")}</span>
       </div>
 
       {/* sparkline */}
@@ -104,7 +104,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
         {[
           { l: "fuel", v: `${fuel}%` },
           { l: "temp", v: `${temp}°` },
-          { l: "seg", v: "ok" },
+          { l: t("telemetrySafety"), v: "ok" },
         ].map((c) => (
           <div key={c.l} className="rounded-lg border border-border bg-[#0D0D0D] px-2 py-2 text-center">
             <p className="font-mono text-sm font-semibold uppercase tabular-nums text-[#D4A847]">
