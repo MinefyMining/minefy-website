@@ -1,0 +1,2311 @@
+{
+  "metadata": {
+    "title": "Minefy — 矿业遥测与技术",
+    "description": "为露天采矿提供先进遥测、工业平板电脑和智能管理。实时监测大型设备。欢迎咨询我们的专家。"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "solutions": "解决方案",
+    "mining": "矿业",
+    "iaTi": "AI 与 IT",
+    "projects": "项目",
+    "contact": "联系我们",
+    "platform": "进入平台",
+    "experiences": "互动体验",
+    "brandAria": "Minefy，首页",
+    "menu": "菜单"
+  },
+  "agroNav": {
+    "home": "Início",
+    "about": "Quem Somos",
+    "solutions": "Soluções",
+    "pilot": "Piloto",
+    "contact": "Contato",
+    "platform": "Acessar Plataforma"
+  },
+  "home": {
+    "hero": {
+      "badge": "智能采矿",
+      "title": "面向大型矿山的先进遥测技术",
+      "subtitle": "实时掌握大型设备运行：在调度室屏幕上查看作业循环、燃油和安全信息。自主研发技术，已在大型矿山运营中验证。",
+      "trust": "已在真实大型矿山运营中验证的技术",
+      "cta": "预约演示",
+      "ctaSecondary": "进入平台"
+    },
+    "stats": {
+      "items": [
+        {
+          "value": "CAN J1939",
+          "label": "直接读取设备总线的遥测数据"
+        },
+        {
+          "value": "24/7",
+          "label": "实时监测"
+        },
+        {
+          "value": "GRM",
+          "label": "与矿山调度系统集成"
+        },
+        {
+          "value": "坝体",
+          "label": "坝体退役治理项目中的遥测应用"
+        }
+      ]
+    },
+    "howItWorks": {
+      "kicker": "工作原理",
+      "title": "从设备到决策，只需三步",
+      "subtitle": "让矿山遥测更直观：从设备总线到调度室屏幕。",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "连接",
+          "text": "ActiSky 模块安装在设备上，读取 CAN J1939 总线数据，包括 RPM、燃油、温度和 GPS 位置，具体取决于每台设备可提供的信号。机油压力与温度：集成正在开发中，将在逐台设备验证信号后启用。"
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "传输",
+          "text": "遥测数据实时上传至 Minefy 平台。在信号不稳定的区域，数据可按所部署模块及其配置暂存于模块中，并在连接恢复后重新发送。"
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "决策",
+          "text": "仪表盘、作业循环和告警信息直达调度室，为现场及时行动提供依据，让决策有据可循。"
+        }
+      ]
+    },
+    "products": {
+      "title": "我们的解决方案",
+      "subtitle": "专为露天矿山运营和大型设备设计的技术。",
+      "items": [
+        {
+          "icon": "tablet",
+          "title": "矿用平板电脑",
+          "description": "面向不同作业需求提供三条产品线：商用型（加固现场套件）、半工业型（原厂加固设备）和工业型（车载计算机）。按需配置防护能力：各产品线的配置均根据现场需求选定，并在方案和验收验证中确认。",
+          "badge": "硬件"
+        },
+        {
+          "icon": "satellite",
+          "title": "ActiSky 遥测",
+          "description": "面向重型设备的 CAN J1939 IoT 模块，可采集 RPM、油耗、温度和 GPS 数据，具体取决于每台设备可提供的信号。机油压力与温度：集成正在开发中，将在逐台设备验证信号后启用。制动温度与过热告警：集成尚待开发，并须逐台设备验证。数据实时呈现在屏幕上。",
+          "badge": "IoT"
+        },
+        {
+          "icon": "chart",
+          "title": "Minefy Analytics",
+          "description": "面向矿山的实时运营仪表盘。生产 KPI、可导出报表——RDO 支持 CSV、XLSX 和 PDF——以及趋势分析，为数据驱动决策提供支持。按日、周、月定时自动分发功能正在开发中。",
+          "badge": "软件"
+        },
+        {
+          "icon": "truck",
+          "title": "Fleet 360",
+          "description": "重型车队管理与状态监测，覆盖矿用非公路卡车、挖掘机和装载机。基于已接入的遥测信号，按配置规则触发告警；AI 预测性维护正在开发中。",
+          "badge": "管理"
+        },
+        {
+          "icon": "shield",
+          "title": "Minefy Safety",
+          "description": "矿山作业安全：根据安装配置提供疲劳与分心监测（ADAS/DMS）；设备接近监测仍待集成和现场验证；提供危险区域告警，支持现场安全作业程序。",
+          "badge": "安全"
+        },
+        {
+          "icon": "users",
+          "title": "咨询服务",
+          "description": "由具备矿山运营经验的专业人员提供遥测部署、操作员培训及流程优化。",
+          "badge": "服务"
+        },
+        {
+          "icon": "car",
+          "title": "作业皮卡",
+          "description": "提供适用于现场作业的 4x4 皮卡租赁，配备安全标识和警示灯，按计划开展预防性维护，保持可运营状态；可用性以合同约定为准，无需将资金投入自有车队。",
+          "badge": "租赁"
+        },
+        {
+          "icon": "wind",
+          "title": "空气压缩机",
+          "description": "租赁高性能便携式空气压缩机，用于矿山钻孔、喷砂和气动工具作业。",
+          "badge": "设备"
+        }
+      ]
+    },
+    "outcomes": {
+      "kicker": "成效",
+      "title": "为您的运营带来哪些改变",
+      "subtitle": "遥测的价值在于行动：让数据转化为改善作业循环、维护和安全的决策。",
+      "items": [
+        {
+          "icon": "timer",
+          "title": "提高每小时作业循环次数",
+          "text": "实时监控装载与卸载循环，识别瓶颈，帮助充分发挥车队中每台设备的能力。"
+        },
+        {
+          "icon": "wrench",
+          "title": "减少非计划停机",
+          "text": "当前可对温度和 RPM 进行监测，并按配置规则触发告警；正在开发的 Fleet 360 预测性维护旨在提前发现故障风险，避免设备在采坑内突发停机。"
+        },
+        {
+          "icon": "shield",
+          "title": "提前行动，保障安全",
+          "text": "疲劳与分心告警（取决于安装及启用配置）、设备接近监测——集成和现场验证尚待完成——以及按配置提供的危险区域和设备状态信息，支持现场安全程序，帮助及时采取行动。"
+        },
+        {
+          "icon": "chart",
+          "title": "用数据支持决策，告别手工表格",
+          "text": "调度室仪表盘替代手工报表：实时查看生产 KPI 和车队趋势。"
+        }
+      ]
+    },
+    "authority": {
+      "title": "矿业企业为何选择 Minefy",
+      "items": [
+        {
+          "title": "已用于大型矿山运营",
+          "description": "我们的技术已应用于大型矿业坝体退役治理项目，对重型设备进行 24/7 监测。"
+        },
+        {
+          "title": "自主研发的端到端技术体系",
+          "description": "从设备上的 ActiSky 模块到调度室仪表盘，解决方案核心不依赖第三方。"
+        },
+        {
+          "title": "专为重型采矿作业打造",
+          "description": "每项功能都结合挖掘机操作员、矿用非公路卡车驾驶员和矿山管理者的直接反馈进行开发。"
+        },
+        {
+          "title": "深入矿山现场的支持",
+          "description": "技术团队深入采坑，提供设备安装、操作员培训和现场支持。"
+        }
+      ]
+    },
+    "testDrive": {
+      "title": "查看平台实际运行",
+      "subtitle": "使用真实矿山运营数据，探索遥测仪表盘、车队管理和安全告警。",
+      "cta": "进入平台",
+      "ctaSecondary": "咨询专家"
+    },
+    "clients": {
+      "title": "信赖 Minefy 的运营团队",
+      "subtitle": "已在巴西要求严苛的矿山和重型工程作业中验证的技术。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "subtitle": "矿山管理者和运营团队在启用前最关心的问题。",
+      "items": [
+        {
+          "q": "什么是 ActiSky 遥测？",
+          "a": "ActiSky 是安装在设备上的 IoT 模块，读取 CAN J1939 总线，将 RPM、燃油、温度和 GPS 数据实时传输至 Minefy 平台，形成仪表盘、作业循环和告警。可采集的数据取决于每台设备可提供的信号。机油压力与温度：集成正在开发中，将在逐台设备验证信号后启用。"
+        },
+        {
+          "q": "如何在我的车队上安装？",
+          "a": "我们的技术团队会前往采坑，制定安装计划以避免影响作业，并在现场完成模块配置和操作员培训。支持直接到达矿山现场，而不仅限于电话。"
+        },
+        {
+          "q": "平台能与我的调度系统集成吗？",
+          "a": "可以。Minefy 遥测已在大型矿山运营中与矿山管理及调度系统集成，为控制室提供大型设备数据。"
+        },
+        {
+          "q": "我的数据是否安全且相互隔离？",
+          "a": "平台采用多租户架构，按客户隔离数据：各运营团队只能查看自己的数据。架构与流程遵循巴西《通用数据保护法》（LGPD）的要求，并按角色控制访问权限。"
+        },
+        {
+          "q": "信号不稳定的区域也能使用吗？",
+          "a": "可以。具体取决于所部署的模块及其配置：在连接间歇中断的区域，遥测数据可暂存于模块中，并在信号恢复后重新发送。"
+        },
+        {
+          "q": "采用什么商业模式？",
+          "a": "工业平板电脑租赁加平台订阅（SaaS），按设备和站点扩展。无需大额前期投入，可随运营需求逐步扩大使用规模。"
+        }
+      ]
+    },
+    "cta": {
+      "title": "想亲自了解吗？",
+      "subtitle": "使用您现场的数据体验平台。预约演示，无需承诺购买。",
+      "button": "预约演示"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "关于我们 — Minefy",
+      "description": "源自大型矿山实践的技术工程：工业遥测、企业 AI、自主智能体及 IT 服务。"
+    },
+    "hero": {
+      "title": "源自矿山一线的技术"
+    },
+    "intro": {
+      "text": "Minefy Mining 始终相信，巴西矿业值得拥有世界级技术。公司由具备大型矿山一线运营经验的专业人员创立，将适应严苛环境的加固硬件、实时遥测软件与现场经验相结合，创造可衡量的成果。如今，这套源自矿山的工程能力也服务于办公室：业务 AI、自主智能体以及定制 IT 服务。工业实践是我们的基础，也推动我们不断拓展。",
+      "highlight": "我们的目标：到 2027 年成为巴西矿业的标杆平台。"
+    },
+    "numbers": {
+      "items": [
+        {
+          "value": "2025",
+          "label": "成立年份"
+        },
+        {
+          "value": "6",
+          "label": "产品"
+        },
+        {
+          "value": "坝体",
+          "label": "退役治理"
+        },
+        {
+          "value": "24/7",
+          "label": "监测"
+        }
+      ]
+    },
+    "mission": {
+      "title": "使命",
+      "text": "通过集成遥测技术，提高矿山运营的效率、安全性和可持续性，连接重型设备上的传感器与调度室仪表盘。"
+    },
+    "vision": {
+      "title": "愿景",
+      "text": "成为巴西领先的矿业科技平台，在露天采矿先进遥测和运营管控领域树立标杆。"
+    },
+    "values": {
+      "title": "价值观",
+      "items": [
+        {
+          "title": "安全第一",
+          "text": "每项产品决策都以矿山操作员的生命安全为首要考量。"
+        },
+        {
+          "title": "以数据为依据",
+          "text": "基于设备的真实遥测数据进行决策，而非凭直觉判断。"
+        },
+        {
+          "title": "为现场而生",
+          "text": "能够在矿山粉尘、高温和雨水环境下工作的技术。"
+        },
+        {
+          "title": "长期合作",
+          "text": "从采坑到控制室，我们始终与客户并肩协作。"
+        }
+      ]
+    },
+    "cta": {
+      "title": "深入了解我们的技术",
+      "text": "预约现场技术交流，或在线访问平台。",
+      "contactUs": "联系我们",
+      "platform": "进入平台"
+    }
+  },
+  "solutions": {
+    "metadata": {
+      "title": "解决方案 — Minefy",
+      "description": "为露天采矿和大型设备提供工业平板电脑、ActiSky 遥测、Analytics、Fleet 360、Safety、咨询服务，以及作业皮卡和空气压缩机租赁。"
+    },
+    "hero": {
+      "title": "矿业设备、人工智能与 IT。"
+    },
+    "divisions": {
+      "kicker": "两大业务板块",
+      "title": "Minefy 解决方案",
+      "subtitle": "从我们的工业工程基础到人工智能与 IT，选择适合您的入口。",
+      "entries": [
+        {
+          "id": "mineracao",
+          "badge": "业务板块 01",
+          "title": "矿业设备与解决方案",
+          "text": "工业平板电脑、ActiSky 遥测、数据分析、车队管理、安全系统及租赁服务，构成完整的工业产品与服务组合。",
+          "href": "#mineracao",
+          "ctaLabel": "查看矿业板块"
+        },
+        {
+          "id": "ia-ti",
+          "badge": "业务板块 02",
+          "title": "人工智能与 IT",
+          "text": "企业 AI、自主智能体与软件工程，连接企业系统与决策。",
+          "href": "#ia-ti",
+          "ctaLabel": "查看 AI 与 IT 板块"
+        }
+      ],
+      "mineracao": {
+        "kicker": "业务板块 01 · 矿业",
+        "title": "矿业设备与解决方案",
+        "lede": "硬件、遥测、软件及租赁服务，以完整的工业产品与服务支持现场运营。"
+      },
+      "iaTi": {
+        "kicker": "业务板块 02 · AI 与 IT",
+        "title": "人工智能与 IT",
+        "lede": "连接企业数据的 AI 模型、经人工批准执行任务的智能体，以及按约定范围交付的软件工程。将矿山工程经验应用于企业数字化流程。"
+      }
+    },
+    "items": [
+      {
+        "id": "tablets",
+        "badge": "硬件",
+        "title": "矿用平板电脑",
+        "description": "三条平板电脑产品线，满足从驾驶室辅助应用到固定车载计算机的不同作业要求。您可选择防护等级；配置按现场需求确定，并在方案和验收验证中确认。",
+        "tiers": [
+          {
+            "name": "商用型",
+            "example": "示例：新一代平板电脑 + 加固车载套件",
+            "image": "/images/products/tablet-comercial.png",
+            "description": "通过加固车载套件增强防护的商用平板电脑，包括抗冲击保护壳、车载支架和保护膜。适合驾驶室与辅助作业，以外部防护提供可靠性，兼顾成本与效益。",
+            "specs": [
+              "新一代平板电脑——屏幕、内存和存储容量以实际供货型号确认为准",
+              "加固车载套件：抗冲击保护壳 + 车载支架——防护能力以供货并完成验证的套件为准",
+              "加固车载底座充电——磁吸充电可选，以实际供货型号确认为准",
+              "按项目配置与 Minefy 平台的集成"
+            ]
+          },
+          {
+            "name": "半工业型",
+            "example": "示例：新一代半工业平板电脑",
+            "image": "/images/products/tablet-semi.png",
+            "description": "面向现场移动作业的原厂加固设备，提供密封防护、耐用结构和支持手套操作的触屏，无需依赖外置保护壳。防护等级随型号而异，并在方案中确认。",
+            "specs": [
+              "原厂密封与耐用设计——IP 防护等级和 MIL 标准以供货并完成验证的型号为准",
+              "支持手套操作的高分辨率触屏——尺寸与亮度以供货型号确认为准",
+              "适用于长班次的电池——可拆卸电池为可选配置，以供货型号确认为准",
+              "通过企业 MDM 进行远程管理"
+            ]
+          },
+          {
+            "name": "工业型",
+            "example": "示例：固定车载计算机",
+            "image": "/images/products/tablet-industrial.png",
+            "description": "固定安装的车载计算机，由设备自身电源系统供电。通过 CAN J1939 与 ActiSky 遥测集成，成为驾驶室的嵌入式计算核心。接口配置与验证方案按设备型号确定。",
+            "specs": [
+              "阳光直射下可读的屏幕——尺寸与亮度取决于型号",
+              "适用于严苛环境的结构——IP 防护等级和 MIL 标准取决于型号",
+              "CAN 和串行接口，支持摄像头——取决于已验证的型号",
+              "车载供电 · RTK 可选 · Android/Linux——按项目配置"
+            ]
+          }
+        ],
+        "image": "/images/solutions/78.jpg",
+        "metric": {
+          "value": "3",
+          "label": "防护产品线"
+        }
+      },
+      {
+        "id": "actisky",
+        "badge": "IoT / 遥测",
+        "title": "ActiSky 遥测",
+        "description": "面向矿山重型设备的 CAN J1939 IoT 遥测模块。可用信号取决于总线、传感器、安装方式及具体型号的验证结果，并在各项目范围内明确。排放监测属于规划能力，依赖经过验证的数据源和方法。行车制动与驻车制动状态仍作为独立信息提供，不代表制动温度。",
+        "safetyFeatures": [
+          "发动机及冷却系统温度",
+          "开发中：机油压力与温度——逐台设备验证信号后启用",
+          "待开发并逐台设备验证：制动温度与过热告警",
+          "行驶中货斗举升及在非授权区域卸料（取决于已安装的信号和配置）",
+          "危险区域告警（电子围栏，取决于配置）"
+        ],
+        "operationalFeatures": [
+          "装载与卸载循环（取决于配置）",
+          "车速与发动机 RPM",
+          "燃油消耗（数据通道与单位取决于安装配置）",
+          "数字运行小时计",
+          "GPS 定位——高精度/RTK 为可选配置，取决于模块、安装及测试结果",
+          "怠速检测（idle）"
+        ],
+        "image": "/images/mining/komatsu-closeup.jpg",
+        "metric": {
+          "value": "J1939",
+          "label": "CAN 协议"
+        }
+      },
+      {
+        "id": "analytics",
+        "badge": "软件",
+        "title": "Minefy Analytics",
+        "description": "专为矿山运营打造的商业智能平台。实时提供生产、调度与安全仪表盘。",
+        "features": [
+          "通过 WebSocket 实现实时仪表盘",
+          "生产 KPI 与装载循环",
+          "RDO 及其修订版可导出为 CSV、XLSX 和 PDF",
+          "趋势与异常的统计分析",
+          "多租户架构，按运营单位隔离数据",
+          "开发中：按日、周、月定时自动分发报表；API/ERP 集成的范围与验证按项目确定"
+        ],
+        "image": "/images/solutions/9864-1.jpg",
+        "metric": {
+          "value": "实时",
+          "label": "仪表盘"
+        }
+      },
+      {
+        "id": "fleet360",
+        "badge": "预测性管理 · 开发中",
+        "title": "Fleet 360",
+        "description": "矿山重型车队管理与状态监测，覆盖矿用非公路卡车、挖掘机和装载机。对已接入的遥测信号按配置规则触发告警；AI 预测性维护正在开发中。目标：非计划停机减少（-35%）——此为开发目标，目前尚无研究或试点证明可实现这一降幅。",
+        "features": [
+          "基于遥测的状态监测与预测性维护——预测性功能仍在开发，尚无已验证模型",
+          "装载与运输循环分析；循环优化仍在开发中",
+          "按设备跟踪油耗（取决于已安装的数据通道）",
+          "依据已配置规则和阈值发出预防性维护告警",
+          "各设备已记录的遥测历史",
+          "与调度及 ERP 系统集成——范围与验证按项目确定"
+        ],
+        "image": "/images/mining/haul-truck-road.jpg",
+        "metric": {
+          "value": "目标：-35%",
+          "label": "非计划停机 · 待验证"
+        }
+      },
+      {
+        "id": "safety",
+        "badge": "安全",
+        "title": "Minefy Safety",
+        "description": "面向矿山运营的安全系统。操作员疲劳与分心监测（ADAS/DMS）告警取决于安装及启用配置；设备接近监测仍待集成和现场验证；危险区域功能取决于所部署方案的配置。",
+        "features": [
+          "疲劳与分心监测（ADAS/DMS）——取决于安装及启用配置",
+          "集成和现场验证尚待完成：相应解决方案中的设备接近监测",
+          "电子围栏与危险区域告警——取决于配置",
+          "支持现场安全程序（NR-22 及 ANM 标准）",
+          "记录事故及未遂事件",
+          "现场安全仪表盘"
+        ],
+        "image": "/images/mining/safety-excavator-sunset.jpg",
+        "metric": {
+          "value": "ADAS/DMS",
+          "label": "疲劳与分心"
+        }
+      },
+      {
+        "id": "consulting",
+        "badge": "服务",
+        "title": "运营咨询",
+        "description": "由具备露天矿山运营经验的专业人员提供服务，涵盖遥测部署、调度系统集成和团队培训。",
+        "features": [
+          "矿山运营诊断",
+          "重型设备遥测部署",
+          "与车队调度系统集成",
+          "操作员与调度员培训",
+          "现场技术支持，覆盖范围与响应期限以合同约定为准；24/7 服务方案需另行确定",
+          "运营绩效报告"
+        ],
+        "image": "/images/mining/fleet-d11-operation.jpg",
+        "metric": {
+          "value": "现场",
+          "label": "支持与部署"
+        }
+      },
+      {
+        "id": "caminhonetes",
+        "badge": "租赁",
+        "title": "作业皮卡",
+        "description": "提供配备车辆安全标识和警示灯的 4x4 皮卡租赁，满足矿山日常现场作业需求。可用性、配置规模及进场安排均以合同约定为准，无需将资金投入自有车队。",
+        "features": [
+          "配备现场作业装备的新一代 4x4 车辆",
+          "按现场规范配备警示灯、安全标识及安全套件",
+          "根据供应情况提供新车或低里程车辆，并安排预防性维护",
+          "按需定制方案——不限里程或符合预算的套餐",
+          "灵活合同，无需将资金投入自有车队",
+          "可按合同约定范围集成 ActiSky 跟踪与遥测"
+        ],
+        "image": "/images/products/caminhonete-operacional-cutout.png",
+        "studioImage": true,
+        "metric": {
+          "value": "4x4",
+          "label": "现场作业配置"
+        }
+      },
+      {
+        "id": "compressores",
+        "badge": "设备",
+        "title": "便携式空气压缩机",
+        "description": "提供用于矿山钻孔、喷砂和气动工具的便携式空气压缩机租赁，具体需咨询；可用性、配置规模及进场安排均以合同约定为准。",
+        "features": [
+          "按作业面需求确定流量范围——规格取决于可供型号",
+          "适合气动工具的工作压力——取决于型号",
+          "为矿山环境设计的坚固抗冲击外壳",
+          "按连续运行需求配置柴油动力",
+          "适用于矿山环境的噪声控制——取决于型号",
+          "在巴西提供技术支持与备件"
+        ],
+        "image": "/images/premium/compressor-studio.jpg",
+        "metric": {
+          "value": "欢迎咨询",
+          "label": "按作业面需求配置"
+        }
+      }
+    ],
+    "safetyLabel": "安全监测",
+    "operationalLabel": "作业遥测",
+    "cta": {
+      "title": "哪种方案适合您的企业？",
+      "text": "我们的专家将分析您的运营需求，提出最合适的产品组合。",
+      "button": "获取方案报价"
+    }
+  },
+  "agrofy": {
+    "metadata": {
+      "title": "Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+      "description": "Agrofy, a divisão de agronegócio da Minefy: telemetria de frota multimarca via CAN J1939, gestão de combustível, eficiência operacional e manutenção preditiva para tratores, colheitadeiras e pulverizadores."
+    },
+    "seal": "Agrofy — uma divisão Minefy",
+    "hero": {
+      "badge": "Agrofy — uma divisão Minefy",
+      "title": "A mesma tecnologia que lê o barramento de uma frota de mineração, agora no seu trator.",
+      "subtitle": "A Agrofy leva a telemetria ActiSky — validada em operação pesada de mineração — para tratores, colheitadeiras e pulverizadores. Consumo, ociosidade e saúde do motor em tempo real, direto do barramento CAN J1939, qualquer que seja a marca da máquina.",
+      "trust": "Tecnologia validada em operação real de mineração pesada — agora no agro",
+      "cta": "Falar com um especialista Agrofy",
+      "ctaSecondary": "Acessar Plataforma"
+    },
+    "stats": {
+      "items": [
+        {
+          "value": "R$ 2,72 tri",
+          "label": "PIB do agronegócio brasileiro"
+        },
+        {
+          "value": "23%",
+          "label": "participação do agro no PIB nacional"
+        },
+        {
+          "value": "+37,5%",
+          "label": "alta no roubo de máquinas agrícolas em 2025"
+        },
+        {
+          "value": "14-16m",
+          "label": "retorno típico com telemetria agrícola bem implementada"
+        }
+      ],
+      "note": "Fontes: estimativas de mercado do agronegócio brasileiro e estudos do setor sobre telemetria agrícola — não são números de tração da Agrofy."
+    },
+    "credibility": {
+      "kicker": "CREDIBILIDADE",
+      "title": "Tecnologia validada em operação real de mineração pesada",
+      "text": "A base da Agrofy é a mesma telemetria ActiSky que já opera 24/7 em frota pesada de mineração. Protocolo CAN J1939: a mesma leitura de barramento que hoje sustenta caminhões fora-de-estrada e escavadeiras, agora adaptada para tratores, colheitadeiras e pulverizadores.",
+      "badge": "ActiSky · CAN J1939"
+    },
+    "outcomes": {
+      "kicker": "RESULTADOS",
+      "title": "O que muda na sua operação",
+      "subtitle": "Telemetria não é dado pelo dado — é decisão que aparece no consumo, na manutenção e na janela de safra.",
+      "items": [
+        {
+          "icon": "chart",
+          "title": "Consumo sob controle, furto sob vigilância",
+          "text": "Consumo de diesel lido direto do motor via CAN J1939, hora a hora e por hectare — sinalizando quando o abastecimento registrado destoa do consumo real da máquina."
+        },
+        {
+          "icon": "timer",
+          "title": "Mais hectares por dia",
+          "text": "Separar horas de motor de horas efetivamente trabalhadas mostra quanto da janela de safra sua frota realmente aproveita — com rastreamento e geofencing contra desvio de rota e furto de máquina."
+        },
+        {
+          "icon": "wrench",
+          "title": "Menos máquina parada na safra",
+          "text": "Manutenção preditiva por horímetro e leitura de códigos de falha do motor (DTCs) antecipa o problema antes da quebra — a mesma lógica que já reduz downtime em frota pesada de mineração."
+        },
+        {
+          "icon": "shield",
+          "title": "Decisão por dado, não por planilha",
+          "text": "Dashboards por talhão substituem a planilha de abastecimento manual: consumo, ociosidade e hectares trabalhados em tempo real, de qualquer marca de máquina."
+        }
+      ]
+    },
+    "howItWorks": {
+      "kicker": "COMO FUNCIONA",
+      "title": "Do barramento da máquina ao painel, em 3 passos",
+      "subtitle": "A mesma arquitetura ActiSky que já roda em frota pesada de mineração — adaptada ao ritmo e às condições do campo.",
+      "steps": [
+        {
+          "icon": "radio",
+          "step": "01",
+          "title": "Conectar",
+          "text": "O módulo ActiSky embarcado lê o barramento CAN J1939 direto da central eletrônica da máquina, sem depender do portal do fabricante."
+        },
+        {
+          "icon": "activity",
+          "step": "02",
+          "title": "Transmitir",
+          "text": "Telemetria em tempo real, resiliente a sinal instável no campo — sincroniza assim que a conexão volta, sem perder dado de safra."
+        },
+        {
+          "icon": "gauge",
+          "step": "03",
+          "title": "Decidir",
+          "text": "Dashboard único: consumo, ociosidade, hectares trabalhados e alertas de manutenção — para decidir na hora, não no fim do mês."
+        }
+      ]
+    },
+    "authority": {
+      "title": "Por que escolher a Agrofy",
+      "items": [
+        {
+          "title": "Mesma engenharia, ambiente ainda mais exigente",
+          "description": "Se a telemetria ActiSky aguenta caminhão fora-de-estrada e escavadeira 24/7 numa mina a céu aberto, aguenta o ritmo e a poeira de uma safra."
+        },
+        {
+          "title": "Stack próprio ponta a ponta",
+          "description": "Do módulo ActiSky embarcado na máquina ao dashboard da fazenda. Sem dependência de terceiros no core da solução."
+        },
+        {
+          "title": "Multimarca por design",
+          "description": "Leitura direta do barramento CAN J1939 — a mesma telemetria funciona em máquinas de qualquer fabricante, sem depender do portal de cada montadora. Suporte nativo ao barramento ISOBUS está no roadmap."
+        },
+        {
+          "title": "Implantação e suporte técnico no campo",
+          "description": "Equipe técnica que vai até a fazenda: instalação nos equipamentos, treinamento de operadores e suporte onde a safra acontece."
+        }
+      ]
+    },
+    "testDrive": {
+      "title": "Veja a telemetria funcionando",
+      "subtitle": "Explore dashboards de consumo, ociosidade e alertas de manutenção com dados reais de operação agrícola.",
+      "cta": "Acessar Plataforma",
+      "ctaSecondary": "Falar com Especialista"
+    },
+    "cta": {
+      "title": "Estruture um piloto pago com a Agrofy",
+      "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
+      "button": "Agendar piloto Agrofy"
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "O que produtores e gestores de frota agrícola perguntam antes de começar.",
+      "items": [
+        {
+          "q": "O que é a telemetria ActiSky aplicada ao agro?",
+          "a": "São módulos IoT embarcados na máquina que leem o barramento CAN J1939 — RPM, consumo de combustível, temperatura do motor, pressão e GPS — direto para a plataforma Agrofy, onde viram dashboards, alertas e relatórios por talhão."
+        },
+        {
+          "q": "Como é a instalação na minha frota?",
+          "a": "Nossa equipe técnica vai até a fazenda. A instalação é planejada para não atrapalhar a janela de safra, com configuração dos módulos e treinamento dos operadores no local — suporte onde a operação agrícola acontece, não só por telefone."
+        },
+        {
+          "q": "A Agrofy funciona com qualquer marca de máquina?",
+          "a": "Sim. A leitura é direta do barramento CAN J1939 da máquina — não depende do portal de nenhum fabricante específico. Isso unifica tratores, colheitadeiras e pulverizadores de marcas diferentes num único painel. Suporte nativo ao barramento ISOBUS (agricultura de precisão) está no nosso roadmap."
+        },
+        {
+          "q": "Meus dados ficam seguros e isolados?",
+          "a": "A plataforma é multi-tenant com isolamento por cliente: cada operação enxerga apenas os seus próprios dados. Arquitetura e processos alinhados à LGPD, com controle de acesso por perfil."
+        },
+        {
+          "q": "Funciona em áreas de sinal instável no campo?",
+          "a": "Sim. A telemetria é tratada de forma resiliente: em áreas de conectividade intermitente — comuns em talhões afastados — os dados são armazenados no módulo e reenviados quando o sinal retorna."
+        },
+        {
+          "q": "Qual é o modelo comercial?",
+          "a": "Começamos com um piloto pago — uma frente ou unidade — com ROI medido dentro de um ciclo de safra. A partir daí, o modelo escala por equipamento e por site, com locação de tablets e assinatura da plataforma (SaaS)."
+        }
+      ]
+    },
+    "contactPage": {
+      "metadata": {
+        "title": "Contato Agrofy — telemetria ActiSky para o agronegócio | Minefy",
+        "description": "Fale com a equipe Agrofy sobre telemetria de frota agrícola via ActiSky/CAN J1939. Estruture um piloto pago medido dentro do seu ciclo de safra."
+      },
+      "hero": {
+        "title": "Fale com a Agrofy"
+      },
+      "title": "Estruture seu piloto Agrofy",
+      "intro": "Nossa equipe de telemetria agrícola está pronta para entender sua frota — tratores, colheitadeiras, pulverizadores — e desenhar um piloto pago com ROI medido dentro do seu ciclo de safra."
+    },
+    "solutionsTeaser": {
+      "title": "Nossas Soluções",
+      "subtitle": "Hardware, telemetria, software e serviço — a mesma disciplina técnica já validada em frota pesada de mineração, hoje aplicada a tratores, colheitadeiras e pulverizadores.",
+      "items": [
+        {
+          "icon": "tablet",
+          "title": "Tablets para o Campo",
+          "description": "Três linhas de robustez — do kit veicular comercial ao computador embarcado industrial — todas homologadas para a plataforma Agrofy.",
+          "badge": "HARDWARE"
+        },
+        {
+          "icon": "satellite",
+          "title": "ActiSky Telemetria",
+          "description": "Módulo IoT com CAN J1939 para tratores, colheitadeiras e pulverizadores de qualquer fabricante — GPS de alta precisão e dados em tempo real.",
+          "badge": "IoT / TELEMETRIA"
+        },
+        {
+          "icon": "chart",
+          "title": "Agrofy Analytics",
+          "description": "Dashboards de produtividade, consumo e janela de safra em tempo real, com relatórios automáticos por talhão.",
+          "badge": "SOFTWARE"
+        },
+        {
+          "icon": "truck",
+          "title": "Fleet 360",
+          "description": "Gestão preditiva da frota agrícola pesada — manutenção antecipada para não perder um dia de janela de safra.",
+          "badge": "GESTÃO PREDITIVA"
+        },
+        {
+          "icon": "shield",
+          "title": "Agrofy Safety",
+          "description": "Monitoramento de fadiga, proximidade entre máquinas e zonas de risco no talhão — compliance NR-31.",
+          "badge": "SEGURANÇA"
+        },
+        {
+          "icon": "users",
+          "title": "Consultoria Operacional",
+          "description": "Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+          "badge": "SERVIÇO"
+        }
+      ]
+    }
+  },
+  "agrofySolutions": {
+    "metadata": {
+      "title": "Soluções — Agrofy | Minefy",
+      "description": "Tablets para o campo, telemetria ActiSky, Agrofy Analytics, Fleet 360, Agrofy Safety (NR-31) e consultoria operacional para tratores, colheitadeiras e pulverizadores de grande porte."
+    },
+    "hero": {
+      "title": "Soluções Agrofy para operações agrícolas de grande porte"
+    },
+    "safetyLabel": "Monitoramento de Segurança",
+    "operationalLabel": "Telemetria Operacional",
+    "items": [
+      {
+        "id": "tablets",
+        "badge": "HARDWARE",
+        "title": "Tablets para o Campo",
+        "description": "Três linhas de tablets para cada nível de exigência da lavoura — do apoio na cabine ao computador embarcado da colheitadeira. Você escolhe o grau de robustez; todas homologadas para a plataforma Agrofy.",
+        "tiers": [
+          {
+            "name": "Comercial",
+            "example": "Ex.: tablet de última geração + kit veicular robusto",
+            "image": "/images/products/tablet-comercial.png",
+            "description": "Tablet de mercado blindado pelo kit veicular robusto: case anti-impacto, suporte de cabine e película de proteção. Custo-benefício para pulverizadores e operações de apoio, onde a robustez vem da proteção externa.",
+            "specs": [
+              "Tela 8.7\" 90 Hz · 8 GB RAM · 128 GB",
+              "Kit veicular robusto: case + suporte de cabine (MIL-STD-810G)",
+              "Carregamento magnético no berço veicular robusto",
+              "Plug-and-play com a plataforma Agrofy"
+            ]
+          },
+          {
+            "name": "Semi-industrial",
+            "example": "Ex.: tablet semi-industrial de última geração",
+            "image": "/images/products/tablet-semi.png",
+            "description": "Robustez de fábrica para quem enfrenta poeira, vibração e sol direto na cabine. Vedação IP68, certificação militar e tela que responde com luva de trabalho — sem depender de case externo.",
+            "specs": [
+              "IP68 + MIL-STD-810H (água, poeira e queda)",
+              "Tela 8\" 1920×1200 · toque com luva",
+              "Bateria removível para jornadas longas de safra",
+              "Gestão remota via MDM corporativo"
+            ]
+          },
+          {
+            "name": "Industrial",
+            "example": "Ex.: Minefy T10 e T12",
+            "image": "/images/products/tablet-industrial.png",
+            "description": "Computadores veiculares de instalação fixa, alimentados pela rede elétrica da própria máquina. Integração direta CAN J1939 com a telemetria ActiSky — o cérebro embarcado da cabine do trator ou da colheitadeira.",
+            "specs": [
+              "Tela 10.1\"/12.1\" · 750 nits (legível sob sol direto do campo)",
+              "IP66 + MIL-STD-810G · processador automotivo",
+              "2×CAN, RS232/RS485 e até 4 câmeras",
+              "Alimentação 9–36 V · RTK opcional · Android/Linux"
+            ]
+          }
+        ],
+        "image": "/images/agro/cabine-trator-interior.jpg",
+        "metric": {
+          "value": "3",
+          "label": "Linhas de robustez"
+        }
+      },
+      {
+        "id": "actisky",
+        "badge": "IoT / TELEMETRIA",
+        "title": "ActiSky Telemetria",
+        "description": "Módulo IoT de telemetria avançada com protocolo CAN J1939 para tratores, colheitadeiras e pulverizadores — qualquer fabricante. GPS de alta precisão e comunicação em tempo real, resiliente ao sinal instável do campo.",
+        "safetyFeatures": [
+          "Geofencing e alerta de saída do talhão/fazenda",
+          "Detecção de desvio de rota (furto de máquina)",
+          "Superaquecimento do motor",
+          "Pressão de óleo fora da faixa"
+        ],
+        "operationalFeatures": [
+          "Consumo de diesel em tempo real (L/h e L/ha)",
+          "Horímetro digital",
+          "Detecção de ociosidade (idle)",
+          "Velocidade e RPM do motor",
+          "GPS de alta precisão",
+          "Ciclo de operação — semeadura, colheita, pulverização"
+        ],
+        "image": "/images/agro/aerea-colheitadeira-linhas-precisao.jpg",
+        "metric": {
+          "value": "J1939",
+          "label": "Protocolo CAN"
+        }
+      },
+      {
+        "id": "analytics",
+        "badge": "SOFTWARE",
+        "title": "Agrofy Analytics",
+        "description": "Plataforma de Business Intelligence construída para operações agrícolas de grande porte. Dashboards de produtividade, consumo e janela de safra em tempo real.",
+        "features": [
+          "Dashboards real-time via WebSocket",
+          "KPIs de hectares/dia, L/ha e horímetro por talhão",
+          "Relatórios automáticos (diário/semanal/por safra)",
+          "Análise de tendências e anomalias de consumo",
+          "Multi-tenancy com isolamento de dados por fazenda/unidade",
+          "Exportação PDF, Excel e integração API"
+        ],
+        "image": "/images/agro/analytics-tablet-lavoura.jpg",
+        "metric": {
+          "value": "Real-time",
+          "label": "Dashboards"
+        }
+      },
+      {
+        "id": "fleet360",
+        "badge": "GESTÃO PREDITIVA",
+        "title": "Fleet 360",
+        "description": "Gestão preditiva para frota agrícola pesada — tratores, colheitadeiras e pulverizadores autopropelidos. Manutenção antecipada para não perder um dia de janela de safra.",
+        "features": [
+          "Manutenção preditiva por horímetro, temperatura, pressão e RPM",
+          "Leitura de códigos de falha do motor (DTCs)",
+          "Alertas de manutenção preventiva antes da quebra em plena colheita",
+          "Histórico completo de cada máquina da frota",
+          "Otimização de janela de uso por talhão e por turno",
+          "Integração com sistemas de gestão agrícola e ERP"
+        ],
+        "image": "/images/agro/fleet360-manutencao-colheitadeira.jpg",
+        "metric": {
+          "value": "DTC",
+          "label": "Alerta antes da quebra"
+        }
+      },
+      {
+        "id": "safety",
+        "badge": "SEGURANÇA",
+        "title": "Agrofy Safety",
+        "description": "Sistema de segurança para operações agrícolas de grande porte. Monitoramento de fadiga de operadores, proximidade entre máquinas pesadas e controle de zonas de risco no talhão.",
+        "features": [
+          "Monitoramento de fadiga de operadores em jornadas longas de safra",
+          "Detecção de proximidade entre tratores, colheitadeiras e implementos",
+          "Geofencing e alertas de zona de risco (barrancos, várzea, estradas internas)",
+          "Compliance NR-31 (segurança e saúde no trabalho rural)",
+          "Registro de incidentes e near-misses",
+          "Dashboard de segurança da operação"
+        ],
+        "image": "/images/agro/safety-colheitadeiras-proximidade.jpg",
+        "metric": {
+          "value": "NR-31",
+          "label": "Compliance"
+        }
+      },
+      {
+        "id": "consulting",
+        "badge": "SERVIÇO",
+        "title": "Consultoria Operacional",
+        "description": "Profissionais com experiência em operação agrícola de grande porte. Implantação de telemetria, integração com sistemas de gestão da fazenda e treinamento de equipes de campo.",
+        "features": [
+          "Diagnóstico operacional da frota e da fazenda",
+          "Implantação de telemetria em tratores, colheitadeiras e pulverizadores",
+          "Integração com sistemas de gestão agrícola já em uso",
+          "Treinamento de operadores e equipe de campo",
+          "Suporte técnico dedicado dentro do ciclo de safra",
+          "Relatórios de performance operacional por talhão"
+        ],
+        "image": "/images/agro/consultoria-agronomo-campo.jpg",
+        "metric": {
+          "value": "1 safra",
+          "label": "Piloto medido"
+        }
+      }
+    ],
+    "roadmap": {
+      "badge": "ROADMAP",
+      "title": "Agricultura de Precisão / ISOBUS",
+      "description": "Taxa variável e telemetria de implemento (pulverizador, plantadeira) via ISOBUS — a extensão agrícola do mesmo protocolo CAN J1939 que já lemos hoje. Ainda não entregue: em evolução dentro do roadmap da Agrofy, com o mesmo rigor técnico do restante do catálogo."
+    },
+    "cta": {
+      "title": "Qual solução é ideal para sua operação agrícola?",
+      "text": "Uma frente ou unidade, ROI medido dentro de um ciclo de safra — estudos do setor apontam retorno em 14 a 16 meses com telemetria agrícola bem implementada, mas é o piloto que mede o número real da sua operação.",
+      "button": "Agendar piloto Agrofy"
+    }
+  },
+  "agrofyAbout": {
+    "metadata": {
+      "title": "Quem Somos — Agrofy",
+      "description": "Agrofy é a divisão de agronegócio do Grupo Minefy — a mesma telemetria industrial ActiSky validada em mineração pesada, aplicada ao campo."
+    },
+    "hero": {
+      "title": "Tecnologia de mineração pesada, agora no campo"
+    },
+    "intro": {
+      "text": "A Agrofy é a divisão de agronegócio do Grupo Minefy. Nascemos de uma constatação simples: a telemetria industrial que já protege e otimiza frotas de mineração — leitura de barramento CAN J1939, consumo, ociosidade, saúde do motor em tempo real — resolve exatamente os mesmos problemas em um trator, uma colheitadeira ou um pulverizador autopropelido. Em vez de reinventar a tecnologia para o agro, adaptamos o que já é validado em operação pesada.",
+      "highlight": "Nossa missão: levar ao campo a mesma disciplina de dado real que a mineração já exige."
+    },
+    "mission": {
+      "title": "Missão",
+      "text": "Aumentar a eficiência, a previsibilidade e a segurança das operações agrícolas com telemetria ActiSky embarcada — do barramento CAN J1939 da máquina ao dashboard do gestor da frente."
+    },
+    "vision": {
+      "title": "Visão",
+      "text": "Ser a referência em telemetria industrial aplicada ao agronegócio brasileiro, levando ao campo o mesmo rigor técnico validado em operações de mineração de grande porte."
+    },
+    "values": {
+      "title": "Valores",
+      "items": [
+        {
+          "title": "Dado real, não estimativa",
+          "text": "Decisões baseadas em telemetria de barramento da própria máquina, não em planilha de horímetro faturado."
+        },
+        {
+          "title": "Tecnologia agnóstica de marca",
+          "text": "Leitura via CAN J1939 funciona independente do fabricante da máquina agrícola."
+        },
+        {
+          "title": "Validado em operação pesada",
+          "text": "A mesma stack ActiSky que já opera 24/7 em mineração, adaptada ao ritmo da safra."
+        },
+        {
+          "title": "Piloto antes de escala",
+          "text": "Começamos com uma frente medida, não com promessa — a decisão de escalar vem do dado do próprio piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Conheça a tecnologia Agrofy de perto",
+      "text": "Fale com um especialista Agrofy ou acesse a plataforma online.",
+      "contactUs": "Fale Conosco",
+      "platform": "Acessar Plataforma"
+    }
+  },
+  "agrofyPilot": {
+    "metadata": {
+      "title": "Piloto Agrofy — Minefy",
+      "description": "Como funciona o piloto pago Agrofy: metodologia, KPIs medidos em campo e o que você recebe — telemetria ActiSky para sua operação agrícola."
+    },
+    "hero": {
+      "title": "Piloto Agrofy",
+      "subtitle": "Comece com um piloto pago e focado"
+    },
+    "intro": {
+      "badge": "METODOLOGIA",
+      "title": "Um piloto focado, não uma promessa",
+      "text": "Antes de qualquer conversa sobre escala, medimos. O piloto Agrofy instala telemetria ActiSky embarcada em uma frente ou unidade da sua operação e mede o resultado real dentro de um ciclo de safra — sem depender de estimativa, de horímetro faturado ou de case de terceiro."
+    },
+    "steps": {
+      "title": "Como funciona",
+      "items": [
+        {
+          "title": "Discovery",
+          "text": "Entendemos a frente ou operação, o maquinário envolvido e as dores específicas — ociosidade, consumo fora da curva, manutenção reativa, horímetro sem controle."
+        },
+        {
+          "title": "Piloto pago focado",
+          "text": "Uma frente ou unidade recebe telemetria ActiSky embarcada, lendo o barramento CAN J1939 da máquina em tempo real — sem integração longa, sem trocar de fornecedor de maquinário."
+        },
+        {
+          "title": "Medição de ROI no ciclo de safra",
+          "text": "Acompanhamos ociosidade, consumo, hora-máquina e sinais de manutenção preditiva ao longo de um ciclo de safra completo — o prazo mínimo pra um número ser confiável."
+        },
+        {
+          "title": "Decisão de escala com dado real",
+          "text": "Ao final do piloto, a decisão de expandir para o restante da frota é sua — baseada no número medido na sua própria operação, não em projeção."
+        }
+      ]
+    },
+    "measured": {
+      "title": "O que é medido no piloto",
+      "items": [
+        {
+          "title": "Hectares por dia",
+          "text": "Produtividade real de campo por máquina e por operador, direto da telemetria."
+        },
+        {
+          "title": "L/h e L/ha",
+          "text": "Consumo de combustível por hora de operação e por hectare trabalhado."
+        },
+        {
+          "title": "Horímetro real vs. faturado",
+          "text": "Confronto entre o horímetro lido do barramento da máquina e o horímetro usado em locação/faturamento."
+        },
+        {
+          "title": "DTCs e manutenção preditiva",
+          "text": "Códigos de falha (DTC) do motor e sinais de desgaste antes da parada não planejada."
+        }
+      ]
+    },
+    "deliverables": {
+      "title": "O que você recebe",
+      "items": [
+        {
+          "title": "Dashboard em tempo real",
+          "text": "Painel com a telemetria da frente piloto, acessível durante toda a duração do ciclo."
+        },
+        {
+          "title": "Relatórios do ciclo",
+          "text": "Consolidado de ociosidade, consumo e hora-máquina ao final do piloto, pronto para a decisão de escala."
+        },
+        {
+          "title": "Suporte de campo",
+          "text": "Instalação e suporte técnico da telemetria embarcada durante o piloto."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Agende seu piloto Agrofy",
+      "text": "Fale com um especialista Agrofy e defina a frente ideal para começar a medir.",
+      "button": "Falar com um especialista"
+    }
+  },
+  "projects": {
+    "metadata": {
+      "title": "项目 — Minefy",
+      "description": "应用案例：在大型矿山中将遥测与调度系统集成，对重型设备开展 24/7 监测。"
+    },
+    "hero": {
+      "title": "经过现场验证的成果"
+    },
+    "vargemGrande": {
+      "badge": "坝体退役治理项目 — 大型矿业",
+      "title": "坝体退役治理中的集成遥测",
+      "intro": "为大型矿山运营提供遥测技术，并与移动资源管理系统集成，对参与坝体退役治理作业的重型设备进行 24/7 监测。",
+      "metrics": [
+        {
+          "value": "CAN J1939",
+          "label": "总线遥测"
+        },
+        {
+          "value": "24/7",
+          "label": "监测"
+        },
+        {
+          "value": "GRM",
+          "label": "调度集成"
+        },
+        {
+          "value": "CAN",
+          "label": "车载 J1939 遥测"
+        }
+      ],
+      "sections": [
+        {
+          "title": "项目背景",
+          "text": "由大型矿业企业主导的坝体退役治理项目，重点关注安全与环境影响控制。Minefy 提供与车队调度系统集成的遥测技术。"
+        },
+        {
+          "title": "集成遥测",
+          "text": "实时监测参与作业的重型设备，包括矿用非公路卡车、挖掘机和装载机。具体覆盖取决于各设备的模块安装情况，数据与调度系统集成。"
+        },
+        {
+          "title": "作业安全",
+          "text": "依据各设备可用信号及项目范围配置设备状态和安全作业告警，例如行驶中货斗举升、在非授权区域卸料等。"
+        },
+        {
+          "title": "车队效率",
+          "text": "按各设备已安装的数据通道，管理装载与卸载循环，监测车速、RPM 及燃油消耗。"
+        },
+        {
+          "title": "可持续发展",
+          "text": "根据可用数据通道跟踪重型设备燃油效率，助力实现现场环境目标。"
+        }
+      ],
+      "impact": {
+        "title": "对运营的影响",
+        "items": [
+          {
+            "title": "全面掌握已监测车队",
+            "text": "实时了解采坑内受监测设备的情况，主动跟踪设备状态与安全。"
+          },
+          {
+            "title": "数据驱动决策",
+            "text": "生产、油耗与循环 KPI 仪表盘，可在调度室及移动设备上访问。"
+          },
+          {
+            "title": "降低风险",
+            "text": "提前发出重型设备状态告警，帮助现场在停机前采取行动。"
+          }
+        ]
+      },
+      "conclusion": "该项目验证了我们的技术能够在巴西要求严苛的矿山环境中运行，每天 24 小时监测大型设备。"
+    },
+    "cta": {
+      "title": "让您的现场成为下一个应用案例",
+      "text": "预约技术考察，实地了解效果。",
+      "button": "预约现场交流"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "联系我们 — Minefy",
+      "description": "联系 Minefy，了解工业遥测、企业 AI、自主智能体及 IT 服务。预约演示。"
+    },
+    "hero": {
+      "title": "联系 Minefy"
+    },
+    "title": "联系我们",
+    "intro": "告诉我们您的需求：工业遥测，或企业 AI、自主智能体及 IT 服务等新领域。我们将了解您的运营情况，共同规划下一步，无需承诺购买。",
+    "info": {
+      "items": [
+        {
+          "icon": "mail",
+          "label": "电子邮箱",
+          "value": "louis.litt@minefymining.com",
+          "href": "mailto:louis.litt@minefymining.com"
+        },
+        {
+          "icon": "phone",
+          "label": "电话",
+          "value": "+55 (31) 99380-1664",
+          "href": "tel:+5531993801664"
+        },
+        {
+          "icon": "whatsapp",
+          "label": "WhatsApp",
+          "value": "发送消息",
+          "href": "https://api.whatsapp.com/send?phone=5531993801664"
+        },
+        {
+          "icon": "location",
+          "label": "所在地",
+          "value": "Nova Lima, MG — 巴西",
+          "href": ""
+        }
+      ]
+    },
+    "form": {
+      "name": "姓名",
+      "phone": "电话",
+      "email": "电子邮箱",
+      "subject": "主题",
+      "message": "留言",
+      "submit": "发送",
+      "sending": "正在发送...",
+      "success": "消息已发送！我们将在 24 小时内回复。",
+      "error": "发送失败。请尝试通过 WhatsApp 联系。",
+      "company": "公司（可选）",
+      "service": "服务 / 意向",
+      "serviceOptions": {
+        "mineracao-telemetria": "工业运营与遥测",
+        "ia-corporativa": "企业 AI",
+        "agentes-autonomos": "自主智能体",
+        "servicos-ti": "IT 服务",
+        "agro-telemetria": "农业遥测",
+        "outro": "其他事项"
+      },
+      "fallback": "您的留言不会丢失：可通过 <whatsapp>WhatsApp</whatsapp> 或<email>电子邮件</email>发送，两种方式都会自动填入您已输入的内容。",
+      "errorUnavailable": "暂时无法发送。",
+      "errorRateLimit": "尝试次数过多。请稍后再试，或直接通过 WhatsApp 联系。",
+      "honeypot": "请勿填写此字段"
+    },
+    "validation": {
+      "nameRequired": "请输入您的姓名",
+      "phoneRequired": "请输入您的电话号码",
+      "emailRequired": "请输入您的电子邮箱",
+      "emailInvalid": "电子邮箱格式无效",
+      "subjectRequired": "请输入主题"
+    }
+  },
+  "footer": {
+    "tagline": "工程、AI 与运营——连接数据、系统与人员，从矿山到办公室。",
+    "copyright": "Minefy Mining System。保留所有权利。",
+    "phone": "+55 (31) 99380-1664",
+    "email": "louis.litt@minefymining.com",
+    "platformUrl": "https://app.minefymining.com",
+    "columns": {
+      "solutions": "解决方案",
+      "company": "公司",
+      "contact": "联系我们"
+    },
+    "solutionLinks": [
+      {
+        "label": "工业平板电脑",
+        "href": "/solucoes#tablets"
+      },
+      {
+        "label": "ActiSky 遥测",
+        "href": "/solucoes#actisky"
+      },
+      {
+        "label": "Minefy Analytics",
+        "href": "/solucoes#analytics"
+      },
+      {
+        "label": "Fleet 360",
+        "href": "/solucoes#fleet360"
+      },
+      {
+        "label": "Minefy Safety",
+        "href": "/solucoes#safety"
+      },
+      {
+        "label": "咨询服务",
+        "href": "/solucoes#consulting"
+      },
+      {
+        "label": "企业 AI",
+        "href": "/solucoes/ia-corporativa"
+      },
+      {
+        "label": "自主智能体",
+        "href": "/solucoes/agentes-autonomos"
+      },
+      {
+        "label": "IT 服务",
+        "href": "/solucoes/servicos-ti"
+      }
+    ],
+    "divisions": [
+      {
+        "title": "矿业",
+        "href": "/solucoes#mineracao",
+        "links": [
+          {
+            "label": "工业平板电脑",
+            "href": "/solucoes#tablets"
+          },
+          {
+            "label": "ActiSky 遥测",
+            "href": "/solucoes#actisky"
+          },
+          {
+            "label": "Minefy Analytics",
+            "href": "/solucoes#analytics"
+          },
+          {
+            "label": "Fleet 360",
+            "href": "/solucoes#fleet360"
+          },
+          {
+            "label": "Minefy Safety",
+            "href": "/solucoes#safety"
+          },
+          {
+            "label": "咨询服务",
+            "href": "/solucoes#consulting"
+          },
+          {
+            "label": "作业皮卡",
+            "href": "/solucoes#caminhonetes"
+          },
+          {
+            "label": "空气压缩机",
+            "href": "/solucoes#compressores"
+          }
+        ]
+      },
+      {
+        "title": "AI 与 IT",
+        "href": "/solucoes#ia-ti",
+        "links": [
+          {
+            "label": "企业 AI",
+            "href": "/solucoes/ia-corporativa"
+          },
+          {
+            "label": "自主智能体",
+            "href": "/solucoes/agentes-autonomos"
+          },
+          {
+            "label": "IT 服务",
+            "href": "/solucoes/servicos-ti"
+          },
+          {
+            "label": "AI 互动体验",
+            "href": "/experiencias"
+          }
+        ]
+      }
+    ],
+    "social": {
+      "instagram": "https://www.instagram.com/MinefyMiningSystem",
+      "linkedin": "https://www.linkedin.com/company/minefy-minning-system-ltda/",
+      "whatsapp": "https://api.whatsapp.com/send?phone=5531993801664"
+    },
+    "dpo": {
+      "label": "个人数据处理负责人（DPO）",
+      "name": "Patryck Giovani — 临时负责人",
+      "email": "privacidade@minefymining.com"
+    },
+    "privacyLink": "隐私政策"
+  },
+  "agroFooter": {
+    "tagline": "Telemetria ActiSky para o agronegócio — a mesma tecnologia validada em mineração pesada, agora no campo.",
+    "copyright": "Agrofy — uma divisão Minefy Mining System. Todos os direitos reservados.",
+    "phone": "+55 (31) 99380-1664",
+    "email": "katrina.bennett@minefymining.com",
+    "platform": "Acessar Plataforma",
+    "columns": {
+      "solutions": "Soluções",
+      "company": "Empresa",
+      "contact": "Contato"
+    },
+    "solutionLinks": [
+      {
+        "label": "Tablets para o Campo",
+        "href": "/solucoes#tablets"
+      },
+      {
+        "label": "ActiSky Telemetria",
+        "href": "/solucoes#actisky"
+      },
+      {
+        "label": "Agrofy Analytics",
+        "href": "/solucoes#analytics"
+      },
+      {
+        "label": "Fleet 360",
+        "href": "/solucoes#fleet360"
+      },
+      {
+        "label": "Agrofy Safety",
+        "href": "/solucoes#safety"
+      },
+      {
+        "label": "Consultoria Operacional",
+        "href": "/solucoes#consulting"
+      }
+    ]
+  },
+  "privacy": {
+    "metadata": {
+      "title": "隐私政策 — Minefy Mining System",
+      "description": "Minefy 如何依照巴西《通用数据保护法》（LGPD）处理个人数据：处理目的、法律依据、驾驶员安全模块的生物识别数据、保留期限和数据主体权利。"
+    }
+  },
+  "corporateHome": {
+    "metadata": {
+      "title": "Minefy — 矿业设备与企业 AI",
+      "description": "两大业务板块，共享工程能力：面向矿业的 ActiSky 遥测、工业平板电脑及车队管理等设备与解决方案，以及连接企业系统和决策的人工智能与 IT。"
+    },
+    "hero": {
+      "badge": "工程 · AI · 运营",
+      "title": "用智能连接，用技术执行。",
+      "subtitle": "我们集成人工智能、构建自主智能体并开发 IT 解决方案，连接数据、系统与运营。",
+      "cta": "共同设计您的解决方案",
+      "ctaSecondary": "互动探索",
+      "trust": "已在大型工业运营中验证的工程能力"
+    },
+    "doors": {
+      "kicker": "从哪里开始",
+      "title": "四种切入方式",
+      "subtitle": "每家企业都有不同的需求。选择您的方向，我们一起规划技术路径。",
+      "items": [
+        {
+          "icon": "mountain",
+          "title": "工业运营",
+          "text": "面向矿山及重型作业的设备遥测、现场平板电脑、车队管理与安全系统。",
+          "href": "/solucoes#tablets",
+          "ctaLabel": "查看矿业解决方案"
+        },
+        {
+          "icon": "brain",
+          "title": "将 AI 应用于企业",
+          "text": "将知识、数据和流程转化为适用于您实际运营的辅助工具与自动化能力。",
+          "href": "/solucoes/ia-corporativa",
+          "ctaLabel": "企业 AI"
+        },
+        {
+          "icon": "bot",
+          "title": "构建自主智能体",
+          "text": "围绕您的流程设计 AI 智能体的职责、知识与工具，并在您指定的环节由人工审批。",
+          "href": "/solucoes/agentes-autonomos",
+          "ctaLabel": "自主智能体"
+        },
+        {
+          "icon": "code",
+          "title": "开发与集成系统",
+          "text": "Web 系统、API、系统集成、仪表盘和现代化改造，以软件工程连接并提升您的运营。",
+          "href": "/solucoes/servicos-ti",
+          "ctaLabel": "IT 服务"
+        }
+      ]
+    },
+    "lab": {
+      "kicker": "探索一次执行流程",
+      "title": "逐步了解智能体如何工作",
+      "subtitle": "选择一个场景，跟随输入 → 知识 → 智能体 → 审批 → 结果的流程。此处全部为使用模拟数据的演示。",
+      "fullCta": "进入完整实验室"
+    },
+    "engineering": {
+      "kicker": "工程能力",
+      "title": "每项交付背后的支撑",
+      "items": [
+        {
+          "icon": "plug",
+          "title": "集成",
+          "text": "连接现有系统、API 和数据库，让解决方案从一开始就融入企业正在使用的工具。"
+        },
+        {
+          "icon": "rocket",
+          "title": "部署",
+          "text": "从受控试点走向生产，在扩大规模前明确质量标准。"
+        },
+        {
+          "icon": "activity",
+          "title": "监测",
+          "text": "执行日志、仪表盘和告警，让系统行为可见、可审计。"
+        },
+        {
+          "icon": "refresh",
+          "title": "持续演进",
+          "text": "持续跟踪，根据真实使用反馈调整，并分阶段扩展范围。"
+        }
+      ]
+    },
+    "method": {
+      "kicker": "交付方法",
+      "title": "需求探索 → 验证 → 集成 → 运营与演进",
+      "steps": [
+        {
+          "step": "01",
+          "title": "需求探索",
+          "text": "了解流程、系统和数据，识别机会，并优先处理最先能创造价值的部分。"
+        },
+        {
+          "step": "02",
+          "title": "验证",
+          "text": "先开展范围明确、质量标准达成一致的试点，再进行大规模投入。"
+        },
+        {
+          "step": "03",
+          "title": "集成",
+          "text": "将方案接入真实工作流程，与现有系统连接，并明确权限和边界。"
+        },
+        {
+          "step": "04",
+          "title": "运营与演进",
+          "text": "持续监测、维护和改进，并记录执行过程。"
+        }
+      ]
+    },
+    "heroDual": {
+      "badge": "两大业务板块 · 共享工程能力",
+      "title": "为<gold>矿山</gold>提供设备，为企业提供智能。",
+      "subtitle": "从车队遥测到工业平板电脑，为矿山提供设备和解决方案；通过人工智能与 IT 板块连接企业系统和决策，并保留人工审批。",
+      "scenes": {
+        "mineracao": {
+          "num": "01",
+          "label": "矿业",
+          "title": "设备与解决方案",
+          "tagline": "完整的工业产品与服务：平板电脑、ActiSky 遥测、车队管理、安全系统及租赁服务。",
+          "cta": "查看设备与解决方案"
+        },
+        "ia": {
+          "num": "02",
+          "label": "AI 与 IT",
+          "tagline": "企业 AI、自主智能体与软件工程。",
+          "cta": "探索 AI 与 IT"
+        }
+      },
+      "imageAlt": "露天矿中，一台大型挖掘机正在向矿用非公路卡车装载物料",
+      "mediaNote": "示意图片。"
+    },
+    "miningDivision": {
+      "kicker": "业务板块 01 · 矿业",
+      "title": "矿业设备与解决方案",
+      "lede": "从重型设备到车队数据，以涵盖硬件、遥测、软件与租赁服务的完整工业产品组合支持运营。",
+      "catalog": {
+        "kicker": "工业产品与服务目录",
+        "title": "一站查看全部矿业解决方案",
+        "text": "工业平板电脑、ActiSky 遥测、数据分析、车队管理、安全系统、咨询及租赁服务，各项详情均见解决方案页面。",
+        "cta": "查看详细目录"
+      }
+    },
+    "iaChapter": {
+      "kicker": "业务板块 02 · AI 与 IT",
+      "title": "从实体现场到数字流程",
+      "lede": "读取重型设备总线的工程能力，如今也用于连接企业系统与 AI 模型。工作范围明确，并在您指定的环节保留人工审批。",
+      "operation": {
+        "kicker": "已应用于我们的运营",
+        "title": "已融入我们日常运营的 AI，也能助力您的企业转型。",
+        "text": "在 Minefy，AI 智能体已在企业日常工作中支持管理、财务、销售、内容和工程。我们将这些经验转化为定制项目：连接您的系统，明确职责，并由人员监督。"
+      },
+      "areas": {
+        "kicker": "按部门查看应用场景",
+        "title": "AI 可以融入企业的哪些环节",
+        "note": "以下为各部门应用类型的演示示例。每个项目都从诊断您的业务环境开始，所有集成均单独设计和验证。",
+        "items": [
+          {
+            "title": "销售",
+            "automate": "研究并整理商机，准备联系内容和方案，跟踪后续沟通，汇总销售管线。",
+            "deliver": "保留信息来源和历史记录的销售助手，可接入 CRM 及获准使用的渠道。"
+          },
+          {
+            "title": "财务",
+            "automate": "汇总现金流信息，协助核对文档，准备报告并标记待处理事项。",
+            "deliver": "文档 → 核对 → 异常 → 审批 → 报告。决策和付款仍由相应负责人负责。"
+          },
+          {
+            "title": "运营与管理",
+            "automate": "汇总 KPI 和交付进度，归纳阻碍，准备管理简报并持续跟踪。",
+            "deliver": "配备仪表盘、通知和执行记录的管理智能体。"
+          },
+          {
+            "title": "市场营销",
+            "automate": "研究选题，维护内容日历，准备草稿及内容变体，并跟踪发布。",
+            "deliver": "遵循品牌规范的编辑流程，在授权渠道发布前由人工审批。"
+          },
+          {
+            "title": "知识与文档",
+            "automate": "查询政策和手册，总结并分类文档，追溯来源并提交复核。",
+            "deliver": "带权限控制的企业搜索，回答关联原始来源。不替代法律意见。"
+          },
+          {
+            "title": "工程与支持",
+            "automate": "协助开发，分流和诊断服务工单，维护文档与系统集成。",
+            "deliver": "按约定范围提供 Web 系统、API、仪表盘、自动化与维护。"
+          }
+        ]
+      },
+      "offers": [
+        {
+          "title": "企业 AI",
+          "text": "将 AI 模型接入企业真实数据和系统，在您的业务环境中提供回答、分类、摘要和决策支持。",
+          "href": "/solucoes/ia-corporativa",
+          "cta": "企业 AI"
+        },
+        {
+          "title": "自主智能体",
+          "text": "在授权范围内端到端执行任务的智能体：查询系统、准备文档并记录全过程。",
+          "href": "/solucoes/agentes-autonomos",
+          "cta": "自主智能体"
+        },
+        {
+          "title": "IT 服务",
+          "text": "Web 应用、门户与仪表盘、API 和 ERP/CRM 集成、数据管理与有计划的迁移、云服务与运维支持，为 AI 的实际应用提供完整基础。",
+          "href": "/solucoes/servicos-ti",
+          "cta": "IT 服务"
+        }
+      ],
+      "process": {
+        "kicker": "部署方法",
+        "title": "从诊断到持续改进",
+        "steps": [
+          {
+            "step": "01",
+            "title": "诊断",
+            "text": "了解流程、系统和数据，选择成果可衡量的方向，并明确范围与访问边界。"
+          },
+          {
+            "step": "02",
+            "title": "可衡量的试点",
+            "text": "在上线前明确质量标准，先投用一个业务方向；是否扩大规模由结果决定。"
+          },
+          {
+            "step": "03",
+            "title": "集成",
+            "text": "接入真实工作流程中的系统，隔离权限，在指定环节进行人工审批，并保留可审计记录。"
+          },
+          {
+            "step": "04",
+            "title": "持续演进",
+            "text": "按合同范围，持续跟踪、衡量和改进已上线的能力。"
+          }
+        ]
+      },
+      "diagnosis": {
+        "title": "想知道 AI 能为您的运营创造哪些价值？",
+        "text": "通过一次诊断交流，识别符合您业务环境的机会，无需预先承诺采用某种工具或供应商。",
+        "button": "识别 AI 应用机会"
+      }
+    },
+    "industrial": {
+      "kicker": "工业基础",
+      "title": "塑造我们的工程能力，仍在现场持续运行",
+      "text": "ActiSky 遥测、工业平板电脑、Analytics、Fleet 360、Safety 及租赁服务：完整的矿业产品组合持续服务现场，也可为您的车队提供支持。",
+      "cta": "查看矿业解决方案"
+    },
+    "faq": {
+      "title": "常见问题",
+      "subtitle": "运营、数据及 IT 团队在与 Minefy 合作前最关心的问题。",
+      "items": [
+        {
+          "q": "Minefy 目前提供什么服务？",
+          "a": "我们设有两大业务板块。矿业板块涵盖工业平板电脑、ActiSky 遥测、车队管理、安全系统和租赁服务。AI 与 IT 板块负责将人工智能集成至企业系统，构建定制自主智能体，并开发应用、API 和自动化。"
+        },
+        {
+          "q": "企业 AI 如何应用于我的业务？",
+          "a": "将 AI 模型连接到您真实的数据和系统，例如 ERP、表格、电子邮件及文档，在您设定的范围和权限内提供回答、分类、摘要和决策支持。它以您企业的业务知识为基础，区别于通用聊天机器人。"
+        },
+        {
+          "q": "自主智能体能做什么？有哪些边界？",
+          "a": "智能体可在授权范围内端到端执行任务：查询系统、准备文档、触发流程，并完整记录。它没有不受限的访问权限，不会完全取代团队，并在您指定的环节接受人工审批。"
+        },
+        {
+          "q": "如何与我现有的系统集成？",
+          "a": "我们优先利用现有能力：有 API 时使用 API；没有时，针对数据库、表格、电子邮件和旧系统逐项构建连接器。集成方案在初始诊断阶段确定，先于开发工作。"
+        },
+        {
+          "q": "如何保护我的数据？",
+          "a": "以合同明确访问范围，按客户隔离凭据，保留每个智能体执行行为的可审计记录，并依照巴西《通用数据保护法》（LGPD）处理个人数据。AI 可读取的内容和可执行的操作将与您共同确定，并形成书面记录。"
+        },
+        {
+          "q": "项目如何启动？",
+          "a": "从诊断交流开始：了解流程，选择成果可衡量的方向，并交付可衡量的试点。是否扩大规模，依据试点本身的结果，而非承诺。"
+        }
+      ]
+    },
+    "evidence": {
+      "kicker": "工业应用验证",
+      "title": "背后的工程能力：经过矿业实践验证",
+      "note": "具备面向工业运营的遥测和车队管理经验。"
+    },
+    "cta": {
+      "title": "共同设计您的解决方案",
+      "subtitle": "告诉我们您的业务背景——工业运营、AI、智能体或开发需求，我们将提出具体的技术路径。",
+      "button": "开始交流"
+    }
+  },
+  "services": {
+    "labels": {
+      "scope": "服务范围",
+      "deliverables": "交付内容",
+      "examples": "演示示例",
+      "backToHub": "全部解决方案",
+      "departments": "按部门查看应用场景",
+      "process": "部署方法"
+    },
+    "hub": {
+      "metadata": {
+        "title": "解决方案 — Minefy",
+        "description": "四大方向：工业运营与遥测、企业 AI、自主智能体及 IT 服务。将 Minefy 工程能力应用于您的实际需求。"
+      },
+      "fronts": {
+        "kicker": "四大方向",
+        "title": "Minefy 解决方案",
+        "subtitle": "从塑造我们的工业遥测业务，拓展至 AI、智能体及软件工程。",
+        "items": [
+          {
+            "id": "mineracao",
+            "badge": "工业运营",
+            "title": "矿业与遥测",
+            "text": "工业平板电脑、ActiSky 遥测、数据分析、车队管理与安全系统。完整产品组合详见本页下方。",
+            "href": "#tablets",
+            "ctaLabel": "查看工业产品组合"
+          },
+          {
+            "id": "ia",
+            "badge": "企业 AI",
+            "title": "融入企业工作的 AI",
+            "text": "应用场景诊断、系统集成、知识检索、内部智能助手，以及带效果评估的部署。",
+            "href": "/solucoes/ia-corporativa",
+            "ctaLabel": "了解企业 AI"
+          },
+          {
+            "id": "agentes",
+            "badge": "自主智能体",
+            "title": "围绕您的流程设计 AI 智能体",
+            "text": "定制职责、知识、工具、记忆和边界，并在您指定的步骤保留人工审批。",
+            "href": "/solucoes/agentes-autonomos",
+            "ctaLabel": "了解智能体"
+          },
+          {
+            "id": "ti",
+            "badge": "IT 服务",
+            "title": "服务运营的软件工程",
+            "text": "按约定范围提供 Web 系统与应用、API 和集成、仪表盘与数据、现代化改造及技术运维支持。",
+            "href": "/solucoes/servicos-ti",
+            "ctaLabel": "了解 IT 服务"
+          }
+        ]
+      }
+    },
+    "ia": {
+      "metadata": {
+        "title": "企业 AI — Minefy",
+        "description": "融入企业工作的 AI：应用场景诊断、系统与 API 集成、知识库检索、内部智能助手，以及持续评估支持的部署。"
+      },
+      "badge": "企业 AI",
+      "title": "融入企业工作的 AI。",
+      "benefit": "将知识、数据和流程转化为适用于现场运营的辅助与自动化，让 AI 真正融入工作流程。",
+      "scope": [
+        {
+          "title": "应用场景诊断",
+          "text": "结合您的业务环境识别 AI 的价值点，并按影响和可行性确定优先级。"
+        },
+        {
+          "title": "系统与 API 集成",
+          "text": "通过逐项设计的集成，连接企业已有的内部系统、表格、数据库和服务。"
+        },
+        {
+          "title": "知识库检索",
+          "text": "基于您自己的文档回答自然语言问题，并提供来源引用。"
+        },
+        {
+          "title": "文档提取与整理",
+          "text": "将合同、专业报告、报表和表单转化为可检索的结构化数据。"
+        },
+        {
+          "title": "内部智能助手",
+          "text": "为运营、销售、行政等部门配置助手，使其掌握企业术语和工作流程。"
+        },
+        {
+          "title": "部署、评估与演进",
+          "text": "上线前明确质量标准，衡量成果并持续改进。"
+        }
+      ],
+      "examples": [
+        "查询内部文档，获取附带来源引用的回答",
+        "分类并转交通过电子邮件或表单收到的请求",
+        "汇总分散的运营信息，形成可指导行动的摘要"
+      ],
+      "examplesNote": "以下为应用类型的示意案例。每个项目均从诊断您的业务环境开始，与特定系统的集成须逐项设计和验证。",
+      "deliverables": [
+        "按优先级排序的机会清单",
+        "与现有系统的集成设计",
+        "具有明确质量标准的试点",
+        "部署协助",
+        "跟踪与持续演进"
+      ],
+      "cta": "规划 AI 应用"
+    },
+    "agentes": {
+      "metadata": {
+        "title": "自主智能体 — Minefy",
+        "description": "围绕您的流程设计 AI 智能体，涵盖定制职责与知识、工具连接、权限与边界、人工审批及执行记录。"
+      },
+      "badge": "自主智能体",
+      "title": "围绕您的流程设计 AI 智能体。",
+      "benefit": "这里的自主性，是指在授权范围内执行：智能体完成工作、记录行为，并在您要求人工审批的环节停下等待。",
+      "scope": [
+        {
+          "title": "定制职责与知识",
+          "text": "每个智能体都有明确职责，并具备您的业务知识，而非通用聊天机器人。"
+        },
+        {
+          "title": "连接工具",
+          "text": "按项目设计，智能体使用真实工作流程中的电子邮件、日历、表格、内部 API 等系统。"
+        },
+        {
+          "title": "保留相关记忆",
+          "text": "按流程规定保留跨次执行的必要上下文，兼顾连续性与适度留存。"
+        },
+        {
+          "title": "流程执行",
+          "text": "端到端完成多步骤例行任务，并记录各步骤的状态。"
+        },
+        {
+          "title": "权限与边界",
+          "text": "明确行动范围：哪些操作可自主执行，哪些需要审批，哪些禁止执行。"
+        },
+        {
+          "title": "人工审批",
+          "text": "在客户指定的步骤，智能体完成准备后必须等待；决策由审批人作出。"
+        },
+        {
+          "title": "记录与监测",
+          "text": "每项行动均留有日志，可供审计；仪表盘展示智能体已执行及计划执行的任务。"
+        }
+      ],
+      "examples": [
+        "对收到的销售线索进行初步分流",
+        "回答内部常见问题",
+        "跟踪日常运营任务",
+        "整理行政例行工作"
+      ],
+      "examplesNote": "以下为智能体职能的示意案例。智能体没有不受限的访问权限，也不会完全取代团队；它在授权范围内执行，接受人工监督，相关决策可被复核。",
+      "deliverables": [
+        "智能体规格说明（职责、知识、边界）",
+        "连接真实工作流程的工具",
+        "上线前的场景评估",
+        "仪表盘与执行日志",
+        "维护与持续演进"
+      ],
+      "cta": "设计我的智能体"
+    },
+    "ti": {
+      "metadata": {
+        "title": "IT 服务 — Minefy",
+        "description": "通过软件工程连接并提升您的运营：Web 系统与应用、API 和系统集成、仪表盘与数据、现代化改造，以及按约定范围提供的技术运维支持。"
+      },
+      "badge": "IT 服务",
+      "title": "通过软件工程连接并提升您的运营。",
+      "benefit": "负责构建和运营 Minefy 工业平台的同一支团队，可为您的项目提供后端、前端、数据及基础设施能力。",
+      "scope": [
+        {
+          "title": "Web 系统与应用",
+          "text": "从界面设计到后端和数据库，交付完整应用。"
+        },
+        {
+          "title": "API 与系统集成",
+          "text": "连接企业内部、合作伙伴及第三方系统的服务。"
+        },
+        {
+          "title": "仪表盘与数据",
+          "text": "基于企业已有数据构建运营与管理仪表盘。"
+        },
+        {
+          "title": "系统现代化",
+          "text": "分阶段升级旧系统，保持运营连续。"
+        },
+        {
+          "title": "应用基础设施",
+          "text": "为所交付应用提供容器、部署、环境及可观测性能力。"
+        },
+        {
+          "title": "技术运维支持",
+          "text": "按合同约定范围提供修复、改进与持续支持。"
+        }
+      ],
+      "scopeNote": "我们按合同约定范围分阶段交付。服务等级承诺由各项目合同单独明确。",
+      "deliverables": [
+        "技术诊断",
+        "分阶段工作范围",
+        "实施与测试",
+        "交付内容文档",
+        "合同约定的运维支持"
+      ],
+      "cta": "讨论我的项目"
+    }
+  },
+  "experiences": {
+    "metadata": {
+      "title": "互动体验 — Minefy 互动实验室",
+      "description": "逐步探索 Minefy AI 智能体如何执行实际业务流程：输入、知识、智能体、审批和结果。使用模拟数据的互动演示。"
+    },
+    "hero": {
+      "kicker": "互动实验室",
+      "title": "探索一次执行流程",
+      "subtitle": "选择客户服务、文档或运营场景，了解流程中每一步如何运行。这是使用模拟数据的互动演示，未连接任何真实系统。"
+    },
+    "cta": {
+      "title": "希望将这个流程应用到您的业务中吗？",
+      "subtitle": "实验室展示运行机制；实际智能体的设计将依据您的业务环境、系统和审批边界。",
+      "button": "设计我的智能体"
+    }
+  },
+  "chrome": {
+    "aiIntro": {
+      "kicker": "事业部 02 · 人工智能与 IT",
+      "titleA": "全新智能，",
+      "titleB": "",
+      "titleAccent": "为您的企业而生。",
+      "text": "从驱动矿业的工程能力，到变革企业的智能技术。我们构建 AI 智能体、连接各类系统，开发推动您运营前进的技术。",
+      "ctaPrimary": "发掘您企业的潜力",
+      "ctaSecondary": "观看 AI 实战演示",
+      "imageAlt": "金属质感的 Minefy 机器人，人工智能事业部的视觉呈现",
+      "cards": [
+        {
+          "title": "企业级 AI",
+          "text": "让您的知识与决策相连。",
+          "href": "/solucoes/ia-corporativa"
+        },
+        {
+          "title": "自主智能体",
+          "text": "以目标与管控执行流程。",
+          "href": "/solucoes/agentes-autonomos"
+        },
+        {
+          "title": "技术与集成",
+          "text": "为您的企业协同工作的系统。",
+          "href": "/solucoes/servicos-ti"
+        }
+      ]
+    },
+    "agentFlow": {
+      "kicker": "多智能体组织 · 示意演示",
+      "titleA": "一支 AI 团队。",
+      "titleAccent": "多个专业，一个目标。",
+      "text": "我们以不同的职能、权限与职责构建智能体。它们共享上下文、分派任务并跨部门协同交付，在企业指定的节点接受人工复核。",
+      "agents": [
+        {
+          "name": "战略",
+          "role": "确定优先级"
+        },
+        {
+          "name": "商务",
+          "role": "筛选商机"
+        },
+        {
+          "name": "财务",
+          "role": "分析可行性"
+        },
+        {
+          "name": "运营",
+          "role": "规划执行"
+        },
+        {
+          "name": "工程",
+          "role": "设计解决方案"
+        },
+        {
+          "name": "管理",
+          "role": "整合与跟进"
+        }
+      ],
+      "steps": [
+        {
+          "message": "共享优先级：构建一个新的商业机会。",
+          "result": "目标与标准已确定。"
+        },
+        {
+          "message": "商务将客户需求发送给工程团队评估集成方案。",
+          "result": "需求已整理，上下文已移交。"
+        },
+        {
+          "message": "工程团队共享技术范围，用于成本与可行性分析。",
+          "result": "方案已提出，工作量已估算。"
+        },
+        {
+          "message": "财务将前提假设转交运营，用于规划资源与工期。",
+          "result": "财务假设已可用于规划。"
+        },
+        {
+          "message": "运营与工程团队对齐部署顺序与依赖关系。",
+          "result": "执行计划已在各部门间对齐。"
+        },
+        {
+          "message": "工程团队将验证后的方案连同其他部门的上下文提交管理层。",
+          "result": "方案与计划已汇总，等待人工复核。"
+        },
+        {
+          "message": "经负责人复核后，管理层将优先级与后续步骤反馈给战略团队。",
+          "result": "循环完成。决策已记录，后续步骤已确定。"
+        }
+      ],
+      "statusFrom": "共享上下文",
+      "statusTo": "接收并贡献",
+      "statusIdle": "专家待命",
+      "pause": "暂停",
+      "play": "运行流程",
+      "next": "下一步",
+      "restartAria": "重新开始流程",
+      "progressAria": "第 {step} 步，共 {total} 步",
+      "stepAria": "查看第 {step} 步",
+      "footnote": "演示场景，未连接真实系统。职能、集成与自主级别均按项目定义。"
+    },
+    "experienceLab": {
+      "honestyLabel": "互动演示 · 模拟数据",
+      "tablistAria": "演示场景",
+      "stepWord": "步骤",
+      "ofWord": "/",
+      "pause": "暂停",
+      "play": "播放",
+      "restart": "重新开始",
+      "reducedMotionTitle": "自动前进已停用（减少动态）— 请手动浏览各步骤",
+      "approve": "批准（模拟）",
+      "docRefLabel": "引用文档",
+      "decisionLabel": "决策",
+      "logLabel": "操作日志（模拟）",
+      "steps": {
+        "entrada": "接收",
+        "conhecimento": "知识",
+        "agente": "智能体",
+        "aprovacao": "审批",
+        "resultado": "结果"
+      },
+      "scenarios": [
+        {
+          "id": "atendimento",
+          "label": "客服",
+          "steps": {
+            "entrada": {
+              "heading": "收到一条请求",
+              "text": "示例公司 S.A.（虚构）的一名员工提交工单，询问调班流程的指导。",
+              "artifact": [
+                {
+                  "k": "渠道",
+                  "v": "内部工单 #4821"
+                },
+                {
+                  "k": "来自",
+                  "v": "员工（模拟）"
+                },
+                {
+                  "k": "主题",
+                  "v": "关于调班程序的疑问"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "智能体检索正确的来源",
+              "text": "问题与企业知识库（政策、程序与公告）进行比对，相关来源被带引用地检索出来。",
+              "artifact": [
+                {
+                  "k": "来源 1",
+                  "v": "POP-017 · 调班程序（虚构文档）"
+                },
+                {
+                  "k": "来源 2",
+                  "v": "HR 公告 2026-03（虚构文档）"
+                },
+                {
+                  "k": "相似度",
+                  "v": "0.91 · 0.84"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "带引用地组织答复",
+              "text": "智能体基于检索到的来源起草答复，引用所使用的每一段内容，并按主题与紧急程度为工单分类。",
+              "artifact": [
+                {
+                  "k": "草稿",
+                  "v": "含 2 处 POP-017 引用的答复"
+                },
+                {
+                  "k": "分类",
+                  "v": "HR · 常规 · 低紧急度"
+                },
+                {
+                  "k": "置信度",
+                  "v": "高（直接来源）"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "发送前由人工批准",
+              "text": "由于客户规定对外答复需要人工批准，智能体把一切准备好然后等待。未经批准人许可，任何内容都不会发出。",
+              "artifact": [
+                {
+                  "k": "状态",
+                  "v": "等待批准"
+                },
+                {
+                  "k": "批准人",
+                  "v": "HR 主管（模拟）"
+                },
+                {
+                  "k": "待办动作",
+                  "v": "向工单 #4821 发送答复"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "答复已发送并记录",
+              "text": "获得批准后，答复送达员工，整个流程被完整记录——谁提出、查阅了什么、谁批准。",
+              "artifact": [
+                {
+                  "k": "工单",
+                  "v": "#4821 已答复（模拟）"
+                },
+                {
+                  "k": "流程耗时",
+                  "v": "2 分钟（模拟）"
+                },
+                {
+                  "k": "审计",
+                  "v": "完整轨迹可用"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "POP-017 · 调班程序 — 虚构文档",
+            "decision": "发送答复：经主管批准（模拟）",
+            "log": [
+              "09:14 · 收到工单 #4821",
+              "09:14 · 从知识库检索到 2 个来源",
+              "09:15 · 生成带引用的草稿",
+              "09:15 · 请求主管批准",
+              "09:16 · 已批准 · 答复已发送 · 轨迹已记录"
+            ]
+          }
+        },
+        {
+          "id": "documentos",
+          "label": "文档",
+          "steps": {
+            "entrada": {
+              "heading": "收到一批文档",
+              "text": "示例公司 S.A.（虚构）的财务团队收到一批 PDF 合同与票据，需要整理成结构化数据。",
+              "artifact": [
+                {
+                  "k": "批次",
+                  "v": "12 份 PDF（模拟）"
+                },
+                {
+                  "k": "类型",
+                  "v": "合同 · 票据 · 补充协议"
+                },
+                {
+                  "k": "来源",
+                  "v": "共享文件夹（模拟）"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "智能体理解每份文档",
+              "text": "每份文件都会被读取并与企业使用的模板比对——智能体知道在合同里找什么、在票据里找什么。",
+              "artifact": [
+                {
+                  "k": "模板",
+                  "v": "租赁合同 · 内部标准（虚构）"
+                },
+                {
+                  "k": "目标字段",
+                  "v": "当事方 · 期限 · 金额 · 调价"
+                },
+                {
+                  "k": "参考",
+                  "v": "CT-2026/044（虚构文档）"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "提取与整理",
+              "text": "智能体提取字段，与控制表中的现有数据交叉核对，并标记不一致之处——例如与补充协议不符的期限。",
+              "artifact": [
+                {
+                  "k": "已提取",
+                  "v": "12 份中的 11 份"
+                },
+                {
+                  "k": "不一致",
+                  "v": "CT-2026/044：期限 ≠ 补充协议"
+                },
+                {
+                  "k": "表格",
+                  "v": "contracts-control.xlsx（模拟）"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "不一致项等待人工决策",
+              "text": "11 份一致的文档继续流转；不一致项成为清晰的待办，交由经理决定。智能体不会自行“解决”含糊之处。",
+              "artifact": [
+                {
+                  "k": "状态",
+                  "v": "1 项待办等待经理"
+                },
+                {
+                  "k": "明细",
+                  "v": "合同期限 24 个月 · 补充协议 36 个月"
+                },
+                {
+                  "k": "选项",
+                  "v": "采用补充协议 · 采用合同 · 请求复核"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "库已整理，例外已裁定",
+              "text": "决策记录后，数据库完整且可审计：每个数据都能追溯到来源文档与页码。",
+              "artifact": [
+                {
+                  "k": "记录",
+                  "v": "12 份全部入库（模拟）"
+                },
+                {
+                  "k": "追溯",
+                  "v": "每个字段 → 来源文档"
+                },
+                {
+                  "k": "批次耗时",
+                  "v": "8 分钟（模拟）"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "CT-2026/044 · 租赁合同 + 补充协议 01 — 虚构文档",
+            "decision": "期限不一致：经理选择采用补充协议（模拟）",
+            "log": [
+              "14:02 · 收到 12 份 PDF 批次",
+              "14:03 · 11 份文档提取无待办",
+              "14:03 · 在 CT-2026/044 检测到不一致",
+              "14:10 · 经理决定：以补充协议为准",
+              "14:10 · 库已更新 · 轨迹已记录"
+            ]
+          }
+        },
+        {
+          "id": "operacoes",
+          "label": "运营",
+          "steps": {
+            "entrada": {
+              "heading": "指标超出区间",
+              "text": "在运营看板（模拟）上，某环节的排队时间超过约定上限——这类信号往往会在班次中被忽略。",
+              "artifact": [
+                {
+                  "k": "事件",
+                  "v": "环节 B 排队 > 25 分钟"
+                },
+                {
+                  "k": "来源",
+                  "v": "运营看板（模拟数据）"
+                },
+                {
+                  "k": "窗口",
+                  "v": "最近 40 分钟"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "先上下文，后结论",
+              "text": "智能体汇集上下文：该环节近期历史、班次中记录的事件，以及处理此类偏差的作业程序。",
+              "artifact": [
+                {
+                  "k": "历史",
+                  "v": "本月 3 次类似事件（模拟）"
+                },
+                {
+                  "k": "班次",
+                  "v": "10:20 部分停机记录"
+                },
+                {
+                  "k": "程序",
+                  "v": "POP-031 · 排队偏差（虚构文档）"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "诊断与建议",
+              "text": "交叉分析数据后，智能体总结出可能的瓶颈，并按程序提出行动建议——附上支撑数字。",
+              "artifact": [
+                {
+                  "k": "假设",
+                  "v": "10:20 部分停机后的瓶颈"
+                },
+                {
+                  "k": "建议",
+                  "v": "重新调配 2 名资源 1 小时（POP-031）"
+                },
+                {
+                  "k": "预估影响",
+                  "v": "排队约 30 分钟内回到区间（模拟）"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "由协调员决策",
+              "text": "调整运营分配是人的决策：智能体提交完备的诊断，等待协调员批准、调整或拒绝。",
+              "artifact": [
+                {
+                  "k": "状态",
+                  "v": "等待协调员"
+                },
+                {
+                  "k": "待定决策",
+                  "v": "执行拟议的资源调配"
+                },
+                {
+                  "k": "备选",
+                  "v": "维持现状，20 分钟后复评"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "行动已记录，循环闭合",
+              "text": "行动获批后，智能体记录结果并跟踪指标——若排队未回到区间，循环将带着新上下文重新开启。",
+              "artifact": [
+                {
+                  "k": "行动",
+                  "v": "已执行资源调配（模拟）"
+                },
+                {
+                  "k": "跟踪",
+                  "v": "指标监控 1 小时"
+                },
+                {
+                  "k": "记录",
+                  "v": "事件 + 决策 + 结果"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "POP-031 · 排队偏差处理 — 虚构文档",
+            "decision": "资源调配：经协调员批准（模拟）",
+            "log": [
+              "10:47 · 检测到偏差（排队 > 25 分钟）",
+              "10:47 · 汇集上下文：历史 + 班次 + POP-031",
+              "10:48 · 提交诊断与建议",
+              "10:52 · 协调员批准资源调配",
+              "11:25 · 排队回到区间 · 循环闭合（模拟）"
+            ]
+          }
+        }
+      ],
+      "telemetrySrNote": "数值仅为示意，不对应真实运营。",
+      "telemetryChip": "模拟"
+    }
+  }
+}

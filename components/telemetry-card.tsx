@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 interface TelemetryCardProps {
   className?: string;
@@ -30,6 +31,7 @@ function sparkPath(values: number[], w: number, h: number) {
  * via the CSS-gated `.flow-dash` / pulse utilities.
  */
 export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCardProps) {
+  const t = useTranslations("chrome.experienceLab");
   const [cycles, setCycles] = useState(24.7);
   const [fuel, setFuel] = useState(82);
   const [temp, setTemp] = useState(71);
@@ -72,7 +74,7 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
             className="h-1.5 w-1.5 rounded-full bg-[#D4A847] motion-safe:animate-pulse"
             aria-hidden="true"
           />
-          simulação
+          {t("telemetryChip")}
         </span>
       </div>
 
@@ -121,10 +123,10 @@ export function TelemetryCard({ className = "", title = "ActiSky" }: TelemetryCa
       {/* Persistent honesty label — this panel illustrates the product with
           simulated values; it is NOT connected to a live operation. */}
       <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-        Demonstração interativa · dados simulados
+        {t("honestyLabel")}
       </p>
       <span className="sr-only">
-        Valores ilustrativos, não correspondem a uma operação real.
+        {t("telemetrySrNote")}
       </span>
     </motion.div>
   );

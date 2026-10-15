@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 /** Namespaces que os Client Components deste mundo realmente usam. */
-const CLIENT_NAMESPACES = ["nav", "footer", "contact", "home"] as const;
+const CLIENT_NAMESPACES = ["nav", "footer", "contact", "home", "chrome"] as const;
 
 type Props = {
   children: React.ReactNode;

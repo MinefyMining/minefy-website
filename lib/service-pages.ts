@@ -25,6 +25,7 @@ export async function buildServiceMetadata(
     path: `/solucoes/${slug}`,
     title: t("title"),
     description: t("description"),
+    locale,
   });
 }
 

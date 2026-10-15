@@ -100,7 +100,14 @@ describe("bundle estático — integridade dos recursos locais", () => {
   const localRefs = (text: string) =>
     [...text.matchAll(/(?:href|src)="([^"#:?]+)(?:\?[^"]*)?"/g)]
       .map((m) => m[1])
-      .filter((p) => !p.startsWith("data:") && p !== "/mineracao");
+      .filter(
+        (p) =>
+          !p.startsWith("data:") &&
+          p !== "/mineracao" &&
+          // SITE-I18N: os hrefs das bandeiras são ROTAS (a home localizada é
+          // servida por rewrite do proxy), não arquivos em public/.
+          !/^\/(en|es|zh-CN)$/.test(p),
+      );
 
   it("todo href/src local do HTML existe em public/", () => {
     const refs = localRefs(html);
@@ -148,6 +155,9 @@ describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10
    * pacote + `home.html` + o PNG og + 2 variantes do celular com logo novo + o carregador de melhorias progressivas
    * + `assets/brand/minefy-wordmark-on-light.webp` (wordmark para composição clara das páginas
    * institucionais, WEBSITE-QA-20261011 — derivada pixel a pixel da wordmark aprovada da home).
+   * SITE-I18N (2026-10-13): + `home-en.html`, `home-es.html`, `home-zh-CN.html`
+   * (homes localizadas geradas em build), `home-i18n.js` (loader estático) e
+   * `home-text.<locale>.js` ×4 (dicionários puros carregados sob demanda).
    * As variantes anteriores ficam disponíveis para páginas já abertas. Arquivo a mais (log, temporário,
    * dotfile) ou a menos QUEBRA este teste — é a trava. Mudou o bundle de
    * propósito? Regere `tests/fixtures/static-home-files.json` conscientemente. */
@@ -165,7 +175,7 @@ describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10
   };
   const bundleFiles = () =>
     walk(PUBLIC)
-      .filter((f) => f === "home.html" || /^(assets|vendor)\//.test(f) || /^[^/]+\.(js|css)$/.test(f))
+      .filter((f) => /^home(-[a-zA-Z-]+)?\.html$/.test(f) || /^(assets|vendor)\//.test(f) || /^[^/]+\.(js|css)$/.test(f))
       .sort();
 
   it("nenhum arquivo ou diretório oculto (segmento iniciado por ponto) em public/", () => {
@@ -174,7 +184,7 @@ describe("bundle estático — lista FECHADA de arquivos (BLOQUEADO-FAYE 2026-10
   });
 
   it("o conjunto de arquivos do bundle é exatamente o inventário esperado", () => {
-    expect(EXPECTED.length).toBe(71);
+    expect(EXPECTED.length).toBe(79);
     expect(bundleFiles()).toEqual([...EXPECTED].sort());
   });
 });

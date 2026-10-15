@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { MiningBrand } from "@/components/mining-brand";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, ExternalLink } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LocaleFlags } from "@/components/locale-flags";
 import {
   Sheet,
   SheetTrigger,
@@ -82,7 +83,7 @@ export function MiningHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href={homeHref} className="shrink-0" aria-label="Minefy, início">
+        <Link href={homeHref} className="shrink-0" aria-label={t("brandAria")}>
           <MiningBrand
             id="site-logo"
             surface={scrolled ? "theme" : "header"}
@@ -111,8 +112,14 @@ export function MiningHeader() {
           ))}
         </nav>
 
-        {/* Right side — theme toggle + Platform button + Mobile menu */}
+        {/* Right side — idiomas (SITE-I18N) + theme toggle + Platform + Mobile menu */}
         <div className="flex items-center gap-3">
+          {/* Bandeiras de idioma SEMPRE visíveis no canto superior direito —
+              inclusive no celular; a troca não fica escondida dentro do menu.
+              Suspense: o componente lê useSearchParams (CSR bailout). */}
+          <Suspense fallback={null}>
+            <LocaleFlags />
+          </Suspense>
           <ThemeToggle />
           {/* Platform access — THE KEY BUTTON */}
           <a
@@ -127,17 +134,17 @@ export function MiningHeader() {
 
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger className="lg:hidden" aria-label="Menu">
+            <SheetTrigger className="lg:hidden" aria-label={t("menu")}>
               <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-[var(--header-fg)]"}`} />
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
-              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <SheetTitle className="sr-only">{t("menu")}</SheetTitle>
               <div className="pb-6 border-b border-border">
                 <MiningBrand surface="theme" sizes="140px" className="w-[132px]" />
               </div>
               <nav className="mt-6 flex flex-col gap-1 flex-1">
                 {navLinks.map(({ key, href }) => (
-                  <a
+                  <Link
                     key={key}
                     href={href}
                     onClick={() => setOpen(false)}
@@ -148,7 +155,7 @@ export function MiningHeader() {
                     }`}
                   >
                     {t(key)}
-                  </a>
+                  </Link>
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">

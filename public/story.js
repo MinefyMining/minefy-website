@@ -1,20 +1,13 @@
 import {media, prepareImage, decodeElement, selectVariant, warmImage, sceneTimeout, constrained} from './media.js?v=20261011-scene';
+import {loadI18n} from './home-i18n.js';
+const {t, tRaw, fmt} = await loadI18n();
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=t=>t*t*(3-2*t);
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('motion-paused');
 let stageIndex=-1, phase=0,copyAnimation;
-const chapters=[
- {type:'mining',kicker:'01 / ESCAVAÇÃO E CARREGAMENTO',title:'TUDO COMEÇA <br><em>EM CAMPO.</em>',description:'Perfurar, escavar, carregar. Equipamentos diferentes, um mesmo ciclo. A operação precisa de ritmo — e de visibilidade.',tags:['FRENTE DE LAVRA','CICLO OPERACIONAL'],fact:'A MINEFY CONECTA OS SINAIS DE QUEM PRODUZ.',label:'ESCAVAÇÃO → CARREGAMENTO',name:'O CICLO COMEÇA'},
- {type:'plant',kicker:'02 / TRATAMENTO DO MATERIAL',title:'O MATERIAL <br>SEGUE. <br><em>OS DADOS TAMBÉM.</em>',description:'O material chega à usina e percorre etapas de tratamento. Conectar a informação entre as frentes ajuda a enxergar o fluxo, os ritmos e as interfaces da operação.',tags:['USINA','FLUXO DO MATERIAL'],fact:'REPRESENTAÇÃO CONCEITUAL DO CICLO MINERAL.',label:'TRANSPORTE → TRATAMENTO',name:'A OPERAÇÃO AVANÇA'},
- {type:'tailings',kicker:'03 / MANEJO DE REJEITOS',title:'A JORNADA <br>CONTINUA <br><em>ALÉM DA USINA.</em>',description:'Na área de rejeitos, o Scroller anfíbio trabalha com propulsão helicoidal. Operações especializadas também abrem espaço para visibilidade e acompanhamento.',tags:['SCROLLER ANFÍBIO','REJEITOS'],fact:'GESTÃO DE REJEITOS E RECUPERAÇÃO DE ÁGUA.',label:'REJEITOS → SCROLLER',name:'NOVOS TERRENOS'},
- {type:'truck',kicker:'04 / DE VOLTA AO TRANSPORTE',title:'POR FORA, <br>A FORÇA. <br><em>POR DENTRO, SINAIS.</em>',description:'Acompanhamos o TR-001 em movimento. Cada ciclo deixa informações que podem ajudar a operação a entender o comportamento da máquina.',tags:['TR-001','CAMINHÃO FORA DE ESTRADA'],fact:'CONTINUE ROLANDO PARA ENTRAR NA MÁQUINA.',label:'TR-001 → APROXIMAÇÃO DO MOTOR',name:'UM EQUIPAMENTO. UMA HISTÓRIA.'},
- {type:'engine',kicker:'05 / O QUE A MÁQUINA ESTÁ DIZENDO',title:'O ÓLEO <br>AQUECE. <br><em>O SINAL MUDA.</em>',description:'O motor segue trabalhando, mas um parâmetro começa a mudar. Nesta simulação, a temperatura do óleo evolui de 82 °C para 108 °C.',tags:['MOTOR EM CORTE','ÓLEO EM CIRCULAÇÃO'],fact:'VALORES ILUSTRATIVOS · NÃO SÃO LIMITES DE FABRICANTE.',label:'MOTOR → SINAL DE TEMPERATURA',name:'O DESVIO APARECE'},
- {type:'can',kicker:'06 / DO SINAL AO CONTEXTO',title:'A MÁQUINA <br>FALA. <br><em>ACTISKY CONECTA.</em>',description:'Pelos sinais disponíveis na rede CAN e nos sensores, o ActiSky conecta a condição do equipamento à plataforma. A leitura ganha identificação, histórico e contexto.',tags:['CAN J1939','ACTISKY','SENSORES'],fact:'DISPONIBILIDADE DE SINAIS VALIDADA POR EQUIPAMENTO.',label:'REDE CAN → ACTISKY → PLATAFORMA',name:'O SINAL GANHA CAMINHO'},
- {type:'tablet',kicker:'07 / CONTEXTO PARA QUEM OPERA',title:'O ALERTA <br>CHEGA <br><em>À CABINE.</em>',description:'No tablet industrial, o operador vê qual equipamento requer atenção e qual condição mudou. Uma informação clara para apoiar o procedimento da operação.',tags:['TABLET INDUSTRIAL','ALERTA CONTEXTUAL'],fact:'CENA DEMONSTRATIVA · CANAIS CONFIGURADOS POR PROJETO.',label:'ACTISKY → TABLET DO OPERADOR',name:'A INFORMAÇÃO CHEGA'},
- {type:'mobile',kicker:'08 / EQUIPES DE CAMPO CONECTADAS',title:'A EQUIPE <br>RECEBE <br><em>O MESMO CONTEXTO.</em>',description:'Na caminhonete de apoio, o celular apresenta a mesma ocorrência. Operação e manutenção podem compartilhar o contexto do equipamento e coordenar a resposta.',tags:['FROTA DE APOIO','COMUNICAÇÃO EM CAMPO'],fact:'VISÃO CONCEITUAL DE ENTREGA MULTICANAL.',label:'TR-001 → EQUIPE DE CAMPO',name:'O CONTEXTO SE ESPALHA'},
- {type:'control',kicker:'09 / A VISÃO DE TODA A OPERAÇÃO',title:'UMA FROTA. <br>UM ALERTA. <br><em>UMA DECISÃO.</em>',description:'Na sala de controle, o TR-001 se destaca no mapa. Posição, sinais e histórico ajudam a equipe a priorizar a análise e conduzir a decisão operacional.',tags:['CONTROLE DE FROTA','ALERTAS','HISTÓRICO'],fact:'SIGA PARA EXPLORAR A COMBINAÇÃO DOS SINAIS.',label:'CAMPO → SALA DE CONTROLE',name:'DA MÁQUINA À DECISÃO'}
-];
+const chapterTypes=['mining','plant','tailings','truck','engine','can','tablet','mobile','control'];
+const chapters=tRaw('story.chapters').map((c,i)=>({...c,type:chapterTypes[i]}));
 
 // Decode the incoming plate, then the element that is painted, before crossing over; retain only the visible pair and target.
 const section=$('#jornada'),container=$('#story-canvas'),frames=new Map();
@@ -26,14 +19,14 @@ const pushFor=()=>0;
 let activeFrame,pointerX=0,pointerY=0,desiredIndex=-1,failedIndex=-1,visible=false,request=0,cameraKey='',hud={temp:-1,critical:false};
 let selectionTimer,warmTimer,pruneTimer,statusTimer,resizeTimer;
 const errorNote=document.createElement('div');errorNote.className='story-media-error';errorNote.hidden=true;
-errorNote.innerHTML='<span>A conexão interrompeu esta cena.</span><button type="button">Tentar novamente</button>';
+errorNote.innerHTML=`<span>${t('story.errorInterrupted')}</span><button type="button">${t('story.retry')}</button>`;
 errorNote.setAttribute('role','status');$('.story-sticky').append(errorNote);
 errorNote.querySelector('button').addEventListener('click',()=>{failedIndex=-1;showChapter(desiredIndex);});
 // Discreet loading state: appears only when a plate takes longer than a glance, never pretends the preview is final.
 const status=document.createElement('div');status.className='story-media-status';status.hidden=true;
 status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.innerHTML='<span></span><b></b>';
 $('.story-sticky').append(status);
-function showStatus(index){clearTimeout(statusTimer);statusTimer=setTimeout(()=>{status.querySelector('b').textContent=`CENA ${String(index+1).padStart(2,'0')} · CARREGANDO`;status.hidden=false;},300);}
+function showStatus(index){clearTimeout(statusTimer);statusTimer=setTimeout(()=>{status.querySelector('b').textContent=t('story.loading',{n:String(index+1).padStart(2,'0')});status.hidden=false;},300);}
 function hideStatus(){clearTimeout(statusTimer);status.hidden=true;}
 // The painted frame can differ from stageIndex after a failed chapter (copy advances, plate stays): never prune it.
 function paintedIndex(){return activeFrame&&frames.get(Number(activeFrame.dataset.scene))===activeFrame?Number(activeFrame.dataset.scene):-1;}
@@ -65,8 +58,8 @@ function updateChapter(index){
  $('#story-step').textContent=String(index+1).padStart(2,'0');$('#story-chapter-label').textContent=c.name;$('#story-kicker').textContent=c.kicker;$('#story-title').innerHTML=c.title;$('#story-description').textContent=c.description;$('#story-fact span').textContent=c.fact;$('#story-scene-label').textContent=c.label;
  $('#story-tags').replaceChildren(...c.tags.map(t=>{const s=document.createElement('span');s.textContent=t;return s;}));
  $$('.story-dots button').forEach((b,i)=>{if(i===index)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
- $('#story-prev').disabled=index===0;$('#story-next').setAttribute('aria-label',index===8?'Explorar a combinação dos sinais':'Próximo capítulo');
- container.setAttribute('aria-label',`Cena cinematográfica conceitual: ${c.kicker.substring(5).toLowerCase()}`);
+ $('#story-prev').disabled=index===0;$('#story-next').setAttribute('aria-label',index===8?t('story.nextAriaLast'):t('story.nextAria'));
+ container.setAttribute('aria-label',t('story.sceneAria',{kicker:c.kicker.substring(5).toLowerCase()}));
  $('#story-hud').hidden=!(index===4||index===5);$('#story-alert').hidden=!(index===6||index===7||index===8);
  if(changed&&!paused&&$('.story-copy').animate){copyAnimation?.cancel();copyAnimation=$('.story-copy').animate([{opacity:.3,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:500,easing:'ease-out'});}
 }
@@ -104,7 +97,7 @@ async function showChapter(index){
  }catch(error){
   if(!live())return;
   failedIndex=index;hideStatus();container.setAttribute('aria-busy','false');
-  errorNote.querySelector('span').textContent=error?.name==='TimeoutError'?'A conexão está lenta e esta cena não chegou a tempo.':'A conexão interrompeu esta cena.';
+  errorNote.querySelector('span').textContent=error?.name==='TimeoutError'?t('story.errorTimeout'):t('story.errorInterrupted');
   errorNote.hidden=false;
   // The narrative stays readable on the chapter the visitor is in, even while its plate is unavailable.
   updateChapter(index);frameCamera();updateHud();
@@ -147,7 +140,7 @@ function updateHud(){
  const critical=temp>=100||(hud.critical&&temp>=98);
  if(temp===hud.temp&&critical===hud.critical)return;
  if(temp!==hud.temp){$('#story-temperature').textContent=String(temp);$('.hud-bar>span').style.width=`${(temp-70)/45*100}%`;}
- if(critical!==hud.critical){$('#story-hud').classList.toggle('critical',critical);$('#story-signal-state').textContent=critical?'DESVIO IDENTIFICADO · SIMULAÇÃO':'LEITURA ILUSTRATIVA';}
+ if(critical!==hud.critical){$('#story-hud').classList.toggle('critical',critical);$('#story-signal-state').textContent=critical?t('story.hudCritical'):t('story.hudReading');}
  hud={temp,critical};
 }
 function syncStory(){
@@ -193,14 +186,16 @@ syncStory();
 const temp=$('#oil-temp'),pressure=$('#oil-pressure'),vibration=$('#engine-vibration');
 let simulationId=0;
 function updateLab(){
- const t=Number(temp.value),p=Number(pressure.value),v=Number(vibration.value),hot=t>=100,low=p<=2.4,shaking=v>=8,count=Number(hot)+Number(low)+Number(shaking),compound=hot&&low;
- $('#oil-temp-value').textContent=`${t.toFixed(0)} °C`;$('#oil-pressure-value').textContent=`${p.toFixed(1).replace('.',',')} bar`;$('#engine-vibration-value').textContent=`${v.toFixed(1).replace('.',',')} mm/s`;
+ const tv=Number(temp.value),p=Number(pressure.value),v=Number(vibration.value),hot=tv>=100,low=p<=2.4,shaking=v>=8,count=Number(hot)+Number(low)+Number(shaking),compound=hot&&low;
+ $('#oil-temp-value').textContent=`${fmt(tv,0)} °C`;$('#oil-pressure-value').textContent=`${fmt(p,1)} bar`;$('#engine-vibration-value').textContent=`${fmt(v,1)} mm/s`;
  [hot,low,shaking].forEach((critical,i)=>{$$('.parameter')[i].classList.toggle('critical',critical);});
  const result=$('.prediction-result');result.classList.toggle('warning',count>0&&!compound);result.classList.toggle('critical',compound);
- $('#risk-arc').style.strokeDashoffset=String(522-(count?count/3*485:57));$('#risk-icon').textContent=compound?'!':count?'!':'✓';$('#risk-level').textContent=compound?'ALERTA COMPOSTO':count?'ATENÇÃO':'NORMAL';$('#risk-count').textContent=`${count} ${count===1?'SINAL FORA':'SINAIS FORA'} DA FAIXA`;
- $('#risk-title').innerHTML=compound?(shaking?'Três sinais. <br>Uma prioridade de análise.':'Temperatura e pressão <br>pedem atenção conjunta.'):count?'Um sinal mudou. <br>O contexto importa.':'Um equipamento. <br>Vários sinais para acompanhar.';
- $('#risk-description').textContent=compound?(shaking?'Óleo aquecido, pressão reduzida e vibração elevada reforçam a ocorrência. A equipe recebe evidências para avaliar a condição da máquina.':'A combinação de óleo aquecido e pressão reduzida atende à regra demonstrativa. O evento ganha contexto para a operação.'):count?'Um parâmetro isolado sai da faixa da simulação. A combinação configurada ainda não foi atendida.':'Mova os parâmetros ou execute o cenário para ver quando os sinais se combinam e geram um alerta.';
- $('#rule-status').textContent=compound?'TR-001 · OCORRÊNCIA DEMONSTRATIVA GERADA':'MONITORAMENTO · AGUARDANDO COMBINAÇÃO';
+ $('#risk-arc').style.strokeDashoffset=String(522-(count?count/3*485:57));$('#risk-icon').textContent=compound?'!':count?'!':'✓';
+ $('#risk-level').textContent=compound?t('lab.riskCompound'):count?t('lab.riskWarning'):t('lab.riskNormal');
+ $('#risk-count').textContent=count===0?t('lab.riskCountZero'):count===1?t('lab.riskCountOne',{count}):t('lab.riskCountMany',{count});
+ $('#risk-title').innerHTML=compound?(shaking?t('lab.titleCompoundVib'):t('lab.titleCompound')):count?t('lab.titleOne'):t('lab.titleNone');
+ $('#risk-description').textContent=compound?(shaking?t('lab.descCompoundVib'):t('lab.descCompound')):count?t('lab.descOne'):t('lab.descNone');
+ $('#rule-status').textContent=compound?t('lab.statusCompound'):t('lab.statusIdle');
 }
 [temp,pressure,vibration].forEach(input=>input.addEventListener('input',()=>{simulationId++;$('#simulate-scenario').disabled=false;updateLab();}));
 $('#reset-scenario').addEventListener('click',()=>{simulationId++;temp.value=82;pressure.value=4.2;vibration.value=2;$('#simulate-scenario').disabled=false;updateLab();});

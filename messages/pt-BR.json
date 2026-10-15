@@ -12,7 +12,9 @@
     "projects": "Projetos",
     "contact": "Contato",
     "platform": "Acessar Plataforma",
-    "experiences": "Experiências"
+    "experiences": "Experiências",
+    "brandAria": "Minefy, início",
+    "menu": "Menu"
   },
   "agroNav": {
     "home": "Início",
@@ -1179,7 +1181,8 @@
       },
       "fallback": "Sua mensagem não se perde: envie pelo <whatsapp>WhatsApp</whatsapp> ou por <email>e-mail</email> — os dois já vão preenchidos com o que você digitou.",
       "errorUnavailable": "Não conseguimos enviar agora.",
-      "errorRateLimit": "Muitas tentativas. Tente em alguns minutos, ou fale direto no WhatsApp."
+      "errorRateLimit": "Muitas tentativas. Tente em alguns minutos, ou fale direto no WhatsApp.",
+      "honeypot": "Não preencha este campo"
     },
     "validation": {
       "nameRequired": "Informe seu nome",
@@ -1856,6 +1859,453 @@
       "title": "Quer esse fluxo rodando no seu processo?",
       "subtitle": "O laboratório mostra a mecânica; o desenho do agente real parte do seu contexto, dos seus sistemas e dos seus limites de aprovação.",
       "button": "Desenhar meu agente"
+    }
+  },
+  "chrome": {
+    "aiIntro": {
+      "kicker": "Divisão 02 · IA & TI",
+      "titleA": "Uma nova",
+      "titleB": "inteligência.",
+      "titleAccent": "Para o seu negócio.",
+      "text": "Da engenharia que move a mineração à inteligência que transforma empresas. Criamos agentes de IA, conectamos sistemas e desenvolvemos a tecnologia que faz sua operação avançar.",
+      "ctaPrimary": "Descubra o potencial da sua empresa",
+      "ctaSecondary": "Veja a IA em ação",
+      "imageAlt": "Robô Minefy em acabamento metálico, representação visual da divisão de inteligência artificial",
+      "cards": [
+        {
+          "title": "IA corporativa",
+          "text": "Seu conhecimento conectado às decisões.",
+          "href": "/solucoes/ia-corporativa"
+        },
+        {
+          "title": "Agentes autônomos",
+          "text": "Processos executados com propósito e controle.",
+          "href": "/solucoes/agentes-autonomos"
+        },
+        {
+          "title": "Tecnologia & integração",
+          "text": "Sistemas que trabalham juntos pela sua empresa.",
+          "href": "/solucoes/servicos-ti"
+        }
+      ]
+    },
+    "agentFlow": {
+      "kicker": "Organização multiagente · Demonstração ilustrativa",
+      "titleA": "Uma equipe de IA.",
+      "titleAccent": "Várias especialidades. Um objetivo.",
+      "text": "Estruturamos agentes com funções, acessos e responsabilidades diferentes. Eles compartilham contexto, delegam tarefas e coordenam entregas entre departamentos, com revisão humana nos pontos definidos pela empresa.",
+      "agents": [
+        {
+          "name": "Estratégia",
+          "role": "Define prioridades"
+        },
+        {
+          "name": "Comercial",
+          "role": "Qualifica oportunidades"
+        },
+        {
+          "name": "Financeiro",
+          "role": "Analisa a viabilidade"
+        },
+        {
+          "name": "Operações",
+          "role": "Planeja a execução"
+        },
+        {
+          "name": "Engenharia",
+          "role": "Desenha a solução"
+        },
+        {
+          "name": "Gestão",
+          "role": "Consolida e acompanha"
+        }
+      ],
+      "steps": [
+        {
+          "message": "Prioridade compartilhada: estruturar uma nova oportunidade de negócio.",
+          "result": "Objetivo e critérios definidos."
+        },
+        {
+          "message": "Comercial envia requisitos do cliente para a Engenharia avaliar as integrações.",
+          "result": "Requisitos organizados e contexto transferido."
+        },
+        {
+          "message": "Engenharia compartilha o escopo técnico para análise de custos e viabilidade.",
+          "result": "Solução proposta e esforço estimado."
+        },
+        {
+          "message": "Financeiro encaminha as premissas para Operações planejar recursos e prazos.",
+          "result": "Premissas financeiras disponíveis para planejamento."
+        },
+        {
+          "message": "Operações alinha a sequência de implantação e as dependências com Engenharia.",
+          "result": "Plano de execução alinhado entre as áreas."
+        },
+        {
+          "message": "Engenharia envia a solução validada à Gestão, junto ao contexto das demais áreas.",
+          "result": "Proposta e plano reunidos para revisão humana."
+        },
+        {
+          "message": "Após revisão do responsável, Gestão devolve prioridades e próximos passos à Estratégia.",
+          "result": "Ciclo concluído. Decisão registrada e próximos passos definidos."
+        }
+      ],
+      "statusFrom": "Compartilha contexto",
+      "statusTo": "Recebe e contribui",
+      "statusIdle": "Especialista disponível",
+      "pause": "Pausar",
+      "play": "Executar fluxo",
+      "next": "Próxima etapa",
+      "restartAria": "Reiniciar fluxo",
+      "progressAria": "Etapa {step} de {total}",
+      "stepAria": "Ver etapa {step}",
+      "footnote": "Cenário demonstrativo, sem conexão com sistemas reais. Funções, integrações e níveis de autonomia são definidos para cada projeto."
+    },
+    "experienceLab": {
+      "honestyLabel": "Demonstração interativa · dados simulados",
+      "tablistAria": "Cenário da demonstração",
+      "stepWord": "passo",
+      "ofWord": "de",
+      "pause": "Pausar",
+      "play": "Reproduzir",
+      "restart": "Reiniciar",
+      "reducedMotionTitle": "Avanço automático desativado (movimento reduzido) — navegue pelos passos",
+      "approve": "Aprovar (simulação)",
+      "docRefLabel": "documento referenciado",
+      "decisionLabel": "decisão",
+      "logLabel": "log de ações (simulado)",
+      "steps": {
+        "entrada": "Entrada",
+        "conhecimento": "Conhecimento",
+        "agente": "Agente",
+        "aprovacao": "Aprovação",
+        "resultado": "Resultado"
+      },
+      "scenarios": [
+        {
+          "id": "atendimento",
+          "label": "Atendimento",
+          "steps": {
+            "entrada": {
+              "heading": "Chega uma solicitação",
+              "text": "Um colaborador da Empresa Exemplo S.A. (fictícia) abre um chamado pedindo orientação sobre a troca de turno.",
+              "artifact": [
+                {
+                  "k": "canal",
+                  "v": "chamado interno #4821"
+                },
+                {
+                  "k": "de",
+                  "v": "colaborador (simulado)"
+                },
+                {
+                  "k": "assunto",
+                  "v": "Dúvida sobre procedimento de troca de turno"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "O agente busca nas fontes certas",
+              "text": "A pergunta é comparada com a base de conhecimento da empresa — políticas, procedimentos e comunicados — e as fontes relevantes são recuperadas com referência.",
+              "artifact": [
+                {
+                  "k": "fonte 1",
+                  "v": "POP-017 · Procedimento de Troca de Turno (doc fictício)"
+                },
+                {
+                  "k": "fonte 2",
+                  "v": "Comunicado RH 2026-03 (doc fictício)"
+                },
+                {
+                  "k": "similaridade",
+                  "v": "0.91 · 0.84"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "A resposta é montada com citações",
+              "text": "O agente redige a resposta a partir das fontes recuperadas, cita cada trecho usado e classifica o chamado por tema e urgência.",
+              "artifact": [
+                {
+                  "k": "rascunho",
+                  "v": "Resposta com 2 citações ao POP-017"
+                },
+                {
+                  "k": "classificação",
+                  "v": "RH · rotina · baixa urgência"
+                },
+                {
+                  "k": "confiança",
+                  "v": "alta (fontes diretas)"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "Humano aprova antes de enviar",
+              "text": "Como o cliente definiu aprovação humana para respostas externas ao time, o agente prepara tudo e ESPERA. Nada sai sem o aval de quem aprova.",
+              "artifact": [
+                {
+                  "k": "status",
+                  "v": "aguardando aprovação"
+                },
+                {
+                  "k": "aprovador",
+                  "v": "supervisor de RH (simulado)"
+                },
+                {
+                  "k": "ação pendente",
+                  "v": "enviar resposta ao chamado #4821"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "Resposta enviada e registrada",
+              "text": "Com a aprovação, a resposta segue para o colaborador e todo o fluxo fica registrado — quem pediu, o que foi consultado, quem aprovou.",
+              "artifact": [
+                {
+                  "k": "chamado",
+                  "v": "#4821 respondido (simulação)"
+                },
+                {
+                  "k": "tempo do fluxo",
+                  "v": "2 min (simulado)"
+                },
+                {
+                  "k": "auditoria",
+                  "v": "trilha completa disponível"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "POP-017 · Procedimento de Troca de Turno — documento fictício",
+            "decision": "Envio da resposta: aprovado pelo supervisor (simulado)",
+            "log": [
+              "09:14 · chamado #4821 recebido",
+              "09:14 · 2 fontes recuperadas da base de conhecimento",
+              "09:15 · rascunho gerado com citações",
+              "09:15 · aprovação solicitada ao supervisor",
+              "09:16 · aprovado · resposta enviada · trilha registrada"
+            ]
+          }
+        },
+        {
+          "id": "documentos",
+          "label": "Documentos",
+          "steps": {
+            "entrada": {
+              "heading": "Chega um lote de documentos",
+              "text": "O financeiro da Empresa Exemplo S.A. (fictícia) recebe contratos e notas em PDF que precisam virar dados organizados.",
+              "artifact": [
+                {
+                  "k": "lote",
+                  "v": "12 PDFs (simulados)"
+                },
+                {
+                  "k": "tipos",
+                  "v": "contratos · notas · aditivos"
+                },
+                {
+                  "k": "origem",
+                  "v": "pasta compartilhada (simulada)"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "O agente entende cada documento",
+              "text": "Cada arquivo é lido e comparado com os modelos que a empresa usa — o agente sabe o que procurar em um contrato e o que procurar em uma nota.",
+              "artifact": [
+                {
+                  "k": "modelo",
+                  "v": "Contrato de locação · padrão interno (fictício)"
+                },
+                {
+                  "k": "campos-alvo",
+                  "v": "partes · vigência · valor · reajuste"
+                },
+                {
+                  "k": "referência",
+                  "v": "CT-2026/044 (doc fictício)"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "Extração e organização",
+              "text": "O agente extrai os campos, cruza com o que já existe na planilha de controle e sinaliza divergências — como uma vigência que não bate com o aditivo.",
+              "artifact": [
+                {
+                  "k": "extraídos",
+                  "v": "11 de 12 documentos"
+                },
+                {
+                  "k": "divergência",
+                  "v": "CT-2026/044: vigência ≠ aditivo"
+                },
+                {
+                  "k": "planilha",
+                  "v": "controle-contratos.xlsx (simulada)"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "A divergência espera decisão humana",
+              "text": "Os 11 documentos consistentes seguem o fluxo; a divergência vira uma pendência clara para o gestor decidir. O agente não 'resolve' sozinho o que é ambíguo.",
+              "artifact": [
+                {
+                  "k": "status",
+                  "v": "1 pendência aguardando gestor"
+                },
+                {
+                  "k": "detalhe",
+                  "v": "vigência 24m no contrato · 36m no aditivo"
+                },
+                {
+                  "k": "opções",
+                  "v": "usar aditivo · usar contrato · pedir revisão"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "Base organizada, exceção decidida",
+              "text": "Com a decisão registrada, a base fica completa e auditável: cada dado aponta para o documento e a página de onde veio.",
+              "artifact": [
+                {
+                  "k": "registros",
+                  "v": "12 de 12 na base (simulação)"
+                },
+                {
+                  "k": "rastreio",
+                  "v": "cada campo → documento de origem"
+                },
+                {
+                  "k": "tempo do lote",
+                  "v": "8 min (simulado)"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "CT-2026/044 · Contrato de locação + Aditivo 01 — documentos fictícios",
+            "decision": "Divergência de vigência: gestor optou pelo aditivo (simulado)",
+            "log": [
+              "14:02 · lote de 12 PDFs recebido",
+              "14:03 · 11 documentos extraídos sem pendência",
+              "14:03 · divergência detectada no CT-2026/044",
+              "14:10 · gestor decidiu: prevalece o aditivo",
+              "14:10 · base atualizada · trilha registrada"
+            ]
+          }
+        },
+        {
+          "id": "operacoes",
+          "label": "Operações",
+          "steps": {
+            "entrada": {
+              "heading": "Um indicador sai da faixa",
+              "text": "No painel da operação (simulado), o tempo de fila de uma etapa passa do limite combinado — o tipo de sinal que costuma se perder no meio do turno.",
+              "artifact": [
+                {
+                  "k": "evento",
+                  "v": "fila da etapa B > 25 min"
+                },
+                {
+                  "k": "fonte",
+                  "v": "painel operacional (dados simulados)"
+                },
+                {
+                  "k": "janela",
+                  "v": "últimos 40 min"
+                }
+              ]
+            },
+            "conhecimento": {
+              "heading": "Contexto antes de opinião",
+              "text": "O agente reúne o contexto: histórico recente da etapa, ocorrências registradas no turno e o procedimento operacional que trata desse desvio.",
+              "artifact": [
+                {
+                  "k": "histórico",
+                  "v": "3 ocorrências similares no mês (simulado)"
+                },
+                {
+                  "k": "turno",
+                  "v": "registro de parada parcial às 10:20"
+                },
+                {
+                  "k": "procedimento",
+                  "v": "POP-031 · Desvio de fila (doc fictício)"
+                }
+              ]
+            },
+            "agente": {
+              "heading": "Diagnóstico e proposta",
+              "text": "Cruzando os dados, o agente monta um resumo do provável gargalo e propõe a ação prevista no procedimento — com os números que justificam.",
+              "artifact": [
+                {
+                  "k": "hipótese",
+                  "v": "gargalo pós-parada parcial das 10:20"
+                },
+                {
+                  "k": "proposta",
+                  "v": "redistribuir 2 recursos por 1h (POP-031)"
+                },
+                {
+                  "k": "impacto estimado",
+                  "v": "fila volta à faixa em ~30 min (simulação)"
+                }
+              ]
+            },
+            "aprovacao": {
+              "heading": "O coordenador decide",
+              "text": "Mexer na alocação da operação é decisão humana: o agente entrega o diagnóstico pronto e aguarda o coordenador aprovar, ajustar ou recusar.",
+              "artifact": [
+                {
+                  "k": "status",
+                  "v": "aguardando coordenador"
+                },
+                {
+                  "k": "decisão pendente",
+                  "v": "aplicar redistribuição proposta"
+                },
+                {
+                  "k": "alternativa",
+                  "v": "manter e reavaliar em 20 min"
+                }
+              ]
+            },
+            "resultado": {
+              "heading": "Ação registrada, ciclo fechado",
+              "text": "Aprovada a ação, o agente registra o desfecho e acompanha o indicador — se a fila não voltar à faixa, o ciclo reabre com o novo contexto.",
+              "artifact": [
+                {
+                  "k": "ação",
+                  "v": "redistribuição aplicada (simulação)"
+                },
+                {
+                  "k": "acompanhamento",
+                  "v": "indicador monitorado por 1h"
+                },
+                {
+                  "k": "registro",
+                  "v": "ocorrência + decisão + desfecho"
+                }
+              ]
+            }
+          },
+          "result": {
+            "docRef": "POP-031 · Tratamento de desvio de fila — documento fictício",
+            "decision": "Redistribuição de recursos: aprovada pelo coordenador (simulado)",
+            "log": [
+              "10:47 · desvio detectado (fila > 25 min)",
+              "10:47 · contexto reunido: histórico + turno + POP-031",
+              "10:48 · diagnóstico e proposta apresentados",
+              "10:52 · coordenador aprovou a redistribuição",
+              "11:25 · fila de volta à faixa · ciclo fechado (simulação)"
+            ]
+          }
+        }
+      ],
+      "telemetrySrNote": "Valores ilustrativos, não correspondem a uma operação real.",
+      "telemetryChip": "simulação"
     }
   }
 }
