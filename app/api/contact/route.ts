@@ -28,6 +28,14 @@ const SERVICE_LABELS: Record<Servico, string> = {
   outro: "Outro assunto",
 };
 
+/** Idioma da página em que o lead escreveu (SITE-I18N): a equipe responde
+ * no idioma do visitante. Português é o padrão e não ganha marcação. */
+const LOCALE_LABELS: Record<string, { tag: string; label: string }> = {
+  en: { tag: "EN", label: "Inglês — responder em inglês" },
+  es: { tag: "ES", label: "Espanhol — responder em espanhol" },
+  "zh-CN": { tag: "ZH", label: "Chinês simplificado — responder em chinês ou inglês" },
+};
+
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -127,15 +135,17 @@ export async function POST(request: Request) {
     const divisionLabel = division === "agrofy" ? "Agrofy" : "Mineração";
     const serviceLabel = SERVICE_LABELS[data.servico];
     const subjectTag = `${divisionLabel} · ${serviceLabel}`;
+    const visitorLocale = data.locale ? LOCALE_LABELS[data.locale] : undefined;
 
     const { data: sendResult, error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: data.email,
-      subject: `[Website · ${subjectTag}] ${escapeHtml(data.subject)}`,
+      subject: `[Website · ${subjectTag}${visitorLocale ? ` · ${visitorLocale.tag}` : ""}] ${escapeHtml(data.subject)}`,
       html: `
         <h2>Nova mensagem do site — ${escapeHtml(subjectTag)}</h2>
         <p><strong>Divisão:</strong> ${divisionLabel}</p>
+        ${visitorLocale ? `<p><strong>Idioma do visitante:</strong> ${visitorLocale.label}</p>` : ""}
         <p><strong>Serviço / interesse:</strong> ${escapeHtml(serviceLabel)}</p>
         <p><strong>Nome:</strong> ${escapeHtml(data.name)}</p>
         ${data.empresa ? `<p><strong>Empresa:</strong> ${escapeHtml(data.empresa)}</p>` : ""}
@@ -157,7 +167,7 @@ export async function POST(request: Request) {
     }
 
     console.log(
-      `contact_sent cid=${correlationId} servico=${data.servico} division=${division} resend_id=${sendResult?.id ?? "unknown"}`,
+      `contact_sent cid=${correlationId} servico=${data.servico} division=${division} locale=${data.locale ?? "pt-BR"} resend_id=${sendResult?.id ?? "unknown"}`,
     );
     return NextResponse.json({ success: true, message: "Email sent" });
   } catch {

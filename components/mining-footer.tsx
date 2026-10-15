@@ -122,7 +122,7 @@ export function MiningFooter({ year }: MiningFooterProps) {
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-[#D4A847] mb-4">{t("columns.contact")}</h3>
             <ul className="space-y-2.5">
-              <li><a href={`mailto:${t("email")}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t("email")}</a></li>
+              <li><a href={`mailto:${t("email")}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors [overflow-wrap:anywhere]">{t("email")}</a></li>
               <li><a href={`tel:${t("phone").replace(/[^+\d]/g, "")}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t("phone")}</a></li>
               <li><span className="text-sm text-muted-foreground">Nova Lima, MG</span></li>
             </ul>

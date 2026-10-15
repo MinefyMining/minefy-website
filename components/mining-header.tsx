@@ -32,6 +32,7 @@ import {
 export function MiningHeader() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
+  const themeLabels = { toDark: t("themeToDark"), toLight: t("themeToLight") };
   const rawPathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -122,7 +123,7 @@ export function MiningHeader() {
           </Suspense>
           {/* No celular o tema vai para o menu (não cabe ao lado das bandeiras). */}
           <div className="hidden sm:block">
-            <ThemeToggle />
+            <ThemeToggle labels={themeLabels} />
           </div>
           {/* Platform access — THE KEY BUTTON */}
           <a
@@ -163,7 +164,7 @@ export function MiningHeader() {
               </nav>
               <div className="mt-auto pt-6 border-t border-border space-y-3">
                 <div className="flex justify-center sm:hidden">
-                  <ThemeToggle />
+                  <ThemeToggle labels={themeLabels} />
                 </div>
                 <a
                   href="https://app.minefymining.com"

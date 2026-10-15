@@ -1,6 +1,11 @@
 import {deferEnhancement} from './enhancements.js?v=20261010-fast';
 import {loadI18n} from './home-i18n.js';
 const {t, tRaw} = await loadI18n();
+// Bandeiras de idioma: leva junto a seção atual (#jornada, #produtos…) —
+// as quatro homes têm as mesmas âncoras.
+document.querySelectorAll('.locale-flag').forEach(flag=>flag.addEventListener('click',()=>{
+ if(location.hash)flag.href=flag.getAttribute('href').split('#')[0]+location.hash;
+}));
 const swapImage=(...args)=>import('./media.js?v=20261011-scene').then(module=>module.swapImage(...args));
 const warmImage=(...args)=>import('./media.js?v=20261011-scene').then(module=>module.warmImage(...args)).catch(()=>{});
 const $ = (selector) => document.querySelector(selector);

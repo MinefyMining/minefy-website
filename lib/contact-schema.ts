@@ -49,6 +49,9 @@ export const contactSchema = z
      * estado em memória — proibido em serverless). Validado pela API quando
      * CONTACT_TOKEN_SECRET existir; fail-open com log enquanto não existir. */
     t: z.string().max(256).optional(),
+    /** Idioma da página em que o lead escreveu (SITE-I18N): só informativo,
+     * para a equipe responder no idioma do visitante. */
+    locale: z.enum(["pt-BR", "en", "es", "zh-CN"]).optional(),
   })
   .strict();
 

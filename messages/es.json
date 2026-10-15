@@ -15,7 +15,9 @@
     "experiences": "Experiencias",
     "brandAria": "Minefy, inicio",
     "menu": "Menú",
-    "localeNav": "Selección de idioma"
+    "localeNav": "Selección de idioma",
+    "themeToDark": "Cambiar a tema oscuro",
+    "themeToLight": "Cambiar a tema claro"
   },
   "agroNav": {
     "home": "Início",
