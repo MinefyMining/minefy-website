@@ -94,7 +94,7 @@ export function MiningHeader() {
         </Link>
 
         {/* Desktop nav — centered */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-8">
           {navLinks.map(({ key, href }) => (
             <Link
               key={key}
@@ -137,7 +137,7 @@ export function MiningHeader() {
 
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger className="lg:hidden" aria-label={t("menu")}>
+            <SheetTrigger className="xl:hidden" aria-label={t("menu")}>
               <Menu className={`h-6 w-6 ${scrolled ? "text-foreground" : "text-[var(--header-fg)]"}`} />
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-card border-l border-border flex flex-col">
